@@ -9,6 +9,7 @@ they can learn.  And a way to maybe get feedback from others.  I always enjoy lo
 people's dotfiles, and hope others will appreciate mine.
 
 As most people advise:
+
 * I don't recommend using these files verbatim.
 * Instead, have a look at both my configurations and others. Then feel free to reuse what you
   like from mine and personalize your dot files to your own tastes.
@@ -38,7 +39,7 @@ Use the `setup.sh` script to install these dotfiles into your environment
 
 On windows machines, the configuration assumes
 
-* environment variable `%HOME%` is set
+* Environment variable `%HOME%` is set
     * This defines where to find `_vimrc` on windows
     * If using cygwin, I recommend using the same `$HOME` for cygwin as you do for `%HOME%`
       in your windows environment variables
