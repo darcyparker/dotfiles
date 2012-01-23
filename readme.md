@@ -39,37 +39,38 @@ As most people advise:
      * My `setup.sh` works well for me, for now... but I fully intend to simplify some of it.
 2. Remember to install software required by vim plugins
    * Procedure will be different depending on OS.
-     * tidy (HTMLTidy) _required to check html with syntastic in vim_
-     * node and npm
-     * After installing npm
-       * after installing npm, I recommend installing these:
+     * `tidy` (HTMLTidy) _required to check html with syntastic in vim_
+     * `node` and `npm`
+       * After installing npm, I recommend installing these:
          * `npm install -g jslint`  _used to check javascript with syntastic_
          * `npm install -g jsonlint`  _required to check json with syntastic_
          * `npm install -g csslint`  _required to check css with syntastic_
          * `npm install -g jshint`  _An alternative for checking javascript with syntastic_
          * `npm install -g uglify-js`  _I find _`uglify -b`_ to be useful ! filter command in vim _
-     * After installing node, install `jsdoctor`. `jsdoctor` also known as (`jsctags`) is a better
-       ctags for javascript because it understands javascript patterns such as the module pattern. It
-       works well with vim's tagbar. Unfortunately it doesn't have an npm module. But the latest
-       makefile will install it on unix systems. On windows, see notes below.
+       * After installing `node`, install `jsdoctor`.
+         * `jsdoctor` also known as (`jsctags`) is a better ctags for javascript because it understands
+            javascript patterns such as the module pattern.
+         * It works well with vim's tagbar.
+         * Unfortunately it doesn't have an npm module. But the latest makefile will install it
+           on unix systems.
+         * On windows, see notes below.
      * `perl` and CPAN module for `ack`  (required for ack.vim)
-     * Special notes for windows (does not apply to unix-like systems):
+     * Special notes for *windows* _(does not apply to unix-like systems)_:
        * Hopefully obvious, but make sure commands installed are in your `%PATH%` so they can be
          found by vim plugins.
          * The npm commands will be in `%APPDATA%/npm` which is then added to
            your `%PATH%`, but you will have to make sure `tidy.exe`, etc... is in a folder that's in
            your `%PATH%`.
        * For node and npm, I find the windows installer works best today. Ignore obsolete
-         instructions about installing under cygwin. And ignore manually instructions about
-         installing node.exe on windows. The latest windows installer works well now.
-       * After installing node install:
-         * jsdoctor (`jsctags`)
-           * A better ctags for javascript. Useful for vim's tagbar plugin. (and others too.)
-           * See my gist for tips about installing jsdoctor on windows. https://gist.github.com/1438882
-             * (unfortunately there is not an npm package for `jsctags`. The make file works nice for
-               installing on unix systems, but for windows, I found I needed the workaround described
-               in my gist.)
-         * git for windows (required for fugitive on gvim win32)
+         instructions about installing under cygwin. And ignore manual instructions involving the
+         creation of environment variables and making folders etc... The latest windows installer
+         works well now.
+       * To install `jsdoctor` (`jsctags`) on windows,
+         * See my gist for tips about installing jsdoctor on windows. https://gist.github.com/1438882
+           * (unfortunately there is not an npm package for `jsctags`. The make file works nice for
+             installing on unix systems, but for windows, I found I needed the workaround described
+             in my gist.)
+       * Don't forget to install `git` for windows (required for fugitive.vim on gvim win32)
 3. On windows machines, the configuration assumes
    * Environment variable `%HOME%` is set
      * This defines where to find `_vimrc` on windows
