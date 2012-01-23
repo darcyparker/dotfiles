@@ -42,6 +42,22 @@ As most people advise:
      * This defines where to find `_vimrc` on windows
      * If using cygwin, I recommend using the same `$HOME` for cygwin as you do for `%HOME%`
        in your windows environment variables
+     * Remember to install software needed by some of the vim plugins. For example:
+        * tidy.exe (for syntastic to check html)
+        * node and npm. (I find the windows installer works best today.)
+          * after installing npm, I recommend installing these:
+            * `npm install -g jslint`  _used to check javascript with syntastic_
+            * `npm install -g jsonlint`  _required to check json with syntastic_
+            * `npm install -g csslint`  _required to check css with syntastic_
+            * `npm install -g jshint`  _An alternative for checking javascript with syntastic_
+            * `npm install -g uglify-js`  _I find _`uglify -b`_ to be useful ! filter command in vim _
+        * jsdoctor (`jsctags`) (a better ctags for javascript. Useful for tagbar) See my gist for tips on
+          installing jsdoctor on windows. https://gist.github.com/1438882 (unfortunately there is not an
+          npm package for `jsctags`. The make file works nice for installing on unix systems, but for
+          windows, I found I needed the workaround described in my gist.)
+        * git for windows (required for fugitive on gvim win32)
+        * perl and CPAN module for ack  (required for ack.vim)
+        * other????
 3. Remember to init/update each submodule
    * git submodule init
    * git submodule update
