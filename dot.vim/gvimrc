@@ -1,0 +1,44 @@
+" ----------------------------------------------------------------------------------------------------
+" @file         gvimrc
+" @description  Gvim configuration file
+" @author       Darcy Parker
+" ----------------------------------------------------------------------------------------------------
+
+if has("gui_running")
+  if has("gui_macvim")
+    " Transparency of the window background as a percent
+    " " ------------------------------------------------------------
+    set transp=0
+    " Full Screen Options
+    " - Maximize Vim when entering fullscreen
+    " ------------------------------------------------------------
+    set fullscreen
+    set fuoptions=maxvert,maxhorz
+  else
+    set lines=80 columns=200
+  endif
+endif
+
+" GUI Options. (Add/remove with += and -= respectively)
+" ------------------------------------------------------------
+" l: Left-hand scrollbar is always present.
+set guioptions-=l
+" L: Left-hand scrollbar is present when there is a vertically split window
+set guioptions-=L
+" r: Right-hand scrollbar is always present.
+set guioptions+=r
+" R: Right-hand scrollbar is present when there is a vertically split window
+set guioptions+=R
+" b: Bottom (horizontal) scrollbar is present.
+set guioptions+=b
+
+" T: Include Toolbar
+"set guioptions+=T
+set guioptions-=T
+
+"noremap <D-w> :bwipe<CR>
+"noremap <D-w> :bdelete<CR>
+"nmap <D-w> <Plug>Kwbd
+"noremap <D-t> :CommandT<CR>
+"showtabline: When the tab page labels will be displayed (0=never,1=only if atleast 2 tab pages, 2=always)
+set showtabline=2

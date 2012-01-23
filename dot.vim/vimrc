@@ -1,0 +1,373 @@
+﻿" ----------------------------------------------------------------------------------------------------
+" @file         .vimrc
+" @description  Vim configuration file
+" @author       Darcy Parker
+" ----------------------------------------------------------------------------------------------------
+" Notes This vimrc requires the global variable g:my_vim_files to be set to
+"       the folder where my vim configuration files can be found. The path
+"       varies depending on my OS and version of vim being executed.
+"
+"       I maintain a git repository of my dot files, including my vim
+"       configurations and clone this repository on each of my machines.
+"       Because of differences in each OS and vim environment, I use the global
+"       variable g:my_vim_files to point to the vim configuration files
+"       in my git repository.
+"
+"       On each machine I use, I create the files: $HOME/.vimrc and $HOME/_vimrc
+"       These files are identical and ideally will _never_ change.
+"       $HOME/_vimrc is used by windows versions of vim
+"       $HOME/.vimrc is used by unix flavours of vim
+"       They automatically detect the environment and set g:my_vim_files and
+"       then source this vimrc file which is stored in g:my_vim_files.
+"
+"       All changes to my vim configuration are maintained in the
+"       g:my_vim_files folder. For example, vimrc settings should only be
+"       edited in this file which is in g:my_vim_files.
+
+"       Use setup.sh in my_dotfiles git repository to create the boilerplate
+"       $HOME/.vimrc and $HOME/_vimrc files if they do not exist.
+
+set nocompatible               " be iMproved
+
+" Load plugins/scripts via pathogen https://github.com/tpope/vim-pathogen
+" Before calling pathogen#infect(), add pathogen to runtime path
+runtime bundle/pathogen/autoload/pathogen.vim
+call pathogen#infect()
+call pathogen#helptags() "only needs to be run after adding new docs... but it's quick
+
+syntax on
+filetype plugin indent on
+
+" Reset shell when running in win32 (g)vim from cygwin's bash shell
+  " Note: Many plugins that rely on shell commands automatically assume
+  " that shell commands should be for cmd.exe on win32 version of vim and
+  " neglect to consider bash being available in win32 via cygwin. So if shell is
+  " bash on win32 (g)vim, then there will be problems with the plugins.
+  " Therefore always use cmd.exe when using (g)vim win32.
+  "
+  " Maybe in future... If I find I want to use bash on windows,
+  " try setting &shell to cmd.exe temporarily when using the
+  " plugins that require cmd.exe... This seems a bit painful/tedious to write
+  " mapkeys that toggle shell type... so for now, I am sticking with always
+  " using cmd.exe when using win32.
+  if has("win32") && &shell == '/bin/bash'
+      set shell=$COMSPEC " sets shell to correct path for cmd.exe
+  endif
+
+" Syntax highlighting when supported by terminal or gui running
+" ----------------------------------------------------------------------------------------------------
+  if &t_Co > 2 || has("gui_running")
+    syntax on
+  endif
+
+"Set Colors
+" ----------------------------------------------------------------------------------------------------
+  if &t_Co == 256 || has("gui_running")
+    set background=dark "set background so highlighting is appropriate
+    let g:solarized_termcolors=256
+    colorscheme solarized
+    "colorscheme mango
+
+    " aldmeris color scheme: http://www.vim.org/scripts/script.php?script_id=3673#1.0
+    "colorscheme aldmeris
+
+    "colorscheme synic
+    "colorscheme xoria256
+    "colorscheme koehler
+  elseif &t_Co == 16
+    set background=dark "set background so highlighting is appropriate
+    "let g:solarized_termcolors=16
+    colorscheme blue
+  endif
+
+"Set font
+  if has("gui_running")
+    if has("gui_win32")
+      "set guifont=Lucida\ Console:h10
+      set guifont=Consolas:h11 "Note: Consolas displays listchars properly, Lucidia Console does not
+    elseif has("gui_macvim") || has("gui_mac")
+      set guifont=Monaco:h12
+      set guifont=Menlo:h12
+    endif
+  endif
+
+" Activate filetype plugins
+" ----------------------------------------------------------------------------------------------------
+filetype plugin indent on
+
+" Define the leader key
+" ----------------------------------------------------------------------------------------------------
+let mapleader = ","
+let g:mapleader = ","
+
+" Misc. options
+" ----------------------------------------------------------------------------------------------------
+set showcmd " Display the command as it is typed
+set showmode " Display the current mode
+set ignorecase " Ignore case when searching
+set smartcase " Smart-case search mode
+
+" searching/matching options
+if &t_Co > 2 || has("gui_running")
+ set hlsearch " Highlight matching search result
+endif
+set incsearch " Start to search as soon as we type
+set showmatch " Show matching parentheses
+set gdefault "applies subsitutions globally on lines
+             "instead of :%s/foo/bar/g you just type :%s/foo/bar/
+" Mark trailing whitespace
+" ----------------------------------------------------------------------------------------------------
+match Todo /\s\+$/
+
+" set listchars=precedes:←,extends:→,nbsp:◊,trail:⠿,eol:\ ,tab:●·
+set listchars=tab:▸\ ,trail:·,eol:\ ,precedes:←,extends:→,nbsp:◊
+
+" Note OS X terminal.app requires MouseTerm
+" See https://bitheap.org/mouseterm/
+set mouse=a " Use the mouse in all modes
+if !has("win32")
+  set ttymouse=xterm " mouse behaviour
+endif
+set number " Show line numbers
+set ruler " show the cursor position all the time
+"set virtualedit=all "allow the cursor to go to 'invalid' places
+set cursorline " marks the cursor's line with a line
+set ttyfast
+
+"Default indent settings
+set tabstop=2 " Render a tab as n spaces
+set shiftwidth=2 " number of spaces to (auto)indent, used with cident, <<, >>, etc
+set softtabstop=2 " instead of inserting a real tab, inserts spaces
+set expandtab "tab key is expanded into spaces. Use Ctrl-V before tab to insert a real tab
+set autoindent " auto-indent (Could also use smartindent or cindent)
+set copyindent "copy the previous indentation on autoindenting
+" set cindent "autoindent, smartindent, or cindent
+set nosmartindent " Smart code auto-indent turned off since autoindent is on
+set showtabline=2 " Always display tabs
+set shiftround "use multiple of shiftwidth when indenting with '<' and '>'
+set smarttab " insert tabs on the start of a line according to
+             " shiftwidth, not tabstop
+
+set whichwrap=h,l,~,[,],<,> " Which movemenent characters to wrap
+set scrolloff=4 "keep 4 lines off the edges of the screen when scrolling
+set laststatus=2 " Always show the status line
+set noautoread " Do not reload the file if it changes
+set title " Display filename in window title
+set novisualbell t_vb= " No visual bell
+set noerrorbells " Don't beep when there is an error
+"set viminfo='50,<1000,s100,h,n~/.vim-local/.viminfo " Viminfo settings
+set mls=10 " Check for modelines in the first and last 10 lines
+set noeol
+set wildmenu
+set wildmode=list:longest
+set switchbuf=usetab
+set backspace=indent,eol,start "see :help 'backpace'
+                               "Allows backspacing over everything
+                               "while in insert mode
+set tabpagemax=50
+set isk+=- " Treat “-” like a word separator (for auto-completion!)
+set hidden "hides buffers instead of closing. So if a new file is open
+           "you aren't forced to write or undo changes first.
+           "Also undo buffers and marks are preserved.
+
+" No automatic word-wrap!
+" ----------------------------------------------------------------------------------------------------
+set nowrap
+set sidescroll=4
+set sidescrolloff=14
+set list
+
+set pastetoggle=<F2>  " when in insert mode, press <F2> to go to
+                      " paste mode, where you can paste mass data
+                      " that won't be autoindented
+
+" Always use UTF-8
+" ----------------------------------------------------------------------------------------------------
+set encoding=utf-8
+set fileencoding=utf-8
+set fileformat=unix
+
+" Do not highlight special PHP functions (to ensure compatibility with most color schemes)
+" ----------------------------------------------------------------------------------------------------
+"let php_special_functions = 0
+
+" Backups
+" ----------------------------------------------------------------------------------------------------
+set history=1000  " remember more commands (1000 is lots?)
+set undolevels=1000 " number of undo levels (1000 is lots?))
+set nobackup "do not keep a backup
+set nowritebackup
+set noswapfile
+
+"Persistant Undo
+
+
+"ConqueTerm settings {{{
+
+  "Note: ConqueTerm on gui_win32 requires win32 version of python. If win64
+  "version of python is installed and in path, must explicitly point to the
+  "win32 version of python.exe
+  "if has("gui_win32")
+    "let g:ConqueTerm_PyExe='d:\opt\Python27\python.exe'
+  "endif
+
+  let g:ConqueTerm_CloseOnEnd = 1 " close ConqueTerm buffer and delete it when the program inside it exits
+  " if you don't set this, then you have to manually :bw to wipe the buffer
+  let g:ConqueTerm_ReadUnfocused = 1 " Necessary if you want dynamic updates when you move to a new window
+  let g:ConqueTerm_ExecFileKey = '<F11>'
+  let g:ConqueTerm_SendFileKey = '<F10>'
+  let g:ConqueTerm_SendVisKey = '<F9>'
+  "}}}
+
+"mappings
+
+"Search related mappings {{{
+" See
+" http://stevelosh.com/blog/2010/09/coming-home-to-vim/#important-vimrc-lines
+" The first two lines fix Vim’s horribly broken default regex “handling”
+" by automatically inserting a \v before any string you search for. This
+" turns off Vim’s crazy default regex characters and makes searches use
+" normal regexes.
+nnoremap / /\v
+vnoremap / /\v
+" clear out search results with ,<space>
+nnoremap <leader><space> :noh<cr>
+"}}}
+
+"Mappings to move around windows
+map <C-h> <C-W>h
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-l> <C-W>l
+map <C-left> <C-W>h
+map <C-down> <C-W>j
+map <C-up> <C-W>k
+map <C-right> <C-W>l
+
+"Splits
+"http://technotales.wordpress.com/2010/04/29/vim-splits-a-guide-to-doing-exactly-what-you-want/
+"" window
+nmap <leader>sw<left>  :topleft  vnew<CR>
+nmap <leader>sw<right> :botright vnew<CR>
+nmap <leader>sw<up>    :topleft  new<CR>
+nmap <leader>sw<down>  :botright new<CR>
+" buffer
+nmap <leader>s<left>   :leftabove  vnew<CR>
+nmap <leader>s<right>  :rightbelow vnew<CR>
+nmap <leader>s<up>     :leftabove  new<CR>
+nmap <leader>s<down>   :rightbelow new<CR>
+
+"<leader>w -> Create a vertical window split and move to it
+"nnoremap <leader>w <C-w>v<C-w>l
+
+" switch to the directory of the open buffer
+map <leader>cd :cd %:p:h<cr>
+
+" tab key match bracket pairs
+nnoremap <tab> %
+vnoremap <tab> %
+
+" Make ; be equivalent to :
+" This saves having to hold shift key when typing :w etc...y
+" don’t remap : back to ; because it seems to break a bunch of plugins.
+nnoremap ; :
+
+
+"See http://vimcasts.org/episodes/tidying-whitespace/
+"Preserves/Saves the state, executes a command, and returns to the saved state
+function! Preserve(command)
+  " Preparation: save last search, and cursor position.
+  let _s=@/
+  let l = line(".")
+  let c = col(".")
+  " Do the business:
+  execute a:command
+  " Clean up: restore previous search history, and cursor position
+  let @/=_s
+  call cursor(l, c)
+endfunction
+"strip all trailing white space
+nnoremap <silent> <leader>ws  :call Preserve("%s/\\s\\+$//e")<CR>
+"reformat the indentation of the whole file
+nnoremap <silent> <leader>= :call Preserve("normal gg=G")<CR>
+
+map <silent><F4> :NEXTCOLOR<cr>
+map <silent><F3> :PREVCOLOR<cr>
+
+nnoremap <F5> :GundoToggle<CR>
+
+nnoremap <F12> :NERDTreeToggle<CR>
+nnoremap <F11> :NERDTreeFind<CR>
+
+
+" Make selecting inside an HTML tag less dumb "
+" See http://forrst.com/posts/Select_linewise_inside_current_HTML_tag_with_V-70J
+" Fix linewise visual selection of various text objects
+nnoremap Vit vitVkoj
+nnoremap Vat vatV
+nnoremap Vab vabV
+nnoremap VaB vaBV
+
+" <leader>e  -> edit the appropriate vimrc
+" When vimrc is edited, reload it
+execute "map <leader>e :e! ".g:my_vim_files."/vimrc<cr>"
+execute "autocmd! bufwritepost vimrc source ".g:my_vim_files."/vimrc"
+
+" Automatically save when changing focus. (vim's persistent undo and/or
+" version control will help when saving wasn't desired.
+" *** Todo: Update this to not include the scratch buffer
+"au FocusLost * :wa
+
+"<leader>ft -> Fold tag. (Useful for html and xml)
+"(Visual Line mode, select around tag, create fold operator)
+nnoremap <leader>ft Vatzf
+
+
+" Easy Motion https://github.com/Lokaltog/vim-easymotion
+let g:EasyMotion_leader_key = '<Leader>m' "Remap the easymotion leader key so it doesn't interfer other mappings
+
+" Open a Scratch buffer https://github.com/vim-scripts/scratch.vim
+nnoremap <leader><tab> :Scratch<CR>
+
+"remap snippet trigger key
+"let g:snips_trigger_key = '<C-CR>'
+
+"Fuzzy Finder mappings
+map <leader>f :FufFileWithCurrentBufferDir<C-M>
+map <leader>b :FufBuffer<C-M>
+
+  nmap <Leader>T= :Tabularize /=<CR>
+  vmap <Leader>T= :Tabularize /=<CR>
+  nmap <Leader>T: :Tabularize /:\zs<CR>
+  vmap <Leader>T: :Tabularize /:\zs<CR>
+
+" http://vim.wikia.com/wiki/Append_output_of_an_external_command
+" " Command R <args> -> put the results of a executing a command into a
+" scratch buffer
+"
+command! -nargs=* -complete=shellcmd R new | setlocal buftype=nofile bufhidden=hide noswapfile | r !<args>
+
+let g:syntastic_enable_signs=1
+
+" slime settings for working with tmux
+  "if !has("win32")
+    "function! To_Tmux()
+      "let b:text = input("tmux:", "", "custom,")
+      "call Send_to_Tmux(b:text . "\n")
+    "endfunction
+    "cmap tt :call To_Tmux()<CR>
+  "endif
+
+" snipmate settings
+  " workaround for snipmate on win32. Explictly add snipmate/after folder to runtimepath
+  " See http://code.google.com/p/snipmate/issues/detail?id=66&colspec=ID%20Type%20Status%20Priority%20OS%20Summary
+  if has("win32")
+    execute "set rtp+=".g:my_vim_files."/bundle/snipmate/after"
+  endif
+
+"Tagbar settings
+  nnoremap <leader>tb :TagbarToggle<CR>
+
+"Yankring settings
+  let g:yankring_max_history = 100
+  let g:yankring_history_file = '.yankring_history_file'

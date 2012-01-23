@@ -1,0 +1,123 @@
+#!/bin/bash
+
+#Could be bad to set TERM explicitly...
+# Should check if terminfo def is present...
+# find /lib/terminfo /usr/share/terminfo -name "`echo $TERM`"
+# Note: Some platforms like ubuntu don't have basic terminfo defs... Need to install ncurses-term
+
+##Too slow... but useful tests if using the term for the first time
+#TERM_DEF_PATH=`find /lib/terminfo /usr/share/terminfo -name "\`echo $TERM\`"`
+#if [ -z "$TERM_DEF_PATH" ] ; then
+  #echo "Unknown terminal $TERM.  Check terminfo definitions."
+#else
+  ##If it exists, upgrade to the 256-color version of the terminal
+  #TERM_DEF_PATH=`find /lib/terminfo /usr/share/terminfo -name "$TERM-256color"`
+  #if [ ! -z "$TERM_DEF_PATH" ] ; then
+    #export TERM="$TERM-256color"
+  #fi
+#fi
+if [ "$TERM" == "xterm" ] ; then
+  export TERM="xterm-256color"
+fi
+
+# Non-Operating System Specific Aliases
+
+alias ls="ls -F"
+alias ll="ls -lh"
+alias lt="ls -t | less"
+alias la="ls -A"
+alias lal="ls -al"
+alias lla="ls -al"
+alias dir="ls -a"
+
+alias k9='kill -9'
+alias ssn='sudo shutdown -h now'
+alias ps='ps -af'
+
+# shell
+alias ..='cd ..'
+alias ...='cd ../..'
+
+alias mcd='f () { mkdir -p $1 && cd $1; }; f '
+alias mkdir='mkdir -p'
+alias md='mkdir'
+
+alias du='du -sh'
+alias dua='\du -ah'
+alias df='df -h'
+
+alias m2u="tr '\015' '\012' "
+alias u2m="tr '\012' '\015' "
+
+alias cls="clear"
+alias more="less"
+alias del="rm"
+
+# for midnight command to use pipe symbols instead of vertical line chars so it works properly in
+# tmux and other terminal
+# note: mc works best when LANG=c
+# some sites suggest using UTF8 in terminal... however this
+# does not work with .  LANG=c seems to work in putty...
+# LANG=en_US.UTF-8 in other terminals...
+# alias mc="mc -a"
+
+# The essential git commands.
+#alias gs="git status"
+alias gb="git checkout -b"
+alias gc="git commit -v"
+alias gca="git commit -v -a"
+#alias gd="git diff | $EDITOR"
+alias ga="git add"
+alias gl="git log"
+
+#alias gb="git branch"
+alias gba="git branch -a"
+#alias gc="git commit -m"
+#alias gca="git ci -m"
+alias gd="git diff"
+alias gpl="git pull"
+alias gps="git push"
+alias gsd="git svn dcommit"
+alias gsr="git svn rebase"
+alias gsf="git svn fetch"
+
+export EDITOR='vim'
+export PAGER='less'
+# Todo: Debug below on os x
+#export MANPAGER='col -bx | view - -c ":set ft=man noml" -c ":nmap q :q<CR>"'
+
+#less default behaviour
+export LESS="ReMqXi~g"
+#R Raw color codes in output (don't remove color codes)
+#e exit the second time it reaches end of line
+#M verbose prompt
+#q quiet operation
+#X disables sending the termcap initialization/deinitialization strings
+#  ie prevents clear screen
+#i searches ignore case
+#~ - Don't show those weird ~ symbols on lines after EOF
+#g - Highlight results when searching with slash key (/)
+
+# Less coloring
+#export LESS_TERMCAP_mb=$'\E[01;31m'
+#export LESS_TERMCAP_md=$'\E[01;31m'
+#export LESS_TERMCAP_me=$'\E[0m'
+#export LESS_TERMCAP_se=$'\E[0m'
+#export LESS_TERMCAP_so=$'\E[01;44;33m'
+#export LESS_TERMCAP_ue=$'\E[0m'
+#export LESS_TERMCAP_us=$'\E[01;32m'
+
+# To do: debug --exclude-dir on os x
+# Grep
+#export GREP_OPTIONS='--color=auto --exclude="tags" --exclude="TAGS" --exclude="TAGS" --exclude-dir=.git --exclude-dir=.svn --exclude-dir=log'
+alias grep="grep --color"
+
+# History
+shopt -s histappend                         # Append each(!) history entry from all terminals realtime(not after sesion ending)
+shopt -s cmdhist                            # store multiline commands as 1 line
+shopt -s cdspell                            # spelling error correction
+shopt -s checkwinsize                       # check the window size after each command and, if necessary, update the values of LINES and COLUMNS.
+export HISTCONTROL="ignoredups"             # ignore duplicates(store command once)
+export HISTCONTROL="ignoreboth"
+export HISTIGNORE="&:ls:[bf]g:exit:%[0-9]"  # ignore simple commands
+export HISTFILESIZE=5000                    # history file size

@@ -1,0 +1,88 @@
+#!/bin/bash
+# Aliases specific to OS X
+
+#javascript aliases (Rhino)
+#alias js="java -cp ~/rhino1_7R2/js.jar org.mozilla.javascript.tools.shell.Main -opt -1"
+#alias jsd="java -cp ~/rhino1_7R2/js.jar org.mozilla.javascript.tools.debugger.Main"
+
+#MS Office Aliases
+alias word="open -a Microsoft\ Word"
+alias excel="open -a Microsoft\ Excel"
+alias ppt="open -a Microsoft\ Powerpoint"
+
+alias xcode="open -a Xcode.app"
+alias itunes="open -a iTunes.app"
+alias facetime="open -a facetime.app"
+
+alias address="open -a Address\ Book"
+alias activity="open -a Activity\ Monitor"
+alias textedit="open -a TextEdit.app"
+
+alias filezilla="open -a Filezilla"
+alias chrome="open -a Google\ Chrome"
+alias firefox="open -a Firefox"
+alias mu="open -a muCommander"
+
+alias desktop="cd ~/Desktop"
+
+#copy the working directory into the clipboard
+alias cwd="pwd | pbcopy"
+
+# Terminal shortcuts
+alias .t='~/bin/terminal --new-tab'
+alias .w='~/bin/terminal --new-window'
+
+# alias vim to Vim 7.3
+#vim='/Applications/MacVim.app/Contents/MacOS/Vim -n'
+# macvim now installed/maintained with brew...
+# (Prefer brew install of macvim, because's it has a vim for the terminal that has python support compiled in.)
+# OS X Leopard vim isn't v7.3...
+# OS X Lion's /usr/bin/vim is v7.3 but does not have python support.
+#vim='/usr/local/Cellar/macvim/7.3-63/MacVim.app/Contents/MacOS/Vim -n'
+vim='mvim -v'
+alias vim="${vim}"
+alias gvim="mvim"
+
+export EDITOR="${vim} -g --remote-tab-silent"
+export GIT_EDITOR="${vim} -g -f"
+
+# export MANPAGER='col -bx | view - -c ":set ft=man noml" -c ":nmap q :q<CR>"'
+
+# NODE_PATH is for node.js... Node is installed/managed with brew
+export NODE_PATH="/usr/local/lib/node_modules:${NODE_PATH}"
+#this is just temporary... jsctags may have versions of modules I don't want in path
+export NODE_PATH="/usr/local/lib/jsctags:${NODE_PATH}"
+
+#Set colors for OS X (BSD)
+export CLICOLOR=1
+export LSCOLORS="CxgxexexFxexexFxFxcxcx"
+# Colors
+#   a     black
+#   b     red
+#   c     green
+#   d     brown
+#   e     blue
+#   f     magenta
+#   g     cyan
+#   h     light grey
+#   A     bold black, usually shows up as dark grey
+#   B     bold red
+#   C     bold green
+#   D     bold brown, usually shows up as yellow
+#   E     bold blue
+#   F     bold magenta
+#   G     bold cyan
+#   H     bold light grey; looks like bright white
+#   x     default foreground or background
+# Order of colors in LSCOLORS, specified in pairs (foreground/background) (22 chars)
+#   1. directory
+#   2. symbolic link
+#   3. socket
+#   4. pipe
+#   5. executable
+#   6. block special
+#   7. character special
+#   8. executable with setuid bit set
+#   9. executable with setgid bit set
+#   10. directory writable to others, with sticky bit
+#   11. directory writable to others, without sticky bit#

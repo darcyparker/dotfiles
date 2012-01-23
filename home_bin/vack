@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# Open files without having to specify their path.
+# Example:
+#    vack shapes.rb
+# will search recursively downwards from the current directory to find
+# shapes.rb, then open it in Vim.
+#
+vim $(ack -g $@)

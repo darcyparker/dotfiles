@@ -1,0 +1,11 @@
+[user]
+	name = Darcy Parker
+	email = darcyparker@gmail.com
+[core]
+	excludesfile = ~/.gitignore_global
+	editor = vim
+[color]
+	branch = auto
+	diff = auto
+	interactive = auto
+	status = auto

@@ -1,0 +1,20 @@
+#!/bin/bash
+so() { [ -s $1 ] && source $1; }
+
+# Identify env with uname, make it lower case, only take first part before _
+# ENV_NAME is used to call appropriate bash options for the environment. (ie darwin, cygwin, etc...)
+export ENV_NAME=$(uname -s | tr 'A-Z' 'a-z' | awk 'BEGIN {FS="_"};{print $1}')
+
+so ~/.bash/bash_prompt
+so ~/.bash/bash_common # Common bash stuff
+so ~/.bash/bash_${ENV_NAME} # Env specific bash stuff
+
+# Call useful bash snippets
+#so ~/.bash/pathed_cd
+# so ~/.bash/saveMYIP
+
+# Move (or Add) /usr/local/bin to the front of the path
+[ -d /usr/local/bin ] && export PATH=$(echo /usr/local/bin:$PATH | sed -e 's;:/usr/local/bin;;')
+
+# if there is a bin folder in home, add it to PATH
+[ -d ~/bin ] && export PATH=~/bin:$PATH

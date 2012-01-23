@@ -1,0 +1,14 @@
+# inputrc is used to customize programs that use Readline
+#
+#set editing-mode vi
+#set show-all-if-ambiguous on 
+## History navigation
+# Up arrow - searches backwards
+"\e[A": history-search-backward
+# Down arrow - searches forwards
+"\e[B": history-search-forward
+# allow completion in history
+#"\t": menu-complete
+
+set show-all-if-ambiguous On
+set completion-ignore-case on
