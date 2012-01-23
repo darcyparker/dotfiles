@@ -46,7 +46,7 @@ As most people advise:
          * `npm install -g jsonlint`  _required to check json with syntastic_
          * `npm install -g csslint`  _required to check css with syntastic_
          * `npm install -g jshint`  _An alternative for checking javascript with syntastic_
-         * `npm install -g uglify-js`  _I find _`uglify -b`_ to be useful ! filter command in vim _
+         * `npm install -g uglify-js`  _I find_ `uglify -b` _to be useful ! filter command in vim_
        * After installing `node`, install `jsdoctor`.
          * `jsdoctor` also known as (`jsctags`) is a better ctags for javascript because it understands
             javascript patterns such as the module pattern.
