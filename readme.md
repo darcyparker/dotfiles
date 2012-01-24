@@ -67,9 +67,9 @@ As most people advise:
                works well now.
              * To install `jsdoctor` (`jsctags`) on windows,
                  * See my gist for tips about installing jsdoctor on windows. https://gist.github.com/1438882
-                     * unfortunately there is not an npm package for `jsctags`. The make file works nice for
-                       installing on unix systems, but for windows, I found I needed the workaround described
-                       in my gist.
+                 * unfortunately there is not an npm package for `jsctags`. The make file works nice for
+                   installing on unix systems, but for windows, I found I needed the workaround described
+                   in my gist.
              * Don't forget to install `git` for windows (required for fugitive.vim on gvim win32)
 3. On windows machines, the configuration assumes
      * Environment variable `%HOME%` is set
