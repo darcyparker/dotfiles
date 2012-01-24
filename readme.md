@@ -55,7 +55,7 @@ As most people advise:
            on unix systems.
          * On windows, see notes below.
      * `perl` and CPAN module for `ack`  (required for ack.vim)
-     * Special notes for *windows* _(does not apply to unix-like systems)_:
+     * Special notes for *windows* _(does not apply to unix-like systems)_
        * Hopefully obvious, but make sure commands installed are in your `%PATH%` so they can be
          found by vim plugins.
          * The npm commands will be in `%APPDATA%/npm` which is then added to
@@ -79,6 +79,7 @@ As most people advise:
 4. Remember to init/update each submodule
    * git submodule init
    * git submodule update
+   * git submodule foreach --recursive git checkout master
 5. And in the future to get the latest commits from other submodule authors:
    * git submodule foreach --recursive git pull
 
