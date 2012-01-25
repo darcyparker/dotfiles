@@ -51,7 +51,9 @@ filetype plugin indent on
   " mapkeys that toggle shell type... so for now, I am sticking with always
   " using cmd.exe when using win32.
   if has("win32") && &shell == '/bin/bash'
-      set shell=$COMSPEC " sets shell to correct path for cmd.exe
+      set shell=$COMSPEC /d " sets shell to correct path for cmd.exe
+      " use /d to disable the potential of autorun commands
+      " See http://www.microsoft.com/resources/documentation/windows/xp/all/proddocs/en-us/cmd.mspx?mfr=true
   endif
 
 " Syntax highlighting when supported by terminal or gui running
