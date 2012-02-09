@@ -1,0 +1,5 @@
+--langdef=xslt
+--langmap=xslt:.xsl
+--regex-xslt=/<xsl:template[^>]+name=\"([-a-zA-Z0-9_:]+)\"/\1/f,function/i
+--regex-xslt=/<xsl:variable[^>]+name=\"([-a-zA-Z0-9_]+)\"/\1/v,variable/i
+--regex-xslt=/<xsl:function[^>]+name=\"([-a-zA-Z0-9_:]+)\"/\1/f,function/i
