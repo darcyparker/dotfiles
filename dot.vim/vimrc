@@ -369,6 +369,14 @@ let g:syntastic_enable_signs=1
 
 "Tagbar settings
   nnoremap <leader>tb :TagbarToggle<CR>
+  let g:tagbar_type_xslt = {
+	    \ 'ctagstype' : 'xslt',
+	    \ 'kinds'     : [
+	        \ 'f:functions'
+	    \ ]
+		\ }
+
+
 
 "Yankring settings
   let g:yankring_max_history = 100
