@@ -122,8 +122,10 @@ set gdefault "applies subsitutions globally on lines
 match Todo /\s\+$/
 
 " set listchars=precedes:←,extends:→,nbsp:◊,trail:⠿,eol:\ ,tab:●·
-"set listchars=tab:▸\ ,trail:·,eol:\ ,precedes:←,extends:→,nbsp:◊
-set listchars=tab:→\ ,trail:·,eol:\ ,precedes:←,extends:→,nbsp:◊
+"to do... seems that listchars is being overwritten by some other value... 
+"if this file is sourced after vim loads, tab is correct. It seems another
+"plugin is re-setting value after vimrc first loads
+set listchars=tab:▸\ ,trail:·,eol:\ ,precedes:←,extends:→,nbsp:◊
 
 " Note OS X terminal.app requires MouseTerm
 " See https://bitheap.org/mouseterm/
