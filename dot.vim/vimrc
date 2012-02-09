@@ -372,8 +372,10 @@ let g:syntastic_enable_signs=1
   let g:tagbar_type_xslt = {
         \ 'ctagstype' : 'xslt',
         \ 'kinds'     : [
-        \ 't:templates',
+        \ 'n:templates (named)',
+        \ 'm:templates (matched)',
         \ 'f:functions',
+        \ 'p:parameters',
         \ 'v:variables'
         \ ]
         \ }
