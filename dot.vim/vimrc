@@ -122,7 +122,8 @@ set gdefault "applies subsitutions globally on lines
 match Todo /\s\+$/
 
 " set listchars=precedes:←,extends:→,nbsp:◊,trail:⠿,eol:\ ,tab:●·
-set listchars=tab:▸\ ,trail:·,eol:\ ,precedes:←,extends:→,nbsp:◊
+"set listchars=tab:▸\ ,trail:·,eol:\ ,precedes:←,extends:→,nbsp:◊
+set listchars=tab:→\ ,trail:·,eol:\ ,precedes:←,extends:→,nbsp:◊
 
 " Note OS X terminal.app requires MouseTerm
 " See https://bitheap.org/mouseterm/
