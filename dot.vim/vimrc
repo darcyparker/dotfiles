@@ -374,6 +374,8 @@ let g:syntastic_enable_signs=1
         \ 'kinds'     : [
         \ 'n:templates (named)',
         \ 'm:templates (matched)',
+        \ 'a: applied templates',
+        \ 'c: called templates',
         \ 'f:functions',
         \ 'p:parameters',
         \ 'v:variables'
