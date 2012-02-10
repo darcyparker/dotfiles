@@ -123,6 +123,8 @@ match Todo /\s\+$/
 
 " set listchars=precedes:←,extends:→,nbsp:◊,trail:⠿,eol:\ ,tab:●·
 " Shortcut to rapidly toggle `set list`
+set list
+"map to toggle list
 nmap <leader>l :set list!<CR>
 " There seems to be a bug where the characters do not render correctly unless
 " there is a bufwrite of the vimrc... not sure why it needs to be reloaded.
