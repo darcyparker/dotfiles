@@ -51,7 +51,7 @@ filetype plugin indent on
   " mapkeys that toggle shell type... so for now, I am sticking with always
   " using cmd.exe when using win32.
   if has("win32") && &shell == '/bin/bash'
-      set shell=$COMSPEC /d " sets shell to correct path for cmd.exe
+      set shell=$COMSPEC " sets shell to correct path for cmd.exe
       " use /d to disable the potential of autorun commands
       " See http://www.microsoft.com/resources/documentation/windows/xp/all/proddocs/en-us/cmd.mspx?mfr=true
   endif
@@ -122,7 +122,15 @@ set gdefault "applies subsitutions globally on lines
 match Todo /\s\+$/
 
 " set listchars=precedes:←,extends:→,nbsp:◊,trail:⠿,eol:\ ,tab:●·
-set listchars=tab:▸\ ,trail:·,eol:\ ,precedes:←,extends:→,nbsp:◊
+" Shortcut to rapidly toggle `set list`
+set list
+"map to toggle list
+nmap <leader>l :set list!<CR>
+" There seems to be a bug where the characters do not render correctly unless
+" there is a bufwrite of the vimrc... not sure why it needs to be reloaded.
+" Did an ack -u listchars to see if it was being overwritten elsewhere... but
+" could not find anything
+		set listchars=tab:●\ ,trail:·,eol:\ ,precedes:←,extends:→,nbsp:◊
 
 " Note OS X terminal.app requires MouseTerm
 " See https://bitheap.org/mouseterm/
@@ -177,7 +185,6 @@ set hidden "hides buffers instead of closing. So if a new file is open
 set nowrap
 set sidescroll=4
 set sidescrolloff=14
-set list
 
 set pastetoggle=<F2>  " when in insert mode, press <F2> to go to
                       " paste mode, where you can paste mass data
@@ -369,6 +376,18 @@ let g:syntastic_enable_signs=1
 
 "Tagbar settings
   nnoremap <leader>tb :TagbarToggle<CR>
+  let g:tagbar_type_xslt = {
+        \ 'ctagstype' : 'xslt',
+        \ 'kinds'     : [
+        \ 'n:templates (named)',
+        \ 'm:templates (matched)',
+        \ 'a:applied templates',
+        \ 'c:called templates',
+        \ 'f:functions',
+        \ 'p:parameters',
+        \ 'v:variables'
+        \ ]
+        \ }
 
 "Yankring settings
   let g:yankring_max_history = 100
