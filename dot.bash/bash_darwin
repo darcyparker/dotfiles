@@ -22,6 +22,7 @@ alias filezilla="open -a Filezilla"
 alias chrome="open -a Google\ Chrome"
 alias firefox="open -a Firefox"
 alias mu="open -a muCommander"
+alias yed="open -a yEd"
 
 alias desktop="cd ~/Desktop"
 
