@@ -51,7 +51,7 @@ As most people advise:
                 * `jsdoctor` also known as (`jsctags`) is a better ctags for javascript because it understands
                    javascript patterns such as the module pattern.
                 * It works well with vim's tagbar.
-                * Unfortunately it doesn't have an npm module. But the latest makefile will install it
+                * Unfortunately it doesn't have an npm module. But the latest `makefile` will install it
                   on unix systems.
                 * On windows, see notes below.
          * `perl` and CPAN module for `ack`  (required for ack.vim)
