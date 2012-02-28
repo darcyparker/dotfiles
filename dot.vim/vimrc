@@ -228,6 +228,11 @@ set noswapfile
   let g:ConqueTerm_SendVisKey = '<F9>'
   "}}}
 
+
+"Save and return to normal mode on FocusLost
+au FocusLost * :silent! wall                 " Save on FocusLost
+au FocusLost * call feedkeys("\<C-\>\<C-n>") " Return to normal mode on FocustLost
+
 "mappings
 
 "Search related mappings {{{
@@ -392,18 +397,11 @@ let g:syntastic_enable_signs=1
 
 "Tagbar settings
   nnoremap <leader>tb :TagbarToggle<CR>
-  "let g:tagbar_type_xslt = {
-        "\ 'ctagstype' : 'xslt',
-        "\ 'kinds'     : [
-        "\ 'n:templates (named)',
-        "\ 'm:templates (matched)',
-        "\ 'a:applied templates',
-        "\ 'c:called templates',
-        "\ 'f:functions',
-        "\ 'p:parameters',
-        "\ 'v:variables'
-        "\ ]
-        "\ }
+
+" Highlight word at cursor without changing position
+nnoremap <leader>h *<C-O>
+" Highlight word at cursor and then Ack it.
+nnoremap <leader>H *<C-O>:AckFromSearch!<CR>
 
 "Yankring settings
   let g:yankring_max_history = 100
