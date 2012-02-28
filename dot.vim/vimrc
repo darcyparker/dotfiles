@@ -406,6 +406,10 @@ nnoremap <leader>h *<C-O>
 " Highlight word at cursor and then Ack it.
 nnoremap <leader>H *<C-O>:AckFromSearch!<CR>
 
+" Search and replace word under cursor (,;)
+nnoremap <leader>sr :%s/\<<C-r><C-w>\>//<Left>
+
+
 "Yankring settings
   let g:yankring_max_history = 100
   let g:yankring_history_file = '.yankring_history_file'
