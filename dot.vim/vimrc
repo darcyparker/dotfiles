@@ -262,6 +262,9 @@ nnoremap k gk
 "select all
 map <Leader>a ggVG
 
+"Easier increment/decrement
+nnoremap + <C-a>
+nnoremap - <C-x>
 
 "Mappings to move around windows
 nnoremap <C-h> <C-W>h
