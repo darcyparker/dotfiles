@@ -243,15 +243,30 @@ vnoremap / /\v
 nnoremap <leader><space> :noh<cr>
 "}}}
 
+"Reselect visual block after indent/outdent
+vnoremap < <gv
+vnoremap > >gv
+
+"Make Y behave like other capitals
+nnoremap Y y$
+
+"Improve up/down movement on wrapped lines
+nnoremap j gj
+nnoremap k gk
+
+"select all
+map <Leader>a ggVG
+
+
 "Mappings to move around windows
-map <C-h> <C-W>h
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-l> <C-W>l
-map <C-left> <C-W>h
-map <C-down> <C-W>j
-map <C-up> <C-W>k
-map <C-right> <C-W>l
+nnoremap <C-h> <C-W>h
+nnoremap <C-j> <C-W>j
+nnoremap <C-k> <C-W>k
+nnoremap <C-l> <C-W>l
+nnoremap <C-left> <C-W>h
+nnoremap <C-down> <C-W>j
+nnoremap <C-up> <C-W>k
+nnoremap <C-right> <C-W>l
 
 "Splits
 "http://technotales.wordpress.com/2010/04/29/vim-splits-a-guide-to-doing-exactly-what-you-want/
@@ -344,6 +359,7 @@ nnoremap <leader><tab> :Scratch<CR>
 "Fuzzy Finder mappings
 map <leader>f :FufFileWithCurrentBufferDir<C-M>
 map <leader>b :FufBuffer<C-M>
+" Good article on fuzzy finder: http://blog.carbonfive.com/2011/10/18/theres-a-vim-plugin-for-that-fuzzy-finder/
 
   nmap <Leader>T= :Tabularize /=<CR>
   vmap <Leader>T= :Tabularize /=<CR>
@@ -376,18 +392,18 @@ let g:syntastic_enable_signs=1
 
 "Tagbar settings
   nnoremap <leader>tb :TagbarToggle<CR>
-  let g:tagbar_type_xslt = {
-        \ 'ctagstype' : 'xslt',
-        \ 'kinds'     : [
-        \ 'n:templates (named)',
-        \ 'm:templates (matched)',
-        \ 'a:applied templates',
-        \ 'c:called templates',
-        \ 'f:functions',
-        \ 'p:parameters',
-        \ 'v:variables'
-        \ ]
-        \ }
+  "let g:tagbar_type_xslt = {
+        "\ 'ctagstype' : 'xslt',
+        "\ 'kinds'     : [
+        "\ 'n:templates (named)',
+        "\ 'm:templates (matched)',
+        "\ 'a:applied templates',
+        "\ 'c:called templates',
+        "\ 'f:functions',
+        "\ 'p:parameters',
+        "\ 'v:variables'
+        "\ ]
+        "\ }
 
 "Yankring settings
   let g:yankring_max_history = 100
