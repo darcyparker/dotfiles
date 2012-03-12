@@ -124,3 +124,6 @@
 [submodule "dot.vim/bundle/roy"]
 	path = dot.vim/bundle/roy
 	url = https://github.com/esehara/Vim-Roy.git
+[submodule "dot.vim/bundle/stylus"]
+	path = dot.vim/bundle/stylus
+	url = https://github.com/wavded/vim-stylus.git
