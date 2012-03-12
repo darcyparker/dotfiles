@@ -118,3 +118,6 @@
 [submodule "dot.vim/bundle/vim-less"]
 	path = dot.vim/bundle/vim-less
 	url = https://github.com/groenewege/vim-less
+[submodule "dot.vim/bundle/jade"]
+	path = dot.vim/bundle/jade
+	url = https://github.com/vim-scripts/jade.vim
