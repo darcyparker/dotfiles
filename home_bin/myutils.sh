@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Function:    get_abs_path(relative_path)
 # Description: echos absolute path of relative_path

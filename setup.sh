@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 # Script to automatically create dotfile symlinks
 # Inspired by: https://github.com/Lokaltog/sync/blob/master/dotfiles/setup.sh
 
