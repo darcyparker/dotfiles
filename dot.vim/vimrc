@@ -416,3 +416,6 @@ nnoremap <leader>sr :%s/\<<C-r><C-w>\>//<Left>
 
 "roy.vim
 autocmd BufNewFile,BufRead *.roy setf roy
+
+"break the line at the cursor
+nmap <silent> <leader><CR> i<CR><ESC>
