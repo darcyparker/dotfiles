@@ -1,0 +1,11 @@
+BoldAsFont=yes
+Columns=145
+Rows=75
+Transparency=off
+Term=xterm-256color
+Font=Lucida Console
+AllowBlinking=yes
+BoldAsColour=yes
+Locale=en_US
+Charset=UTF-8
+FontHeight=9

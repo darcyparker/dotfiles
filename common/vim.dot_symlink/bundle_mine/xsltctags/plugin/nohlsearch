@@ -1,0 +1,39 @@
+" searching/matching options
+set ignorecase " Ignore case when searching
+set smartcase  " Smart-case search mode
+set incsearch  " Start to search as typing starts
+set gdefault   " Applies subsitutions globally on lines
+               " instead of :%s/foo/bar/g you just type :%s/foo/bar/
+if &t_Co > 2 || has("gui_running")
+ set hlsearch " Default Highlight matching search result
+ " map to toggle highlight of matching search result
+ nnoremap <leader><space> :set hlsearch!<cr>
+ "nnoremap <leader><space> :noh<cr>
+ "nnoremap <esc> :noh<return><esc>
+endif
+
+"clear the last search pattern
+nnoremap <leader>/ :let @/ = ""<cr>
+
+" Search and replace word under cursor (,;)
+nnoremap <leader>srw :%s/\<<C-r><C-w>\>//<Left>
+" Search and replace all
+nnoremap <Leader>sra :%s///<Left>
+" Search and replace inside visual selection
+vnoremap <Leader>srv :s///<Left>
+" Search and replace with confirm (normal, visual and operator-pending modes)
+noremap <Leader>src :%s//c<Left><Left>
+
+
+" See
+" http://stevelosh.com/blog/2010/09/coming-home-to-vim/#important-vimrc-lines
+" The first two lines fix Vim's horribly broken default regex handling
+" by automatically inserting a \v before any string you search for. This
+" turns off Vim's crazy default regex characters and makes searches use
+" normal regexes.
+nnoremap / /\v
+vnoremap / /\v
+
+" tab key match bracket pairs
+nnoremap <tab> %
+vnoremap <tab> %

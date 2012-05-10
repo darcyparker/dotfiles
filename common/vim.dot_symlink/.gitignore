@@ -1,0 +1,13 @@
+#These are folders and files in my vim configuration will not be tracked
+
+#bundle_github is a folder for cloning vim plugins from github
+bundle_github
+
+#bundle_disabled is a folder for storing disabled bundles
+#(Move undesired bundles to this folder)
+#Note: This isn't the only way to disable bundles. They can also be disabled by
+#      adding them to the g:pathogen_disabled[] list, or ending the bundle folder
+#      with a tilde (~) character.
+bundle_disabled
+
+#bundle_mine is a folder for storing my vim configuratoins tracked in this git repo
