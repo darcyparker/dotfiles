@@ -10,6 +10,7 @@ cygwin=ntsec codepage:oem tty binmode title nodosfilewarning
 ## Setup/Install
 
 These instructions assume:
+
 1. You have vim installed already.
     * Windows: [gVim](http://www.vim.org/download.php#pc)
     * Mac (OS X): I recommend installing via [Homebrew](http://mxcl.github.com/homebrew/)
