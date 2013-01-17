@@ -165,7 +165,7 @@ fi
 # v 2.13
 # (*) First workaround to support parameters having spaces like in:
 #     gvim -c "echo 'foo'"
-#     However, «gvim -c 'echo "foo"'» is not supported.
+#     However, Â«gvim -c 'echo "foo"'Â» is not supported.
 #   The version 2.13 which does not use Bash's arrays is still available at:
 #     http://hermitte.free.fr/cygwin/cyg-wrapper-2.13.sh
 #
@@ -176,7 +176,7 @@ fi
 # (*) New option: --keywords
 #
 # v 2.16
-# (*) I've get rid of the external program «expr», and now I use bash's
+# (*) I've get rid of the external program Â«exprÂ», and now I use bash's
 #     internal funtionalities to parse the arguments.
 #     => significant speed-up
 # (*) Convert parameters like: '--xxx={path}' -> new option: --path-opt
@@ -199,7 +199,7 @@ fi
 # (*) $COMSPEC /c start gvim is not working anymore
 # (*) Test under w9x
 # (*) Enhance --keywords to support:
-#     - the exact syntax of the program; e.g. the second «cvf» in «tar cvf cvf»
+#     - the exact syntax of the program; e.g. the second Â«cvfÂ» in Â«tar cvf cvfÂ»
 #       is a file, but not the first
 #     - composed actions like with tar
 #
@@ -219,7 +219,7 @@ shift;
 # Special arguments:
 # --slashed-opt	 : says that the program wait parameters of the form '/opt'
 # --binary-opt={opts} : lists of binary options whose 2nd element is not a file
-# --keywords={acts} : lists of actions like in «apt-get update»
+# --keywords={acts} : lists of actions like in Â«apt-get updateÂ»
 # --path-opt={opts} : list of options taking a path after an equal sign
 # --cyg-verbose  : forces echo of the command really executed
 # --fork=<[0]|1|2> : explicitly forks the process
@@ -407,7 +407,7 @@ oldFN() {
 	if [ `expr ",$binary_args," : ".*,$1,"` -gt 0 ] ; then
 	    # USED to be: ptransl="$1 '$2'"
 	    # THEN: ptransl="$1 $2"
-	    # and NOW: to support «--cmd "echo 'foo'"»
+	    # and NOW: to support Â«--cmd "echo 'foo'"Â»
 	    # WAS (2.13): ptransl="$1 \"$2\""
 	    ptransl=("$1" "$2")
 	    # param[${#param[*]}]="$1"
@@ -482,7 +482,7 @@ elif [ $fork_option = 2 ] ; then
     # Other solution rejected.
     # Be aware that cygstart accepts a very limited number of characters as
     # parameters, and that cygstart will stole ALL the parameters given to
-    # PROGRAM, unless «--» is used.  
+    # PROGRAM, unless Â«--Â» is used.  
     # However, this solution is still working while $COMSPEC's one is not
     # cygstart -- "${param[@]}"
     # cygstart "${param[@]}"

@@ -62,7 +62,7 @@ set matchpairs+=<:>  "add these for html/xml (not a substitute for matchit.vim, 
 " Show invisible characters
 set list
 "Define symbols/chars to show for invisible characters
-set listchars=eol:\ ,tab:»·,trail:·,precedes:<,extends:>
+set listchars=eol:\ ,tab:Â»Â·,trail:Â·,precedes:<,extends:>
 "map to toggle display of invisible chars
 noremap <leader>l :set list!<CR>
 
