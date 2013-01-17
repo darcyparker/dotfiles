@@ -14,7 +14,7 @@ These instructions assume:
 1. You have vim installed already.
     * Windows: [gVim](http://www.vim.org/download.php#pc)
     * Mac (OS X): I recommend installing via [Homebrew](http://mxcl.github.com/homebrew/)
-        * brew install macvim --override-system-vim
+        * `brew install macvim --override-system-vim`
 
 2.  As well, you should have the various software required by vim plugins.
 
