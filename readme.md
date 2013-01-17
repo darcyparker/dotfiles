@@ -13,6 +13,9 @@ These instructions assume:
 
 1. You have vim installed already.
     * Windows: [gVim](http://www.vim.org/download.php#pc)
+        * I install vim using [gvim73_46 on vim.org](http://www.vim.org/download.php#pc) because it installs all required files and integrates with windows explorer
+            * Note: ootb, vim.exe does not have python support. (gvim.exe does but vim.exe doesn't).
+            * I replace the `gvim.exe` and `vim.exe` with newer builds from [vim-win3264](http://code.google.com/p/vim-win3264/) or [Yongwei](http://wyw.dcweb.cn/#download)
     * Mac (OS X): I recommend installing via [Homebrew](http://mxcl.github.com/homebrew/)
         * `brew install macvim --override-system-vim`
 
