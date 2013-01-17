@@ -1,6 +1,6 @@
 BoldAsFont=yes
 Columns=145
-Rows=75
+Rows=55
 Transparency=off
 Term=xterm-256color
 Font=Consolas for Powerline FixedD
