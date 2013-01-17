@@ -20,9 +20,9 @@
 #                 : Target name will be prefixed with "." and ".dot_template" will be stripped
 #
 # symlink_content : A folder will be created with the target name
-                  : and symbolic links of its content will be made in the folder
-                  : Target name will have the ".symlink_content" stripped
-                  : The symbolic links will not change the name.
+#                 : and symbolic links of its content will be made in the folder
+#                 : Target name will have the ".symlink_content" stripped
+#                 : The symbolic links will not change the name.
 
 ###########################################################################
 # Function: get_abspath(path)
