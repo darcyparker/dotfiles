@@ -121,7 +121,8 @@ add_it() {
 ##################
 
 # Identify environment (eg. cygwin, darwin, mingw32, linux)
-ENV_NAME=$(uname -s | tr 'A-Z' 'a-z' | awk 'BEGIN {FS="_"};{print $1}')
+ENV_NAME=$(uname -s | tr 'A-Z' 'a-z' | sed -e 's/_.*//')
+#ENV_NAME=$(uname -s | tr 'A-Z' 'a-z' | awk 'BEGIN {FS="_"};{print $1}')
 
 # Identify target folder to setup
 if [ -d "$1" ]; then
