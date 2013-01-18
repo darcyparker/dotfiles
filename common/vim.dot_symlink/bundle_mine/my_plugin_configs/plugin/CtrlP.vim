@@ -1,5 +1,4 @@
-"nnoremap <leader>b :CtrlPBuffer<CR>
-let g:ctrlp_cmd = 'CtrlPLastMode'
+let g:ctrlp_cmd = 'CtrlPBuffer'
 
 "Local working directory is:
 "0 - don’t manage working directory.
