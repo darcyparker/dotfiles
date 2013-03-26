@@ -87,6 +87,7 @@ alias msproject="cygstart /cygdrive/c/Program\ Files\ \(x86\)/Microsoft\ Office/
 alias onenote="cygstart /cygdrive/c/Program\ Files\ \(x86\)/Microsoft\ Office/Office14/onenote.exe"
 alias visio="cygstart /cygdrive/c/Program\ Files\ \(x86\)/Microsoft\ Office/Office14/visio.exe"
 alias lync="cygstart /cygdrive/c/Program\ Files\ \(x86\)/Microsoft\ Lync/communicator.exe"
+alias hipchat="cygstart /cygdrive/c/Program\ Files\ \(x86\)/HipChat/HipChat.exe"
 
 alias mindmap="cygstart /cygdrive/c/Program\ Files\ \(x86\)/Mindjet/MindManager\ 10/MindManager.exe"
 alias vmware="cygstart /cygdrive/c/Program\ Files\ \(x86\)/VMware/VMware\ Workstation/vmware.exe"
