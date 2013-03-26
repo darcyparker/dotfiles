@@ -39,8 +39,8 @@ endif
 
 " Load pathogen
 runtime bundle_github/pathogen/autoload/pathogen.vim
-call pathogen#infect('bundle_github')
-call pathogen#infect('bundle_mine')
+call pathogen#infect('bundle_github/{}')
+call pathogen#infect('bundle_mine/{}')
 call pathogen#helptags() "only needs to be run after adding new docs... but it's quick
 
 syntax on
