@@ -34,7 +34,8 @@ if has("gui_running")
     set guifont=Consolas\ for\ Powerline\ FixedD:h11
   elseif has("gui_macvim") || has("gui_mac")
     "set guifont=Monaco:h12
-    set guifont=Menlo:h12
+    "set guifont=Menlo:h12
+    set guifont=Menlo\ Regular\ for\ Powerline:h12
   endif
 endif
 
