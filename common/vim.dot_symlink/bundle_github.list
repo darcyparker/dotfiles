@@ -47,6 +47,7 @@ snipmate             master   git://github.com/garbas/vim-snipmate.git          
 solarized            master   git://github.com/altercation/vim-colors-solarized.git   ;https://github.com/altercation/vim-colors-solarized
 statline             master   git://github.com/millermedeiros/vim-statline.git        ;https://github.com/millermedeiros/vim-statline
 scriptease           master   git://github.com/tpope/vim-scriptease.git               ;https://github.com/tpope/vim-scriptease
+space                master   git://github.com/spiiph/vim-space.git                   ;https://github.com/spiiph/vim-space
 stylus               master   git://github.com/wavded/vim-stylus.git                  ;https://github.com/wavded/vim-stylus
 surround             master   git://github.com/tpope/vim-surround.git                 ;https://github.com/tpope/vim-surround
 syntastic            master   git://github.com/scrooloose/syntastic.git               ;https://github.com/scrooloose/syntastic
