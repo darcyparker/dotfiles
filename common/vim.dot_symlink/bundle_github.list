@@ -50,9 +50,11 @@ scriptease           master   git://github.com/tpope/vim-scriptease.git         
 space                master   git://github.com/spiiph/vim-space.git                   ;https://github.com/spiiph/vim-space
 stylus               master   git://github.com/wavded/vim-stylus.git                  ;https://github.com/wavded/vim-stylus
 surround             master   git://github.com/tpope/vim-surround.git                 ;https://github.com/tpope/vim-surround
-syntastic            master   git://github.com/scrooloose/syntastic.git               ;https://github.com/scrooloose/syntastic
+;syntastic            master   git://github.com/scrooloose/syntastic.git               ;https://github.com/scrooloose/syntastic
+syntastic            master   git@github.com:darcyparker/syntastic.git                ;https://github.com/darcyparker/syntastic
 tabular              master   git://github.com/godlygeek/tabular.git                  ;https://github.com/godlygeek/tabular
-tagbar               master   git://github.com/majutsushi/tagbar.git                  ;https://github.com/majutsushi/tagbar
+;tagbar               master   git://github.com/majutsushi/tagbar.git                  ;https://github.com/majutsushi/tagbar
+tagbar               master   git@github.com:darcyparker/tagbar.git                   ;https://github.com/darcyparker/tagbar
 tlib_vim             master   git://github.com/tomtom/tlib_vim.git                    ;https://github.com/tomtom/tlib_vim
 unimpaired           master   git://github.com/tpope/vim-unimpaired.git               ;https://github.com/tpope/vim-unimpaired
 vim-addon-mw-utils   master   git://github.com/MarcWeber/vim-addon-mw-utils.git       ;https://github.com/MarcWeber/vim-addon-mw-utils (used by snipmate)
