@@ -2,7 +2,12 @@ if executable('xsltctags')
   let g:tagbar_type_xslt = {
   \ 'ctagstype' : 'xslt',
   \ 'ctagsbin'  : 'xsltctags',
-  \ 'ctagsargs' : '-f - -p xsltproc',
+  \ 'ctagsargs' : [
+    \ '-f',
+    \ '-',
+    \ '-p',
+    \ 'xsltproc'
+  \  ],
   \ 'sort' : 0,
   \ 'kinds'     : [
     \ 'S:Stylesheet:0:1',
