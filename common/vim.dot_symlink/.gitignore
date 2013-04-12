@@ -1,5 +1,6 @@
 #These are folders and files in my vim configuration will not be tracked
 .netrwhist
+spell/*
 
 #bundle_github is a folder for cloning vim plugins from github
 bundle_github
