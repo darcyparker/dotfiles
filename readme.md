@@ -32,6 +32,8 @@ The following sections provide installation steps based on the OS type.
 2. As administrator, run `setup.bat`
     * Note this must be executed as adminstrator because it uses mklink.exe to link
       the `_vimrc` and `.vim` folder
+3. Also install consolas for powerline font
+    * https://github.com/eugeneching/consolas-powerline-vim
 
 ### Installation on Windows with Cygwin
 1. Set `%HOME%` environment variable to the path of your cygwin user's home directory

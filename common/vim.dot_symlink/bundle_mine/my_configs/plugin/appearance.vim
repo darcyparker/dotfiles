@@ -31,6 +31,7 @@ if has("gui_running")
   if has("gui_win32")
     "set guifont=Lucida\ Console:h10
     "set guifont=Consolas:h11 "Note: Consolas displays listchars properly, Lucidia Console does not
+    "https://github.com/eugeneching/consolas-powerline-vim
     set guifont=Consolas\ for\ Powerline\ FixedD:h11
   elseif has("gui_macvim") || has("gui_mac")
     "set guifont=Monaco:h12
