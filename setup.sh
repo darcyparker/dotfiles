@@ -23,6 +23,9 @@
 #                 : and symbolic links of its content will be made in the folder
 #                 : Target name will have the ".symlink_content" stripped
 #                 : The symbolic links will not change the name.
+#To do:
+# - call updatebundles.sh
+# - check if dirs/links made correctly. On cygwin, mklink must be run as administrator
 
 ###########################################################################
 # Function: get_abspath(path)
