@@ -53,6 +53,15 @@ alias cls="clear"
 alias more="less"
 alias del="rm"
 
+#which will look for aliases, functions and binaries
+which () { (alias; declare -f) | /usr/bin/which --tty-only --read-alias --read-functions --show-tilde --show-dot $@; }
+export -f which
+
+#npm completion doesn't work in cygwin even if npm is installed under windows
+#[[ `which npm` ]] && eval "$(npm completion -)"
+[[ `which grunt` ]] && eval "$(grunt --completion=bash)"
+[[ `which bower` ]] && eval "$(bower completion)"
+
 # for midnight command to use pipe symbols instead of vertical line chars so it works properly in
 # tmux and other terminal
 # note: mc works best when LANG=c
