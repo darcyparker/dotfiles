@@ -37,6 +37,7 @@ openurl              master   git://github.com/kenkov/openurl.vim.git           
 pathogen             master   git://github.com/tpope/vim-pathogen.git                 ;https://github.com/tpope/vim-pathogen
 ;powerline            develop  git://github.com/Lokaltog/powerline.git                 ;https://github.com/Lokaltog/powerline (The new powerline)
 powerline            develop  git://github.com/Lokaltog/vim-powerline.git             ;https://github.com/Lokaltog/vim-powerline
+ps1                  master   git://github.com/PProvost/vim-ps1.git                   ;https://github.com/PProvost/vim-ps1
 ragtag               master   git://github.com/tpope/vim-ragtag.git                   ;https://github.com/tpope/vim-ragtag
 repeat               master   git://github.com/tpope/vim-repeat.git                   ;https://github.com/tpope/vim-repeat
 roy                  master   git://github.com/esehara/Vim-Roy.git                    ;https://github.com/esehara/Vim-Roy
@@ -50,8 +51,8 @@ scriptease           master   git://github.com/tpope/vim-scriptease.git         
 space                master   git://github.com/spiiph/vim-space.git                   ;https://github.com/spiiph/vim-space
 stylus               master   git://github.com/wavded/vim-stylus.git                  ;https://github.com/wavded/vim-stylus
 surround             master   git://github.com/tpope/vim-surround.git                 ;https://github.com/tpope/vim-surround
-;syntastic            master   git://github.com/scrooloose/syntastic.git               ;https://github.com/scrooloose/syntastic
-syntastic            master   git@github.com:darcyparker/syntastic.git                ;https://github.com/darcyparker/syntastic
+syntastic            master   git://github.com/scrooloose/syntastic.git               ;https://github.com/scrooloose/syntastic
+;syntastic            master   git@github.com:darcyparker/syntastic.git                ;https://github.com/darcyparker/syntastic
 tabular              master   git://github.com/godlygeek/tabular.git                  ;https://github.com/godlygeek/tabular
 ;tagbar               master   git://github.com/majutsushi/tagbar.git                  ;https://github.com/majutsushi/tagbar
 tagbar               master   git@github.com:darcyparker/tagbar.git                   ;https://github.com/darcyparker/tagbar
