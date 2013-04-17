@@ -4,8 +4,13 @@
 [core]
   excludesfile = ~/.gitignore_global
   editor = vim
+  autocrlf = false
 [color]
   branch = auto
   diff = auto
   interactive = auto
   status = auto
+[github]
+  user = darcyparker
+[push]
+  default = current
