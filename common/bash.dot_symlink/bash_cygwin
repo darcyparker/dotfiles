@@ -8,7 +8,11 @@
 #export PATH=$(echo $PATH | sed -e 's;:\?/cygdrive/d/bin_win32;;' -e 's;cygdrive/d/bin_win32:\?;;' -e 's;:\?/cygdrive/d/opt/Git/cmd:\?;;' -e 's;:\?/cygdrive/d/opt/Python27:\?;;' )
 
 # Remove /cygdrive/d/opt/ruby193/bin from path
-export PATH=$(echo $PATH | sed -e 's;:\?/cygdrive/d/opt/ruby193/bin;;' -e 's;:\?/cygdrive/d/opt/GnuWin32/bin;;')
+#export PATH=$(echo $PATH | sed -e 's;:\?/cygdrive/d/opt/ruby193/bin;;' -e 's;:\?/cygdrive/d/opt/GnuWin32/bin;;')
+
+#See http://www.cygwin.com/cygwin-ug-net/using-cygwinenv.html
+# Note: Not using obsolete options
+export CYGWIN="nodosfilewarning"
 
 # echo New:
 # echo $PATH
@@ -22,8 +26,6 @@ export SHELL=/bin/bash
 #export CDPATH=.:/cygdrive/d/ptc:`cygpath $USERPROFILE`/Desktop:`cygpath $USERPROFILE`/Downloads:`cygpath $USERPROFILE`/Documents:/cygdrive/d/work/FY2011:`cygpath $USERPROFILE`/Dropbox
 
 # Aliases specific to Cygwin (on Windows)
-
-unalias ls
 alias ls="ls --color -F"
 
 cprograms="c:\Program Files (x86)"

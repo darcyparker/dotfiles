@@ -7,9 +7,11 @@ export SHELL=/bin/bash
 
 export PATH=$PATH:~/node_modules/uglify-js/bin;
 
-# Aliases specific to Linux
-unalias ls
+# Aliases specific to mingw32
 alias ls="ls --color -F"
+#which on mingw32 doesn't support many of the switches normally available
+which () { (alias; declare -f) | /usr/bin/which $@; }
+export -f which
 
 alias desktop="cd ~/Desktop"
 alias downloads="cd ~/Downloads"

@@ -6,9 +6,14 @@ so() { [ -s $1 ] && source $1; }
 export ENV_NAME=$(uname -s | tr 'A-Z' 'a-z' | sed -e 's/_.*//')
 #export ENV_NAME=$(uname -s | tr 'A-Z' 'a-z' | awk 'BEGIN {FS="_"};{print $1}')
 
-so ~/.bash/bash_prompt
-so ~/.bash/bash_common # Common bash stuff
+#Load Env specific bash stuff first
+#  This is particularly important for cygwin because settings like
+#  `export CYGWIN="..."` needs to be set before some stuff like nodejs commands
+#  will give an error message
+
 so ~/.bash/bash_${ENV_NAME} # Env specific bash stuff
+so ~/.bash/bash_common # Common bash stuff
+so ~/.bash/bash_prompt
 
 # Call useful bash snippets
 #so ~/.bash/pathed_cd

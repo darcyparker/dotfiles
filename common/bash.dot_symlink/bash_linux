@@ -9,6 +9,4 @@ export PATH=$PATH:~/node_modules/uglify-js/bin;
 #alias jake="node ~/node_modules/jake/lib/jake.js"
 
 # Aliases specific to Linux
-
-unalias ls
 alias ls="ls --color -F"
