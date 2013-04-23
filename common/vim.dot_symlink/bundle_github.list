@@ -43,7 +43,7 @@ repeat               master   git://github.com/tpope/vim-repeat.git             
 roy                  master   git://github.com/esehara/Vim-Roy.git                    ;https://github.com/esehara/Vim-Roy
 scratch              master   git://github.com/vim-scripts/scratch.vim.git            ;https://github.com/vim-scripts/scratch.vim
 scrollcolors         master   git://github.com/vim-scripts/ScrollColors.git           ;https://github.com/vim-scripts/ScrollColors
-snipmate-snippets    master   git://github.com/honza/snipmate-snippets.git            ;https://github.com/honza/snipmate-snippets
+snippets             master   git://github.com/honza/vim-snippets.git                 ;https://github.com/honza/vim-snippets
 snipmate             master   git://github.com/garbas/vim-snipmate.git                ;https://github.com/garbas/vim-snipmate (Note: msanders/snipmate.vim is the original snipmate, but development stopped. garbas is the new maintainer.)
 solarized            master   git://github.com/altercation/vim-colors-solarized.git   ;https://github.com/altercation/vim-colors-solarized
 statline             master   git://github.com/millermedeiros/vim-statline.git        ;https://github.com/millermedeiros/vim-statline
