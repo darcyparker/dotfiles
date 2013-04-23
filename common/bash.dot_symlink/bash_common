@@ -16,9 +16,10 @@
     #export TERM="$TERM-256color"
   #fi
 #fi
-if [ "$TERM" == "xterm" ] ; then
-  export TERM="xterm-256color"
-fi
+
+#if [ "$TERM" == "xterm" ] ; then
+  #export TERM="xterm-256color"
+#fi
 
 # Non-Operating System Specific Aliases
 # Alias ls if alias does not exist
