@@ -3,7 +3,9 @@
 #See http://sourceforge.net/projects/mingwbuilds/files/external-binary-packages/
 
 #Reset HOME to MSYS home. (By default I set %HOME% to cygwin's home)
-export HOME=$(echo /home/`whoami`)
+#Note: Not sharing home folders between msys, cygwin and win32 vim anymore because of challenges
+#      with permissions and ln -s for paths like /c/* and /cygdrive/c/*
+#export HOME=$(echo /home/`whoami | tr 'A-Z' 'a-z'`)
 
 #Notes: Currently Mingw_builds MSYS has a broken hg. (mv /usr/bin/hg.exe /usr/bin/hg_broken.exe)
 #Mingw_builds MSYS distribution includes tools such as perl and git therefore, 
