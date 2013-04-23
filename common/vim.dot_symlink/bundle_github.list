@@ -54,8 +54,8 @@ surround             master   git://github.com/tpope/vim-surround.git           
 syntastic            master   git://github.com/scrooloose/syntastic.git               ;https://github.com/scrooloose/syntastic
 ;syntastic            master   git@github.com:darcyparker/syntastic.git                ;https://github.com/darcyparker/syntastic
 tabular              master   git://github.com/godlygeek/tabular.git                  ;https://github.com/godlygeek/tabular
-;tagbar               master   git://github.com/majutsushi/tagbar.git                  ;https://github.com/majutsushi/tagbar
-tagbar               master   git@github.com:darcyparker/tagbar.git                   ;https://github.com/darcyparker/tagbar
+tagbar               master   git://github.com/majutsushi/tagbar.git                  ;https://github.com/majutsushi/tagbar
+;tagbar               master   git@github.com:darcyparker/tagbar.git                   ;https://github.com/darcyparker/tagbar
 tlib_vim             master   git://github.com/tomtom/tlib_vim.git                    ;https://github.com/tomtom/tlib_vim
 unimpaired           master   git://github.com/tpope/vim-unimpaired.git               ;https://github.com/tpope/vim-unimpaired
 vim-addon-mw-utils   master   git://github.com/MarcWeber/vim-addon-mw-utils.git       ;https://github.com/MarcWeber/vim-addon-mw-utils (used by snipmate)
