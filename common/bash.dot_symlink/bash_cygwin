@@ -10,6 +10,10 @@
 # Remove /cygdrive/d/opt/ruby193/bin from path
 #export PATH=$(echo $PATH | sed -e 's;:\?/cygdrive/d/opt/ruby193/bin;;' -e 's;:\?/cygdrive/d/opt/GnuWin32/bin;;')
 
+#Set home for cygwin (This resolves to a different location than mingw's msys)
+#Note: Not sharing home folders between msys, cygwin and win32 vim anymore because of challenges
+#      with permissions and ln -s for paths like /c/* and /cygdrive/c/*
+export HOME=$(echo /home/`whoami`)
 #See http://www.cygwin.com/cygwin-ug-net/using-cygwinenv.html
 # Note: Not using obsolete options
 export CYGWIN="nodosfilewarning"

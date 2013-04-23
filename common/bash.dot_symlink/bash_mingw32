@@ -1,4 +1,26 @@
 #!/bin/bash
+#Using Mingw_builds MSYS distribution
+#See http://sourceforge.net/projects/mingwbuilds/files/external-binary-packages/
+
+#Reset HOME to MSYS home. (By default I set %HOME% to cygwin's home)
+export HOME=$(echo /home/`whoami`)
+
+#Notes: Currently Mingw_builds MSYS has a broken hg. (mv /usr/bin/hg.exe /usr/bin/hg_broken.exe)
+#Mingw_builds MSYS distribution includes tools such as perl and git therefore, 
+#certain paths need to be removed to avoid conflicts
+#Use sed to remove unwanted items from path
+#export PATH=$(echo $PATH | sed -e 's/ESCAPEDPATHTOSTRIP:\?//g' )
+export PATH=$(echo $PATH | sed -e 's/\/c\/bin\/strawberry\/c\/bin:\?//g' )
+export PATH=$(echo $PATH | sed -e 's/\/c\/bin\/strawberry\/perl\/site\/bin:\?//g' )
+export PATH=$(echo $PATH | sed -e 's/\/c\/bin\/strawberry\/perl\/bin:\?//g' )
+export PATH=$(echo $PATH | sed -e 's/\/c\/Program\ Files\ \(x86\)\/Git\/cmd:\?//g' )
+export PATH=$(echo $PATH | sed -e 's/\/c\/Program\ Files\ \(x86\)\/GitExtensions:\?//g' )
+#export PATH=$(echo $PATH | sed -e 's/\/c\/bin\/Python27:\?//g' )
+#export PATH=$(echo $PATH | sed -e 's/\/c\/bin\/Python27\/Scripts:\?//g' )
+#export PATH=$(echo $PATH | sed -e 's/\/c\/bin\/Python27\/lib\/site-packages\/django\/bin:\?//g' )
+#unset PIP_RESPECT_VIRTUAL_ENV
+#unset PIP_VIRTUALENV_BASE
+#unset PYTHON_HOME
 
 #Linux/Cygwin/mingw32 Colors for ls
 export LS_COLORS="di=1;32;40:ln=36;40:so=34;40:pi=34;40:ex=1;35;40:bd=34;40:cd=34;40:su=1;35;40:sg=1;35;40:tw=32;40:ow=32;40:"
