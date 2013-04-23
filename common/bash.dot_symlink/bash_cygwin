@@ -18,16 +18,10 @@
 # Note: Not using obsolete options
 export CYGWIN="nodosfilewarning"
 
-# echo New:
-# echo $PATH
-
 #Linux/Cygwin Colors for ls
 export LS_COLORS="di=1;32;40:ln=36;40:so=34;40:pi=34;40:ex=1;35;40:bd=34;40:cd=34;40:su=1;35;40:sg=1;35;40:tw=32;40:ow=32;40:"
 export DISPLAY=localhost:0
 export SHELL=/bin/bash
-
-# Not using CDPATH because it is slow... will make symbolic links to these folders
-#export CDPATH=.:/cygdrive/d/ptc:`cygpath $USERPROFILE`/Desktop:`cygpath $USERPROFILE`/Downloads:`cygpath $USERPROFILE`/Documents:/cygdrive/d/work/FY2011:`cygpath $USERPROFILE`/Dropbox
 
 # Aliases specific to Cygwin (on Windows)
 alias ls="ls --color -F"

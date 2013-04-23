@@ -5,6 +5,8 @@
 #    * Note: mingwbuilds msys has lots of extras, but many of its tools need to be rebuilt to work properly
 #  * http://sourceforge.net/projects/mingw-w64/files/External%20binary%20packages%20%28Win64%20hosted%29/MSYS%20%2832-bit%29/
 #    * Seems to work best
+#There are numerous mingw-w64 distributions
+# See http://www.drangon.org/mingw/
 
 #Reset HOME to MSYS home. (By default I set %HOME% to cygwin's home)
 #Note: Not sharing home folders between msys, cygwin and win32 vim anymore because of challenges
@@ -19,6 +21,10 @@ export PATH=$(echo $PATH | sed -e 's/\/c\/bin\/strawberry\/c\/bin:\?//g' )
 export PATH=$(echo $PATH | sed -e 's/\/c\/bin\/strawberry\/perl\/site\/bin:\?//g' )
 export PATH=$(echo $PATH | sed -e 's/\/c\/bin\/strawberry\/perl\/bin:\?//g' )
 
+#Add mingw-w64 bin dir to path
+#Note: /etc/fstab for msys mounts appropriate mingw to /mingw-w64
+[ -d /MinGW-w64/bin ] && export PATH=/MinGW-w64/bin:$PATH
+
 #msys inside mintty doesn't work well with xterm-256 (try vim for example)
 export TERM=xterm
 
@@ -26,8 +32,6 @@ export TERM=xterm
 export LS_COLORS="di=1;32;40:ln=36;40:so=34;40:pi=34;40:ex=1;35;40:bd=34;40:cd=34;40:su=1;35;40:sg=1;35;40:tw=32;40:ow=32;40:"
 export DISPLAY=localhost:0
 export SHELL=/bin/bash
-
-export PATH=$PATH:~/node_modules/uglify-js/bin;
 
 # Aliases specific to mingw32
 alias ls="ls --color -F"
