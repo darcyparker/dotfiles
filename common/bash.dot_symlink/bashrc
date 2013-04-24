@@ -13,7 +13,9 @@ export ENV_NAME=$(uname -s | tr 'A-Z' 'a-z' | sed -e 's/_.*//')
 
 so ~/.bash/bash_${ENV_NAME} # Env specific bash stuff
 so ~/.bash/bash_common # Common bash stuff
-so ~/.bash/bash_prompt
+#so ~/.bash/bash_prompt
+# If interactive shell, source git-prompt.sh
+[[ $- == *i* ]]   &&   so ~/.bash/git-prompt.sh
 
 # Call useful bash snippets
 #so ~/.bash/pathed_cd
