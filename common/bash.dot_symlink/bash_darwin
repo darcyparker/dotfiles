@@ -5,8 +5,13 @@
 #alias js="java -cp ~/rhino1_7R2/js.jar org.mozilla.javascript.tools.shell.Main -opt -1"
 #alias jsd="java -cp ~/rhino1_7R2/js.jar org.mozilla.javascript.tools.debugger.Main"
 
-which () { (alias; declare -f) | /usr/bin/which $@; }
-export -f which
+#which () { (alias; declare -f) | /usr/bin/which $@; }
+#export -f which
+# which will look for aliases, functions and binaries
+if [[ ! `declare -F which` ]]; then
+  which () { (alias; declare -f) | gwhich --tty-only --read-alias --read-functions --show-tilde --show-dot $@; }
+  export -f which
+fi
 
 alias ls="ls -F"
 
@@ -56,9 +61,9 @@ unset vim
 # export MANPAGER='col -bx | view - -c ":set ft=man noml" -c ":nmap q :q<CR>"'
 
 # NODE_PATH is for node.js... Node is installed/managed with brew
-export NODE_PATH="/usr/local/lib/node_modules:${NODE_PATH}"
+#export NODE_PATH="/usr/local/lib/node_modules:${NODE_PATH}"
 #this is just temporary... jsctags may have versions of modules I don't want in path
-export NODE_PATH="/usr/local/lib/jsctags:${NODE_PATH}"
+#export NODE_PATH="/usr/local/lib/jsctags:${NODE_PATH}"
 
 #Set colors for OS X (BSD)
 export CLICOLOR=1

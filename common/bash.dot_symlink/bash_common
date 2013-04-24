@@ -53,11 +53,6 @@ alias cls="clear"
 alias more="less"
 alias del="rm"
 
-#npm completion doesn't work in cygwin even if npm is installed under windows
-#[[ `which npm` ]] && eval "$(npm completion -)"
-[[ `which grunt` ]] && eval "$(grunt --completion=bash)"
-[[ `which bower` ]] && eval "$(bower completion)"
-
 # for midnight command to use pipe symbols instead of vertical line chars so it works properly in
 # tmux and other terminal
 # note: mc works best when LANG=c

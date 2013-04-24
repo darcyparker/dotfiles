@@ -29,3 +29,9 @@ unset NPMPREFIX
 
 # if there is a bin folder in home, add it to PATH
 [ -d ~/bin ] && export PATH=~/bin:$PATH
+
+#Source/evaluate bash completion
+#[[ `which npm` ]] && eval "$(npm completion -)"
+#grunt and bower bash completion must be added after updating $PATH
+[[ `which grunt 2> /dev/null` ]] && eval "$(grunt --completion=bash)"
+[[ `which bower 2> /dev/null` ]] && eval "$(bower completion)"
