@@ -23,7 +23,6 @@
 
 # Non-Operating System Specific Aliases
 # Alias ls if alias does not exist
-[[ ! `alias ls` ]] && alias ls="ls -F"
 alias ll="ls -lh"
 alias lt="ls -t | less"
 alias la="ls -A"
@@ -53,12 +52,6 @@ alias u2m="tr '\012' '\015' "
 alias cls="clear"
 alias more="less"
 alias del="rm"
-
-# which will look for aliases, functions and binaries
-if [[ ! `declare -F which` ]]; then
-  which () { (alias; declare -f) | /usr/bin/which --tty-only --read-alias --read-functions --show-tilde --show-dot $@; }
-  export -f which
-fi
 
 #npm completion doesn't work in cygwin even if npm is installed under windows
 #[[ `which npm` ]] && eval "$(npm completion -)"

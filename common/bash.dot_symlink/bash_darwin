@@ -5,6 +5,11 @@
 #alias js="java -cp ~/rhino1_7R2/js.jar org.mozilla.javascript.tools.shell.Main -opt -1"
 #alias jsd="java -cp ~/rhino1_7R2/js.jar org.mozilla.javascript.tools.debugger.Main"
 
+which () { (alias; declare -f) | /usr/bin/which $@; }
+export -f which
+
+alias ls="ls -F"
+
 #MS Office Aliases
 alias word="open -a Microsoft\ Word"
 alias excel="open -a Microsoft\ Excel"
@@ -46,6 +51,7 @@ alias gvim="mvim"
 
 export EDITOR="${vim} -g --remote-tab-silent"
 export GIT_EDITOR="${vim} -g -f"
+unset vim
 
 # export MANPAGER='col -bx | view - -c ":set ft=man noml" -c ":nmap q :q<CR>"'
 

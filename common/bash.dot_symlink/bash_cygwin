@@ -24,6 +24,13 @@ export DISPLAY=localhost:0
 export SHELL=/bin/bash
 
 # Aliases specific to Cygwin (on Windows)
+
+# which will look for aliases, functions and binaries
+if [[ ! `declare -F which` ]]; then
+  which () { (alias; declare -f) | /usr/bin/which --tty-only --read-alias --read-functions --show-tilde --show-dot $@; }
+  export -f which
+fi
+
 alias ls="ls --color -F"
 
 cprograms="c:\Program Files (x86)"

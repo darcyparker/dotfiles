@@ -22,5 +22,10 @@ so ~/.bash/bash_prompt
 # Move (or Add) /usr/local/bin to the front of the path
 [ -d /usr/local/bin ] && export PATH=$(echo /usr/local/bin:$PATH | sed -e 's;:/usr/local/bin;;')
 
+# Move (or Add) npm's bin folder to the front of the path
+NPMPREFIX=`npm config get prefix`
+[ -d $NPMPREFIX/bin ] && export PATH=$(echo $NPMPREFIX/bin:$PATH | sed -e 's;:$NPMPREFIX/bin;;')
+unset NPMPREFIX
+
 # if there is a bin folder in home, add it to PATH
 [ -d ~/bin ] && export PATH=~/bin:$PATH
