@@ -3,7 +3,7 @@ so() { [ -s $1 ] && source $1; }
 
 # Identify env with uname, make it lower case, only take first part before _
 # ENV_NAME is used to call appropriate bash options for the environment. (ie darwin, cygwin, etc...)
-export ENV_NAME=$(uname -s | tr 'A-Z' 'a-z' | sed -e 's/_.*//')
+export ENV_NAME=$(uname -o | tr 'A-Z' 'a-z')
 #export ENV_NAME=$(uname -s | tr 'A-Z' 'a-z' | awk 'BEGIN {FS="_"};{print $1}')
 
 #Load Env specific bash stuff first
