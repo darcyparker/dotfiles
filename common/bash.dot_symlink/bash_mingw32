@@ -17,9 +17,12 @@
 #If other installations of these tools are installed and in path, they need to be removed
 #Use sed to remove unwanted items from path
 #export PATH=$(echo $PATH | sed -e 's/ESCAPEDPATHTOSTRIP:\?//g' )
-export PATH=$(echo $PATH | sed -e 's/\/c\/bin\/strawberry\/c\/bin:\?//g' )
-export PATH=$(echo $PATH | sed -e 's/\/c\/bin\/strawberry\/perl\/site\/bin:\?//g' )
-export PATH=$(echo $PATH | sed -e 's/\/c\/bin\/strawberry\/perl\/bin:\?//g' )
+export PATH=$(echo $PATH | sed -e "s/\/c\/bin\/strawberry\/c\/bin:\?//g" )
+export PATH=$(echo $PATH | sed -e "s/\/c\/bin\/strawberry\/perl\/site\/bin:\?//g" )
+export PATH=$(echo $PATH | sed -e "s/\/c\/bin\/strawberry\/perl\/bin:\?//g" )
+#Interesting that the ( and ) in (x86) doesn't need to be escaped here...
+export PATH=$(echo $PATH | sed -e "s/\/c\/Program Files (x86)\/Git\/cmd:\?//g")
+export PATH=$(echo $PATH | sed -e "s/\/c\/Program Files (x86)\/GitExtensions:\?//g")
 
 #Add mingw-w64 bin dir to path
 #Note: /etc/fstab for msys mounts appropriate mingw to /mingw-w64

@@ -13,21 +13,22 @@ export ENV_NAME=$(uname -s | tr 'A-Z' 'a-z' | sed -e 's/_.*//')
 
 so ~/.bash/bash_${ENV_NAME} # Env specific bash stuff
 so ~/.bash/bash_common # Common bash stuff
-#so ~/.bash/bash_prompt
+so ~/.bash/bash_prompt
 # If interactive shell, source git-prompt.sh
-[[ $- == *i* ]]   &&   so ~/.bash/git-prompt.sh
+#[[ $- == *i* ]]   &&   so ~/.bash/git-prompt.sh
 
 # Call useful bash snippets
 #so ~/.bash/pathed_cd
 # so ~/.bash/saveMYIP
 
 # Move (or Add) /usr/local/bin to the front of the path
-[ -d /usr/local/bin ] && export PATH=$(echo /usr/local/bin:$PATH | sed -e 's;:/usr/local/bin;;')
+[ -d /usr/local/bin ] && export PATH=$(echo /usr/local/bin:$PATH | sed -e "s;:/usr/local/bin;;")
 
 # Move (or Add) npm's bin folder to the front of the path
-NPMPREFIX=`npm config get prefix`
-[ -d $NPMPREFIX/bin ] && export PATH=$(echo $NPMPREFIX/bin:$PATH | sed -e 's;:$NPMPREFIX/bin;;')
-unset NPMPREFIX
+# Note, $NPMPREFIXBIN is already set by bash_cygwin because I use win32 node and npm
+[[ -z $NPMPREFIXBIN ]] && NPMPREFIXBIN=`npm config get prefix`/bin
+[ -d $NPMPREFIXBIN ] && export PATH=$(echo $NPMPREFIXBIN:$PATH | sed -e "s;:$NPMPREFIXBIN;;")
+unset NPMPREFIXBIN
 
 # if there is a bin folder in home, add it to PATH
 [ -d ~/bin ] && export PATH=~/bin:$PATH
