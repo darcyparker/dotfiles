@@ -58,7 +58,7 @@ alias saxon="java -jar '`cygpath -wp /cygdrive/d/jars/saxon9.jar`'"
 
 alias nginx="/usr/local/nginx/sbin/nginx.exe"
 
-alias gvim='cyg-wrapper.sh "$ucprograms/Vim/vim73/gvim.exe" --binary-opt=-c,--cmd,-T,-t,--servername,--remote-send,--remote-expr'
+alias gvim="cyg-wrapper.sh '$ucprograms/Vim/vim73/gvim.exe' --binary-opt=-c,--cmd,-T,-t,--servername,--remote-send,--remote-expr"
 
 # Reduce is a computer algebra system
 #alias reduce="/cygdrive/c/reduce/reduce.exe"
