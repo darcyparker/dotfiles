@@ -7,7 +7,7 @@ set noautoread " Do not reload the file if it changes
 
 set noeol
 
-set mls=10 " Check for modelines in the first and last 10 lines
+set mls=5 " Check for modelines in the first and last 5 lines
 
 set switchbuf=usetab "switch to first window/tab found for buffer when switching buffers
 
