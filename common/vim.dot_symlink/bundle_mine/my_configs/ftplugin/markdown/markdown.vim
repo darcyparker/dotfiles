@@ -2,4 +2,4 @@
 "installed
 "See https://chrome.google.com/webstore/detail/markdown-preview/jmchmkecamhbiokiopfpnfgbidieafmd
 "To do: Rewrite this to be more general. Shouldn't hardcode path.
-noremap <F12> :!start D:\Users\dparker\AppData\Local\Google\Chrome\Application\chrome.exe %:p<CR>
+noremap <F12> :!start "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" %:p<CR>
