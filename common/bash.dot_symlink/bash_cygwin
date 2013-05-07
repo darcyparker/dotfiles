@@ -18,19 +18,19 @@
 # Note: Not using obsolete options
 export CYGWIN="nodosfilewarning"
 
-export PATH=$(echo $PATH | sed -e "s/\/c\/bin\/strawberry\/c\/bin:\?//g" )
-export PATH=$(echo $PATH | sed -e "s/\/c\/bin\/strawberry\/perl\/site\/bin:\?//g" )
-export PATH=$(echo $PATH | sed -e "s/\/c\/bin\/strawberry\/perl\/bin:\?//g" )
-#Interesting that the ( and ) in (x86) doesn't need to be escaped here...
-export PATH=$(echo $PATH | sed -e "s/\/c\/Program Files (x86)\/Git\/cmd:\?//g")
-export PATH=$(echo $PATH | sed -e "s/\/c\/Program Files (x86)\/GitExtensions:\?//g")
-export PATH=$(echo $PATH | sed -e "s/\/c\/Program Files\/Mercurial:\?//g")
-export PATH=$(echo $PATH | sed -e "s/\/c\/bin\/ruby193\/bin:\?//g")
-export PATH=$(echo $PATH | sed -e "s/\/c\/bin\/Python27\/Scripts:\?//g")
-export PATH=$(echo $PATH | sed -e "s/\/c\/bin\/Python27\/lib\/site-packages\/django\/bin:\?//g")
-export PATH=$(echo $PATH | sed -e "s/\/c\/bin\/Python27:\?//g")
-export PATH=$(echo $PATH | sed -e "s/\/c\/Program Files (x86)\/Lua\/5.1\/clibs:\?//g")
-export PATH=$(echo $PATH | sed -e "s/\/c\/Program Files (x86)\/Lua\/5.1:\?//g")
+export PATH=$(echo $PATH | sed -e "s/\/cygdrive\/c\/bin\/strawberry\/c\/bin:\?//g" )
+export PATH=$(echo $PATH | sed -e "s/\/cygdrive\/c\/bin\/strawberry\/perl\/site\/bin:\?//g" )
+export PATH=$(echo $PATH | sed -e "s/\/cygdrive\/c\/bin\/strawberry\/perl\/bin:\?//g" )
+#Interesting that the space " ", and the brackets "(" and ")" do not need to be escaped here...
+export PATH=$(echo $PATH | sed -e "s/\/cygdrive\/c\/Program Files (x86)\/Git\/cmd:\?//g")
+export PATH=$(echo $PATH | sed -e "s/\/cygdrive\/c\/Program Files (x86)\/GitExtensions:\?//g")
+export PATH=$(echo $PATH | sed -e "s/\/cygdrive\/c\/Program Files\/Mercurial:\?//g")
+export PATH=$(echo $PATH | sed -e "s/\/cygdrive\/c\/bin\/ruby193\/bin:\?//g")
+export PATH=$(echo $PATH | sed -e "s/\/cygdrive\/c\/bin\/Python27\/Scripts:\?//g")
+export PATH=$(echo $PATH | sed -e "s/\/cygdrive\/c\/bin\/Python27\/lib\/site-packages\/django\/bin:\?//g")
+export PATH=$(echo $PATH | sed -e "s/\/cygdrive\/c\/bin\/Python27:\?//g")
+export PATH=$(echo $PATH | sed -e "s/\/cygdrive\/c\/Program Files (x86)\/Lua\/5.1\/clibs:\?//g")
+export PATH=$(echo $PATH | sed -e "s/\/cygdrive\/c\/Program Files (x86)\/Lua\/5.1:\?//g")
 
 #Linux/Cygwin Colors for ls
 export LS_COLORS="di=1;32;40:ln=36;40:so=34;40:pi=34;40:ex=1;35;40:bd=34;40:cd=34;40:su=1;35;40:sg=1;35;40:tw=32;40:ow=32;40:"
@@ -49,12 +49,15 @@ alias ls="ls --color -F"
 
 cprograms="c:\\Program Files (x86)"
 ucprograms=`cygpath -u "$cprograms"`
+echo ucprograms=$ucprograms
 
 # Get NPM Prefix and convert it for cygwin
 # Note, on windows, there is no bin folder under npm's prefix
 # All commands are in npm's prefix folder
 NPMPREFIXBIN=`npm config get prefix`
+echo NPMPREFIXBIN=$NPMPREFIXBIN
 NPMPREFIXBIN=`cygpath -u "$NPMPREFIXBIN"`
+echo NPMPREFIXBIN=$NPMPREFIXBIN
 
 alias desktop="cd `cygpath $USERPROFILE`/Desktop"
 alias downloads="cd `cygpath $USERPROFILE`/Downloads"
