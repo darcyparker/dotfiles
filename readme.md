@@ -16,7 +16,15 @@ These instructions assume:
         * I install vim using [gvim73_46 on vim.org](http://www.vim.org/download.php#pc) because it installs all required files and integrates with windows explorer
             * Note: ootb, vim.exe does not have python support. (gvim.exe does but vim.exe doesn't).
             * I replace the `gvim.exe` and `vim.exe` with newer builds from [vim-win3264](http://code.google.com/p/vim-win3264/) or [Yongwei](http://wyw.dcweb.cn/#download)
-    * Mac (OS X): I recommend installing via [Homebrew](http://mxcl.github.com/homebrew/)
+            * Remember to install 32 bit python that was built with MS compiler.
+            * For python to work in vim, both vim and python must be built with the same target and the same compiler.
+            * Most builds of vim are built as 32 bit apps with MS compiler.
+              Some are built with mingw (with 32 bit target) or mingw-w64
+              (target either 32bit or 64bit).  This is normally fine, but today it is
+              rare to find a python installation that was built with these compilers. So stick with
+              vim built against MS compiler.
+    * Mac (OS X): I recommend installing via
+      [Homebrew](http://mxcl.github.com/homebrew/)
         * `brew install macvim --override-system-vim`
 
 2.  As well, you should have the various software required by vim plugins.
