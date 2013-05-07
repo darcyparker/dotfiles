@@ -17,6 +17,7 @@
 #See http://www.cygwin.com/cygwin-ug-net/using-cygwinenv.html
 # Note: Not using obsolete options
 export CYGWIN="nodosfilewarning"
+unset PYTHONHOME
 
 export PATH=$(echo $PATH | sed -e "s/\/cygdrive\/c\/bin\/strawberry\/c\/bin:\?//g" )
 export PATH=$(echo $PATH | sed -e "s/\/cygdrive\/c\/bin\/strawberry\/perl\/site\/bin:\?//g" )
@@ -49,15 +50,12 @@ alias ls="ls --color -F"
 
 cprograms="c:\\Program Files (x86)"
 ucprograms=`cygpath -u "$cprograms"`
-echo ucprograms=$ucprograms
 
 # Get NPM Prefix and convert it for cygwin
 # Note, on windows, there is no bin folder under npm's prefix
 # All commands are in npm's prefix folder
 NPMPREFIXBIN=`npm config get prefix`
-echo NPMPREFIXBIN=$NPMPREFIXBIN
 NPMPREFIXBIN=`cygpath -u "$NPMPREFIXBIN"`
-echo NPMPREFIXBIN=$NPMPREFIXBIN
 
 alias desktop="cd `cygpath $USERPROFILE`/Desktop"
 alias downloads="cd `cygpath $USERPROFILE`/Downloads"
