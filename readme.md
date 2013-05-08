@@ -3,29 +3,46 @@
 _Note: This is a work in progress.  My dotfiles are in flux right now and I intend to document
 my configurations in more detail._
 
-## To do
-env on windows:
-cygwin=ntsec codepage:oem tty binmode title nodosfilewarning
-
 ## Setup/Install
 
-These instructions assume:
+> My vim configuration is included.
 
-1. You have vim installed already.
-    * Windows: [gVim](http://www.vim.org/download.php#pc)
-        * I install vim using [gvim73_46 on vim.org](http://www.vim.org/download.php#pc) because it installs all required files and integrates with windows explorer
-            * Note: ootb, vim.exe does not have python support. (gvim.exe does but vim.exe doesn't).
-            * I replace the `gvim.exe` and `vim.exe` with newer builds from [vim-win3264](http://code.google.com/p/vim-win3264/) or [Yongwei](http://wyw.dcweb.cn/#download)
-            * Remember to install 32 bit python that was built with MS compiler.
-            * For python to work in vim, both vim and python must be built with the same target and the same compiler.
-            * Most builds of vim are built as 32 bit apps with MS compiler.
-              Some are built with mingw (with 32 bit target) or mingw-w64
-              (target either 32bit or 64bit).  This is normally fine, but today it is
-              rare to find a python installation that was built with these compilers. So stick with
-              vim built against MS compiler.
-    * Mac (OS X): I recommend installing via
-      [Homebrew](http://mxcl.github.com/homebrew/)
-        * `brew install macvim --override-system-vim`
+### Notes on installing vim
+
+* Windows: [gVim](http://www.vim.org/download.php#pc)
+    * I install vim using [gvim73_46 on
+      vim.org](http://www.vim.org/download.php#pc) because it installs all
+      required files and integrates with windows explorer
+        * Note: ootb, vim.exe does not have python support. (gvim.exe does
+          but vim.exe doesn't).
+        * I replace the `gvim.exe` and `vim.exe` with newer builds from
+          [Yongwei](http://wyw.dcweb.cn/#download)
+        * For python to work in vim, both vim and python must be built with
+          the same target and the same compiler.
+            * Nearly all python distributions are built with the MS compiler
+              and in the python community many extensions are built with MS
+              compiler.  So this constrains most vim installations to those
+              built with MS Compiler.
+            * Remember that if gvim.exe and vim.exe are 32 builds from MS
+              compiler remember to install 32 bit python that was built with MS
+              compiler. (I use chocolatey `cinst python.x86`)
+            * Some gvim.exe and vim.exe are built with mingw (with 32 bit
+              target) or mingw-w64 (target either 32bit or 64bit).  This is
+              normally fine, but today it is rare to find a python installation
+              that was built with these compilers. So stick with vim built
+              against MS compiler.
+    * Under cygwin, I build a custom vim
+
+        ``` bash
+        hg clone https://vim.googlecode.com/hg/ vim
+        ./configure --enable-rubyinterp --enable-perlinterp --enable-pythoninterp --enable-gui=no --enable-multibyte --with-features=huge
+        make
+        make install
+        ```
+
+* Mac (OS X): I recommend installing via
+  [Homebrew](http://mxcl.github.com/homebrew/)
+    * `brew install macvim --override-system-vim`
 
 2.  As well, you should have the various software required by vim plugins.
 
@@ -33,6 +50,7 @@ The following sections provide installation steps based on the OS type.
 
 ### Installation Unix type OSes
 1. Run the `setup.sh` script
+2. Finally install/update the vim bundles by running `$HOME\.vim\updateBundles.sh`
 
 ### Installation on Windows
 1. Set `%HOME%` environment variable to `%USERPROFILE%`
@@ -42,6 +60,7 @@ The following sections provide installation steps based on the OS type.
       the `_vimrc` and `.vim` folder
 3. Also install consolas for powerline font
     * https://github.com/eugeneching/consolas-powerline-vim
+4. Finally install/update the vim bundles by running `%HOME%\.vim\updateBundles.bat`
 
 ### Installation on Windows with Cygwin
 1. Set `%HOME%` environment variable to the path of your cygwin user's home directory
@@ -49,7 +68,8 @@ The following sections provide installation steps based on the OS type.
 2. As administrator, run `setup.bat`
     *  Note this must be executed as adminstrator because it uses `mklink.exe` to link
        the `_vimrc` and `.vim` folder to their source content in `my_dotfiles` repository.
-3. Then run the `setup.sh` script from inside a cygwin bash shell.
+3. Then as **adminstrator** run the `setup.sh` script from inside a cygwin bash shell.
+4. Finally install/update the vim bundles by running `$HOME\.vim\updateBundles.sh`
 
 ### Notes about setup scripts:
 * The setup scripts (`setup.bat` and `setup.sh`) create links or copy files from your
