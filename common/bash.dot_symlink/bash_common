@@ -81,7 +81,6 @@ alias gsd="git svn dcommit"
 alias gsr="git svn rebase"
 alias gsf="git svn fetch"
 
-export EDITOR='vim'
 export PAGER='less'
 # Todo: Debug below on os x
 #export MANPAGER='col -bx | view - -c ":set ft=man noml" -c ":nmap q :q<CR>"'

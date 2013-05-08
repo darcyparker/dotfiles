@@ -43,20 +43,10 @@ alias cwd="pwd | pbcopy"
 alias .t='~/bin/terminal --new-tab'
 alias .w='~/bin/terminal --new-window'
 
-# alias vim to Vim 7.3
-#vim='/Applications/MacVim.app/Contents/MacOS/Vim -n'
-# macvim now installed/maintained with brew...
-# (Prefer brew install of macvim, because's it has a vim for the terminal that has python support compiled in.)
-# OS X Leopard vim isn't v7.3...
-# OS X Lion's /usr/bin/vim is v7.3 but does not have python support.
-#vim='/usr/local/Cellar/macvim/7.3-63/MacVim.app/Contents/MacOS/Vim -n'
-vim='mvim -v'
-alias vim="${vim}"
 alias gvim="mvim"
 
-export EDITOR="${vim} -g --remote-tab-silent"
-export GIT_EDITOR="${vim} -g -f"
-unset vim
+export EDITOR="vim --remote-tab-silent"
+export GIT_EDITOR="vim -f"
 
 # export MANPAGER='col -bx | view - -c ":set ft=man noml" -c ":nmap q :q<CR>"'
 
