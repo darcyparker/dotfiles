@@ -1,5 +1,7 @@
 #!/bin/bash
-#
+# don't set prompt if this is not interactive shell
+[[ $- != *i* ]]  &&  return
+
 # Colorized prompt, with different username colors for different systems.
 #
 
@@ -38,16 +40,9 @@ bakcyn='\e[46m'   # Cyan
 bakwht='\e[47m'   # White
 txtrst='\e[0m'    # Text Reset
 
-# http://henrik.nyh.se/2008/12/git-dirty-prompt
-# http://www.simplisticcomplexity.com/2008/03/13/show-your-git-branch-name-in-your-prompt/
-#   username@Machine ~/dev/dir[master]$   # clean working directory
-#   username@Machine ~/dev/dir[master*]$  # dirty working directory
-
-function parse_git_dirty {
-  [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "*"
-}
-function parse_git_branch {
-  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/[\1$(parse_git_dirty)]/"
-}
-
-export PS1="\w \[$bldylw\]\$(parse_git_branch)\[$txtrst\] \$"
+export GIT_PS1_SHOWDIRTYSTATE="true"
+export GIT_PS1_SHOWSTASHSTATE="true"
+export GIT_PS1_SHOWUNTRACKEDFILES="true"
+#Source git-prompt functions
+. ~/.bash/git-prompt.sh
+export PS1="\w \[$bldylw\]\$(__git_ps1)\[$txtrst\] \$"
