@@ -13,6 +13,10 @@ if [[ ! `declare -F which` ]]; then
   export -f which
 fi
 
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+  . $(brew --prefix)/etc/bash_completion
+fi
+
 alias ls="ls -F"
 
 #MS Office Aliases
