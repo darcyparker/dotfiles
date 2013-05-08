@@ -45,7 +45,7 @@ export GIT_PS1_SHOWSTASHSTATE="true"
 export GIT_PS1_SHOWUNTRACKEDFILES="true"
 #Source git-prompt functions
 . ~/.bash/git-prompt.sh
-export PS1="\[$txtgrn\]\! \[$undcyn\]\u@\h:\[$txtwht\]\w\[$bldylw\]\$(__git_ps1)\[$txtrst\] \$"
+export PS1="\[$txtgrn\]\! \[$undcyn\]\u@\h:\[$txtwht\]\w\[$bldylw\]\$(__git_ps1)\[$txtrst\] \\$"
 unset txtblk
 unset txtred
 unset txtgrn
