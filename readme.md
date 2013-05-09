@@ -64,11 +64,16 @@ The following sections provide installation steps based on the OS type.
 
 ### Installation on Windows with Cygwin
 1. Set `%HOME%` environment variable to the path of your cygwin user's home directory
-    *  Example: `setx HOME d:\cygwin\home\dparker`
+    * Example: `setx HOME %USERPROFILE%`
+    * Note: I used to set home to something like `c:\cygwin\home\dparker` because I
+      did not like having all of the `%USERPROFILE%` subdirs in my `$HOME` in cygwin.
+      But I changed this practice because some tools assume `%USERPROFILE%===$HOME`.
 2. As administrator, run `setup.bat`
     *  Note this must be executed as adminstrator because it uses `mklink.exe` to link
        the `_vimrc` and `.vim` folder to their source content in `my_dotfiles` repository.
-3. Then as **adminstrator** run the `setup.sh` script from inside a cygwin bash shell.
+3. Then `setup.sh` script from inside a cygwin bash shell.
+    * Note: `setup.sh` creates symlinks using windows `mklink`. This needs to be run as
+      Administrator, so you will be prompted for permission.
 4. Finally install/update the vim bundles by running `$HOME\.vim\updateBundles.sh`
 
 ### Notes about setup scripts:
