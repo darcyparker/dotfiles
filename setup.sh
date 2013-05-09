@@ -51,10 +51,12 @@ add_symlink() {
     else
       if [ -d $SOURCE ]; then
         #if a directory, then create a directory soft link
-        cmd /c mklink /d `cygpath -a -w $TARGET` `cygpath -a -w $SOURCE`
+        echo "INFO: Adding symlink to dir $SOURCE"
+        cygstart --action=runas cmd /c mklink /d `cygpath -a -w $TARGET` `cygpath -a -w $SOURCE`
       else
         #If not a directory, then make a regular link
-        cmd /c mklink `cygpath -a -w $TARGET` `cygpath -a -w $SOURCE`
+        echo "INFO: Adding symlink to file $SOURCE"
+        cygstart --action=runas cmd /c mklink `cygpath -a -w $TARGET` `cygpath -a -w $SOURCE`
       fi
     fi
   else
@@ -124,8 +126,7 @@ add_it() {
 ##################
 
 # Identify environment (eg. cygwin, darwin, mingw32, linux)
-ENV_NAME=$(uname -s | tr 'A-Z' 'a-z' | sed -e 's/_.*//')
-#ENV_NAME=$(uname -s | tr 'A-Z' 'a-z' | awk 'BEGIN {FS="_"};{print $1}')
+ENV_NAME=$(uname -s | tr '[:upper:]' '[:lower:]' | sed -e 's/_.*//')
 
 # Identify target folder to setup
 if [ -d "$1" ]; then
