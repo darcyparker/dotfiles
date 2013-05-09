@@ -13,15 +13,14 @@ let g:ctrlp_working_path_mode = 2
 "0 - disable this feature.
 let g:ctrlp_switch_buffer = 2
 
-
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|\.hg$\|\.svn$',
-  \ 'file': '\.exe$\|\.so$\|\.dll$',
-  \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
-  \ }
+      \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+      \ 'file': '\v\.(exe|so|dll)$',
+      \ }
 
 if has("win16") || has("win32") || has("win64")
-  set wildignore+=.git\*,.hg\*,.svn\*        " Windows
+  "Be careful about setting wildignore.  See :h ctrlp-wildignore
+  "set wildignore+=*\\.git\\*,*\\.hg\\*,*\\.svn\\*  " Windows ('noshellslash')
   let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'
 "  let g:ctrlp_user_command = {
         "\ 'types': {
@@ -31,7 +30,8 @@ if has("win16") || has("win32") || has("win64")
         "\ 'fallback': 'dir %s /-n /b /s /a-d'
         "\ }
 else
-  set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
+  "Be careful about setting wildignore.  See :h ctrlp-wildignore
+  "set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
   let g:ctrlp_user_command = 'find %s -type f'
   "let g:ctrlp_user_command = {
         "\ 'types': {
