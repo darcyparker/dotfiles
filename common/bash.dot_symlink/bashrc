@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 so() { [ -s $1 ] && source $1; }
 
 # Identify env with uname, make it lower case, only take first part before _

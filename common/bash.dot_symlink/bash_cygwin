@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Remember to setup cygwin prompt here
 # chere -i -t mintty -s bash -e "Open cygwin prompt here"

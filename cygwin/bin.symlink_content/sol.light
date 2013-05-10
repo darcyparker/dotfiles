@@ -1,3 +1,4 @@
+#!/bin/bash
 echo -ne '\e]10;#657B83\a'  # Foreground -> base00
 echo -ne '\e]11;#FDF6E3\a'  # Background -> base3
 echo -ne '\e]12;#93A1A1\a'  # Cursor -> base1

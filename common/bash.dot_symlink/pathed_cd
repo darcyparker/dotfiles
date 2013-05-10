@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Bash snippet to open new shells in most recently visited dir.
 # Useful if you want to open a new terminal tab at the present
 # tab's location.
