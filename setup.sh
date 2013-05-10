@@ -62,7 +62,8 @@ add_symlink() {
   else
     #On unix systems, use the regular link command (-i: interactive mode)
     #To do: Why does prompt get skipped over?
-    ln -s -i $SOURCE $TARGET
+    #ln -s -i $SOURCE $TARGET
+    [ ! -e $TARGET ] && ln -s $SOURCE $TARGET
   fi
 }
 
