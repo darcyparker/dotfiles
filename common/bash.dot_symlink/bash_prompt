@@ -6,76 +6,57 @@
 #
 
 # Color codes
-txtblk='\e[0;30m' # Black - Regular
-txtred='\e[0;31m' # Red
-txtgrn='\e[0;32m' # Green
-txtylw='\e[0;33m' # Yellow
-txtblu='\e[0;34m' # Blue
-txtpur='\e[0;35m' # Purple
-txtcyn='\e[0;36m' # Cyan
-txtwht='\e[0;37m' # White
-bldblk='\e[1;30m' # Black - Bold
-bldred='\e[1;31m' # Red
-bldgrn='\e[1;32m' # Green
-bldylw='\e[1;33m' # Yellow
-bldblu='\e[1;34m' # Blue
-bldpur='\e[1;35m' # Purple
-bldcyn='\e[1;36m' # Cyan
-bldwht='\e[1;37m' # White
-unkblk='\e[4;30m' # Black - Underline
-undred='\e[4;31m' # Red
-undgrn='\e[4;32m' # Green
-undylw='\e[4;33m' # Yellow
-undblu='\e[4;34m' # Blue
-undpur='\e[4;35m' # Purple
-undcyn='\e[4;36m' # Cyan
-undwht='\e[4;37m' # White
-bakblk='\e[40m'   # Black - Background
-bakred='\e[41m'   # Red
-badgrn='\e[42m'   # Green
-bakylw='\e[43m'   # Yellow
-bakblu='\e[44m'   # Blue
-bakpur='\e[45m'   # Purple
-bakcyn='\e[46m'   # Cyan
-bakwht='\e[47m'   # White
-txtrst='\e[0m'    # Text Reset
+local txtblk='\[\e[0;30m\]' # Black - Regular
+local txtred='\[\e[0;31m\]' # Red
+local txtgrn='\[\e[0;32m\]' # Green
+local txtylw='\[\e[0;33m\]' # Yellow
+local txtblu='\[\e[0;34m\]' # Blue
+local txtpur='\[\e[0;35m\]' # Purple
+local txtcyn='\[\e[0;36m\]' # Cyan
+local txtwht='\[\e[0;37m\]' # White
+local bldblk='\[\e[1;30m\]' # Black - Bold
+local bldred='\[\e[1;31m\]' # Red
+local bldgrn='\[\e[1;32m\]' # Green
+local bldylw='\[\e[1;33m\]' # Yellow
+local bldblu='\[\e[1;34m\]' # Blue
+local bldpur='\[\e[1;35m\]' # Purple
+local bldcyn='\[\e[1;36m\]' # Cyan
+local bldwht='\[\e[1;37m\]' # White
+local unkblk='\[\e[4;30m\]' # Black - Underline
+local undred='\[\e[4;31m\]' # Red
+local undgrn='\[\e[4;32m\]' # Green
+local undylw='\[\e[4;33m\]' # Yellow
+local undblu='\[\e[4;34m\]' # Blue
+local undpur='\[\e[4;35m\]' # Purple
+local undcyn='\[\e[4;36m\]' # Cyan
+local undwht='\[\e[4;37m\]' # White
+local bakblk='\[\e[40m\]'   # Black - Background
+local bakred='\[\e[41m\]'   # Red
+local badgrn='\[\e[42m\]'   # Green
+local bakylw='\[\e[43m\]'   # Yellow
+local bakblu='\[\e[44m\]'   # Blue
+local bakpur='\[\e[45m\]'   # Purple
+local bakcyn='\[\e[46m\]'   # Cyan
+local bakwht='\[\e[47m\]'   # White
+local end='\[\e[0m\]'    # Text Reset
 
-export GIT_PS1_SHOWDIRTYSTATE="true"
-export GIT_PS1_SHOWSTASHSTATE="true"
-export GIT_PS1_SHOWUNTRACKEDFILES="true"
+#See http://ithaca.arpinum.org/2013/01/02/git-prompt.html
+get_dir() {
+  printf "%s" $(pwd | sed "s:$HOME:~:")
+}
+
+get_sha() {
+  git rev-parse --short HEAD 2>/dev/null
+}
+
+GIT_PS1_SHOWDIRTYSTATE=1
+GIT_PS1_SHOWSTASHSTATE=1
+GIT_PS1_SHOWUNTRACKEDFILES=1
+GIT_PS1_SHOWCOLORHINTS=1
+GIT_PS1_DESCRIBE_STYLE="branch"
+GIT_PS1_SHOWUPSTREAM="auto git verbose"
+
 #Source git-prompt functions
 . ~/.bash/git-prompt.sh
-export PS1="\[$txtgrn\]\! \[$undcyn\]\u@\h:\[$txtwht\]\w\[$bldylw\]\$(__git_ps1)\[$txtrst\] \\$"
-unset txtblk
-unset txtred
-unset txtgrn
-unset txtylw
-unset txtblu
-unset txtpur
-unset txtcyn
-unset txtwht
-unset bldblk
-unset bldred
-unset bldgrn
-unset bldylw
-unset bldblu
-unset bldpur
-unset bldcyn
-unset bldwht
-unset unkblk
-unset undred
-unset undgrn
-unset undylw
-unset undblu
-unset undpur
-unset undcyn
-unset undwht
-unset bakblk
-unset bakred
-unset badgrn
-unset bakylw
-unset bakblu
-unset bakpur
-unset bakcyn
-unset bakwht
-unset txtrst
+
+export PS1="${txtgrn}\#${end} ${undcyn}\u@\h${end}:\w${bldylw}\$(__git_ps1)${end} \\\$"
