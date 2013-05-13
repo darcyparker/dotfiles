@@ -28,7 +28,9 @@ json                 master   git://github.com/leshill/vim-json.git             
 ;L9                   master   git://github.com/vim-scripts/L9.git                     ;https://github.com/vim-scripts/L9 (Required by FuzzyFinder)
 less                 master   git://github.com/groenewege/vim-less.git                ;https://github.com/groenewege/vim-less
 mango                master   git://github.com/goatslacker/mango.vim.git              ;https://github.com/goatslacker/mango.vim
-markdown             master   git://github.com/hallison/vim-markdown.git              ;https://github.com/hallison/vim-markdown
+;markdown             master   git://github.com/hallison/vim-markdown.git              ;https://github.com/hallison/vim-markdown
+markdown             master   git://github.com/tpope/vim-markdown.git                 ;https://github.com/tpope/vim-markdown
+markdown-folding     master   git://github.com/nelstrom/vim-markdown-folding.git      ;https://github.com/nelstrom/vim-markdown-folding
 matchit              master   git://github.com/vim-scripts/matchit.zip.git            ;https://github.com/vim-scripts/matchit.zip
 molokai              master   git://github.com/tomasr/molokai.git                     ;https://github.com/tomasr/molokai
 nerdcommenter        master   git://github.com/scrooloose/nerdcommenter.git           ;https://github.com/scrooloose/nerdcommenter
