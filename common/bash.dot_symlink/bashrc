@@ -15,6 +15,7 @@ so ~/.bash/256color.sh
 so ~/.bash/bash_${ENV_NAME} # Env specific bash stuff
 so ~/.bash/bash_common # Common bash stuff
 so ~/.bash/bash_prompt
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 # Call useful bash snippets
 #so ~/.bash/pathed_cd
@@ -28,6 +29,8 @@ so ~/.bash/bash_prompt
 [[ -z $NPMPREFIXBIN ]] && [[ `which npm 2> /dev/null` ]] && NPMPREFIXBIN=`npm config get prefix`/bin
 [[ -d $NPMPREFIXBIN ]] && export PATH=$(echo $NPMPREFIXBIN:$PATH | sed -e "s;:$NPMPREFIXBIN;;")
 unset NPMPREFIXBIN
+
+[[ -d $HOME/.rvm/bin ]] && export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 # if there is a bin folder in home, add it to PATH
 [[ -d ~/bin ]] && export PATH=~/bin:$PATH
