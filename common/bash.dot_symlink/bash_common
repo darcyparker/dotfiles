@@ -1,26 +1,5 @@
 #!/usr/bin/env bash
 
-#Could be bad to set TERM explicitly...
-# Should check if terminfo def is present...
-# find /lib/terminfo /usr/share/terminfo -name "`echo $TERM`"
-# Note: Some platforms like ubuntu don't have basic terminfo defs... Need to install ncurses-term
-
-##Too slow... but useful tests if using the term for the first time
-#TERM_DEF_PATH=`find /lib/terminfo /usr/share/terminfo -name "\`echo $TERM\`"`
-#if [ -z "$TERM_DEF_PATH" ] ; then
-  #echo "Unknown terminal $TERM.  Check terminfo definitions."
-#else
-  ##If it exists, upgrade to the 256-color version of the terminal
-  #TERM_DEF_PATH=`find /lib/terminfo /usr/share/terminfo -name "$TERM-256color"`
-  #if [ ! -z "$TERM_DEF_PATH" ] ; then
-    #export TERM="$TERM-256color"
-  #fi
-#fi
-
-#if [ "$TERM" == "xterm" ] ; then
-  #export TERM="xterm-256color"
-#fi
-
 # Non-Operating System Specific Aliases
 # Alias ls if alias does not exist
 alias ll="ls -lh"

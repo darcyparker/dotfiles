@@ -11,11 +11,10 @@ export ENV_NAME=$(uname -s | tr '[:upper:]' '[:lower:]' | sed -e 's/_.*//')
 #  `export CYGWIN="..."` needs to be set before some stuff like nodejs commands
 #  will give an error message
 
+so ~/.bash/256color.sh
 so ~/.bash/bash_${ENV_NAME} # Env specific bash stuff
 so ~/.bash/bash_common # Common bash stuff
 so ~/.bash/bash_prompt
-# If interactive shell, source git-prompt.sh
-#[[ $- == *i* ]]   &&   so ~/.bash/git-prompt.sh
 
 # Call useful bash snippets
 #so ~/.bash/pathed_cd
