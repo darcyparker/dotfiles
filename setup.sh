@@ -84,7 +84,8 @@ add_it() {
   SOURCE=$2 ; TYPE=$1
   NAME=${SOURCE##*/} #extract filename or dirname from $SOURCE
   FROM_RELATIVE=${SOURCE#$FROM/} #strip $FROM from front of $SOURCE path
-  TO_RELATIVE=${FROM_RELATIVE#*/} # strip first folder (such as common or $ENV_NAME)
+  TO_RELATIVE=${FROM_RELATIVE#*/} # strip first folder (such as common or platform)
+  TO_RELATIVE=${TO_RELATIVE#$ENV_NAME/} # strip $ENV_NAME
   TO_RELATIVE=${TO_RELATIVE%$NAME} #strip $NAME from end
 
   case "$TYPE" in
@@ -140,42 +141,42 @@ fi
 FROM="$(get_abs_path `dirname \`which $0\``)"
 
 echo "*** Create necessary folder structure if not present"
-find "$FROM/common" "$FROM/$ENV_NAME" -type d -regex ".*[.]symlink_content$" | \
+find "$FROM/common" "$FROM/platforms/$ENV_NAME" -type d -regex ".*[.]symlink_content$" | \
   while read i; do
     add_it "mkdir_for_symlinks" "$i"
   done
 echo
 
 echo "*** Create symbolic links to content found in *.symlink_content folders"
-find "$FROM/common" "$FROM/$ENV_NAME" -regex ".*[.]symlink_content/[^/]*" | \
+find "$FROM/common" "$FROM/platforms/$ENV_NAME" -regex ".*[.]symlink_content/[^/]*" | \
   while read i; do
     add_it "symlink_content" "$i"
   done
 echo
 
 echo "*** Create symbolic links to *.dot_symlink files"
-find "$FROM/common" "$FROM/$ENV_NAME" -name "*.dot_symlink" | \
+find "$FROM/common" "$FROM/platforms/$ENV_NAME" -name "*.dot_symlink" | \
   while read i; do
     add_it "dot_symlink" "$i"
   done
 echo
 
 echo "*** Create symbolic links to *.symlink files"
-find "$FROM/common" "$FROM/$ENV_NAME" -name "*.symlink" | \
+find "$FROM/common" "$FROM/platforms/$ENV_NAME" -name "*.symlink" | \
   while read i; do
     add_it "symlink" "$i"
   done
 echo
 
 echo "*** Creating files from dot_templates"
-find "$FROM/common" "$FROM/$ENV_NAME" -name "*.dot_template" -type f | \
+find "$FROM/common" "$FROM/platforms/$ENV_NAME" -name "*.dot_template" -type f | \
   while read i; do
     add_it "dot_template" "$i"
   done
 echo
 
 echo "*** Creating files from templates"
-find "$FROM/common" "$FROM/$ENV_NAME" -name "*.template" -type f | \
+find "$FROM/common" "$FROM/platforms/$ENV_NAME" -name "*.template" -type f | \
   while read i; do
     add_it "template" "$i"
   done
