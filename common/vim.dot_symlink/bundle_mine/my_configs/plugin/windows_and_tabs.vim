@@ -31,3 +31,7 @@ nnoremap <leader>sj        :rightbelow new<CR>
 
 "<leader>w -> Create a vertical window split and move to it
 "nnoremap <leader>w <C-w>v<C-w>l
+
+"Jumping through tabs
+nnoremap <leader>th        :tabp<CR>
+nnoremap <leader>tl        :tabN<CR>
