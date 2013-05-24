@@ -39,6 +39,13 @@ endif
 
 " Load pathogen
 runtime bundle_github/pathogen/autoload/pathogen.vim
+
+" Assumes powerline is cloned to ~/powerline
+" See https://github.com/Lokaltog/powerline
+if has("python")
+  set rtp+=~/powerline/powerline/bindings/vim
+endif
+
 call pathogen#infect('bundle_github/{}')
 call pathogen#infect('bundle_mine/{}')
 call pathogen#helptags() "only needs to be run after adding new docs... but it's quick

@@ -37,8 +37,6 @@ nerdcommenter        master   git://github.com/scrooloose/nerdcommenter.git     
 nerdtree             master   git://github.com/scrooloose/nerdtree.git                ;https://github.com/scrooloose/nerdtree
 openurl              master   git://github.com/kenkov/openurl.vim.git                 ;https://github.com/kenkov/openurl.vim
 pathogen             master   git://github.com/tpope/vim-pathogen.git                 ;https://github.com/tpope/vim-pathogen
-;powerline            develop  git://github.com/Lokaltog/powerline.git                 ;https://github.com/Lokaltog/powerline (The new powerline)
-powerline            develop  git://github.com/Lokaltog/vim-powerline.git             ;https://github.com/Lokaltog/vim-powerline
 ps1                  master   git://github.com/PProvost/vim-ps1.git                   ;https://github.com/PProvost/vim-ps1
 ragtag               master   git://github.com/tpope/vim-ragtag.git                   ;https://github.com/tpope/vim-ragtag
 repeat               master   git://github.com/tpope/vim-repeat.git                   ;https://github.com/tpope/vim-repeat

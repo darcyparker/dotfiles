@@ -47,6 +47,7 @@ set cursorline       " marks the cursor's line with a line
 set laststatus=2     " Always show the status line
 set showcmd          " Display the command as it is typed
 set showmode         " Display the current mode
+                     " Note, I set noshowmode in powerline
 set title            " Display filename in window title
 set tabpagemax=50    " max tab pages to open
 set showtabline=2    "tab labels will always be shown
