@@ -40,5 +40,3 @@ unset NPMPREFIXBIN
 #grunt and bower bash completion must be added after updating $PATH
 [[ `which grunt 2> /dev/null` ]] && eval "$(grunt --completion=bash)"
 [[ `which bower 2> /dev/null` ]] && eval "$(bower completion)"
-
-[[ -d /usr/local/lib/jsctags ]] && export NODE_PATH=/usr/local/lib/jsctags/:$NODE_PATH
