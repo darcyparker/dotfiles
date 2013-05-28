@@ -42,7 +42,7 @@ runtime bundle_github/pathogen/autoload/pathogen.vim
 
 " Assumes powerline is cloned to ~/powerline
 " See https://github.com/Lokaltog/powerline
-if has("python") && isdirectory("~/powerline/powerline/bindings/vim")
+if has("python") && isdirectory(expand("~/powerline/powerline/bindings/vim"))
   set rtp+=~/powerline/powerline/bindings/vim
 endif
 
