@@ -24,7 +24,7 @@ indent-guides        master   git://github.com/nathanaelkane/vim-indent-guides.g
 IndexedSearch        master   git://github.com/vim-scripts/IndexedSearch.git          ;https://github.com/vim-scripts/IndexedSearch
 jade                 master   git://github.com/vim-scripts/jade.vim.git               ;https://github.com/vim-scripts/jade.vim
 javascript           master   git://github.com/pangloss/vim-javascript.git            ;https://github.com/pangloss/vim-javascript
-json                 master   git://github.com/leshill/vim-json.git                   ;https://github.com/leshill/vim-json
+json                 master   git://github.com/elzr/vim-json.git                      ;https://github.com/elzr/vim-json
 ;L9                   master   git://github.com/vim-scripts/L9.git                     ;https://github.com/vim-scripts/L9 (Required by FuzzyFinder)
 less                 master   git://github.com/groenewege/vim-less.git                ;https://github.com/groenewege/vim-less
 mango                master   git://github.com/goatslacker/mango.vim.git              ;https://github.com/goatslacker/mango.vim
