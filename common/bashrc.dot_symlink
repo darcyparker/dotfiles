@@ -1,6 +1,5 @@
 # don't continue if bashrc has been loaded before or this is an interactive shell
 [ -n "$DOT_BASHRC_LOADED" -o -z "$PS1" ] && return
-echo loading .bashrc
 DOT_BASHRC_LOADED=1
 [ -z "$DOT_PROFILE_LOADED" ]  &&  . ~/.profile
 [ -f ~/.bash/bashrc ] && . ~/.bash/bashrc
