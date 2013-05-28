@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-so() { [ -s $1 ] && source $1; }
 
 # Identify env with uname, make it lower case, only take first part before _
 # ENV_NAME is used to call appropriate bash options for the environment. (ie darwin, cygwin, etc...)
@@ -11,32 +10,31 @@ export ENV_NAME=$(uname -s | tr '[:upper:]' '[:lower:]' | sed -e 's/_.*//')
 #  `export CYGWIN="..."` needs to be set before some stuff like nodejs commands
 #  will give an error message
 
-so ~/.bash/256color.sh
-so ~/.bash/bash_${ENV_NAME} # Env specific bash stuff
-so ~/.bash/bash_common # Common bash stuff
-so ~/.bash/bash_prompt
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
-# Call useful bash snippets
-#so ~/.bash/pathed_cd
-# so ~/.bash/saveMYIP
+[ -s ~/.bash/256color.sh ] && . ~/.bash/256color.sh
+[ -s ~/.bash/bash_${ENV_NAME} ] && . ~/.bash/bash_${ENV_NAME}
+[ -s ~/.bash/bash_common ] && . ~/.bash/bash_common
+[ -s ~/.bash/bash_prompt ] && . ~/.bash/bash_prompt
+ # Load RVM into a shell session *as a function*
+[ -s "$HOME/.rvm/scripts/rvm" ] && source "$HOME/.rvm/scripts/rvm"
 
 # Move (or Add) /usr/local/bin to the front of the path
-[[ -d /usr/local/bin ]] && export PATH=$(echo /usr/local/bin:$PATH | sed -e "s;:/usr/local/bin;;")
+[ -d /usr/local/bin ] && export PATH=$(echo /usr/local/bin:$PATH | sed -e "s;:/usr/local/bin;;")
 
 # Move (or Add) npm's bin folder to the front of the path
 # Note, $NPMPREFIXBIN is already set by bash_cygwin because I use win32 node and npm
-[[ -z $NPMPREFIXBIN ]] && [[ `which npm 2> /dev/null` ]] && NPMPREFIXBIN=`npm config get prefix`/bin
-[[ -d $NPMPREFIXBIN ]] && export PATH=$(echo $NPMPREFIXBIN:$PATH | sed -e "s;:$NPMPREFIXBIN;;")
+[ -z $NPMPREFIXBIN ] && [ `which npm 2> /dev/null` ] && NPMPREFIXBIN=`npm config get prefix`/bin
+[ -d $NPMPREFIXBIN ] && export PATH=$(echo $NPMPREFIXBIN:$PATH | sed -e "s;:$NPMPREFIXBIN;;")
 unset NPMPREFIXBIN
 
-[[ -d $HOME/.rvm/bin ]] && export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+[ -d $HOME/.rvm/bin ] && export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 # if there is a bin folder in home, add it to PATH
-[[ -d ~/bin ]] && export PATH=~/bin:$PATH
+[ -d ~/bin ] && export PATH=~/bin:$PATH
 
-#Source/evaluate bash completion
+#Source/evaluate bash completion scripts
 #[[ `which npm` ]] && eval "$(npm completion -)"
-#grunt and bower bash completion must be added after updating $PATH
-[[ `which grunt 2> /dev/null` ]] && eval "$(grunt --completion=bash)"
-[[ `which bower 2> /dev/null` ]] && eval "$(bower completion)"
+[ -s $HOME/.bash/completion/npm_completion ] && . $HOME/.bash/completion/npm_completion
+#[[ `which grunt 2> /dev/null` ]] && eval "$(grunt --completion=bash)"
+[ -s $HOME/.bash/completion/grunt_completion ] && . $HOME/.bash/completion/grunt_completion
+#[[ `which bower 2> /dev/null` ]] && eval "$(bower completion)"
+[ -s $HOME/.bash/completion/bower_completion ] && . $HOME/.bash/completion/bower_completion

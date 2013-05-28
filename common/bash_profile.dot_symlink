@@ -1,1 +1,2 @@
-. ~/.profile
+#Source ~/.profile if it has not been loaded
+[ -z "$DOT_PROFILE_LOADED" ] && . ~/.profile
