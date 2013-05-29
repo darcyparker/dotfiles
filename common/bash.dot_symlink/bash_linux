@@ -7,3 +7,4 @@ export LS_COLORS="di=1;32;40:ln=36;40:so=34;40:pi=34;40:ex=1;35;40:bd=34;40:cd=3
 alias ls="ls --color -F"
 
 [ -s /etc/bash_completion ] && . /etc/bash_completion
+[ -s /usr/share/doc/tmux/examples/bash_completion_tmux.sh ] && . /usr/share/doc/tmux/examples/bash_completion_tmux.sh
