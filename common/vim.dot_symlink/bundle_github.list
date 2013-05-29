@@ -22,6 +22,7 @@ haml                 master   git://github.com/tpope/vim-haml.git               
 indent-guides        master   git://github.com/nathanaelkane/vim-indent-guides.git    ;https://github.com/nathanaelkane/vim-indent-guides
 jade                 master   git://github.com/vim-scripts/jade.vim.git               ;https://github.com/vim-scripts/jade.vim
 javascript           master   git://github.com/pangloss/vim-javascript.git            ;https://github.com/pangloss/vim-javascript
+jsbeautify           master   git://github.com/maksimr/vim-jsbeautify.git             ;https://github.com/maksimr/vim-jsbeautify
 json                 master   git://github.com/elzr/vim-json.git                      ;https://github.com/elzr/vim-json
 less                 master   git://github.com/groenewege/vim-less.git                ;https://github.com/groenewege/vim-less
 mango                master   git://github.com/goatslacker/mango.vim.git              ;https://github.com/goatslacker/mango.vim
