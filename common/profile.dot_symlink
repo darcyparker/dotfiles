@@ -10,7 +10,7 @@ DOT_PROFILE_LOADED=1
 [ -n "$PS1" ] && [ -s ~/.bash/256color.sh ] && . ~/.bash/256color.sh
 
 # If not currently in a tmux session, then create new session
-if [ -n "$PS1" ] && [ `which tmux 2&>1 /dev/null` ] && [ -z "$TMUX" ]; then
+if [ -n "$PS1" ] && [ `which tmux 2>&1 /dev/null` ] && [ -z "$TMUX" ]; then
   tmux new; exit
 else
   # Test if bash is available, and if bashrc has been loaded. Then if available
