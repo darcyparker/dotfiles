@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+# If not currently in a tmux session, then attach to tmux session or create new
+# session
+if [ `which tmux 2> /dev/null` -a -z "$TMUX" ]; then
+  tmux attach || tmux new; exit
+fi
+
 # Identify env with uname, make it lower case, only take first part before _
 # ENV_NAME is used to call appropriate bash options for the environment. (ie darwin, cygwin, etc...)
 # uname -o option doesn't work on Darwin (sed required for cygwin to remove _ and trailing text)

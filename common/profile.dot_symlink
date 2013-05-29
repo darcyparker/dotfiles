@@ -1,5 +1,6 @@
+# don't continue if profile has been loaded before
+[ -n "$DOT_PROFILE_LOADED" ]  &&  return
 DOT_PROFILE_LOADED=1
-if [ -n "$BASH_VERSION" ]; then
-  [ -f ~/.bashrc ] && [ "$DOT_BASHRC_LOADED" != "1" ] && . ~/.bashrc
-  [ -f ~/.bash/bashrc ] && . ~/.bash/bashrc
-fi
+# Test if bash is available, and if bashrc has been loaded. Then if available
+# source .bashrc
+[ -n "$BASH_VERSION" -a -z "$DOT_BASHRC_LOADED" -a -f ~/.bashrc ] && . ~/.bashrc
