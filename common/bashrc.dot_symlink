@@ -2,4 +2,4 @@
 [ -n "$DOT_BASHRC_LOADED" -o -z "$PS1" ] && return
 DOT_BASHRC_LOADED=1
 [ -z "$DOT_PROFILE_LOADED" ]  &&  . ~/.profile
-[ -f ~/.bash/bashrc ] && . ~/.bash/bashrc
+#END Anything else should go in ~/.profile

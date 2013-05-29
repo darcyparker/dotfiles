@@ -1,6 +1,19 @@
 # don't continue if profile has been loaded before
 [ -n "$DOT_PROFILE_LOADED" ]  &&  return
 DOT_PROFILE_LOADED=1
-# Test if bash is available, and if bashrc has been loaded. Then if available
-# source .bashrc
-[ -n "$BASH_VERSION" -a -z "$DOT_BASHRC_LOADED" -a -f ~/.bashrc ] && . ~/.bashrc
+
+# TERM must be set early
+# Note: On gnome_terminal in linux, $TERM is intiially set to xterm
+#       It must be xterm-256color if tmux is started and sets its term
+#       to screen-256color. screen-256color doesn't work correctly under
+#       xterm.
+[ -n "$PS1" ] && [ -s ~/.bash/256color.sh ] && . ~/.bash/256color.sh
+
+# If not currently in a tmux session, then create new session
+if [ -n "$PS1" ] && [ `which tmux 2> /dev/null` ] && [ -z "$TMUX" ]; then
+  tmux new; exit
+else
+  # Test if bash is available, and if bashrc has been loaded. Then if available
+  # source .bashrc
+  [ -n "$BASH_VERSION" -a -z "$DOT_BASHRC_LOADED" -a -f ~/.bash/bashrc ] && . ~/.bash/bashrc
+fi

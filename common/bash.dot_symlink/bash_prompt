@@ -60,3 +60,37 @@ GIT_PS1_SHOWUPSTREAM="auto git verbose"
 . ~/.bash/git-prompt.sh
 
 export PS1="${txtgrn}\#${end} ${undcyn}\u@\h${end}:\w${bldylw}\$(__git_ps1)${end} \\\$"
+
+unset txtblk
+unset txtred
+unset txtgrn
+unset txtylw
+unset txtblu
+unset txtpur
+unset txtcyn
+unset txtwht
+unset bldblk
+unset bldred
+unset bldgrn
+unset bldylw
+unset bldblu
+unset bldpur
+unset bldcyn
+unset bldwht
+unset unkblk
+unset undred
+unset undgrn
+unset undylw
+unset undblu
+unset undpur
+unset undcyn
+unset undwht
+unset bakblk
+unset bakred
+unset badgrn
+unset bakylw
+unset bakblu
+unset bakpur
+unset bakcyn
+unset bakwht
+unset end
