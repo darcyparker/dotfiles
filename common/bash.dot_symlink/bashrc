@@ -31,9 +31,9 @@ unset NPMPREFIXBIN
 [ -d ~/bin ] && export PATH=~/bin:$PATH
 
 #Source/evaluate bash completion scripts
-#[[ `which npm` ]] && eval "$(npm completion -)"
-[ `which npm 2> /dev/null` ] && [ -s $HOME/.bash/completion/npm_completion ] && . $HOME/.bash/completion/npm_completion
-#[[ `which grunt 2> /dev/null` ]] && eval "$(grunt --completion=bash)"
-[ `which grunt 2> /dev/null` ] && [ -s $HOME/.bash/completion/grunt_completion ] && . $HOME/.bash/completion/grunt_completion
-#[[ `which bower 2> /dev/null` ]] && eval "$(bower completion)"
-[ `which bower 2> /dev/null` ] && [ -s $HOME/.bash/completion/bower_completion ] && . $HOME/.bash/completion/bower_completion
+#must be done after putting npm, grunt, and bower in $PATH
+if [[ ${ENV_NAME} != "cygwin" ]] && [[ ${ENV_NAME} != "mingw32" ]]; then
+  [ `which npm 1> /dev/null` ] && [ -s $HOME/.bash/completion/npm_completion ] && . $HOME/.bash/completion/npm_completion
+  [ `which grunt 2> /dev/null` ] && [ -s $HOME/.bash/completion/grunt_completion ] && . $HOME/.bash/completion/grunt_completion
+  [ `which bower 2> /dev/null` ] && [ -s $HOME/.bash/completion/bower_completion ] && . $HOME/.bash/completion/bower_completion
+fi
