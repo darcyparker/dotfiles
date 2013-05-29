@@ -30,9 +30,10 @@ _updateRepo() {
     cd "$_REPO_DIR"
     git checkout $_REPO_BRANCH
     git pull
+    git submodule update --init --recursive
   else
     echo \"$_REPO_NAME\" does not exist. Cloning $_REPO_URL
-    git clone $_REPO_URL "$_REPO_DIR"
+    git clone --recursive $_REPO_URL "$_REPO_DIR"
     cd "$_REPO_DIR"
     git checkout $_REPO_BRANCH
   fi

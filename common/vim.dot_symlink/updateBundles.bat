@@ -35,9 +35,10 @@ for /F "eol=; tokens=1,2,3" %%i in (%_THIS_SCRIPT_DIR%%_BUNDLE_LIST_FILE%) DO (
     cd /d "%_BUNDLE_DIR%\%%i"
     call git checkout %%j
     call git pull
+    call git submodule update --init --recursive
   ) else (
     echo "%%i" does not exist. Cloning %%k
-    call git clone %%k "%_BUNDLE_DIR%\%%i"
+    call git clone --recursive %%k "%_BUNDLE_DIR%\%%i"
     cd /d "%_BUNDLE_DIR%\%%i"
     call git checkout %%j
   )
