@@ -13,6 +13,7 @@ coffee-script        master   git://github.com/kchmck/vim-coffee-script.git     
 confluencewiki       master   git://github.com/vim-scripts/confluencewiki.vim.git     ;https://github.com/vim-scripts/confluencewiki.vim
 ctrlp                master   git://github.com/kien/ctrlp.vim.git                     ;https://github.com/kien/ctrlp.vim
 easymotion           master   git://github.com/Lokaltog/vim-easymotion.git            ;https://github.com/Lokaltog/vim-easymotion
+editorconfig         master   git://github.com/editorconfig/editorconfig-vim.git      ;https://github.com/editorconfig/editorconfig-vim
 fakeclip             master   git://github.com/kana/vim-fakeclip.git                  ;https://github.com/kana/vim-fakeclip
 fugitive             master   git://github.com/tpope/vim-fugitive.git                 ;https://github.com/tpope/vim-fugitive
 ;fuzzyfinder         master   git://github.com/vim-scripts/FuzzyFinder.git            ;https://github.com/vim-scripts/FuzzyFinder
