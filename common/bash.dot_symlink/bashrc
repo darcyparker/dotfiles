@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # If not currently in a tmux session, then create new session
-if [ `which tmux 2> /dev/null` -a -z "$TMUX" ]; then
+if [ `which tmux 2> /dev/null` ] && [ -z "$TMUX" ]; then
   tmux new; exit
 fi
 
