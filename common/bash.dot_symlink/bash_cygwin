@@ -50,12 +50,6 @@ alias ls="ls --color -F"
 cprograms="c:\\Program Files (x86)"
 ucprograms=`cygpath -u "$cprograms"`
 
-# Get NPM Prefix and convert it for cygwin
-# Note, on windows, there is no bin folder under npm's prefix
-# All commands are in npm's prefix folder
-NPMPREFIXBIN=`npm config get prefix`
-NPMPREFIXBIN=`cygpath -u "$NPMPREFIXBIN"`
-
 alias desktop="cd `cygpath $USERPROFILE`/Desktop"
 alias downloads="cd `cygpath $USERPROFILE`/Downloads"
 alias mydocs="cd `cygpath $USERPROFILE`/Documents"
