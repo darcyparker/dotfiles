@@ -51,7 +51,7 @@ alias .w='~/bin/terminal --new-window'
 
 alias gvim="mvim"
 
-export EDITOR="vim --remote-tab-silent"
+export EDITOR="vim"
 export GIT_EDITOR="vim -f"
 
 # export MANPAGER='col -bx | view - -c ":set ft=man noml" -c ":nmap q :q<CR>"'
