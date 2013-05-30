@@ -13,9 +13,11 @@ if [[ ! `declare -F which` ]]; then
   export -f which
 fi
 
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . $(brew --prefix)/etc/bash_completion
+brewprefix=`brew --prefix`
+if [ -f ${brewprefix}/etc/bash_completion ]; then
+  . ${brewprefix}/etc/bash_completion
 fi
+unset brewprefix
 
 alias ls="ls -F"
 
