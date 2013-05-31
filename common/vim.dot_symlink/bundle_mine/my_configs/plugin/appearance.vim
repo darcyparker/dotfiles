@@ -1,7 +1,4 @@
 " Syntax highlighting when supported by terminal or gui running
-" Note: This file must be saved with fileencoding=latin1 in order for
-" listchars to be read correctly. Doesn't work with utf-8
-" -------------------------------------------------------------------------------------------------
 if &t_Co > 2 || has("gui_running")
   syntax on
 endif
@@ -78,8 +75,14 @@ set matchpairs+=<:>  "add these for html/xml (not a substitute for matchit.vim, 
 
 " Show invisible characters
 set list
+
 "Define symbols/chars to show for invisible characters
-set listchars=eol:\ ,tab:»·,trail:·,precedes:<,extends:>
+if has("win32") || has("win64") || has("dos16") || has("dos32")
+  execute "source ".expand("<sfile>:h")."/latin1/listchars.vim"
+else
+  execute "source ".expand("<sfile>:h")."/utf-8/listchars.vim"
+endif
+
 "map to toggle display of invisible chars
 noremap <leader>l :set list!<CR>
 
