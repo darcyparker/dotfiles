@@ -1,4 +1,5 @@
-if has("python")
+if exists('g:powerline_loaded')
+
   if ! has('gui_running')
     set ttimeoutlen=10
     augroup FastEscape
