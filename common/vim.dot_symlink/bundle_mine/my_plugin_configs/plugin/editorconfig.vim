@@ -1,8 +1,7 @@
-if has('python')
+if has('python') && !has('win32') && !has('win64') && !has('win16')
   let g:EditorConfig_core_mode="python_builtin"
 else
-  "Use external python interpreter if vim is not compiled with python
-  "Of course this assumes python is installed, but vim doesn't have python
-  "support... This is probably rare.
+  "Use external python interpreter if vim is NOT compiled with python
+  "or windows
   let g:EditorConfig_core_mode="python_external"
 endif
