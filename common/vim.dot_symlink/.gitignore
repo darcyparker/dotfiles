@@ -4,6 +4,7 @@ spell/*
 
 #bundle_github is a folder for cloning vim plugins from github
 bundle_github
+bundle_python_github
 
 #bundle_disabled is a folder for storing disabled bundles
 #(Move undesired bundles to this folder)

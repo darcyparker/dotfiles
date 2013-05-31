@@ -1,0 +1,12 @@
+; List of Git repos to maintain under "bundle_python_github" folder
+;---------------------------------------------------------------------------------------------
+; Notes: - Similar "*.list" files can be created to define lists of other repos if desired...
+;        - The semicolon character (;) is used to prefix comments in this file
+;        - Pathogen consider's a bundle disabled if it is listed in the g:pathogen_disabled[]'
+;          variable, or if it's name ends in a tilde (~) character.
+;-----------------------------------------------------------------------------------------------------------------------------------------
+;Folder Name         branch   URL to github repo                                      ;Comment (URL to repo's web page)
+;-----------------------------------------------------------------------------------------------------------------------------------------
+instant-markdown     master   git://github.com/suan/vim-instant-markdown.git          ;https://github.com/suan/vim-instant-markdown
+gundo                master   git://github.com/sjl/gundo.vim.git                      ;https://github.com/sjl/gundo.vim
+openurl              master   git://github.com/kenkov/openurl.vim.git                 ;https://github.com/kenkov/openurl.vim

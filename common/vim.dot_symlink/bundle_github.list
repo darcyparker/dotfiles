@@ -7,7 +7,7 @@
 ;-----------------------------------------------------------------------------------------------------------------------------------------
 ;Folder Name         branch   URL to github repo                                      ;Comment (URL to repo's web page)
 ;-----------------------------------------------------------------------------------------------------------------------------------------
-IndexedSearch        master   git://github.com/vim-scripts/IndexedSearch.git          ;https://github.com/vim-scripts/IndexedSearch
+indexedSearch        master   git://github.com/vim-scripts/IndexedSearch.git          ;https://github.com/vim-scripts/IndexedSearch
 ack                  master   git://github.com/mileszs/ack.vim.git                    ;https://github.com/mileszs/ack.vim
 coffee-script        master   git://github.com/kchmck/vim-coffee-script.git           ;https://github.com/kchmck/vim-coffee-script
 confluencewiki       master   git://github.com/vim-scripts/confluencewiki.vim.git     ;https://github.com/vim-scripts/confluencewiki.vim
@@ -17,10 +17,8 @@ editorconfig         master   git://github.com/editorconfig/editorconfig-vim.git
 fakeclip             master   git://github.com/kana/vim-fakeclip.git                  ;https://github.com/kana/vim-fakeclip
 fugitive             master   git://github.com/tpope/vim-fugitive.git                 ;https://github.com/tpope/vim-fugitive
 git                  master   git://github.com/tpope/vim-git.git                      ;https://github.com/tpope/vim-git
-gundo                master   git://github.com/sjl/gundo.vim.git                      ;https://github.com/sjl/gundo.vim
 haml                 master   git://github.com/tpope/vim-haml.git                     ;https://github.com/tpope/vim-haml
 indent-guides        master   git://github.com/nathanaelkane/vim-indent-guides.git    ;https://github.com/nathanaelkane/vim-indent-guides
-instant-markdown     master   git://github.com/suan/vim-instant-markdown.git          ;https://github.com/suan/vim-instant-markdown
 jade                 master   git://github.com/vim-scripts/jade.vim.git               ;https://github.com/vim-scripts/jade.vim
 javascript           master   git://github.com/pangloss/vim-javascript.git            ;https://github.com/pangloss/vim-javascript
 jsbeautify           master   git://github.com/maksimr/vim-jsbeautify.git             ;https://github.com/maksimr/vim-jsbeautify
@@ -33,7 +31,6 @@ matchit              master   git://github.com/vim-scripts/matchit.zip.git      
 molokai              master   git://github.com/tomasr/molokai.git                     ;https://github.com/tomasr/molokai
 nerdcommenter        master   git://github.com/scrooloose/nerdcommenter.git           ;https://github.com/scrooloose/nerdcommenter
 nerdtree             master   git://github.com/scrooloose/nerdtree.git                ;https://github.com/scrooloose/nerdtree
-openurl              master   git://github.com/kenkov/openurl.vim.git                 ;https://github.com/kenkov/openurl.vim
 pathogen             master   git://github.com/tpope/vim-pathogen.git                 ;https://github.com/tpope/vim-pathogen
 ps1                  master   git://github.com/PProvost/vim-ps1.git                   ;https://github.com/PProvost/vim-ps1
 ragtag               master   git://github.com/tpope/vim-ragtag.git                   ;https://github.com/tpope/vim-ragtag

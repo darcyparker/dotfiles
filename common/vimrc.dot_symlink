@@ -47,6 +47,9 @@ if has("python") && isdirectory(expand("~/powerline/powerline/bindings/vim"))
 endif
 
 call pathogen#infect('bundle_github/{}')
+if has('python') && !has('win32') && !has('win64') && !has('win16')
+  call pathogen#infect('bundle_python_github/{}')
+endif
 call pathogen#infect('bundle_mine/{}')
 call pathogen#helptags() "only needs to be run after adding new docs... but it's quick
 
