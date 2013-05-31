@@ -1,4 +1,7 @@
-if exists('g:powerline_loaded')
+"Note, 'g:powerline_loaded' does not exist... seems that even though this is
+"in after, powerline is not loaded until after this.
+"if exists('g:powerline_loaded')
+if has("python") && isdirectory(expand("~/powerline/powerline/bindings/vim"))
 
   if ! has('gui_running')
     set ttimeoutlen=10
@@ -27,4 +30,6 @@ if exists('g:powerline_loaded')
     "Powerline options
     let g:Powerline_symbols="compatible"
   endif
+else
+  set showmode
 endif
