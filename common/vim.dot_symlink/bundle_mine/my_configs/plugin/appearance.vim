@@ -40,6 +40,20 @@ if has("gui_running")
   endif
 endif
 
+"Change cursor in insert mode on osx
+if has("mac") && !has("gui_mac")
+  "0: Block
+  "1: Vertical bar
+  "2: Underline
+  if strlen($TMUX)
+    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
+  else
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+    let &t_EI = "\<Esc>]50;CursorShape=2\x7"
+  endif
+endif
+
 set number           " Show line numbers
 set ruler            " show the cursor position all the time
 "set virtualedit=all  "allow the cursor to go to 'invalid' places
@@ -65,7 +79,7 @@ set matchpairs+=<:>  "add these for html/xml (not a substitute for matchit.vim, 
 " Show invisible characters
 set list
 "Define symbols/chars to show for invisible characters
-set listchars=eol:\ ,tab:»·,trail:·,precedes:<,extends:>
+set listchars=eol:\ ,tab:Â»Â·,trail:Â·,precedes:<,extends:>
 "map to toggle display of invisible chars
 noremap <leader>l :set list!<CR>
 
