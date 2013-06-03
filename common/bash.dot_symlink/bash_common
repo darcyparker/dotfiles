@@ -1,48 +1,34 @@
 #!/usr/bin/env bash
+echo loading ~/.bash/bash_common
 
 # Non-Operating System Specific Aliases
 # Alias ls if alias does not exist
 alias ll="ls -lh"
-alias lt="ls -t | less"
-alias la="ls -A"
-alias lal="ls -al"
-alias lla="ls -al"
-alias dir="ls -a"
+alias lt="ls -tlAh"
+alias lal="ls -lAh"
+alias dir="ls -lAh"
 
-alias k9='kill -9'
-alias ssn='sudo shutdown -h now'
-alias ps='ps -af'
+alias k9="kill -9"
+alias ssn="sudo shutdown -h now"
+alias ps="ps -af"
 
 # shell
-alias ..='cd ..'
-alias ...='cd ../..'
+alias ..="cd .."
+alias ...="cd ../.."
 
-alias mcd='f () { mkdir -p $1 && cd $1; }; f '
-alias mkdir='mkdir -p'
-alias md='mkdir'
+mcd () { mkdir -p $1 && cd $1; }
 
-alias du='du -sh'
-alias dua='\du -ah'
-alias df='df -h'
+alias mkdir="mkdir -p"
+alias md="mkdir -p"
 
-alias m2u="tr '\015' '\012' "
-alias u2m="tr '\012' '\015' "
+alias du="du -h"
+alias df="df -h"
 
 alias cls="clear"
 alias more="less"
 alias del="rm"
 
-# for midnight command to use pipe symbols instead of vertical line chars so it works properly in
-# tmux and other terminal
-# note: mc works best when LANG=c
-# some sites suggest using UTF8 in terminal... however this
-# does not work with .  LANG=c seems to work in putty...
-# LANG=en_US.UTF-8 in other terminals...
-# alias mc="mc -a"
-
-export PAGER='less'
-# Todo: Debug below on os x
-#export MANPAGER='col -bx | view - -c ":set ft=man noml" -c ":nmap q :q<CR>"'
+export PAGER="less"
 
 #less default behaviour
 export LESS="ReMqXi~g"
@@ -65,17 +51,22 @@ export LESS="ReMqXi~g"
 #export LESS_TERMCAP_ue=$'\E[0m'
 #export LESS_TERMCAP_us=$'\E[01;32m'
 
-# To do: debug --exclude-dir on os x
 # Grep
-#export GREP_OPTIONS='--color=auto --exclude="tags" --exclude="TAGS" --exclude="TAGS" --exclude-dir=.git --exclude-dir=.svn --exclude-dir=log'
-alias grep="grep --color"
+export GREP_OPTIONS="--binary-files=without-match --color=auto --exclude=tags --exclude=TAGS --exclude-dir=.git --exclude-dir=.svn --exclude-dir=.hg"
 
 # History
 shopt -s histappend                         # Append each(!) history entry from all terminals realtime(not after sesion ending)
 shopt -s cmdhist                            # store multiline commands as 1 line
 shopt -s cdspell                            # spelling error correction
 shopt -s checkwinsize                       # check the window size after each command and, if necessary, update the values of LINES and COLUMNS.
-export HISTCONTROL="ignoredups"             # ignore duplicates(store command once)
+# HISTCONTRL settings: "ignoreboth" is same as "ignorespace:ignoredups"
+# ignore commands that begin with space and ignore duplicate commmands
 export HISTCONTROL="ignoreboth"
-#export HISTIGNORE="&:ls:[bf]g:exit:%[0-9]"  # ignore simple commands
+# Don't include simple commands in history
+# & supresses duplicate entries
+# [ \t]* supress commands beginning with whitespace (space or tab) followed by * (anything) (this is not a regex)
+# ?:?? - any 1 or 2 char commands including ls, fg, bg, etc..)
+# common commands like "history", "clear", "cls", "exit", "pwd", etc
+export HISTIGNORE="&:[ \t]*:?:??:clear:cls:exit:pwd:history*:%[0-9]:"
 export HISTFILESIZE=5000                    # history file size
+echo done loading ~/.bash/bash_common

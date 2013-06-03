@@ -1,12 +1,7 @@
 #!/usr/bin/env bash
+echo loading ~/.bash/bash_darwin
 # Aliases specific to OS X
 
-#javascript aliases (Rhino)
-#alias js="java -cp ~/rhino1_7R2/js.jar org.mozilla.javascript.tools.shell.Main -opt -1"
-#alias jsd="java -cp ~/rhino1_7R2/js.jar org.mozilla.javascript.tools.debugger.Main"
-
-#which () { (alias; declare -f) | /usr/bin/which $@; }
-#export -f which
 # which will look for aliases, functions and binaries
 if [[ ! `declare -F which` ]]; then
   which () { (alias; declare -f) | gwhich --tty-only --read-alias --read-functions --show-tilde --show-dot $@; }
@@ -46,20 +41,13 @@ alias desktop="cd ~/Desktop"
 alias cwd="pwd | pbcopy"
 
 # Terminal shortcuts
-alias .t='~/bin/terminal --new-tab'
-alias .w='~/bin/terminal --new-window'
+alias .t="~/bin/terminal --new-tab"
+alias .w="~/bin/terminal --new-window"
 
 alias gvim="mvim"
 
 export EDITOR="vim"
 export GIT_EDITOR="vim -f"
-
-# export MANPAGER='col -bx | view - -c ":set ft=man noml" -c ":nmap q :q<CR>"'
-
-# NODE_PATH is for node.js... Node is installed/managed with brew
-#export NODE_PATH="/usr/local/lib/node_modules:${NODE_PATH}"
-#this is just temporary... jsctags may have versions of modules I don't want in path
-#export NODE_PATH="/usr/local/lib/jsctags:${NODE_PATH}"
 
 #Set colors for OS X (BSD)
 export CLICOLOR=1

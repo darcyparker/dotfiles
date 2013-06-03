@@ -1,2 +1,3 @@
-#Source ~/.profile if it has not been loaded
-[ -z "$DOT_PROFILE_LOADED" ] && . ~/.profile
+echo Loading ~/.bash_profile
+date -u "+%Y-%m-%dT%H:%M:%SZ"
+. ~/.profile

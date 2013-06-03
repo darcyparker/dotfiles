@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+echo loading ~/.bash/bash_prompt
 # don't set prompt if this is not interactive shell
 [[ $- != *i* ]]  &&  return
 
