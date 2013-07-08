@@ -1,16 +1,18 @@
 echo Loading ~/.profile
 date -u "+%Y-%m-%dT%H:%M:%SZ"
+set PROFILE_LOADED=1
 # TERM must be set early
 # Note: On gnome_terminal in linux, $TERM is intiially set to xterm
 #       It must be xterm-256color if tmux is started and sets its term
 #       to screen-256color. screen-256color doesn't work correctly under
 #       xterm.
 [ -n "$PS1" ] && [ -s ~/.bash/256color.sh ] && . ~/.bash/256color.sh
+echo "my term = $TERM"
 
 # If not currently in a tmux session, then create new session
 if [ -n "$PS1" -a -z "$TMUX" ] && [ `which tmux 2> /dev/null` ]; then
   tmux new; exit
 else
   # Test if bash is available and bashrc is present. If so, then source ~/.bash/bashrc
-  [ -n "$BASH_VERSION" -a -r ~/.bash/bashrc ] && . ~/.bash/bashrc
+ [ -z "$BASHRC_LOADED" ] && [ -n "$BASH_VERSION" -a -r ~/.bash/bashrc ] && . ~/.bash/bashrc
 fi

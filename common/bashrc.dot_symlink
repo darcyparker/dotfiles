@@ -1,4 +1,6 @@
 echo loading ~/.bashrc
 date -u "+%Y-%m-%dT%H:%M:%SZ"
+set BASHRC_LOADED=1
+[ -z "$PROFILE_LOADED" ] && . ~/.profile
 # Test if bash is available and bashrc is present. If so, then source ~/.bash/bashrc
 [ -n "$BASH_VERSION" -a -r ~/.bash/bashrc ] && . ~/.bash/bashrc
