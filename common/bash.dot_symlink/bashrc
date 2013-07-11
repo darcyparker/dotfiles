@@ -24,8 +24,6 @@ echo sourcing bash_prompt
 date -u "+%Y-%m-%dT%H:%M:%SZ"
 [ -r ~/.bash/bash_prompt ] && . ~/.bash/bash_prompt
 
-echo PATH=$PATH
-
 echo adding paths
 date -u "+%Y-%m-%dT%H:%M:%SZ"
 # Move (or Add) /usr/local/bin to the front of the path
