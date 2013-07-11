@@ -23,31 +23,42 @@ date -u "+%Y-%m-%dT%H:%M:%SZ"
 echo sourcing bash_prompt
 date -u "+%Y-%m-%dT%H:%M:%SZ"
 [ -r ~/.bash/bash_prompt ] && . ~/.bash/bash_prompt
-echo sourcing rvm
-date -u "+%Y-%m-%dT%H:%M:%SZ"
- # Load RVM into a shell session *as a function*
-[ -r "$HOME/.rvm/scripts/rvm" ] && source "$HOME/.rvm/scripts/rvm"
-date -u "+%Y-%m-%dT%H:%M:%SZ"
+
+echo PATH=$PATH
 
 echo adding paths
 date -u "+%Y-%m-%dT%H:%M:%SZ"
 # Move (or Add) /usr/local/bin to the front of the path
-[ -d /usr/local/bin ] && export PATH=$(echo /usr/local/bin:$PATH | sed -e "s;:/usr/local/bin;;")
+[ -d /usr/local/bin ] && export PATH=$(echo "/usr/local/bin:$PATH" | sed -e "s;:\/usr\/local\/bin;;")
 date -u "+%Y-%m-%dT%H:%M:%SZ"
 
 # Move (or Add) npm's bin folder to the front of the path
+# Often $NPMPREFIXBIN=/usr/local/bin, so I add this before $HOME/.local/bin
 if [[ ${ENV_NAME} != "cygwin" ]] && [[ ${ENV_NAME} != "mingw32" ]]; then
   [ `which npm 2> /dev/null` ] && NPMPREFIXBIN=`npm config get prefix`/bin
-  [ -d $NPMPREFIXBIN ] && export PATH=$(echo $NPMPREFIXBIN:$PATH | sed -e "s;:$NPMPREFIXBIN;;")
+  [ -d $NPMPREFIXBIN ] && export PATH=$(echo "$NPMPREFIXBIN:$PATH" | sed -e "s;:$NPMPREFIXBIN;;")
   unset NPMPREFIXBIN
 fi
+
+date -u "+%Y-%m-%dT%H:%M:%SZ"
+# Move (or Add) /usr/local/bin to the front of the path
+[ -d $HOME/.local/bin ] && export PATH=$(echo "$HOME/.local/bin:$PATH")
+echo $PATH
+
 date -u "+%Y-%m-%dT%H:%M:%SZ"
 
-[ -d $HOME/.rvm/bin ] && export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+echo sourcing rvm
+date -u "+%Y-%m-%dT%H:%M:%SZ"
+ # Load RVM into a shell session *as a function*
+ # Loading RVM also adss $HOME/.rvm/bin to $PATH
+[ -r "$HOME/.rvm/scripts/rvm" ] && source "$HOME/.rvm/scripts/rvm"
 date -u "+%Y-%m-%dT%H:%M:%SZ"
 
-# if there is a bin folder in home, add it to PATH
-[ -d ~/bin ] && export PATH=~/bin:$PATH
+#[ -d $HOME/.rvm/bin ] && export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+#date -u "+%Y-%m-%dT%H:%M:%SZ"
+
+# if there is a bin folder in home, add it to front of  PATH
+[ -d $HOME/bin ] && export PATH=$HOME/bin:$PATH
 date -u "+%Y-%m-%dT%H:%M:%SZ"
 
 #Source/evaluate bash completion scripts
