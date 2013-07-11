@@ -1,9 +1,9 @@
-"Note, 'g:powerline_loaded' does not exist... seems that even though this is
-"in after, powerline is not loaded until after this.
-"if exists('g:powerline_loaded')
-if has("python") && isdirectory(expand("~/powerline/powerline/bindings/vim"))
+if has("python")
+  python from powerline.vim import setup as powerline_setup
+  python powerline_setup()
+  python del powerline_setup
 
-  if ! has('gui_running')
+  if !has('gui_running')
     set ttimeoutlen=10
     augroup FastEscape
       autocmd!
