@@ -41,7 +41,6 @@ fi
 date -u "+%Y-%m-%dT%H:%M:%SZ"
 # Move (or Add) /usr/local/bin to the front of the path
 [ -d $HOME/.local/bin ] && export PATH=$(echo "$HOME/.local/bin:$PATH")
-echo $PATH
 
 date -u "+%Y-%m-%dT%H:%M:%SZ"
 
