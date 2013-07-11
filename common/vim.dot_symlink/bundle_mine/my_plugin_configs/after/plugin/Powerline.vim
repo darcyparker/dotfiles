@@ -1,3 +1,33 @@
+"Powerline installation instructions:
+"------------------------------------
+"#Install libgit2
+"git clone https://github.com/libgit2/libgit2.git
+"cd libgit2
+"mkdir build && cd build
+"cmake ..
+"cmake --build .
+"cmake --build . --target install
+
+"#Install pygit2
+"git clone git://github.com/libgit2/pygit2.git
+"cd pygit2
+"export LIBGIT2="/usr/local"
+"export LDFLAGS="-Wl,-rpath='$LIBGIT2/lib',--enable-new-dtags $LDFLAGS"
+"python setup.py build
+"python setup.py install
+"python setup.py test
+
+"#Install Mercurial
+"sudo apt-get install mercurial
+
+"#Install psutil
+"sudo apt-get install python-psutil
+
+"#Install pip
+"sudo apt-get install python-pip
+
+"#Finally install powerline
+"pip install --user git+git://github.com/Lokaltog/powerline
 if has("python")
   python from powerline.vim import setup as powerline_setup
   python powerline_setup()
