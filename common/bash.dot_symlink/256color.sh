@@ -1,4 +1,4 @@
-#!/usr/bin/sh
+#!/bin/sh
 echo loading ~/.bash/256color.sh
 #See https://fedoraproject.org/wiki/Features/256_Color_Terminals#Scope
 ######################################################################
