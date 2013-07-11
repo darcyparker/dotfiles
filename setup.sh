@@ -63,7 +63,11 @@ add_symlink() {
     #On unix systems, use the regular link command (-i: interactive mode)
     #To do: Why does prompt get skipped over?
     #ln -s -i $SOURCE $TARGET
-    [ ! -e $TARGET ] && ln -s $SOURCE $TARGET
+    if [ -e "$TARGET" ]; then
+      echo "*** Warning: $TARGET already exists. No link will be created."
+    else
+      ln -s $SOURCE $TARGET
+    fi
   fi
 }
 
