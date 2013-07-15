@@ -1,3 +1,8 @@
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
 echo loading ~/.bashrc
 date -u "+%Y-%m-%dT%H:%M:%SZ"
 set BASHRC_LOADED=1
