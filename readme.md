@@ -10,27 +10,7 @@ my configurations in more detail._
 ### Notes on installing vim
 
 * Windows: [gVim](http://www.vim.org/download.php#pc)
-    * I install vim using [gvim73_46 on
-      vim.org](http://www.vim.org/download.php#pc) because it installs all
-      required files and integrates with windows explorer
-        * Note: ootb, vim.exe does not have python support. (gvim.exe does
-          but vim.exe doesn't).
-        * I replace the `gvim.exe` and `vim.exe` with newer builds from
-          [Yongwei](http://wyw.dcweb.cn/#download)
-        * For python to work in vim, both vim and python must be built with
-          the same target and the same compiler.
-            * Nearly all python distributions are built with the MS compiler
-              and in the python community many extensions are built with MS
-              compiler.  So this constrains most vim installations to those
-              built with MS Compiler.
-            * Remember that if gvim.exe and vim.exe are 32 builds from MS
-              compiler remember to install 32 bit python that was built with MS
-              compiler. (I use chocolatey `cinst python.x86`)
-            * Some gvim.exe and vim.exe are built with mingw (with 32 bit
-              target) or mingw-w64 (target either 32bit or 64bit).  This is
-              normally fine, but today it is rare to find a python installation
-              that was built with these compilers. So stick with vim built
-              against MS compiler.
+    * I prefer to install a 64bit vim from [here](https://bitbucket.org/Haroogan/vim-for-windows/src)
     * Under cygwin, I build a custom vim
 
         ``` bash
@@ -85,7 +65,6 @@ The following sections provide installation steps based on the OS type.
     * `tidy` (HTMLTidy) _required to check html with syntastic in vim_
     * `node` and `npm`
         * After installing npm, I recommend installing these:
-            * `npm install -g jslint`  _used to check javascript with syntastic_
             * `npm install -g jsonlint`  _required to check json with syntastic_
             * `npm install -g csslint`  _required to check css with syntastic_
             * `npm install -g jshint`  _An alternative for checking javascript with syntastic_

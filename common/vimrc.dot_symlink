@@ -41,7 +41,7 @@ endif
 runtime bundle_github/pathogen/autoload/pathogen.vim
 
 call pathogen#infect('bundle_github/{}')
-if has('python') && !has('win32') && !has('win64') && !has('win16')
+if has('python')
   call pathogen#infect('bundle_python_github/{}')
 endif
 call pathogen#infect('bundle_mine/{}')
