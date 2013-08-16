@@ -12,6 +12,7 @@ ack                  master   git://github.com/mileszs/ack.vim.git              
 coffee-script        master   git://github.com/kchmck/vim-coffee-script.git           ;https://github.com/kchmck/vim-coffee-script
 confluencewiki       master   git://github.com/vim-scripts/confluencewiki.vim.git     ;https://github.com/vim-scripts/confluencewiki.vim
 ctrlp                master   git://github.com/kien/ctrlp.vim.git                     ;https://github.com/kien/ctrlp.vim
+css3                 master   git://github.com/lepture/vim-css.git                    ;https://github.com/lepture/vim-css
 easymotion           master   git://github.com/Lokaltog/vim-easymotion.git            ;https://github.com/Lokaltog/vim-easymotion
 editorconfig         master   git://github.com/editorconfig/editorconfig-vim.git      ;https://github.com/editorconfig/editorconfig-vim
 fakeclip             master   git://github.com/kana/vim-fakeclip.git                  ;https://github.com/kana/vim-fakeclip
@@ -39,8 +40,8 @@ roy                  master   git://github.com/esehara/Vim-Roy.git              
 scratch              master   git://github.com/vim-scripts/scratch.vim.git            ;https://github.com/vim-scripts/scratch.vim
 scriptease           master   git://github.com/tpope/vim-scriptease.git               ;https://github.com/tpope/vim-scriptease
 scrollcolors         master   git://github.com/vim-scripts/ScrollColors.git           ;https://github.com/vim-scripts/ScrollColors
-snipmate             master   git://github.com/garbas/vim-snipmate.git                ;https://github.com/garbas/vim-snipmate (Note: msanders/snipmate.vim is the original snipmate, but development stopped. garbas is the new maintainer.)
-snippets             master   git://github.com/honza/vim-snippets.git                 ;https://github.com/honza/vim-snippets
+;snipmate             master   git://github.com/garbas/vim-snipmate.git                ;https://github.com/garbas/vim-snipmate (Note: msanders/snipmate.vim is the original snipmate, but development stopped. garbas is the new maintainer.)
+;snippets             master   git://github.com/honza/vim-snippets.git                 ;https://github.com/honza/vim-snippets
 solarized            master   git://github.com/altercation/vim-colors-solarized.git   ;https://github.com/altercation/vim-colors-solarized
 space                master   git://github.com/spiiph/vim-space.git                   ;https://github.com/spiiph/vim-space
 statline             master   git://github.com/millermedeiros/vim-statline.git        ;https://github.com/millermedeiros/vim-statline
@@ -51,7 +52,7 @@ syntastic            master   git://github.com/scrooloose/syntastic.git         
 tabular              master   git://github.com/godlygeek/tabular.git                  ;https://github.com/godlygeek/tabular
 tagbar               master   git://github.com/majutsushi/tagbar.git                  ;https://github.com/majutsushi/tagbar
 ;tagbar               master   git@github.com:darcyparker/tagbar.git                   ;https://github.com/darcyparker/tagbar
-tlib_vim             master   git://github.com/tomtom/tlib_vim.git                    ;https://github.com/tomtom/tlib_vim
+;tlib_vim             master   git://github.com/tomtom/tlib_vim.git                    ;https://github.com/tomtom/tlib_vim (used by snipmate)
 unimpaired           master   git://github.com/tpope/vim-unimpaired.git               ;https://github.com/tpope/vim-unimpaired
-vim-addon-mw-utils   master   git://github.com/MarcWeber/vim-addon-mw-utils.git       ;https://github.com/MarcWeber/vim-addon-mw-utils (used by snipmate)
+;vim-addon-mw-utils   master   git://github.com/MarcWeber/vim-addon-mw-utils.git       ;https://github.com/MarcWeber/vim-addon-mw-utils (used by snipmate)
 ;yankring             master   git://github.com/vim-scripts/YankRing.vim.git           ;https://github.com/vim-scripts/YankRing.vim

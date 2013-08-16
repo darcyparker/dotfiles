@@ -10,3 +10,4 @@
 instant-markdown     master   git://github.com/suan/vim-instant-markdown.git          ;https://github.com/suan/vim-instant-markdown
 gundo                master   git://github.com/sjl/gundo.vim.git                      ;https://github.com/sjl/gundo.vim
 openurl              master   git://github.com/kenkov/openurl.vim.git                 ;https://github.com/kenkov/openurl.vim
+ultiSnips            master   git@github.com:SirVer/ultisnips.git                     ;https://github.com/sirver/ultisnips
