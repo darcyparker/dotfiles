@@ -1,0 +1,217 @@
+extends xml
+
+snippet apply-templates
+<xsl:apply-templates select="${1:*}"${2}/>
+${3}
+endsnippet
+
+snippet apply-template-long
+<xsl:apply-template name="${1:*}"${2}>
+	${3}
+</xsl:apply-template>
+${4}
+endsnippet
+
+snippet mode
+ mode="${1}"
+endsnippet
+
+snippet sort
+<xsl:sort select="${1:node}" order="${2:ascending}"/>
+${3}
+endsnippet
+
+snippet attribute
+<xsl:attribute name="${1:name}" select="${2}"/>
+${3}
+endsnippet
+
+snippet attribute-long
+<xsl:attribute name="${1:name}">
+	${2}
+</xsl:attribute>
+${3}
+endsnippet
+
+snippet call-template
+<xsl:call-template name="${1:template}"/>
+${2}
+endsnippet
+
+snippet call-template-long
+<xsl:call-template name="${1:template}">
+	${2}
+</xsl:call-template>
+${3}
+endsnippet
+
+snippet with-param
+<xsl:with-param name="${1:name} select="${2:*}"/>
+${3}
+endsnippet
+
+snippet with-param-long
+<xsl:with-param name="${1:name}">
+	${2}
+</xsl:with-param>
+${3}
+endsnippet
+
+snippet choose
+<xsl:choose>
+	<xsl:when test="${1:value}">
+		${2}
+	</xsl:when>
+	${3}
+</xsl:choose>
+${4}
+endsnippet
+
+snippet when
+<xsl:when test="${1:test}">
+	${2}
+</xsl:when>
+${3}
+endsnippet
+
+snippet otherwise
+<xsl:otherwise>
+	${1}
+</xsl:otherwise>
+endsnippet
+
+snippet copy
+<xsl:copy>
+	${1}
+</xsl:copy>
+${2}
+endsnippet
+
+snippet copy-of
+<xsl:copy-of select="${1:*}"/>
+${2}
+endsnippet
+
+snippet for-each
+<xsl:for-each select="${1:*}">
+	${2}
+</xsl:for-each>
+${3}
+endsnippet
+
+snippet for-each-group
+<xsl:for-each-group select="${1:*}" group-by="${2}">
+	${3}
+</xsl:for-each-group>
+${4}
+endsnippet
+
+snippet if
+<xsl:if test="${1:test}">
+	${2}
+</xsl:if>
+${3}
+endsnippet
+
+snippet import
+<xsl:import href="${1:stylesheet}"/>
+${2}
+endsnippet
+
+snippet include
+<xsl:include href="${1:stylesheet}"/>
+${2}
+endsnippet
+
+
+snippet param
+<xsl:param name="${1:name}" select="${2}"/>
+endsnippet
+
+snippet output
+<xsl:output
+  method="xml"
+  version="1.0"
+  encoding="UTF-8"
+  indent="yes"
+  />
+${1}
+endsnippet
+
+snippet stylesheet
+<xsl:stylesheet
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  exclude-result-prefixes="xs"
+  version="2.0">
+
+  ${1}
+
+</xsl:stylesheet>
+endsnippet
+
+snippet identity
+<!--Identity Transform-->
+<xsl:template match="@*|node()">
+  <xsl:copy>
+    <xsl:apply-templates select="@*|node()"/>
+  </xsl:copy>
+</xsl:template>
+${1}
+endsnippet
+
+snippet identity2
+<!--Identity Transform-->
+<xsl:template match="element()">
+  <xsl:copy>
+  <xsl:apply-templates select="@*,node()"/>
+</xsl:copy>
+</xsl:template>
+<xsl:template match="attribute()|text()|comment()|processing-instruction()">
+  <xsl:copy/>
+</xsl:template>
+<!--*** End of Identity Transform-->
+${1}
+endsnippet
+
+snippet template-match
+<xsl:template match="${1:*}"${2}>
+	${3}
+</xsl:template>
+endsnippet
+
+snippet template-named
+<xsl:template name="${1:name}">
+	${2}
+</xsl:template>
+endsnippet
+
+snippet text
+<xsl:text>${1}</xsl:text>
+endsnippet
+
+snippet value-of
+<xsl:value-of select="${1:*}"/>
+${2}
+endsnippet
+
+snippet variable
+<xsl:variable name="${1:name} select="${2:*}"/>
+${2}
+endsnippet
+
+snippet variable-long
+<xsl:variable name="${1:name}">
+	${2}
+</xsl:variable>
+${3}
+endsnippet
+
+snippet message
+<xsl:message${1}>${2}</xsl:message>
+${3}
+endsnippet
+
+snippet terminate
+ terminate="${1:yes}"
+endsnippet
