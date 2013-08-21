@@ -12,7 +12,6 @@ ack                  master   git://github.com/mileszs/ack.vim.git              
 coffee-script        master   git://github.com/kchmck/vim-coffee-script.git           ;https://github.com/kchmck/vim-coffee-script
 confluencewiki       master   git://github.com/vim-scripts/confluencewiki.vim.git     ;https://github.com/vim-scripts/confluencewiki.vim
 ctrlp                master   git://github.com/kien/ctrlp.vim.git                     ;https://github.com/kien/ctrlp.vim
-css3                 master   git://github.com/lepture/vim-css.git                    ;https://github.com/lepture/vim-css
 easymotion           master   git://github.com/Lokaltog/vim-easymotion.git            ;https://github.com/Lokaltog/vim-easymotion
 editorconfig         master   git://github.com/editorconfig/editorconfig-vim.git      ;https://github.com/editorconfig/editorconfig-vim
 fakeclip             master   git://github.com/kana/vim-fakeclip.git                  ;https://github.com/kana/vim-fakeclip
