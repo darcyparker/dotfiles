@@ -28,7 +28,7 @@
 
 "#Finally install powerline
 "pip install --user git+git://github.com/Lokaltog/powerline
-if has("python") && isdirectory(expand("~")."/.local/lib/python2.7/site-packages/powerline")
+if has("python") && (isdirectory(expand("~")."/.local/lib/python2.7/site-packages/powerline") || isdirectory("/usr/local/lib/python2.7/site-packages/Powerline-beta-py2.7.egg/powerline"))
   python from powerline.vim import setup as powerline_setup
   python powerline_setup()
   python del powerline_setup
