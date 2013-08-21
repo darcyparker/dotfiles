@@ -1,19 +1,19 @@
 extends xml
 
 snippet apply-templates
-<xsl:apply-templates select="${1:*}"${2}/>
+<xsl:apply-templates select="${1:*}"/>
 ${3}
 endsnippet
 
 snippet apply-template-long
-<xsl:apply-template name="${1:*}"${2}>
+<xsl:apply-template name="${1:*}">
 	${3}
 </xsl:apply-template>
 ${4}
 endsnippet
 
 snippet mode
- mode="${1}"
+mode="${1}"
 endsnippet
 
 snippet sort
@@ -46,7 +46,7 @@ ${3}
 endsnippet
 
 snippet with-param
-<xsl:with-param name="${1:name} select="${2:*}"/>
+<xsl:with-param name="${1:name}" select="${2:*}"/>
 ${3}
 endsnippet
 
@@ -175,7 +175,7 @@ ${1}
 endsnippet
 
 snippet template-match
-<xsl:template match="${1:*}"${2}>
+<xsl:template match="${1:*}">
 	${3}
 </xsl:template>
 endsnippet
@@ -196,7 +196,7 @@ ${2}
 endsnippet
 
 snippet variable
-<xsl:variable name="${1:name} select="${2:*}"/>
+<xsl:variable name="${1:name}" select="${2:*}"/>
 ${2}
 endsnippet
 
@@ -208,10 +208,6 @@ ${3}
 endsnippet
 
 snippet message
-<xsl:message${1}>${2}</xsl:message>
+<xsl:message terminate="${1:yes}">${2}</xsl:message>
 ${3}
-endsnippet
-
-snippet terminate
- terminate="${1:yes}"
 endsnippet
