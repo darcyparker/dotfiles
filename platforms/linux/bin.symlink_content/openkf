@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+#openkf == Open and Keep Focused
+#Written by Darcy Parker http://github.com/darcyparker/my_dotfiles
+#Opens the desired URL or filename and returns the focus to the terminal
+_getActiveWindowID(){
+  echo $(wmctrl -a :ACTIVE: -v |& sed -e "1,1 d" -e "s/Using window: //")
+}
+
+main(){
+if [ `which wmctrl 2> /dev/null` ]; then
+  #Saves the currently active window's ID to $cachedWindowID environment variable
+  local _cachedWindowID=$(_getActiveWindowID)
+  xdg-open $* &> /dev/null
+  #The sleep for 1s causes a slight delay for xdg-open to get started
+  sleep 1s
+  #restore focus to original window
+  wmctrl -i -a $_cachedWindowID
+else
+  xdg-open $* &> /dev/null
+fi
+}
+
+main $*
