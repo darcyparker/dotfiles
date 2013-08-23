@@ -3,7 +3,8 @@
 #Written by Darcy Parker http://github.com/darcyparker/my_dotfiles
 #Opens the desired URL or filename and returns the focus to the terminal
 
-DEBUG=1
+#Uncomment DEBUG variable to enable debugging
+#DEBUG=1
 function debug() { [ "$DEBUG" ] && echo "DEBUG>>> $*"; }
 
 _getActiveWindowID(){
