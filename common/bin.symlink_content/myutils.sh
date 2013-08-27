@@ -50,3 +50,13 @@ relpath() {
 
   echo "$newpath"
 }
+
+#Uncomment DEBUG variable to enable debugging
+#DEBUG=1
+debug(){ [ "$DEBUG" ] && echo "DEBUG>>> $*"; }
+
+function_exists(){
+  declare -f -F $1 > /dev/null
+  return $?
+}
+# Example: function_exists function_name && echo Exists || echo No such function
