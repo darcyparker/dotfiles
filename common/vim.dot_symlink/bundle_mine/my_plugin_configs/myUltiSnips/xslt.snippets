@@ -1,8 +1,7 @@
 extends xml
 
 snippet apply-templates "xsl:appy-templates" b
-<xsl:apply-templates select="${1:*}"/>
-${2}
+<xsl:apply-templates select="${1:*}"/>${2}
 endsnippet
 
 snippet mode "mode" i
@@ -10,69 +9,59 @@ mode="${1}"
 endsnippet
 
 snippet sort "xsl:sort" b
-<xsl:sort select="${1:node}" order="${2:ascending}"/>
-${3}
+<xsl:sort select="${1:node}" order="${2:ascending}"/>${3}
 endsnippet
 
 snippet attribute "xsl:attribute" b
-<xsl:attribute name="${1:name}" select="${2}"/>
-${3}
+<xsl:attribute name="${1:name}" select="${2}"/>${3}
 endsnippet
 
 snippet attribute-long "xsl:attribute long" b
 <xsl:attribute name="${1:name}">
 	${2}
-</xsl:attribute>
-${3}
+</xsl:attribute>${3}
 endsnippet
 
 snippet attribute-set "xsl:attribute-set" b
 <xsl:attribute-set name="${1:name}" use-attribute-sets="${2:list}">
 	<xsl:attribute name="${3}" select="${4}"/>
 	${5}
-</xsl:attribute-set>
-${6}
+</xsl:attribute-set>${6}
 endsnippet
 
 snippet character-map "xsl:character-map" b
 <xsl:character-map name="${1:name}">
 	<xsl:output-character character="&#${2};" string="${3}"/>
 	${4}
-</xsl:character-map>
+</xsl:character-map>${5}
 endsnippet
 
 snippet output-character "xsl:output-character" b
-<xsl:output-character character="&#${1};" string="${2}"/>
-${3}
+<xsl:output-character character="&#${1};" string="${2}"/>${3}
 endsnippet
 
 snippet key "xsl:key" b
-<xsl:key name="${1:name}" match="${2}" use="${3}"/>
-${4}
+<xsl:key name="${1:name}" match="${2}" use="${3}"/>${4}
 endsnippet
 
 snippet call-template "xsl:call-template" b
-<xsl:call-template name="${1:template}"/>
-${2}
+<xsl:call-template name="${1:template}"/>${2}
 endsnippet
 
 snippet call-template-long "xsl:call-template long" b
 <xsl:call-template name="${1:template}">
 	${2}
-</xsl:call-template>
-${3}
+</xsl:call-template>${3}
 endsnippet
 
 snippet with-param "xsl:with-param" b
-<xsl:with-param name="${1:name}" select="${2:*}"/>
-${3}
+<xsl:with-param name="${1:name}" select="${2:*}"/>${3}
 endsnippet
 
 snippet with-param-long "xsl:with-param long" b
 <xsl:with-param name="${1:name}">
 	${2}
-</xsl:with-param>
-${3}
+</xsl:with-param>${3}
 endsnippet
 
 snippet choose "xsl:choose" b
@@ -81,68 +70,59 @@ snippet choose "xsl:choose" b
 		${2}
 	</xsl:when>
 	${3}
-</xsl:choose>
-${4}
+</xsl:choose>${4}
 endsnippet
 
 snippet when "xsl:when" b
 <xsl:when test="${1:test}">
 	${2}
-</xsl:when>
-${3}
+</xsl:when>${3}
 endsnippet
 
 snippet otherwise "xsl:otherwise" b
 <xsl:otherwise>
 	${1}
-</xsl:otherwise>
+</xsl:otherwise>${2}
 endsnippet
 
 snippet copy "xsl:copy" b
 <xsl:copy>
 	${1}
-</xsl:copy>
-${2}
+</xsl:copy>${2}
 endsnippet
 
 snippet copy-of "xsl:copy-of" b
-<xsl:copy-of select="${1:*}"/>
-${2}
+<xsl:copy-of select="${1:*}"/>${2}
 endsnippet
 
 snippet for-each "xsl:for-each" b
 <xsl:for-each select="${1:*}">
 	${2}
-</xsl:for-each>
-${3}
+</xsl:for-each>${3}
 endsnippet
 
 snippet for-each-group "xsl-for-each-group" b
 <xsl:for-each-group select="${1:*}" group-by="${2}">
 	${3}
-</xsl:for-each-group>
-${4}
+</xsl:for-each-group>${4}
 endsnippet
 
 snippet if "xsl:if" b
 <xsl:if test="${1:test}">
 	${2}
-</xsl:if>
-${3}
+</xsl:if>${3}
 endsnippet
 
 snippet import "xsl:import" b
-<xsl:import href="${1:stylesheet}"/>
-${2}
+<xsl:import href="${1:stylesheet}"/>${2}
 endsnippet
 
 snippet include "xsl:include" b
-<xsl:include href="${1:stylesheet}"/>
-${2}
+<xsl:include href="${1:stylesheet}"/>${2}
 endsnippet
 
 snippet param "xsl:param" b
-<xsl:param name="${1:name}" select="${2}"/>
+<xsl:param name="${1:name}" select="${2}"/>${3}
 endsnippet
 
 snippet output "xsl:output" b
@@ -153,8 +133,7 @@ snippet output "xsl:output" b
 	indent="yes"
 	doctype-public=""
 	doctype-system=""
-/>
-${1}
+/>${1}
 endsnippet
 
 snippet stylesheet "xsl:stylesheet" b
@@ -166,9 +145,7 @@ snippet stylesheet "xsl:stylesheet" b
 	xmlns:set="http://exslt.org/sets"
 	xmlns:func="http://exslt.org/functions"
 	exclude-result-prefixes="xs exsl str set func"
-	version="2.0">
-
-	${1}
+	version="2.0">${1}
 
 </xsl:stylesheet>
 endsnippet
@@ -179,8 +156,7 @@ snippet identity "identity transform" b
 	<xsl:copy>
 		<xsl:apply-templates select="@*|node()"/>
 	</xsl:copy>
-</xsl:template>
-${1}
+</xsl:template>${1}
 endsnippet
 
 snippet identity2 "identity transform XSLT2" b
@@ -193,22 +169,19 @@ snippet identity2 "identity transform XSLT2" b
 <xsl:template match="attribute()|text()|comment()|processing-instruction()">
 	<xsl:copy/>
 </xsl:template>
-<!--*** End of Identity Transform-->
-${1}
+<!--*** End of Identity Transform-->${1}
 endsnippet
 
 snippet template-match "xsl:template match" b
 <xsl:template match="${1:*}"${2}>
 	${3}
-</xsl:template>
-${4}
+</xsl:template>${4}
 endsnippet
 
 snippet template-name "xsl:template name" b
 <xsl:template name="${1:name}"${2}>
 	${3}
-</xsl:template>
-${4}
+</xsl:template>${4}
 endsnippet
 
 snippet text "xsl:text" i
@@ -230,8 +203,7 @@ endsnippet
 snippet variable-long "xsl:variable long" b
 <xsl:variable name="${1:name}">
 	${2}
-</xsl:variable>
-${3}
+</xsl:variable>${3}
 endsnippet
 
 snippet message "xsl:message" i
@@ -268,8 +240,7 @@ endsnippet
 snippet document "xsl:document" b
 <xsl:document>
 	${1}
-</xsl:document>
-${2}
+</xsl:document>${2}
 endsnippet
 
 snippet result-document "xsl:result-document" b
@@ -283,27 +254,23 @@ snippet result-document "xsl:result-document" b
 	doctype-system=""
 >
 	${2}
-</xsl:result-document>
-${3}
+</xsl:result-document>${3}
 endsnippet
 
 snippet element "xsl:element" b
 <xsl:element name="${1}">
 	${2}
-</xsl:element>
-${3}
+</xsl:element>${3}
 endsnippet
 
 snippet sequence "xsl:sequence" i
-<xsl:sequence select="${1:*}"/>
-${2}
+<xsl:sequence select="${1:*}"/>${2}
 endsnippet
 
 snippet fallback "xsl:fallback" b
 <xsl:fallback>
 	${1}
-</xsl:fallback>
-${2}
+</xsl:fallback>${2}
 endsnippet
 
 snippet function "xsl:function" b
@@ -311,26 +278,22 @@ snippet function "xsl:function" b
 	<xsl:param name="${2}"/>
 	${3}
 	<xsl:sequence select="${4}"/>
-</xsl:function>
-${5}
+</xsl:function>${5}
 endsnippet
 
 snippet function1 "func:function" b
 <func:function name="${1:name}">
 	<xsl:param name="${2}" />
 	${3}
-</func:function>
-${4}
+</func:function>${4}
 endsnippet
 
 snippet namespace "xsl:namespace" b
-<xsl:namespace name="${1:name}" select="${2}"/>
-${3}
+<xsl:namespace name="${1:name}" select="${2}"/>${3}
 endsnippet
 
 snippet namespace-alias "xsl:namespace-alias" b
-<xsl:namespace-alias stylesheet-prefix="${1}" result-prefix="${2}"/>
-${3}
+<xsl:namespace-alias stylesheet-prefix="${1}" result-prefix="${2}"/>${3}
 endsnippet
 
 snippet next-match "xsl:next-match" i
@@ -340,8 +303,7 @@ endsnippet
 snippet next-match-long "xsl:next-match long" b
 <xsl:next-match>
 	${1}
-</xsl:next-match>
-${2}
+</xsl:next-match>${2}
 endsnippet
 
 snippet specialvars "special variables" b
