@@ -4,16 +4,13 @@ if &t_Co > 2 || has("gui_running")
 endif
 
 if &t_Co == 256 || has("gui_running")
-  set background=dark "set background so highlighting is appropriate
+  let &background="dark" "set background so highlighting is appropriate
   let g:solarized_termcolors=256
   colorscheme solarized
-  call togglebg#map("<leader>bg")
-  "colorscheme molokai
 elseif &t_Co == 16
   "set background=dark "set background so highlighting is appropriate
   "let g:solarized_termcolors=16
   colorscheme slate
-  "call togglebg#map("<leader>bg")
 endif
 
 " Version 7.3 of the vim, add a colorcolumn @100 and 101

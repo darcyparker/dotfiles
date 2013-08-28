@@ -60,9 +60,9 @@ GIT_PS1_SHOWUPSTREAM="auto git verbose"
 if [ `which git 2> /dev/null` ]; then
   #Source git-prompt functions
   . ~/.bash/git-prompt.sh
-  export PS1="${txtgrn}\#${end} ${undcyn}\u@\h${end}:\w${bldylw}\$(__git_ps1)${end} \\\$"
+  export PS1="${txtgrn}\#${end} ${undcyn}\u@\h${end}:\w${bldylw}\$(__git_ps1)${end} \n\\\$ "
 else
-  export PS1="${txtgrn}\#${end} ${undcyn}\u@\h${end}:\w \\\$"
+  export PS1="${txtgrn}\#${end} ${undcyn}\u@\h${end}:\w \n\\\$ "
 fi
 
 unset txtblk
