@@ -143,8 +143,20 @@ snippet stylesheet "xsl:stylesheet" b
 	xmlns:exsl="http://exslt.org/common"
 	xmlns:str="http://exslt.org/strings"
 	xmlns:set="http://exslt.org/sets"
+	xmlns:date="http://exslt.org/dates-and-times"
+	xmlns:dyn="http://exslt.org/dynamic"
+	xmlns:math="http://exslt.org/math"
 	xmlns:func="http://exslt.org/functions"
-	exclude-result-prefixes="xs exsl str set func"
+	xmlns:saxon="http://saxon.sf.net/"
+	xmlns:dtd="http://saxon.sf.net/dtd"
+	xmlns:saxonlibxslt="http://icl.com/saxon"
+	xmlns:functx="http://www.functx.com"
+	xmlns:fxsl="http://fxsl.sf.net/"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	xmlns:mathml="http://www.w3.org/1998/Math/MathML"
+	xmlns:svg="http://www.w3.org/2000/svg"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	exclude-result-prefixes="xs exsl str set date dyn math func saxon dtd saxonlibxslt functx fxsl mathml svg xlink"
 	version="2.0">${1}
 
 </xsl:stylesheet>
@@ -223,7 +235,7 @@ snippet comment-long "xsl:comment long" i
 endsnippet
 
 snippet decimal-format "xsl:decimal-format" i
-<xsl:decimal-format name="${1:name}" 
+<xsl:decimal-format name="${1:name}"
 	decimal-separator="${2}"
 	grouping-separator="${3}"
 	infinity="${4}"
@@ -244,7 +256,7 @@ snippet document "xsl:document" b
 endsnippet
 
 snippet result-document "xsl:result-document" b
-<xsl:result-document 
+<xsl:result-document
 	href="${1}"
 	method="xml"
 	version="1.0"
