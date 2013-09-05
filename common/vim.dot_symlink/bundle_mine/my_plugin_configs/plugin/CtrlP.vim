@@ -21,23 +21,36 @@ let g:ctrlp_custom_ignore = {
 if has("win16") || has("win32") || has("win64")
   "Be careful about setting wildignore.  See :h ctrlp-wildignore
   "set wildignore+=*\\.git\\*,*\\.hg\\*,*\\.svn\\*  " Windows ('noshellslash')
-  let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'
-"  let g:ctrlp_user_command = {
-        "\ 'types': {
-        "\ 1: ['.git/', 'cd %s && git ls-files'],
-        "\ 2: ['.hg/', 'hg --cwd %s locate -I .'],
-        "\ },
-        "\ 'fallback': 'dir %s /-n /b /s /a-d'
-        "\ }
+  "let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'
+  let g:ctrlp_user_command = {
+        \ 'types': {
+          \ 1: ['.git/', 'cd %s && git ls-files'],
+          \ 2: ['.hg/', 'hg --cwd %s locate -I .'],
+        \ },
+        \ 'fallback': 'dir %s /-n /b /s /a-d'
+        \ }
 else
   "Be careful about setting wildignore.  See :h ctrlp-wildignore
   "set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
-  let g:ctrlp_user_command = 'find %s -type f'
-  "let g:ctrlp_user_command = {
-        "\ 'types': {
-        "\ 1: ['.git/', 'cd %s && git ls-files'],
-        "\ 2: ['.hg/', 'hg --cwd %s locate -I .'],
-        "\ },
-        "\ 'fallback': 'find %s -type f'
-        "\ }
+
+  if executable('ag')
+    "let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+    let g:ctrlp_user_command = {
+          \ 'types': {
+            \ 1: ['.git/', 'cd %s && git ls-files'],
+            \ 2: ['.hg/', 'hg --cwd %s locate -I .'],
+          \ },
+          \ 'fallback': 'ag %s -l --nocolor -g ""'
+          \ }
+  else
+    "let g:ctrlp_user_command = 'find %s -type f'
+    let g:ctrlp_user_command = {
+          \ 'types': {
+            \ 1: ['.git/', 'cd %s && git ls-files'],
+            \ 2: ['.hg/', 'hg --cwd %s locate -I .'],
+          \ },
+          \ 'fallback': 'find %s -type f'
+          \ }
+  endif
+
 endif
