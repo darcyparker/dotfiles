@@ -69,4 +69,16 @@ snippet timeout "setTimeout function"
 setTimeout(function() {$0}${2:}, ${1:10})
 endsnippet
 
+snippet iife "Immediately Invoked Function Expression" i
+(function(){${1}})();${2}
+endsnippet
+
+snippet define "AMD module" !b
+define([${1:dependencies}], function(${2}) {
+	'use strict';
+	${3}
+	return ${4};
+});
+endsnippet
+
 # vim:ft=snippets:
