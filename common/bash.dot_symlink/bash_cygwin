@@ -3,35 +3,10 @@
 # Remember to setup cygwin prompt here
 # chere -i -t mintty -s bash -e "Open cygwin prompt here"
 
-# Remove /cygdrive/d/bin_win32 from path while in cygwin
-# echo $PATH
-#export PATH=$(echo $PATH | sed -e 's;:\?/cygdrive/d/bin_win32;;' -e 's;cygdrive/d/bin_win32:\?;;' -e 's;:\?/cygdrive/d/opt/Git/cmd:\?;;' -e 's;:\?/cygdrive/d/opt/Python27:\?;;' )
-
-# Remove /cygdrive/d/opt/ruby193/bin from path
-#export PATH=$(echo $PATH | sed -e 's;:\?/cygdrive/d/opt/ruby193/bin;;' -e 's;:\?/cygdrive/d/opt/GnuWin32/bin;;')
-
-#Set home for cygwin (This resolves to a different location than mingw's msys)
-#Note: Not sharing home folders between msys, cygwin and win32 vim anymore because of challenges
-#      with permissions and ln -s for paths like /c/* and /cygdrive/c/*
-#export HOME=$(echo /home/`whoami | tr 'A-Z' 'a-z'`)
 #See http://www.cygwin.com/cygwin-ug-net/using-cygwinenv.html
 # Note: Not using obsolete options
 export CYGWIN="nodosfilewarning"
 unset PYTHONHOME
-
-#export PATH=$(echo $PATH | sed -e "s/\/cygdrive\/c\/bin\/strawberry\/c\/bin:\?//g" )
-#export PATH=$(echo $PATH | sed -e "s/\/cygdrive\/c\/bin\/strawberry\/perl\/site\/bin:\?//g" )
-#export PATH=$(echo $PATH | sed -e "s/\/cygdrive\/c\/bin\/strawberry\/perl\/bin:\?//g" )
-##Interesting that the space " ", and the brackets "(" and ")" do not need to be escaped here...
-#export PATH=$(echo $PATH | sed -e "s/\/cygdrive\/c\/Program Files (x86)\/Git\/cmd:\?//g")
-#export PATH=$(echo $PATH | sed -e "s/\/cygdrive\/c\/Program Files (x86)\/GitExtensions:\?//g")
-#export PATH=$(echo $PATH | sed -e "s/\/cygdrive\/c\/Program Files\/Mercurial:\?//g")
-#export PATH=$(echo $PATH | sed -e "s/\/cygdrive\/c\/bin\/ruby193\/bin:\?//g")
-#export PATH=$(echo $PATH | sed -e "s/\/cygdrive\/c\/bin\/Python27\/Scripts:\?//g")
-#export PATH=$(echo $PATH | sed -e "s/\/cygdrive\/c\/bin\/Python27\/lib\/site-packages\/django\/bin:\?//g")
-#export PATH=$(echo $PATH | sed -e "s/\/cygdrive\/c\/bin\/Python27:\?//g")
-#export PATH=$(echo $PATH | sed -e "s/\/cygdrive\/c\/Program Files (x86)\/Lua\/5.1\/clibs:\?//g")
-#export PATH=$(echo $PATH | sed -e "s/\/cygdrive\/c\/Program Files (x86)\/Lua\/5.1:\?//g")
 
 #Linux/Cygwin Colors for ls
 export LS_COLORS="di=1;32;40:ln=36;40:so=34;40:pi=34;40:ex=1;35;40:bd=34;40:cd=34;40:su=1;35;40:sg=1;35;40:tw=32;40:ow=32;40:"

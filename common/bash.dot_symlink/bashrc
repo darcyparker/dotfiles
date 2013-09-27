@@ -27,7 +27,7 @@ date -u "+%Y-%m-%dT%H:%M:%SZ"
 echo adding paths
 date -u "+%Y-%m-%dT%H:%M:%SZ"
 # Move (or Add) /usr/local/bin to the front of the path
-[ -d /usr/local/bin ] && export PATH=$(echo "/usr/local/bin:$PATH" | sed -e "s;:\/usr\/local\/bin;;")
+[ -d /usr/local/bin ] && export PATH=$(echo "/usr/local/bin:$PATH" | sed -e 's;:/usr/local/bin;;')
 date -u "+%Y-%m-%dT%H:%M:%SZ"
 
 # Move (or Add) npm's bin folder to the front of the path
