@@ -17,9 +17,12 @@
 #If other installations of these tools are installed and in path, they need to be removed
 #Use sed to remove unwanted items from path
 #export PATH=$(echo $PATH | sed -e 's;PATHTOSTRIP:\?;;g' )
-export PATH=$(echo $PATH | sed -e 's;/c/bin/strawberry/c/bin:\?;;g' )
-export PATH=$(echo $PATH | sed -e 's;/c/bin/strawberry/perl/site/bin:\?;;g' )
-export PATH=$(echo $PATH | sed -e 's;/c/bin/strawberry/perl/bin:\?;;g' )
+export PATH=$(echo $PATH | sed -e 's;/c/bin/strawberry/c/bin:\?;;g')
+export PATH=$(echo $PATH | sed -e 's;/c/bin/strawberry/perl/site/bin:\?;;g')
+export PATH=$(echo $PATH | sed -e 's;/c/bin/strawberry/perl/bin:\?;;g')
+
+#Remove current directory from path (starts with '.:', or contains ':.:' or ends with ':.')
+export PATH=$(echo $PATH | sed --e 's;^\.:;;' -e 's;:\.:;:;g' -e 's;:\.$;;' )
 
 #Add mingw-w64 bin dir to path
 #Note: /etc/fstab for msys mounts appropriate mingw to /mingw-w64
