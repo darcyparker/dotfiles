@@ -1,3 +1,7 @@
+snippet xml "xml declaration" b
+<?xml version="1.0" encoding="UTF-8"?>${1}
+endsnippet
+
 snippet t "Simple tag" b
 <${1:tag}>
 	${2:content}
@@ -6,10 +10,6 @@ endsnippet
 
 snippet ti "Inline tag" b
 <${1:tag}>${2:content}</${1/([\w:._-]+).*/$1/}>
-endsnippet
-
-snippet xml "xml declaration" b
-<?xml version="1.0" encoding="UTF-8"?>${1}
 endsnippet
 
 snippet cdata "CDATA section" b
