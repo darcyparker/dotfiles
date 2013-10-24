@@ -2,13 +2,16 @@
 if [ -z $JAVA_HOME ]; then
   case "`uname`" in
     CYGWIN*)
+      #Assumes %JAVA_HOME% was set in Windows
+      #Convert $JAVA_HOME to unix-like path
+      export JAVA_HOME=`cygpath --unix "$JAVA_HOME"`
       ;;
     Darwin*)
       if [ -z "$JAVA_HOME" ] ; then
-        if [ -x '/usr/libexec/java_home' ] ; then
-          JAVA_HOME=`/usr/libexec/java_home`
+        if [ -x "/usr/libexec/java_home" ]; then
+          export JAVA_HOME=`/usr/libexec/java_home`
         elif [ -d "/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Home" ]; then
-          JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Home
+          export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Home
         fi
       fi
       ;;
@@ -21,6 +24,9 @@ if [ -z $JAVA_HOME ]; then
       export JAVA_HOME=`readlink -f $(which java) | sed 's:\(/jre\)\?/bin/java$:/:'`
       ;;
     MINGW*)
+      #Assumes %JAVA_HOME% was set in Windows
+      #Convert $JAVA_HOME to unix-like path
+      export JAVA_HOME="`(cd "$JAVA_HOME"; pwd)`"
       ;;
   esac
   echo \$JAVA_HOME=$JAVA_HOME
