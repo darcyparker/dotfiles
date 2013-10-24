@@ -34,4 +34,4 @@ nnoremap <leader>sj        :rightbelow new<CR>
 
 "Jumping through tabs
 nnoremap <leader>th        :tabp<CR>
-nnoremap <leader>tl        :tabN<CR>
+nnoremap <leader>tl        :tabn<CR>
