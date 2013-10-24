@@ -7,12 +7,10 @@ if [ -z $JAVA_HOME ]; then
       export JAVA_HOME=`cygpath --unix "$JAVA_HOME"`
       ;;
     Darwin*)
-      if [ -z "$JAVA_HOME" ] ; then
-        if [ -x "/usr/libexec/java_home" ]; then
-          export JAVA_HOME=`/usr/libexec/java_home`
-        elif [ -d "/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Home" ]; then
-          export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Home
-        fi
+      if [ -x "/usr/libexec/java_home" ]; then
+        export JAVA_HOME=`/usr/libexec/java_home`
+      elif [ -d "/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Home" ]; then
+        export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Home
       fi
       ;;
     Linux*)
@@ -20,7 +18,7 @@ if [ -z $JAVA_HOME ]; then
       #readlink where -f has different meaning)
       #Sometimes java is pointing to JRE inside a JDK
       # - if so, JAVA_HOME is set to the JDK root folder
-      # - otherwise, JAVA_HOME is just 2 folders up from java command
+      # - sotherwise, JAVA_HOME is just 2 folders up from java command
       export JAVA_HOME=`readlink -f $(which java) | sed 's:\(/jre\)\?/bin/java$:/:'`
       ;;
     MINGW*)
