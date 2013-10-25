@@ -8,11 +8,9 @@ if [[ ! `declare -F which` ]]; then
   export -f which
 fi
 
-brewprefix=`brew --prefix`
-if [ -f ${brewprefix}/etc/bash_completion ]; then
-  . ${brewprefix}/etc/bash_completion
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+  . $(brew --prefix)/etc/bash_completion
 fi
-unset brewprefix
 
 if [ -z $JAVA_HOME ]; then
   if [ -x "/usr/libexec/java_home" ]; then
