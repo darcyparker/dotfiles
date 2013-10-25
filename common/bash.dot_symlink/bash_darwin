@@ -8,8 +8,10 @@ if [[ ! `declare -F which` ]]; then
   export -f which
 fi
 
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . $(brew --prefix)/etc/bash_completion
+#Note: Can't use $(brew --prefix) because brew is not in path yet
+#I know my brew prefix... so I am hard coding it for now
+if [ -f /usr/local/etc/bash_completion ]; then
+  . /usr/local/etc/bash_completion
 fi
 
 if [ -z $JAVA_HOME ]; then
