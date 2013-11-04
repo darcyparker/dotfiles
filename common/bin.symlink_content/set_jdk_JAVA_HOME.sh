@@ -18,7 +18,7 @@ case "`uname`" in
     ;;
   Linux*)
     if [ -z $JAVA_HOME ]; then
-      #Not: this assumes gnu readlink (darwin and perhaps others use BSD
+      #Note: this assumes gnu readlink (darwin and perhaps others use BSD
       #readlink where -f has different meaning)
       #Sometimes java is pointing to JRE inside a JDK
       # - if so, JAVA_HOME is set to the JDK root folder
