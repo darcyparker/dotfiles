@@ -25,7 +25,7 @@ javascript           master   git://github.com/pangloss/vim-javascript.git      
 jsbeautify           master   git://github.com/maksimr/vim-jsbeautify.git             ;https://github.com/maksimr/vim-jsbeautify
 json                 master   git://github.com/elzr/vim-json.git                      ;https://github.com/elzr/vim-json
 less                 master   git://github.com/groenewege/vim-less.git                ;https://github.com/groenewege/vim-less
-lightline            master   git@github.com:itchyny/lightline.vim.git                ;https://github.com/itchyny/lightline.vim
+lightline            master   git://github.com/itchyny/lightline.vim.git                ;https://github.com/itchyny/lightline.vim
 mango                master   git://github.com/goatslacker/mango.vim.git              ;https://github.com/goatslacker/mango.vim
 markdown             master   git://github.com/tpope/vim-markdown.git                 ;https://github.com/tpope/vim-markdown
 markdown-folding     master   git://github.com/nelstrom/vim-markdown-folding.git      ;https://github.com/nelstrom/vim-markdown-folding
