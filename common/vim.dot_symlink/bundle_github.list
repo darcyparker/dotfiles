@@ -25,6 +25,7 @@ javascript           master   git://github.com/pangloss/vim-javascript.git      
 jsbeautify           master   git://github.com/maksimr/vim-jsbeautify.git             ;https://github.com/maksimr/vim-jsbeautify
 json                 master   git://github.com/elzr/vim-json.git                      ;https://github.com/elzr/vim-json
 less                 master   git://github.com/groenewege/vim-less.git                ;https://github.com/groenewege/vim-less
+lightline            master   git@github.com:itchyny/lightline.vim.git                ;https://github.com/itchyny/lightline.vim
 mango                master   git://github.com/goatslacker/mango.vim.git              ;https://github.com/goatslacker/mango.vim
 markdown             master   git://github.com/tpope/vim-markdown.git                 ;https://github.com/tpope/vim-markdown
 markdown-folding     master   git://github.com/nelstrom/vim-markdown-folding.git      ;https://github.com/nelstrom/vim-markdown-folding
@@ -44,7 +45,7 @@ scrollcolors         master   git://github.com/vim-scripts/ScrollColors.git     
 ;snippets             master   git://github.com/honza/vim-snippets.git                 ;https://github.com/honza/vim-snippets
 solarized            master   git://github.com/altercation/vim-colors-solarized.git   ;https://github.com/altercation/vim-colors-solarized
 space                master   git://github.com/spiiph/vim-space.git                   ;https://github.com/spiiph/vim-space
-statline             master   git://github.com/millermedeiros/vim-statline.git        ;https://github.com/millermedeiros/vim-statline
+;statline             master   git://github.com/millermedeiros/vim-statline.git        ;https://github.com/millermedeiros/vim-statline
 stylus               master   git://github.com/wavded/vim-stylus.git                  ;https://github.com/wavded/vim-stylus
 surround             master   git://github.com/tpope/vim-surround.git                 ;https://github.com/tpope/vim-surround
 syntastic            master   git://github.com/scrooloose/syntastic.git               ;https://github.com/scrooloose/syntastic
