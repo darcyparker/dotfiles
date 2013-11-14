@@ -49,6 +49,12 @@ if has("mac") && !has("gui_mac")
 endif
 
 set number           " Show line numbers
+
+" Version 7.4 of the vim, use relative number
+if version >= 704
+  set relativenumber
+endif
+
 set ruler            " show the cursor position all the time
 "set virtualedit=all  "allow the cursor to go to 'invalid' places
 set cursorline       " marks the cursor's line with a line
