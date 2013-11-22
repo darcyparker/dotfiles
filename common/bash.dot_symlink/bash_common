@@ -69,4 +69,11 @@ export HISTCONTROL="ignoreboth"
 # common commands like "history", "clear", "cls", "exit", "pwd", etc
 export HISTIGNORE="&:[ \t]*:?:??:clear:cls:exit:pwd:history*:%[0-9]:"
 export HISTFILESIZE=5000                    # history file size
+
+#Set $XML_CATALOG_FILES for programs like xmllint.  vim's syntastic uses xmllint to validate xml files
+#https://github.com/darcyparker/XMLCatalog is my XMLCatalog
+if [ -z $XML_CATALOG_FILES ]; then
+  [ -e "$HOME/src/XMLCatalog/catalog.xml" ] && export XML_CATALOG_FILES="$HOME/src/XMLCatalog/catalog.xml"
+fi
+
 echo done loading ~/.bash/bash_common
