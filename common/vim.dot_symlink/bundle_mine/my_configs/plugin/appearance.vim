@@ -68,7 +68,6 @@ set showtabline=2    "tab labels will always be shown
 
 set nowrap           "Don't wrap lines
 set sidescroll=4     "When nowrap and long lines, scroll by 4 chars at a time
-set sidescrolloff=14 "Number of chars to keep to the left or right of cursor when nowrap
 "map to toggle wrapping of lines
 nnoremap <leader>w :set wrap!<CR>
 
