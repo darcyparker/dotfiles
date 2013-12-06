@@ -41,6 +41,7 @@ roy                  master   git://github.com/esehara/Vim-Roy.git              
 scratch              master   git://github.com/vim-scripts/scratch.vim.git            ;https://github.com/vim-scripts/scratch.vim
 scriptease           master   git://github.com/tpope/vim-scriptease.git               ;https://github.com/tpope/vim-scriptease
 scrollcolors         master   git://github.com/vim-scripts/ScrollColors.git           ;https://github.com/vim-scripts/ScrollColors
+sensible             master   git://github.com/tpope/vim-sensible.git                 ;https://github.com/tpope/vim-sensible
 ;snipmate             master   git://github.com/garbas/vim-snipmate.git                ;https://github.com/garbas/vim-snipmate (Note: msanders/snipmate.vim is the original snipmate, but development stopped. garbas is the new maintainer.)
 ;snippets             master   git://github.com/honza/vim-snippets.git                 ;https://github.com/honza/vim-snippets
 solarized            master   git://github.com/altercation/vim-colors-solarized.git   ;https://github.com/altercation/vim-colors-solarized

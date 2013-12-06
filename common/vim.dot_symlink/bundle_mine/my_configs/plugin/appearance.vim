@@ -80,11 +80,12 @@ set matchpairs+=<:>  "add these for html/xml (not a substitute for matchit.vim, 
 set list
 
 "Define symbols/chars to show for invisible characters
-if has("win32") || has("win64") || has("dos16") || has("dos32")
-  execute "source ".expand("<sfile>:h")."/latin1/listchars.vim"
-else
-  execute "source ".expand("<sfile>:h")."/utf-8/listchars.vim"
-endif
+"Commenting out for now and using vim-sensible settings
+"if has("win32") || has("win64") || has("dos16") || has("dos32")
+  "execute "source ".expand("<sfile>:h")."/latin1/listchars.vim"
+"else
+  "execute "source ".expand("<sfile>:h")."/utf-8/listchars.vim"
+"endif
 
 "map to toggle display of invisible chars
 noremap <leader>l :set list!<CR>
