@@ -21,9 +21,6 @@ fi
 
 alias ls="ls --color -F"
 
-cprograms="c:\\Program Files (x86)"
-ucprograms=`cygpath -u "$cprograms"`
-
 alias desktop="cd `cygpath $USERPROFILE`/Desktop"
 alias downloads="cd `cygpath $USERPROFILE`/Downloads"
 alias mydocs="cd `cygpath $USERPROFILE`/Documents"
@@ -31,23 +28,26 @@ alias work="cd /cygdrive/d/work"
 alias dropbox="cd `cygpath $USERPROFILE`/Dropbox"
 
 alias cs=cygstart
-
-#javascript aliases (Rhino)
-alias js="java -cp d:\\\\jars\\\\js.jar org.mozilla.javascript.tools.shell.Main -opt -1"
-alias jsd="cygstart `which javaw` -cp d:\\\\jars\\\\js.jar org.mozilla.javascript.tools.debugger.Main"
-
-alias saxon="java -jar '`cygpath -wp /cygdrive/d/jars/saxon9.jar`'"
-
-alias nginx="/usr/local/nginx/sbin/nginx.exe"
-
-alias gvim="cyg-wrapper.sh '$ucprograms/Vim/vim73/gvim.exe' --binary-opt=-c,--cmd,-T,-t,--servername,--remote-send,--remote-expr"
-
-# Reduce is a computer algebra system
-#alias reduce="/cygdrive/c/reduce/reduce.exe"
-
 alias backupto="BackupTo.cmd"
 
-alias hpcalc="cygstart cscript  \"C:\Program Files (x86)\HP-Emulators\Emu48\Emu48.vbs\" \"D:\Users\dparker\documents\Hp48gx-darcy.E48\" > /dev/null"
+#javascript aliases (Rhino)
+alias js='java -cp '\''d:\jars\js.jar'\'' org.mozilla.javascript.tools.shell.Main -opt 0'
+alias jsd='cygstart `which javaw` -cp '\''d:\jars\js.jar'\'' org.mozilla.javascript.tools.debugger.Main'
+
+alias saxon='java -jar '\''d:\jars\saxon9.jar'\'
+
+alias nginx='/usr/local/nginx/sbin/nginx.exe'
+
+alias gvim='cyg-wrapper.sh '\''/cygdrive/c/Program Files/vim/vim-7.4a.044-python-2.7-python-3.3-windows-x64/gvim.exe'\'' --binary-opt=-c,--cmd,-T,-t,--servername,--remote-send,--remote-expr'
+
+#Start HP48GX emulator
+#Does not work unless CWD is in program files
+hpcalc(){
+  pushd . > /dev/null
+  cd /cygdrive/c/Program\ Files\ \(x86\)/HP-Emulators/Emu48
+  cyg-wrapper.sh `which cscript` --cyg-verbose=2 /cygdrive/c/Program\ Files\ \(x86\)/HP-Emulators/Emu48/Emu48.vbs /cygdrive/d/users/dparker/Documents/Hp48gx-darcy.E48 > /dev/null
+  popd > /dev/null
+}
 
 alias yed="cygstart /cygdrive/c/Program\ Files\ \(x86\)/yWorks/yEd/yed.exe"
 alias inkscape="cygstart /cygdrive/c/Program\ Files\ \(x86\)/Inkscape/inkscape.exe"
@@ -100,6 +100,3 @@ alias creod="cygstart -d /cygdrive/d/ptc/pro_workingdirs/Creo_2.0_Direct_Working
 alias mathcad15="cygstart /cygdrive/c/Program\ Files\ \(x86\)/Mathcad/Mathcad\ 15/mathcad.exe"
 alias mathcadprime="cygstart /cygdrive/c/Program\ Files\ \(x86\)/Mathcad/Mathcad\ Prime\ 1.0/mathcadprime.exe"
 alias arbortext="cygstart /cygdrive/c/Program\ Files\ \(x86\)/PTC/Arbortext\ Editor/bin/editor.exe"
-
-unset cprograms
-unset ucprograms
