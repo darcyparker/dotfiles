@@ -15,7 +15,7 @@ if &t_Co > 2 || has("gui_running")
 endif
 
 "clear the last search pattern
-nnoremap <leader>/ :let @/ = ""<cr>
+nnoremap <silent> <leader>/ :let @/ = ""<cr>
 
 " Search and replace word under cursor (,;)
 " http://vim.wikia.com/wiki/Search_and_replace_the_word_under_the_cursor
