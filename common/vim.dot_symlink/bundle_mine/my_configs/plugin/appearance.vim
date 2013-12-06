@@ -13,8 +13,9 @@ elseif &t_Co == 16
   colorscheme slate
 endif
 
-" Version 7.3 of the vim, add a colorcolumn @100 and 101
-if version >= 703
+"Add a colorcolumn @100 and 101
+"Instead of testing `if version >= 703`, test if option is available
+if exists("&colorcolumn")
   set colorcolumn=100,101
   "set colorcolumn=
   highlight ColorColumn ctermbg=lightgrey guibg=#5C5558
@@ -50,8 +51,9 @@ endif
 
 set number           " Show line numbers
 
-" Version 7.4 of the vim, use relative number
-if version >= 704
+"Set relative number if exists
+"Instead of testing `if version >= 704`, test if option is available
+if exists("&relativenumber")
   set relativenumber
 endif
 
