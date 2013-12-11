@@ -10,7 +10,7 @@ set PROFILE_LOADED=1
 
 #Environment variables: https://help.ubuntu.com/community/EnvironmentVariables
 
-# TERM must be set early
+# $TERM must be set early
 # Note: On gnome_terminal in linux, $TERM is intiially set to xterm
 #       It must be xterm-256color if tmux is started and sets its term
 #       to screen-256color. screen-256color doesn't work correctly under
@@ -18,20 +18,10 @@ set PROFILE_LOADED=1
 [ -n "$PS1" ] && [ -n "$TERM" ] && [ -s ~/.bash/256color.sh ] && . ~/.bash/256color.sh
 echo "my term = $TERM"
 
-#LANG must also be set early (before tmux)
-#LANG codeset should be UTF-8 because my terminals are configured to expect
-#UTF-8 from vim and tmux
-#Note: locale has the form: language[_territory][.codeset]
-if [ -z "$LANG" ]; then
-  export LANG=en_US.UTF-8
-else
-  #Note, this is .profile and therefore not necessarily BASH
-  #So not using bash regex =~ operator for tests
-  if [ -z $(echo $LANG | sed 's/[^.]\+\.\?//') ]; then
-    #if $LANG exists, but character codeset is undefined, so define it
-    export LANG="$(echo $LANG | sed 's/\.[^.]*$//').UTF-8"
-  fi
-fi
+# $LANG must be set correctly before starting tmux
+# en_US.UTF-8 or another UTF-8 locale is best
+# In Debian `apt-get install locales debconf; dpkg-reconfigure locales`
+# Check locales available with `locale -a`
 
 # If not currently in a tmux session, then create new session
 if [ -n "$PS1" -a -z "$TMUX" -a "$TERM" = "xterm-256color"  ] && [ `which tmux 2> /dev/null` ]; then
