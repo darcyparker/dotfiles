@@ -23,8 +23,10 @@ set -g default-terminal "screen-256color"
 
 # bind | and - to horizontal and vertical split respectively.
 # | and - is easier to remember because of the visual symbolism.
+# \ is for when I forget to type shift to get |
 # Not necessarily easier to type though... so may consider another binding
 bind | split-window -h
+bind \ split-window -h
 bind - split-window -v
 
 # bind movements between panes to h,j,k,l
@@ -48,16 +50,28 @@ bind -r L resize-pane -R 5
 # copy/paste bindings
 #  Escape to switch to copy mode
 #  v to start visual mode
+#  V to start visual mode (Visual Line)
+#  Ctrl-v to toggle visual block
 #  y to yank selected text into copy buffer
 #  p to paste text from buffer
+#  Escape to exit copy mode
 #  use vi movements when working inside the tmux buffer
+#  See <prefix>-:list-keys -t vi-copy
 unbind [
 bind Escape copy-mode
 unbind p
 bind p paste-buffer
-bind -t vi-copy 'v' begin-selection
-bind -t vi-copy 'y' copy-selection
+#By default use vi keys is copy and choice modes
 setw -g mode-keys vi
+#These are defined in vi-copy and vi-choice table respectively
+bind -t vi-copy 'v' begin-selection
+bind -t vi-copy 'V' select-line
+bind -t vi-copy 'y' copy-selection
+bind -t vi-copy 'C-v' rectangle-toggle
+bind -t vi-copy Escape cancel
+#Use vi keys in tmux status (command) line (<prefix>-:)
+#These are defined in vi-edit table
+setw -g status-keys vi
 
 # Uses xclip `sudo apt-get install xclip` if not already installed
 # Create Ctrl-c and Ctrl-v mappings
