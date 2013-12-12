@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Let it Rain!
 # Copyright (C) 2011, 2013 by Yu-Jie Lin
 #

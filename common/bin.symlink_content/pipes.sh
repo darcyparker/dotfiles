@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # The author of the original script is unknown to me. The first entry I can
 # find was posted at 2010-03-21 09:50:09 on Arch Linux Forums (doesn't mean the
 # poster is the author at all):
