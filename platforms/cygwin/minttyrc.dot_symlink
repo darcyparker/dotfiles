@@ -11,3 +11,4 @@ Charset=UTF-8
 FontHeight=11
 CursorType=underscore
 CursorBlinks=no
+Scrollbar=none
