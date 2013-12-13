@@ -1,0 +1,10 @@
+######################################################
+# tmux.platform.conf for linux
+# This is sourced at the end of ~/.tmux.conf
+# It extends and/or changes settings from ~/.tmux.conf
+######################################################
+
+# Uses xclip `sudo apt-get install xclip` if not already installed
+# Create Ctrl-c and Ctrl-v mappings
+bind C-c run "tmux save-buffer - | xclip -i -sel clipboard"
+bind C-v run "tmux set-buffer \"$(xclip -o -sel clipboard)\"; tmux paste-buffer"

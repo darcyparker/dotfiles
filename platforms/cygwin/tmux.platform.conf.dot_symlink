@@ -1,0 +1,29 @@
+######################################################
+# tmux.platform.conf for cygwin
+# This is sourced at the end of ~/.tmux.conf
+# It extends and/or changes settings from ~/.tmux.conf
+######################################################
+#
+# I use cygwin x86_64.
+# tmux must be built/installed on cygwin.
+#   - install these packages:
+#     - automake, gcc, git, pkg-config, libevent (2.0.21), ncurses
+#   - git clone http://git.code.sf.net/p/tmux/tmux-code tmux-tmux-code
+#   - cd tmux-tmux-code
+#   - ./autogen.sh
+#   - CFLAGS="-I/usr/include/ncurses"
+#   - ./configure --prefix="/usr/local"
+#   - make
+#   - make install
+#
+
+# TODO: Clipboard on cygwin
+#bind C-c run "tmux save-buffer - | xclip -i -sel clipboard"
+#bind C-v run "tmux set-buffer \"$(xclip -o -sel clipboard)\"; tmux paste-buffer"
+
+# Disable mouse in tmux on cygwin/mintty.
+setw -g mode-mouse off
+set -g mouse-select-pane off
+set -g mouse-resize-pane off
+set -g mouse-select-window off
+set -g mouse-utf8 off

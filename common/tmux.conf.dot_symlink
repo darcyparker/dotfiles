@@ -1,3 +1,8 @@
+################################################
+# Common tmux settings for all OSes.
+# At end of this, .tmux.platform.conf is sourced
+################################################
+
 # Set tmux prefix to Ctrl-a and unbind the default Ctrl-b prefix
 set -g prefix C-a
 unbind C-b
@@ -23,8 +28,10 @@ set -g default-terminal "screen-256color"
 
 # bind | and - to horizontal and vertical split respectively.
 # | and - is easier to remember because of the visual symbolism.
+# \ is for when I forget to type shift to get |
 # Not necessarily easier to type though... so may consider another binding
 bind | split-window -h
+bind \ split-window -h
 bind - split-window -v
 
 # bind movements between panes to h,j,k,l
@@ -48,28 +55,28 @@ bind -r L resize-pane -R 5
 # copy/paste bindings
 #  Escape to switch to copy mode
 #  v to start visual mode
+#  V to start visual mode (Visual Line)
+#  Ctrl-v to toggle visual block
 #  y to yank selected text into copy buffer
 #  p to paste text from buffer
+#  Escape to exit copy mode
 #  use vi movements when working inside the tmux buffer
+#  See <prefix>-:list-keys -t vi-copy
 unbind [
 bind Escape copy-mode
 unbind p
 bind p paste-buffer
-bind -t vi-copy 'v' begin-selection
-bind -t vi-copy 'y' copy-selection
+#By default use vi keys is copy and choice modes
 setw -g mode-keys vi
-
-# To use pbcopy and pbpaste on OS X, get this wrapper and install
-#    git clone https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard.git
-#    cd tmux-MacOSX-pasteboard/
-#    make reattach-to-user-namespace
-#    mv reattach-to-user-namespace /usr/local/bin
-# After installing, the default command can be reset to use the 'reattach-to-user-namespace' 
-# wrapper that was compiled/installed as descripted above.
-set -g default-command "reattach-to-user-namespace -l /bin/bash"
-# #Next, create Ctrl-c and Ctrl-v mappings
-bind C-c run "tmux save-buffer - | reattach-to-user-namespace pbcopy"
-bind C-v run "tmux set-buffer $(reattach-to-user-namespace pbpaste); tmux paste-buffer"
+#These are defined in vi-copy and vi-choice table respectively
+bind -t vi-copy 'v' begin-selection
+bind -t vi-copy 'V' select-line
+bind -t vi-copy 'y' copy-selection
+bind -t vi-copy 'C-v' rectangle-toggle
+bind -t vi-copy Escape cancel
+#Use vi keys in tmux status (command) line (<prefix>-:)
+#These are defined in vi-edit table
+setw -g status-keys vi
 
 # Enable mouse in tmux. (can select panes, resize panes, and select windows with the mouse.)
 # (The mouse can slow me down... but I like it at times.)
@@ -128,3 +135,6 @@ setw -g monitor-activity on
 set -g visual-activity on
 # Center the window list
 set -g status-justify centre
+
+#Finally source settings specific to platform
+source .tmux.platform.conf

@@ -1,0 +1,17 @@
+######################################################
+# tmux.platform.conf for os x (darwin)
+# This is sourced at the end of ~/.tmux.conf
+# It extends and/or changes settings from ~/.tmux.conf
+######################################################
+
+# To use pbcopy and pbpaste on OS X, get this wrapper and install
+#    git clone https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard.git
+#    cd tmux-MacOSX-pasteboard/
+#    make reattach-to-user-namespace
+#    mv reattach-to-user-namespace /usr/local/bin
+# After installing, the default command can be reset to use the 'reattach-to-user-namespace' 
+# wrapper that was compiled/installed as descripted above.
+set -g default-command "reattach-to-user-namespace -l /bin/bash"
+# #Next, create Ctrl-c and Ctrl-v mappings
+bind C-c run "tmux save-buffer - | reattach-to-user-namespace pbcopy"
+bind C-v run "tmux set-buffer $(reattach-to-user-namespace pbpaste); tmux paste-buffer"
