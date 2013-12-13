@@ -9,6 +9,6 @@ BoldAsColour=yes
 Locale=en_US
 Charset=UTF-8
 FontHeight=11
-CursorType=underscore
+CursorType=block
 CursorBlinks=no
 Scrollbar=none
