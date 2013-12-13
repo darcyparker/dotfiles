@@ -36,23 +36,35 @@ if has("gui_running")
   endif
 endif
 
-"Change cursor in insert mode on osx
-if has("mac") && !has("gui_mac")
-  "0: Block
-  "1: Vertical bar
-  "2: Underline
-  if strlen($TMUX)
-    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
-  else
-    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-    let &t_EI = "\<Esc>]50;CursorShape=2\x7"
+if !has("gui_running")
+  "Change cursor in insert mode (for xterm compat term)
+    " See http://invisible-island.net/xterm/ctlseqs/ctlseqs.html
+    " 0 or 1 -> blinking block
+    " 2      -> steady block
+    " 3      -> blinking underscore
+    " 4      -> steady underscore
+    " 5      -> blinking vertical bar
+    " 6      -> steady vertical bar
+  if &term =~ "^screen" && strlen($TMUX)
+    " steady vertical bar when starting insert mode
+    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>[6 q\<Esc>\\"
+    " steady block when exiting insert mode
+    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>[2 q\<Esc>\\"
+    "Set cursor back to a steady block when leaving vim
+    autocmd VimLeave * silent !echo -ne "\ePtmux;\e\e[2 q\e\\"
   endif
-endif
-
-if strlen($TMUX)
-  "ttyfast is recommended when in tmux
-  set ttyfast
+  if &term =~ "^xterm"
+    " steady vertical bar when starting insert mode
+    let &t_SI = "\<Esc>[6 q"
+    " steady block when exiting insert mode
+    let &t_EI = "\<Esc>[2 q"
+    "Set cursor back to a steady block when leaving vim
+    autocmd VimLeave * silent !echo -ne "\e[2 q"
+  endif
+  if strlen($TMUX)
+    "ttyfast is recommended when in tmux
+    set ttyfast
+  endif
 endif
 
 set number           " Show line numbers
