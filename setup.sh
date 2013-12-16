@@ -189,6 +189,10 @@ cd ~/.vim
 ./updateBundles.sh
 popd
 
+if [[ "$ENV_NAME" == "mingw32" || "$ENV_NAME" == "cygwin" ]] ; then
+  [ ! -d "/home/$USER" ] && ln -s "~" "/home/$USER"
+fi
+
 if [[ "$ENV_NAME" != "mingw32" && "$ENV_NAME" != "cygwin" ]] ; then
   echo
   if [[ -d "$FROM/powerline-fonts" ]]; then

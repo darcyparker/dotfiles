@@ -17,19 +17,19 @@ _updateRepo() {
   _REPO_NAME=$2
   _REPO_BRANCH=$3
   _REPO_URL=$4
-  _REPO_DIR=$_BUNDLE_DIR/$_REPO_NAME
+  _REPO_DIR="$_BUNDLE_DIR"/"$_REPO_NAME"
   echo
-  if [[ -e $_REPO_DIR ]]; then
+  if [[ -e "$_REPO_DIR" ]]; then
     echo \"$_REPO_NAME\" already exists. Checking for updates...
     cd "$_REPO_DIR"
-    git checkout $_REPO_BRANCH
+    git checkout "$_REPO_BRANCH"
     git pull
     git submodule update --init --recursive
   else
     echo \"$_REPO_NAME\" does not exist. Cloning $_REPO_URL
-    git clone --recursive $_REPO_URL "$_REPO_DIR"
+    git clone --recursive "$_REPO_URL" "$_REPO_DIR"
     cd "$_REPO_DIR"
-    git checkout $_REPO_BRANCH
+    git checkout "$_REPO_BRANCH"
   fi
 }
 
@@ -49,7 +49,7 @@ _updateBundle() {
     #  First delete lines that are comments (starts with ; or whitespace then ;)
     #  Next, remove comments at end of lines
     #  Finally read each line (after stripping comments)
-    sed  -e '/^\s*;.*$/d' -e 's/;.*$//' $_THIS_SCRIPT_DIR/$_BUNDLE_LIST_FILE | \
+    sed  -e '/^\s*;.*$/d' -e 's/;.*$//' "$_THIS_SCRIPT_DIR"/"$_BUNDLE_LIST_FILE" | \
       while read line; do
         _updateRepo "$_BUNDLE_DIR" $line
       done
