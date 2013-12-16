@@ -27,13 +27,6 @@
 # - call updatebundles.sh
 # - check if dirs/links made correctly. On cygwin, mklink must be run as administrator
 
-###########################################################################
-# Function: get_abspath(path)
-# - simple function to get the absolute path of $1 which typically would be
-#   a relative path
-###########################################################################
-get_abs_path() { save="$PWD"; cd $1; echo $PWD; cd $save; }
-
 ##########################################################################################
 # Function: add_symlink(SOURCE,TARGET)
 # - Creates TARGET as a link to SOURCE
@@ -47,15 +40,15 @@ add_symlink() {
   SOURCE=$1 ; TARGET=$2
   if [[ "$ENV_NAME" == "mingw32" || "$ENV_NAME" == "cygwin" ]] ; then
     if [ -e "$TARGET" ]; then
-      echo "*** Warning: $TARGET already exists. No link will be created."
+      echo "*** Warning: \"$TARGET\" already exists. No link will be created."
     else
       if [ -d $SOURCE ]; then
         #if a directory, then create a directory soft link
-        echo "INFO: Adding symlink to dir $SOURCE"
+        echo "INFO: Adding symlink to dir \"$SOURCE\""
         cygstart --action=runas cmd /c mklink /d `cygpath -a -w $TARGET` `cygpath -a -w $SOURCE`
       else
         #If not a directory, then make a regular link
-        echo "INFO: Adding symlink to file $SOURCE"
+        echo "INFO: Adding symlink to file \"$SOURCE\""
         cygstart --action=runas cmd /c mklink `cygpath -a -w $TARGET` `cygpath -a -w $SOURCE`
       fi
     fi
@@ -64,9 +57,9 @@ add_symlink() {
     #To do: Why does prompt get skipped over?
     #ln -s -i $SOURCE $TARGET
     if [ -e "$TARGET" ]; then
-      echo "*** Warning: $TARGET already exists. No link will be created."
+      echo "*** Warning: \"$TARGET\" already exists. No link will be created."
     else
-      ln -s $SOURCE $TARGET
+      ln -s "$SOURCE" "$TARGET"
     fi
   fi
 }
@@ -111,15 +104,20 @@ add_it() {
       ;;
     "dot_template")
       TARGET=$TO/$TO_RELATIVE/.${NAME%.dot_template}
-      echo "Creating $TARGET from template"
+      echo "Creating \"$TARGET\" from template"
       #To do: Why does prompt get skipped over?
       cp -i "$SOURCE" "$TARGET"
       ;;
     "template")
       TARGET=$TO/$TO_RELATIVE/${NAME%.template}
-      echo "Creating $TARGET from template"
+      echo "Creating \"$TARGET\" from template"
       #To do: Why does prompt get skipped over?
       cp -i "$SOURCE" "$TARGET"
+      ;;
+    "font")
+      TARGET=$TO/.fonts/${NAME}
+      #echo Adding font \"$SOURCE\" \"$TARGET\"
+      add_symlink "$SOURCE" "$TARGET"
       ;;
     *)
       echo "*** Error: TYPE "$TYPE" is unknown. Cannot add."
@@ -136,13 +134,13 @@ ENV_NAME=$(uname -s | tr '[:upper:]' '[:lower:]' | sed -e 's/_.*//')
 
 # Identify target folder to setup
 if [ -d "$1" ]; then
-  TO="$(get_abs_path $1)"
+  TO="$(cd $1; echo $PWD)"
 else
   TO="$HOME"
 fi
 
 # Identify folder to setup from
-FROM="$(get_abs_path `dirname \`which $0\``)"
+FROM="$(cd `dirname \`which $0\``; echo $PWD)"
 
 echo "*** Create necessary folder structure if not present"
 find "$FROM/common" "$FROM/platforms/$ENV_NAME" -type d -regex ".*[.]symlink_content$" | \
@@ -191,4 +189,34 @@ cd ~/.vim
 ./updateBundles.sh
 popd
 
-echo "Done!"
+if [[ "$ENV_NAME" != "mingw32" && "$ENV_NAME" != "cygwin" ]] ; then
+  echo
+  if [[ -d "$FROM/powerline-fonts" ]]; then
+    pushd .
+    echo Updating Powerline Fonts
+    cd "$FROM/powerline-fonts"
+    git pull origin
+    popd
+  else
+    echo Clonning Powerline Fonts
+    git clone git://github.com/Lokaltog/powerline-fonts.git
+  fi
+
+  echo Linking patched fonts
+  [ ! -d ~/.fonts ] && mkdir ~/.fonts
+  find "$FROM/powerline-fonts" -name "*.otf" -type f | \
+    while read i; do
+      add_it "font" "$i"
+    done
+  find "$FROM/powerline-fonts" -name "*.ttf" -type f | \
+    while read i; do
+      add_it "font" "$i"
+    done
+
+  echo
+  echo Update font cache
+  fc-cache-vf ~/.fonts
+fi
+
+echo
+echo "Done setup of dotfiles!"

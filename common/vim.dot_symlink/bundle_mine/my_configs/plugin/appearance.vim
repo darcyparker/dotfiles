@@ -45,22 +45,22 @@ if !has("gui_running")
     " 4      -> steady underscore
     " 5      -> blinking vertical bar
     " 6      -> steady vertical bar
-  if &term =~ "^screen" && strlen($TMUX)
-    " steady vertical bar when starting insert mode
-    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>[6 q\<Esc>\\"
-    " steady block when exiting insert mode
-    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>[2 q\<Esc>\\"
-    "Set cursor back to a steady block when leaving vim
-    autocmd VimLeave * silent !echo -ne "\ePtmux;\e\e[2 q\e\\"
-  endif
-  if &term =~ "^xterm"
-    " steady vertical bar when starting insert mode
-    let &t_SI = "\<Esc>[6 q"
-    " steady block when exiting insert mode
-    let &t_EI = "\<Esc>[2 q"
-    "Set cursor back to a steady block when leaving vim
-    autocmd VimLeave * silent !echo -ne "\e[2 q"
-  endif
+  "if &term =~ "^screen" && strlen($TMUX)
+    "" steady vertical bar when starting insert mode
+    "let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>[6 q\<Esc>\\"
+    "" steady block when exiting insert mode
+    "let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>[2 q\<Esc>\\"
+    ""Set cursor back to a steady block when leaving vim
+    "autocmd VimLeave * silent !echo -ne "\ePtmux;\e\e[2 q\e\\"
+  "endif
+  "if &term =~ "^xterm"
+    "" steady vertical bar when starting insert mode
+    "let &t_SI = "\<Esc>[6 q"
+    "" steady block when exiting insert mode
+    "let &t_EI = "\<Esc>[2 q"
+    ""Set cursor back to a steady block when leaving vim
+    "autocmd VimLeave * silent !echo -ne "\e[2 q"
+  "endif
   if strlen($TMUX)
     "ttyfast is recommended when in tmux
     set ttyfast
