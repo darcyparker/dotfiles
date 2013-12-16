@@ -4,15 +4,9 @@
 # or updates the repo and checks out the branch defined in the current
 # *.lst file
 
-_START_DIR=$PWD
-###########################################################################
-# Function: get_abspath(path)
-# - simple function to get the absolute path of $1 which typically would be
-#   a relative path
-###########################################################################
-get_abs_path() { save="$PWD"; cd $1; echo $PWD; cd $save; }
-
-_THIS_SCRIPT_DIR="$(get_abs_path `dirname \`which $0\``)"
+pushd .
+_THIS_SCRIPT_DIR="$(cd `dirname \`which $0\``; pwd)"
+cd $_THIS_SCRIPT_DIR
 
 ###################################################################################
 # Function: _updateRepo(bundledir,repo_name, repo_branch,repo_url)
@@ -69,4 +63,4 @@ _updateBundle() {
 for bundlelistfile in *.list ; do
    _updateBundle "$bundlelistfile"
 done
-cd $_START_DIR
+popd > /dev/null

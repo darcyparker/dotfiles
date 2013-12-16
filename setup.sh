@@ -185,4 +185,10 @@ find "$FROM/common" "$FROM/platforms/$ENV_NAME" -name "*.template" -type f | \
     add_it "template" "$i"
   done
 echo
+
+pushd .
+cd ~/.vim
+./updateBundles.sh
+popd
+
 echo "Done!"
