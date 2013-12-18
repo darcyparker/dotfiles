@@ -27,7 +27,8 @@ alias mydocs="cd `cygpath $USERPROFILE`/Documents"
 alias work="cd /cygdrive/d/work"
 alias dropbox="cd `cygpath $USERPROFILE`/Dropbox"
 
-alias cs=cygstart
+alias open=cygstart
+
 alias backupto="BackupTo.cmd"
 
 #javascript aliases (Rhino)
