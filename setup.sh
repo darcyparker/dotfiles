@@ -195,7 +195,7 @@ fi
 
 if [[ "$ENV_NAME" != "mingw32" && "$ENV_NAME" != "cygwin" ]] ; then
   echo
-  if [[ -d "$FROM/powerline-fonts" ]]; then
+  if [ -d "$FROM/powerline-fonts" ]; then
     pushd .
     echo Updating Powerline Fonts
     cd "$FROM/powerline-fonts"
@@ -206,16 +206,19 @@ if [[ "$ENV_NAME" != "mingw32" && "$ENV_NAME" != "cygwin" ]] ; then
     git clone git://github.com/Lokaltog/powerline-fonts.git
   fi
 
-  echo Linking patched fonts
-  [ ! -d ~/.fonts ] && mkdir ~/.fonts
-  find "$FROM/powerline-fonts" -name "*.otf" -type f | \
-    while read i; do
-      add_it "font" "$i"
-    done
-  find "$FROM/powerline-fonts" -name "*.ttf" -type f | \
-    while read i; do
-      add_it "font" "$i"
-    done
+  if [[ "$ENV_NAME" != "darwin" ]]; then
+    #statements
+    echo Linking patched fonts
+    [ ! -d ~/.fonts ] && mkdir ~/.fonts
+    find "$FROM/powerline-fonts" -name "*.otf" -type f | \
+      while read i; do
+        add_it "font" "$i"
+      done
+      find "$FROM/powerline-fonts" -name "*.ttf" -type f | \
+        while read i; do
+          add_it "font" "$i"
+        done
+      fi
 
   echo
   echo Update font cache
