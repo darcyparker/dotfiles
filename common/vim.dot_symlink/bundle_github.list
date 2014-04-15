@@ -12,7 +12,7 @@ ack                  master   git://github.com/mileszs/ack.vim.git              
 coffee-script        master   git://github.com/kchmck/vim-coffee-script.git           ;https://github.com/kchmck/vim-coffee-script
 confluencewiki       master   git://github.com/vim-scripts/confluencewiki.vim.git     ;https://github.com/vim-scripts/confluencewiki.vim
 ctrlp                master   git://github.com/kien/ctrlp.vim.git                     ;https://github.com/kien/ctrlp.vim
-css3-syntax          master   git://github.com:hail2u/vim-css3-syntax.git             ;https://github.com/hail2u/vim-css3-syntax
+css3-syntax          master   git://github.com/hail2u/vim-css3-syntax.git             ;https://github.com/hail2u/vim-css3-syntax
 dirdiff              master   git://github.com/vim-scripts/DirDiff.vim.git            ;https://github.com/vim-scripts/DirDiff.vim
 easymotion           master   git://github.com/Lokaltog/vim-easymotion.git            ;https://github.com/Lokaltog/vim-easymotion
 editorconfig         master   git://github.com/editorconfig/editorconfig-vim.git      ;https://github.com/editorconfig/editorconfig-vim
