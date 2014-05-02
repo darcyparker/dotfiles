@@ -22,6 +22,9 @@ echo "my term = $TERM"
 # en_US.UTF-8 or another UTF-8 locale is best
 # In Debian `apt-get install locales debconf; dpkg-reconfigure locales`
 # Check locales available with `locale -a`
+[ -z "$LANG" ] \
+  && [ -n "`locale -a | grep -i --color=never en_US.utf8`" ] \
+  && export LANG=en_US.utf8
 
 # If not currently in a tmux session, then create new session
 if [ -n "$PS1" -a -z "$TMUX" -a "$TERM" = "xterm-256color"  ] && [ `which tmux 2> /dev/null` ]; then
