@@ -49,7 +49,12 @@ date -u "+%Y-%m-%dT%H:%M:%SZ"
  # Load RVM into a shell session *as a function*
  # Loading RVM also adss $HOME/.rvm/bin to $PATH
 [ -r "$HOME/.rvm/scripts/rvm" ] && source "$HOME/.rvm/scripts/rvm"
+
+if [ -r /usr/local/rvm/scripts/rvm ] && [ ! -r "$HOME/.rvm/scripts/rvm" ]; then
+    source /usr/local/rvm/scripts/rvm
+fi
 date -u "+%Y-%m-%dT%H:%M:%SZ"
+
 
 #[ -d $HOME/.rvm/bin ] && export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 #date -u "+%Y-%m-%dT%H:%M:%SZ"
