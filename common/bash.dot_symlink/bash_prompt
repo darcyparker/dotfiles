@@ -62,10 +62,10 @@ if [[ $ENV_NAME != "mingw32" ]]; then
   if [ `which git 2> /dev/null` ]; then
     #Source git-prompt functions
     . ~/.bash/git-prompt.sh
-    export PS1="${txtgrn}\#${end} ${undcyn}\u@\h${end}:\w${bldylw}\$(__git_ps1)${end} \n\\\$ "
+    export PS1="${txtgrn}\#${end} ${txtwht}\u${txtred}@${end}${txtwht}\h${end}:${txtcyn}\w${end}${txtylw}\$(__git_ps1)${end} \n\\\$ "
   fi
 else
-  export PS1="${txtgrn}\#${end} ${undcyn}\u@\h${end}:\w \n\\\$ "
+  export PS1="${txtgrn}\#${end} ${txtwht}\u${txtred}@${end}${txtwht}\h${end}:${txtcyn}\w${end} \n\\\$ "
 fi
 
 unset txtblk
