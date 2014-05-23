@@ -64,10 +64,10 @@ shopt -s checkwinsize                       # check the window size after each c
 export HISTCONTROL="ignoreboth"
 # Don't include simple commands in history
 # & supresses duplicate entries
-# [ \t]* supress commands beginning with whitespace (space or tab) followed by * (anything) (this is not a regex)
+# ^[ \t]*.+$ supress commands beginning with whitespace (space or tab) followed by * (anything) (this is not a regex)
 # ?:?? - any 1 or 2 char commands including ls, fg, bg, etc..)
 # common commands like "history", "clear", "cls", "exit", "pwd", etc
-export HISTIGNORE="&:[ \t]*:?:??:clear:cls:exit:pwd:history*:%[0-9]:"
+export HISTIGNORE="&:^[ \t]*.+$:?:??:clear:cls:exit:pwd:history*:"
 export HISTFILESIZE=5000                    # history file size
 
 #Set $XML_CATALOG_FILES for programs like xmllint.  vim's syntastic uses xmllint to validate xml files
