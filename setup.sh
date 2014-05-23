@@ -222,7 +222,7 @@ if [[ "$ENV_NAME" != "mingw32" && "$ENV_NAME" != "cygwin" ]] ; then
 
   echo
   echo Update font cache
-  fc-cache-vf ~/.fonts
+  fc-cache -vf ~/.fonts
 fi
 
 echo
