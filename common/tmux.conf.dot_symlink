@@ -90,27 +90,6 @@ setw -g xterm-keys on
 # toggle to last window like screen
 bind-key C-x last-window
 
-# status bar colors (unactive windows cyan on default background and active window in white on red)
-set -g status-fg white
-set -g status-bg black
-setw -g window-status-fg cyan
-setw -g window-status-bg default
-setw -g window-status-attr dim
-setw -g window-status-current-fg white
-setw -g window-status-current-bg red
-setw -g window-status-current-attr bright
-
-#pane divider colors (active is white on yellow, and inactive is green on black)
-set -g pane-border-fg green
-set -g pane-border-bg black
-set -g pane-active-border-fg white
-set -g pane-active-border-bg yellow
-
-# Command line/Message line colors (bright white on black)
-set -g message-fg white
-set -g message-bg black
-set -g message-attr bright
-
 # Status bar Settings
 # Variable           Description
 # --------           -----------
@@ -138,3 +117,4 @@ set -g status-justify centre
 
 #Finally source settings specific to platform
 source .tmux.platform.conf
+source .tmux.solarizeddark.conf
