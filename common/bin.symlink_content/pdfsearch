@@ -31,7 +31,6 @@ exit 1
 }
 
 _searchWithPdfToText(){
-  export -f _searchPDF
   find "$1" -name "*.pdf" -type f -print0 | xargs -I{} -0 /usr/bin/env bash -c "pdftotext '{}' - | grep --with-filename --label='{}' --color \"$2\""
   exit $?
 }
