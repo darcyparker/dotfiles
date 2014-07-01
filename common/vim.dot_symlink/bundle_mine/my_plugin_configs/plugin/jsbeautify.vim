@@ -13,9 +13,9 @@ function! s:Preserve(command)
 endfunction
 
 "js-beautify of whole file from normal mode
-autocmd FileType javascript nnoremap <buffer>  <leader>b :call <SID>Preserve("execute \"%!js-beautify -f -\"")<cr>
+autocmd FileType javascript nnoremap <buffer>  <leader>b :call <SID>Preserve("execute \"%!js-beautify -s 2 -f -\"")<cr>
 "js-beautify of visual selection only
-autocmd FileType javascript vnoremap <buffer>  <leader>b :call <SID>Preserve("execute \"'<,'>!js-beautify -f -\"")<cr>
+autocmd FileType javascript vnoremap <buffer>  <leader>b :call <SID>Preserve("execute \"'<,'>!js-beautify -s 2 -f -\"")<cr>
 
 " for html
 autocmd FileType html noremap <buffer> <leader>b :call <SID>Preserve('call HtmlBeautify()')<cr>
