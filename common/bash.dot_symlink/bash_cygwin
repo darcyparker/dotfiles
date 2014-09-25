@@ -72,15 +72,16 @@ alias explore='cyg-wrapper.sh "explorer" --slashed-opt'
 #alias explorer="cygstart -x ."
 alias remotedesktop="cygstart `which mstsc.exe`"
 
-alias outlook="cygstart /cygdrive/c/Program\ Files\ \(x86\)/Microsoft\ Office/Office14/outlook.exe"
-alias excel="cygstart /cygdrive/c/Program\ Files\ \(x86\)/Microsoft\ Office/Office14/excel.exe"
-alias word="cygstart /cygdrive/c/Program\ Files\ \(x86\)/Microsoft\ Office/Office14/winword.exe"
-alias ppt="cygstart /cygdrive/c/Program\ Files\ \(x86\)/Microsoft\ Office/Office14/powerpnt.exe"
-alias msaccess="cygstart /cygdrive/c/Program\ Files\ \(x86\)/Microsoft\ Office/Office14/msaccess.exe"
+alias outlook="cygstart /cygdrive/c/ProgramData/Microsoft/Windows/Start\ Menu/Programs/Microsoft\ Office\ 2013/Outlook\ 2013.lnk"
+alias excel="cygstart /cygdrive/c/ProgramData/Microsoft/Windows/Start\ Menu/Programs/Microsoft\ Office\ 2013/Excel\ 2013.lnk"
+alias word="cygstart /cygdrive/c/ProgramData/Microsoft/Windows/Start\ Menu/Programs/Microsoft\ Office\ 2013/Word\ 2013.lnk"
+alias ppt="cygstart /cygdrive/c/ProgramData/Microsoft/Windows/Start\ Menu/Programs/Microsoft\ Office\ 2013/PowerPoint\ 2013.lnk"
+alias onenote="cygstart /cygdrive/c/ProgramData/Microsoft/Windows/Start\ Menu/Programs/Microsoft\ Office\ 2013/OneNote\ 2013.lnk"
+alias msaccess="cygstart /cygdrive/c/ProgramData/Microsoft/Windows/Start\ Menu/Programs/Microsoft\ Office\ 2013/Access\ 2013.lnk"
 alias msproject="cygstart /cygdrive/c/Program\ Files\ \(x86\)/Microsoft\ Office/Office14/winproj.exe"
-alias onenote="cygstart /cygdrive/c/Program\ Files\ \(x86\)/Microsoft\ Office/Office14/onenote.exe"
 alias visio="cygstart /cygdrive/c/Program\ Files\ \(x86\)/Microsoft\ Office/Office14/visio.exe"
-alias lync="cygstart /cygdrive/c/Program\ Files\ \(x86\)/Microsoft\ Lync/communicator.exe"
+alias lync="cygstart /cygdrive/c/ProgramData/Microsoft/Windows/Start\ Menu/Programs/Microsoft\ Office\ 2013/Lync\ 2013.lnk"
+
 alias hipchat="cygstart /cygdrive/c/Program\ Files\ \(x86\)/Atlassian/HipChat/HipChat.exe"
 alias quassel="cygstart /cygdrive/c/Program\ Files\ \(x86\)/Quassel/bin/quassel.exe"
 
