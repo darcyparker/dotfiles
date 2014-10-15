@@ -189,41 +189,5 @@ cd ~/.vim
 ./updateBundles.sh
 popd
 
-if [[ "$ENV_NAME" == "mingw32" || "$ENV_NAME" == "cygwin" ]] ; then
-  [ ! -d "/home/$USER" ] && ln -s ~ "/home/$USER"
-fi
-
-if [[ "$ENV_NAME" != "mingw32" && "$ENV_NAME" != "cygwin" ]] ; then
-  echo
-  if [ -d "$FROM/powerline-fonts" ]; then
-    pushd .
-    echo Updating Powerline Fonts
-    cd "$FROM/powerline-fonts"
-    git pull origin
-    popd
-  else
-    echo Clonning Powerline Fonts
-    git clone git://github.com/Lokaltog/powerline-fonts.git
-  fi
-
-  if [[ "$ENV_NAME" != "darwin" ]]; then
-    #statements
-    echo Linking patched fonts
-    [ ! -d ~/.fonts ] && mkdir ~/.fonts
-    find "$FROM/powerline-fonts" -name "*.otf" -type f | \
-      while read i; do
-        add_it "font" "$i"
-      done
-      find "$FROM/powerline-fonts" -name "*.ttf" -type f | \
-        while read i; do
-          add_it "font" "$i"
-        done
-      fi
-
-  echo
-  echo Update font cache
-  fc-cache -vf ~/.fonts
-fi
-
 echo
 echo "Done setup of dotfiles!"
