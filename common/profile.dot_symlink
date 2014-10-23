@@ -2,10 +2,19 @@
 [ -z "$PS1" ] && return
 
 function _source_dir() {
-  local i _dir="$1"
+  local i _dir="$1" _pattern
+
+  if [ -z "$2" ]; then
+    _pattern="*.sh"
+  else
+    _pattern="$2"
+  fi
+
   if [ -d $_dir ]; then
-    for i in $_dir/*.sh; do
-      if [ -r $i ]; then
+    for i in $_dir/$_pattern; do
+      if [ -d $i ]; then
+        _source_dir $i
+      elif [ -r $i ]; then
         _debug "Sourcing \"$i\""
         . $i
       fi
@@ -13,20 +22,8 @@ function _source_dir() {
   fi
 }
 
-function _source_bashd(){
-  local i _dir="$1"
-  if [ -d $_dir ]; then
-    for i in $_dir/bash.*.d; do
-      if [ -d $i ]; then
-        #_debug "Sourcing \"$i\""
-        _source_dir $i
-      fi
-    done
-  fi
-}
-
 function main() {
-  local _debug=1
+  #local _debug=1
   local _utilitiesDir="$HOME/.bash/common/utilities"
   . $_utilitiesDir/debug_func.sh
   _debugInitTime
@@ -36,9 +33,8 @@ function main() {
   #lowercase `uname -s` and remove trailing chars starting with "_"
   ENV_NAME=$(uname -s | sed -e 's/\([^_]*\)_\?.*/\L\1/')
 
-
-  _source_bashd "$HOME/.bash/common"
-  _source_bashd "$HOME/.bash/platform/$ENV_NAME"
+  _source_dir "$HOME/.bash/common" "bash.*.d"
+  _source_dir "$HOME/.bash/platform/$ENV_NAME" "bash.*.d"
 
   _debug "Finished"
 

@@ -1,11 +1,6 @@
 #!/usr/bin/env bash
 if [ -z $_historyEnv ]; then
   export _historyEnv=1
-  # History
-  shopt -s histappend                         # Append each(!) history entry from all terminals realtime(not after sesion ending)
-  shopt -s cmdhist                            # store multiline commands as 1 line
-  shopt -s cdspell                            # spelling error correction
-  shopt -s checkwinsize                       # check the window size after each command and, if necessary, update the values of LINES and COLUMNS.
   # HISTCONTRL settings: "ignoreboth" is same as "ignorespace:ignoredups"
   # ignore commands that begin with space and ignore duplicate commmands
   export HISTCONTROL="ignoreboth"
@@ -17,3 +12,7 @@ if [ -z $_historyEnv ]; then
   export HISTIGNORE="&:^[ \t]*.+$:?:??:clear:cls:exit:pwd:history*:"
   export HISTFILESIZE=5000                    # history file size
 fi
+shopt -s histappend                         # Append each(!) history entry from all terminals realtime(not after sesion ending)
+shopt -s cmdhist                            # store multiline commands as 1 line
+shopt -s cdspell                            # spelling error correction
+shopt -s checkwinsize                       # check the window size after each command and, if necessary, update the values of LINES and COLUMNS.
