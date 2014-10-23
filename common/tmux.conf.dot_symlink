@@ -116,5 +116,5 @@ set -g visual-activity on
 set -g status-justify centre
 
 #Finally source settings specific to platform
-source .tmux.platform.conf
-source .tmux.solarizeddark.conf
+source ~/.tmux.platform.conf
+source ~/.tmux.solarizeddark.conf

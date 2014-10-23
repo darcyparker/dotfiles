@@ -1,5 +1,4 @@
-#!/bin/sh
-echo loading ~/.bash/256color.sh
+#!/usr/bin/env bash
 #See https://fedoraproject.org/wiki/Features/256_Color_Terminals#Scope
 ######################################################################
 # Enable 256 color capabilities for appropriate terminals

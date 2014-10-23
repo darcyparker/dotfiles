@@ -1,36 +1,51 @@
 # If not running interactively, don't do anything
-case $- in
-    *i*) ;;
-      *) return;;
-esac
+[ -z "$PS1" ] && return
 
-echo Loading ~/.profile
-date -u "+%Y-%m-%dT%H:%M:%SZ"
-set PROFILE_LOADED=1
+function _source_dir() {
+  local i _dir="$1"
+  if [ -d $_dir ]; then
+    for i in $_dir/*.sh; do
+      if [ -r $i ]; then
+        _debug "Sourcing \"$i\""
+        . $i
+      fi
+    done
+  fi
+}
 
-#Environment variables: https://help.ubuntu.com/community/EnvironmentVariables
+function _source_bashd(){
+  local i _dir="$1"
+  if [ -d $_dir ]; then
+    for i in $_dir/bash.*.d; do
+      if [ -d $i ]; then
+        #_debug "Sourcing \"$i\""
+        _source_dir $i
+      fi
+    done
+  fi
+}
 
-# $TERM must be set early
-# Note: On gnome_terminal in linux, $TERM is intiially set to xterm
-#       It must be xterm-256color if tmux is started and sets its term
-#       to screen-256color. screen-256color doesn't work correctly under
-#       xterm.
-[ -n "$PS1" ] && [ -n "$TERM" ] && [ -s ~/.bash/256color.sh ] && . ~/.bash/256color.sh
-echo "my term = $TERM"
+function main() {
+  local _debug=1
+  local _utilitiesDir="$HOME/.bash/common/utilities"
+  . $_utilitiesDir/debug_func.sh
+  _debugInitTime
 
-# $LANG must be set correctly before starting tmux
-# en_US.UTF-8 or another UTF-8 locale is best
-# In Debian `apt-get install locales debconf; dpkg-reconfigure locales`
-# Check locales available with `locale -a`
-[ -z "$LANG" ] \
-  && [ -n "`locale -a | grep -i --color=never en_US.utf8`" ] \
-  && export LANG=en_US.utf8
+  _debug "Loading \"~/.profile\""
 
-# If not currently in a tmux session, then create new session
-if [ -n "$PS1" -a -z "$TMUX" -a "$TERM" = "xterm-256color"  ] && [ `which tmux 2> /dev/null` ]; then
-  tmux new
-  #exit
-else
-  # Test if bash is available and bashrc is present. If so, then source ~/.bash/bashrc
- [ -z "$BASHRC_LOADED" ] && [ -n "$BASH_VERSION" -a -r ~/.bash/bashrc ] && . ~/.bash/bashrc
-fi
+  #lowercase `uname -s` and remove trailing chars starting with "_"
+  ENV_NAME=$(uname -s | sed -e 's/\([^_]*\)_\?.*/\L\1/')
+
+
+  _source_bashd "$HOME/.bash/common"
+  _source_bashd "$HOME/.bash/platform/$ENV_NAME"
+
+  _debug "Finished"
+
+  if [ -z "$TMUX" -a "$TERM" = "xterm-256color"  ]; then
+    tmux new
+  fi
+}
+
+main
+PROFILE_LOADED=1

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-echo loading ~/.bash/bash_darwin
+_debug loading ~/.bash/bash_darwin
 # Aliases specific to OS X
 
 # which will look for aliases, functions and binaries
