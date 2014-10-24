@@ -36,7 +36,8 @@ GIT_PS1_SHOWCOLORHINTS=1
 GIT_PS1_DESCRIBE_STYLE="branch"
 GIT_PS1_SHOWUPSTREAM="auto git verbose"
 
-if [ $(which git 2> /dev/null) ]; then
+#Note: git-prompt.sh function `__git_ps1` does not work on mingw64 or mingw32
+if [[ $ENV_NAME != "mingw64" ]] && [[ $ENV_NAME != "mingw32" ]] && type git &> /dev/null; then
   . $_utilitiesDir/git-prompt.sh
   export PS1="$(tput setaf 2)\#$(tput sgr0) $(tput setaf 7)\u$(tput setaf 1)@$(tput setaf 7)\h$(tput sgr0):$(tput setaf 6)\w$(tput setaf 3)\$(__git_ps1)$(tput sgr0) \n\\\$ "
 else

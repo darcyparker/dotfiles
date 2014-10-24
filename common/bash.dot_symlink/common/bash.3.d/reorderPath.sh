@@ -7,7 +7,7 @@ if [ -z "$_frontPath" ]; then
   #THIS BLOCK is SLOW!!!
   # Move (or Add) npm's bin folder to the front of the path
   # Often $NPMPREFIXBIN=/usr/local/bin, so I add this before $HOME/.local/bin
-  if [[ ${ENV_NAME} != "cygwin" ]] && [[ ${ENV_NAME} != "mingw32" ]]; then
+  if [[ ${ENV_NAME} != "cygwin" ]] && [[ ${ENV_NAME} != "mingw64" ]] && [[ ${ENV_NAME} != "mingw32" ]]; then
     if type npm &>/dev/null; then
       _NPMPREFIXBIN=$(npm config get prefix)/bin
       [ "$_NPMPREFIXBIN" != "/usr/local/bin" ] && _frontPath=${_NPMPREFIXBIN}:${_frontPath}
@@ -24,5 +24,5 @@ if [ -z "$_frontPath" ]; then
   export _frontPath=$_frontPath;
 
   #For speed reasons, sed is called once at end
-  export PATH=${_frontPath}:$(echo $PATH | sed -e "s;\(:\?/usr/local/bin\)|\(:\?$_NPMPREFIXBIN\)|\(:\?$HOME/.local/bin\)|\(:\?$HOME/bin\);;")
 fi
+export PATH=${_frontPath}:$(echo $PATH | sed -e "s;\(:\?/usr/local/bin\)|\(:\?$_NPMPREFIXBIN\)|\(:\?$HOME/.local/bin\)|\(:\?$HOME/bin\);;")
