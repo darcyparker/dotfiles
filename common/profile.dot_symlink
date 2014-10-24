@@ -1,6 +1,9 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+# Check that we haven't already been sourced.
+[ -z "$PROFILE_LOADED" ] || return
+
 function _source_dir() {
   local i _dir="$1" _pattern
 
@@ -23,7 +26,7 @@ function _source_dir() {
 }
 
 function main() {
-  #local _debug=1
+  local _debug=1
   local _utilitiesDir="$HOME/.bash/common/utilities"
   . $_utilitiesDir/debug_func.sh
   _debugInitTime
