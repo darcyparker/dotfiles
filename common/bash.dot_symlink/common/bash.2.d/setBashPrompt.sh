@@ -36,10 +36,16 @@ GIT_PS1_SHOWCOLORHINTS=1
 GIT_PS1_DESCRIBE_STYLE="branch"
 GIT_PS1_SHOWUPSTREAM="auto git verbose"
 
-#Note: git-prompt.sh function `__git_ps1` does not work on mingw64 or mingw32
-if [[ $ENV_NAME != "mingw64" ]] && [[ $ENV_NAME != "mingw32" ]] && type git &> /dev/null; then
+#Start of PS1
+PS1="$(tput setaf 2)\#$(tput sgr0) $(tput setaf 7)\u$(tput setaf 1)@$(tput setaf 7)\h$(tput sgr0):$(tput setaf 6)\w$(tput setaf 3)"
+if type git &> /dev/null; then
   . $_utilitiesDir/git-prompt.sh
-  export PS1="$(tput setaf 2)\#$(tput sgr0) $(tput setaf 7)\u$(tput setaf 1)@$(tput setaf 7)\h$(tput sgr0):$(tput setaf 6)\w$(tput setaf 3)\$(__git_ps1)$(tput sgr0) \n\\\$ "
-else
-  export PS1="$(tput setaf 2)\#$(tput sgr0) $(tput setaf 7)\u$(tput setaf 1)@$(tput setaf 7)\h$(tput sgr0):$(tput setaf 6)\w$(tput setaf 3)$(tput sgr0) \n\\\$ "
+  if type __git_ps1 &>/dev/null; then
+    #Note: For some reason on mingw64 and mingw32, git-prompt.sh function `__git_ps1`
+    #      only works if it is called with `__git_ps1`.
+    #      $(__git_ps1) does not work.
+    PS1=$PS1'`__git_ps1`'" "
+  fi
 fi
+#Add end of PS1 and export
+export PS1=$PS1$(tput sgr0)'\n\$ '
