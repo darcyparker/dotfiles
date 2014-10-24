@@ -1,7 +1,7 @@
 #Bash files loaded
 
 | ------------------------- | --------------------------- | --------------------------- |
-|                           | interactive                 | non-interactive             |
+| Mode                      | Interactive                 | Non-interactive             |
 | ------------------------- | --------------------------- | --------------------------- |
 | login                     | 1. `/etc/profile`           | 1. `/etc/profile`           |
 | * `bash --login`          | 2. `/etc/bash.bashrc`       | 2. First exist/readable of: |
