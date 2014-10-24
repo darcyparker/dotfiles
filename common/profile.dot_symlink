@@ -33,6 +33,7 @@ function main() {
   #lowercase `uname -s` and remove trailing chars starting with "_"
   ENV_NAME=$(uname -s | sed -e 's/\([^_]*\)_\?.*/\L\1/')
 
+  _source_dir "/etc/profile.d"
   _source_dir "$HOME/.bash/common" "bash.*.d"
   _source_dir "$HOME/.bash/platform/$ENV_NAME" "bash.*.d"
 

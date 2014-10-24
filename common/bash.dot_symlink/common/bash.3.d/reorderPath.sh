@@ -24,5 +24,5 @@ if [ -z "$_frontPath" ]; then
   export _frontPath=$_frontPath;
 
   #For speed reasons, sed is called once at end
-  export PATH=${_frontPath}:$(echo $PATH | sed -e "s;\(:\?/usr/local/bin\)|\(:\?$_NPMPREFIXBIN\)|\(:\?$HOME/.local/bin\)|\(:\?$HOME/bin\);;")
 fi
+export PATH=${_frontPath}:$(echo $PATH | sed -e "s;\(:\?/usr/local/bin\)|\(:\?$_NPMPREFIXBIN\)|\(:\?$HOME/.local/bin\)|\(:\?$HOME/bin\);;")
