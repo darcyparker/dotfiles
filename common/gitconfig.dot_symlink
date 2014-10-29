@@ -68,3 +68,5 @@
   ;Show the last tag:
   lasttag = describe --tags --abbrev=0
   lt = describe --tags --abbrev=0
+[gh]
+	autoUpdate = always
