@@ -1,4 +1,53 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 #echo ~/.bashrc
-[ -z "$PROFILE_LOADED" ] && . ~/.profile
+
+# Check that we haven't already been sourced.
+[ -z "$BASHRC_LOADED" ] || return
+
+function _source_dir() {
+  local i _dir="$1" _pattern
+
+  if [ -z "$2" ]; then
+    _pattern="*.sh"
+  else
+    _pattern="$2"
+  fi
+
+  if [ -d $_dir ]; then
+    for i in $_dir/$_pattern; do
+      if [ -d $i ]; then
+        _source_dir $i
+      elif [ -r $i ]; then
+        _debug "Sourcing \"$i\""
+        . $i
+      fi
+    done
+  fi
+}
+
+function main() {
+  #local _debug=1
+  local _utilitiesDir="$HOME/.bash/common/utilities"
+  . $_utilitiesDir/debug_func.sh
+  _debugInitTime
+
+  _debug "Loading \"~/.profile\""
+
+  #lowercase `uname -s` and remove trailing chars starting with "_"
+  ENV_NAME=$(uname -s | sed -e 's/\([^_]*\)_\?.*/\L\1/')
+
+  _source_dir "/etc/profile.d"
+  _source_dir "$HOME/.bash/common" "bash.*.d"
+  _source_dir "$HOME/.bash/platform/$ENV_NAME" "bash.*.d"
+
+  _debug "Finished"
+
+  if [ -z "$TMUX" -a "$TERM" = "xterm-256color"  ]; then
+    tmux new
+  fi
+}
+
+main
+
+BASHRC_LOADED=1
