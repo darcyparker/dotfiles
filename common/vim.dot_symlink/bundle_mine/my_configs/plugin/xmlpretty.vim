@@ -13,4 +13,4 @@ function! s:Preserve(command)
 endfunction
 
 "`xmllint --format` whole file from normal mode
-autocmd FileType xml nnoremap <buffer>  <leader>b :call <SID>Preserve("execute \"%!xmllint --format -\"")<cr>
+autocmd FileType xml,xslt,svg,graphml,xhtml nnoremap <buffer>  <leader>b :call <SID>Preserve("execute \"%!xmllint --format -\"")<cr>
