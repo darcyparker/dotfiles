@@ -4,7 +4,7 @@ _debug loading ~/.bash/bash_darwin
 
 # which will look for aliases, functions and binaries
 if [[ ! `declare -F which` ]]; then
-  which () { (alias; declare -f) | gwhich --tty-only --read-alias --read-functions --show-tilde --show-dot $@; }
+  function which { (alias; declare -f) | gwhich --tty-only --read-alias --read-functions --show-tilde --show-dot $@; }
   export -f which
 fi
 

@@ -4,7 +4,7 @@
 alias ls="ls --color -F"
 #which on mingw32 doesn't support many of the switches normally available
 #This which() will not be overwritten by which() in bash_common
-which () { (alias; declare -f) | /usr/bin/which $@; }
+function which { (alias; declare -f) | /usr/bin/which $@; }
 export -f which
 
 alias desktop="cd ~/Desktop"
