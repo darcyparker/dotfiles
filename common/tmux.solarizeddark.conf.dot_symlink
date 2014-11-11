@@ -29,3 +29,6 @@ set-option -g display-panes-colour colour196 #orange
 
 # clock
 set-window-option -g clock-mode-colour colour40 #green
+
+#Switch to solarized light
+bind b source-file ~/.tmux.solarizedlight.conf \; display "Loaded ~/.tmux.solarizedlight"
