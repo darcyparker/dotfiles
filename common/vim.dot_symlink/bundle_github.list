@@ -45,7 +45,6 @@ scratch              master   git://github.com/vim-scripts/scratch.vim.git      
 scriptease           master   git://github.com/tpope/vim-scriptease.git               ;https://github.com/tpope/vim-scriptease
 scrollcolors         master   git://github.com/vim-scripts/ScrollColors.git           ;https://github.com/vim-scripts/ScrollColors
 sensible             master   git://github.com/tpope/vim-sensible.git                 ;https://github.com/tpope/vim-sensible
-;snipmate             master   git://github.com/garbas/vim-snipmate.git                ;https://github.com/garbas/vim-snipmate (Note: msanders/snipmate.vim is the original snipmate, but development stopped. garbas is the new maintainer.)
 ;snippets             master   git://github.com/honza/vim-snippets.git                 ;https://github.com/honza/vim-snippets
 solarized            master   git://github.com/altercation/vim-colors-solarized.git   ;https://github.com/altercation/vim-colors-solarized
 space                master   git://github.com/spiiph/vim-space.git                   ;https://github.com/spiiph/vim-space
@@ -57,8 +56,8 @@ syntastic            master   git://github.com/scrooloose/syntastic.git         
 tabular              master   git://github.com/godlygeek/tabular.git                  ;https://github.com/godlygeek/tabular
 tagbar               master   git://github.com/majutsushi/tagbar.git                  ;https://github.com/majutsushi/tagbar
 ;tagbar               master   git@github.com:darcyparker/tagbar.git                   ;https://github.com/darcyparker/tagbar
-;terminalkeys         master    git://github.com/nacitar/terminalkeys.vim.git           ;https://github.com/nacitar/terminalkeys.vim
-;tlib_vim             master   git://github.com/tomtom/tlib_vim.git                    ;https://github.com/tomtom/tlib_vim (used by snipmate)
+;*** For tern_for_vim, be sure to install jsctags. See https://github.com/ramitos/jsctags
+;    npm install -g git://github.com/ramitos/jsctags.git
+tern_for_vim         master   git://github.com/marijnh/tern_for_vim.git               ;https://github.com/marijnh/tern_for_vim
 unimpaired           master   git://github.com/tpope/vim-unimpaired.git               ;https://github.com/tpope/vim-unimpaired
-;vim-addon-mw-utils   master   git://github.com/MarcWeber/vim-addon-mw-utils.git       ;https://github.com/MarcWeber/vim-addon-mw-utils (used by snipmate)
 ;yankring             master   git://github.com/vim-scripts/YankRing.vim.git           ;https://github.com/vim-scripts/YankRing.vim

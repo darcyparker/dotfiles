@@ -30,6 +30,10 @@ _updateRepo() {
     git clone --recursive "$_REPO_URL" "$_REPO_DIR"
     cd "$_REPO_DIR"
     git checkout "$_REPO_BRANCH"
+    git submodule update --init --recursive
+  fi
+  if [[ -e ./package.json ]]; then
+    npm install
   fi
 }
 
