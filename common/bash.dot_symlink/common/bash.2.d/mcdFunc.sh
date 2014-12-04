@@ -1,2 +1,6 @@
 #!/usr/bin/env bash
-function mcd { mkdir -p $1 && cd $1; }
+if ! declare -f mcd &>/dev/null ; then
+  echo Defining mcd
+  function mcd { mkdir -p $1 && cd $1; }
+  export -f mcd
+fi
