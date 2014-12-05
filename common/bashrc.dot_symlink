@@ -19,7 +19,8 @@ function _source_dir {
       if [ -d $i ]; then
         _source_dir $i
       elif [ -r $i ]; then
-        _debug "Sourcing \"$i\""
+        ##_debug is slow - even if it is off, so commenting out when not used
+        #_debug "Sourcing \"$i\""
         . $i
       fi
     done
@@ -27,12 +28,12 @@ function _source_dir {
 }
 
 function main {
-  #local _debug=1
   local _utilitiesDir="$HOME/.bash/common/utilities"
-  . $_utilitiesDir/debug_func.sh
-  _debugInitTime
 
-  _debug "Loading \"~/.bashrc\""
+  #local _debug=1
+  #. $_utilitiesDir/debug_func.sh
+  #_debugInitTime
+  #_debug "Loading \"~/.bashrc\""
 
   #lowercase `uname -s` and remove trailing chars starting with "_"
   ENV_NAME=$(uname -s | sed -e 's/\([^_]*\)_\?.*/\L\1/')
@@ -41,7 +42,7 @@ function main {
   _source_dir "$HOME/.bash/common" "bash.*.d"
   _source_dir "$HOME/.bash/platform/$ENV_NAME" "bash.*.d"
 
-  _debug "Finished"
+  #_debug "Finished"
 
   if [ -z "$TMUX" -a "$TERM" = "xterm-256color"  ]; then
     tmux new
