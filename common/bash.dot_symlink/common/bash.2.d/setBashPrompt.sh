@@ -29,23 +29,36 @@
 # - smso : Enter standout mode (bold on rxvt)
 # - rmso : Exit standout mode
 
-GIT_PS1_SHOWDIRTYSTATE=1
-GIT_PS1_SHOWSTASHSTATE=1
-GIT_PS1_SHOWUNTRACKEDFILES=1
-GIT_PS1_SHOWCOLORHINTS=1
-GIT_PS1_DESCRIBE_STYLE="branch"
-GIT_PS1_SHOWUPSTREAM="auto git verbose"
+if [ -z "$savePS1" ]; then
+  export GIT_PS1_SHOWDIRTYSTATE=1
+  export GIT_PS1_SHOWSTASHSTATE=1
+  export GIT_PS1_SHOWUNTRACKEDFILES=1
+  export GIT_PS1_SHOWCOLORHINTS=1
+  export GIT_PS1_DESCRIBE_STYLE="branch"
+  export GIT_PS1_SHOWUPSTREAM="auto git verbose"
 
-#Start of PS1
-PS1="$(tput setaf 2)\#$(tput sgr0) $(tput setaf 7)\u$(tput setaf 1)@$(tput setaf 7)\h$(tput sgr0):$(tput setaf 6)\w$(tput setaf 3)"
-if type git &> /dev/null; then
-  . $_utilitiesDir/git-prompt.sh
-  if type __git_ps1 &>/dev/null; then
+  PS1="$(tput setaf 2)\#$(tput sgr0) $(tput setaf 7)\u$(tput setaf 1)@$(tput setaf 7)\h$(tput sgr0):$(tput setaf 6)\w$(tput setaf 3)"
+
+  #Start of PS1
+  if type git &> /dev/null; then
+    if ! declare -f __git_ps1 &>/dev/null ; then
+      . $_utilitiesDir/git-prompt.sh
+      export -f __gitdir
+      export -f __git_ps1_show_upstream
+      export -f __git_ps1
+    fi
     #Note: For some reason on mingw64 and mingw32, git-prompt.sh function `__git_ps1`
     #      only works if it is called with `__git_ps1`.
     #      $(__git_ps1) does not work.
     PS1=$PS1'`__git_ps1`'" "
   fi
+  #Add end of PS1 and export
+  export PS1=$PS1$(tput sgr0)'\n\$ '
+  export savePS1=$PS1
+else
+  #For some reason on cygwin, $PS1 gets overwritten because
+  #/etc/profile and /etc/bash.bashrc are re-executed. So I reuse $savePS1
+  #if it exists. This improves performance because each `tput` takes a fair amount
+  #of time to run
+  export PS1=$savePS1
 fi
-#Add end of PS1 and export
-export PS1=$PS1$(tput sgr0)'\n\$ '

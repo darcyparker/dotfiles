@@ -27,7 +27,7 @@ function _source_dir {
 }
 
 function main {
-  local _debug=1
+  #local _debug=1
   local _utilitiesDir="$HOME/.bash/common/utilities"
   . $_utilitiesDir/debug_func.sh
   _debugInitTime
