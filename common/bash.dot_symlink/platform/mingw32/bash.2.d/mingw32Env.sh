@@ -12,9 +12,6 @@ if [ -z $_mingw32Env ]; then
   #Remove current directory from path (starts with '.:', or contains ':.:' or ends with ':.')
   export PATH=$(echo $PATH | sed --e 's;^\.:;;' -e 's;:\.:;:;g' -e 's;:\.$;;' )
 
-  #msys inside mintty doesn't work well with xterm-256 (try vim for example)
-  export TERM=xterm
-
   #Linux/Cygwin/mingw32/mingw64 Colors for ls
   export LS_COLORS="di=1;32;40:ln=36;40:so=34;40:pi=34;40:ex=1;35;40:bd=34;40:cd=34;40:su=1;35;40:sg=1;35;40:tw=32;40:ow=32;40:"
 fi

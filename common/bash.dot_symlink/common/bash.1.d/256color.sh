@@ -11,7 +11,12 @@
 # Terminals with any of the following set, support 256 colors (and are local)
 local256="$COLORTERM$XTERM_VERSION$ROXTERM_ID$KONSOLE_DBUS_SESSION"
 
-if [ -n "$local256" ] || [ -n "$SEND_256_COLORS_TO_REMOTE" ]; then
+#As well, mintty.exe supports 256 colors
+#Test for mintty.exe is added below
+
+if [ -n "$local256" ] || \
+  [ -n "$SEND_256_COLORS_TO_REMOTE" ] || \
+  [ -n "$MSYSCON" ] && [[ "$MSYSCON" == "mintty.exe" ]]; then
 
   case "$TERM" in
     'xterm') TERM=xterm-256color;;
