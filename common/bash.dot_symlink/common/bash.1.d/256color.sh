@@ -16,7 +16,7 @@ local256="$COLORTERM$XTERM_VERSION$ROXTERM_ID$KONSOLE_DBUS_SESSION"
 
 if [ -n "$local256" ] || \
   [ -n "$SEND_256_COLORS_TO_REMOTE" ] || \
-  [ -n "$MSYSCON" ] && [[ "$MSYSCON" == "mintty.exe" ]]; then
+  [ -n "$MSYSCON" -a "$MSYSCON" == "mintty.exe" ]; then
 
   case "$TERM" in
     'xterm') TERM=xterm-256color;;
