@@ -17,9 +17,14 @@
 #   - make install
 #
 
-# TODO: Clipboard on cygwin
-#bind C-c run "tmux save-buffer - | xclip -i -sel clipboard"
-#bind C-v run "tmux set-buffer \"$(xclip -o -sel clipboard)\"; tmux paste-buffer"
+# Create Ctrl-c and Ctrl-v mappings for cygwin and mingw32 and mingw64 msys
+bind C-c run "tmux show-buffer > /dev/clipboard"
+bind C-v run "tmux set-buffer \"$(cat /dev/clipboard)\"; tmux paste-buffer"
+
+#On cygwin, mingw32, & mingw64: 
+#bind vi-copy mode's "y" command to redirect to /dev/clipboard
+unbind -t vi-copy y
+bind-key -t vi-copy y copy-pipe "cat > /dev/clipboard"
 
 # Disable mouse in tmux on cygwin/mintty.
 setw -g mode-mouse off
