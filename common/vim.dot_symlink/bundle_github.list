@@ -38,6 +38,7 @@ matchit              master   git://github.com/vim-scripts/matchit.zip.git      
 molokai              master   git://github.com/tomasr/molokai.git                     ;https://github.com/tomasr/molokai
 nerdtree             master   git://github.com/scrooloose/nerdtree.git                ;https://github.com/scrooloose/nerdtree
 pathogen             master   git://github.com/tpope/vim-pathogen.git                 ;https://github.com/tpope/vim-pathogen
+peg                  master   git://github.com/gf3/peg.vim.git                        ;https://github.com/gf3/peg.vim
 ps1                  master   git://github.com/PProvost/vim-ps1.git                   ;https://github.com/PProvost/vim-ps1
 ragtag               master   git://github.com/tpope/vim-ragtag.git                   ;https://github.com/tpope/vim-ragtag
 repeat               master   git://github.com/tpope/vim-repeat.git                   ;https://github.com/tpope/vim-repeat
