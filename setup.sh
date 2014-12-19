@@ -57,10 +57,10 @@ add_symlink() {
     #To do: Why does prompt get skipped over?
     #ln -s -i $SOURCE $TARGET
     if [ -e "$TARGET" ]; then
-      echo "*** Warning: \"$TARGET\" already exists. No link will be created."
-    else
-      ln -s "$SOURCE" "$TARGET"
+      echo "*** Warning: \"$TARGET\" already exists. Moving to $TARGET.old."
+      mv "$TARGET" "$TARGET.old"
     fi
+    ln -s "$SOURCE" "$TARGET"
   fi
 }
 
