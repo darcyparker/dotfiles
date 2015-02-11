@@ -19,7 +19,7 @@ alias saxon='java -jar '\''d:\jars\saxon9.jar'\'
 
 alias nginx='/usr/local/nginx/sbin/nginx.exe'
 
-alias gvim='cyg-wrapper.sh '\''/cygdrive/c/Program Files/vim/vim-7.4a.044-python-2.7-python-3.3-windows-x64/gvim.exe'\'' --binary-opt=-c,--cmd,-T,-t,--servername,--remote-send,--remote-expr'
+alias gvim='cyg-wrapper.sh '\''/cygdrive/c/Program Files/vim/vim-7.4.193-python-2.7-python-3.3-ruby-2.0.0-lua-5.2-windows-x64/gvim'\'' --binary-opt=-c,--cmd,-T,-t,--servername,--remote-send,--remote-expr'
 
 alias yed="cygstart /cygdrive/c/Program\ Files\ \(x86\)/yWorks/yEd/yed.exe"
 alias inkscape="cygstart /cygdrive/c/Program\ Files\ \(x86\)/Inkscape/inkscape.exe"
