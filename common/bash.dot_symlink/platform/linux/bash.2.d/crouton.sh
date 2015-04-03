@@ -4,6 +4,9 @@ if [ -z $_isNotCroutonEnv ] && type croutonversion &>/dev/null; then
     # Swap Ctrl and Search keys for ChromeOS Crouton chroots
     # Note: This works well with the crouton 'keyboard' target
     # Credit for this snippet: http://goo.gl/O8zaBR
+    # Note: Add this to xfce autostart so you don't have to
+    #       open a shell to swap the keys. See http://goo.gl/YZQcYO
+
     # echo "Swapping Control and Search keys in Crouton"
     xmodmap -e "keycode 133 = Control_L"
     xmodmap -e "keycode 37 = Overlay1_Enable"
