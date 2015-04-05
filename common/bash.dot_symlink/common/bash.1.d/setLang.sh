@@ -6,4 +6,4 @@
 # Check locales available with `locale -a`
 [ -z "$LANG" ] \
   && [ -n "`locale -a | grep -i --color=never en_US.utf8`" ] \
-  && export LANG=en_US.utf8
+  && export LANG=en_US.UTF-8
