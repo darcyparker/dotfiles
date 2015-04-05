@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # Additional settings for crouton (chromebook) chroot
 if [ -z $_isNotCroutonEnv ] && type croutonversion &>/dev/null; then
   if [ -z $_croutonSwappedCtrl ]; then
