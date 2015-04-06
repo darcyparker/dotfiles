@@ -15,6 +15,8 @@ if [ -z "$_frontPath" ]; then
     fi
   fi
 
+  [ ! -z "$GOPATH" ] && _frontPath=${_frontPath}:${GOPATH}/bin
+
   # Move (or Add) /usr/local/bin to the front of the path
   [ -d $HOME/.local/bin ] && _frontPath=${HOME}/.local/bin:${_frontPath}
 
@@ -25,4 +27,4 @@ if [ -z "$_frontPath" ]; then
 
   #For speed reasons, sed is called once at end
 fi
-export PATH=${_frontPath}:$(echo $PATH | sed -e "s;\(:\?/usr/local/bin\)|\(:\?$_NPMPREFIXBIN\)|\(:\?$HOME/.local/bin\)|\(:\?$HOME/bin\);;")
+export PATH=${_frontPath}:$(echo $PATH | sed -e "s;\(:\?/usr/local/bin\)|\(:\?$_NPMPREFIXBIN\)|\(:\?$HOME/.local/bin\)|\(:\?$HOME/bin\)|\(:\?$GOPATH/bin\);;")
