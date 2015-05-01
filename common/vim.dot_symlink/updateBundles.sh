@@ -6,7 +6,7 @@
 
 pushd .
 _THIS_SCRIPT_DIR="$(cd `dirname \`which $0\``; pwd)"
-cd $_THIS_SCRIPT_DIR
+cd "$_THIS_SCRIPT_DIR"
 
 ###################################################################################
 # Function: _updateRepo(bundledir,repo_name, repo_branch,repo_url)
@@ -20,13 +20,13 @@ _updateRepo() {
   _REPO_DIR="$_BUNDLE_DIR"/"$_REPO_NAME"
   echo
   if [[ -e "$_REPO_DIR" ]]; then
-    echo \"$_REPO_NAME\" already exists. Checking for updates...
+    echo "\"$_REPO_NAME\" already exists. Checking for updates..."
     cd "$_REPO_DIR"
     git checkout "$_REPO_BRANCH"
     git pull
     git submodule update --init --recursive
   else
-    echo \"$_REPO_NAME\" does not exist. Cloning $_REPO_URL
+    echo "\"$_REPO_NAME\" does not exist. Cloning $_REPO_URL"
     git clone --recursive "$_REPO_URL" "$_REPO_DIR"
     cd "$_REPO_DIR"
     git checkout "$_REPO_BRANCH"
@@ -46,7 +46,7 @@ _updateBundle() {
   _BUNDLE_LIST_NAME=${_BUNDLE_LIST_FILE%.list} #Strip .list from end of string
   _BUNDLE_DIR="$_THIS_SCRIPT_DIR/$_BUNDLE_LIST_NAME"
 
-  echo Updating repos defined in \"$_BUNDLE_LIST_FILE\"
+  echo "Updating repos defined in \"$_BUNDLE_LIST_FILE\""
   mkdir -p "$_BUNDLE_DIR"
   if [[ -e "$_BUNDLE_DIR" ]]; then
     #Parse repos in bundle list file
@@ -58,9 +58,9 @@ _updateBundle() {
         _updateRepo "$_BUNDLE_DIR" $line
       done
       echo
-      echo Finished updating bundles defined in \"$_BUNDLE_LIST_FILE\"
+      echo "Finished updating bundles defined in \"$_BUNDLE_LIST_FILE\""
   else
-    echo ERROR: Could not create folder \"$_BUNDLE_DIR\"
+    echo "ERROR: Could not create folder \"$_BUNDLE_DIR\""
   fi
 }
 

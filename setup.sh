@@ -42,14 +42,14 @@ add_symlink() {
     if [ -e "$TARGET" ]; then
       echo "*** Warning: \"$TARGET\" already exists. No link will be created."
     else
-      if [ -d $SOURCE ]; then
+      if [ -d "$SOURCE" ]; then
         #if a directory, then create a directory soft link
         echo "INFO: Adding symlink to dir \"$SOURCE\""
-        cygstart --action=runas cmd /c mklink /d `cygpath -a -w $TARGET` `cygpath -a -w $SOURCE`
+        cygstart --action=runas cmd /c mklink /d "$(cygpath -a -w "$TARGET")" "$(cygpath -a -w "$SOURCE")"
       else
         #If not a directory, then make a regular link
         echo "INFO: Adding symlink to file \"$SOURCE\""
-        cygstart --action=runas cmd /c mklink `cygpath -a -w $TARGET` `cygpath -a -w $SOURCE`
+        cygstart --action=runas cmd /c mklink "$(cygpath -a -w "$TARGET")" "$(cygpath -a -w "$SOURCE")"
       fi
     fi
   else
@@ -134,13 +134,13 @@ ENV_NAME=$(uname -s | tr '[:upper:]' '[:lower:]' | sed -e 's/_.*//')
 
 # Identify target folder to setup
 if [ -d "$1" ]; then
-  TO="$(cd $1; echo $PWD)"
+  TO="$(cd "$1"; echo "$PWD")"
 else
   TO="$HOME"
 fi
 
 # Identify folder to setup from
-FROM="$(cd `dirname \`which $0\``; echo $PWD)"
+FROM="$(cd "$(dirname \$\(which "$0"\))"; echo "$PWD")"
 
 echo "*** Create necessary folder structure if not present"
 find "$FROM/common" "$FROM/platforms/$ENV_NAME" -type d -regex ".*[.]symlink_content$" | \

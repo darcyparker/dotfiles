@@ -2,7 +2,7 @@
 # Aliases specific to OS X
 
 # which will look for aliases, functions and binaries
-if [[ ! `declare -F which` ]]; then
+if [[ ! $(declare -F which) ]]; then
   function which { (alias; declare -f) | gwhich --tty-only --read-alias --read-functions --show-tilde --show-dot $@; }
   export -f which
 fi
@@ -13,9 +13,9 @@ if [ -f /usr/local/etc/bash_completion ]; then
   . /usr/local/etc/bash_completion
 fi
 
-if [ -z $JAVA_HOME ]; then
+if [ -z "$JAVA_HOME" ]; then
   if [ -x "/usr/libexec/java_home" ]; then
-    export JAVA_HOME=`/usr/libexec/java_home`
+    export JAVA_HOME=$(/usr/libexec/java_home)
   elif [ -d "/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Home" ]; then
     export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Home
   fi

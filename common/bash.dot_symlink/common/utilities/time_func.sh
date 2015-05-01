@@ -25,7 +25,7 @@ fi
 
 if ! declare -f ts_get_msec &>/dev/null ; then
   function ts_get_msec() {
-    read -r h m s ms <<< $(echo $1 | tr '.:' ' ' )
+    read -r h m s ms <<< "$(echo "$1" | tr '.:' ' ' )"
     echo $(((10#$h*3600000)+(10#$m*60000)+(10#$s*1000)+10#$ms))
   }
   export -f ts_get_msec

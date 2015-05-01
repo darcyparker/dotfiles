@@ -1,6 +1,6 @@
 
 #!/usr/bin/env bash
-if [ -z $_mingw64Env ]; then
+if [ -z "$_mingw64Env" ]; then
   export _mingw64Env=1
   #MSYS usually includes tools such as perl
   #If other installations of these tools are installed and in path, they need to be removed

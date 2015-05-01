@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-if [ -z $_historyEnv ]; then
+if [ -z "$_historyEnv" ]; then
   export _historyEnv=1
   # HISTCONTRL settings: "ignoreboth" is same as "ignorespace:ignoredups"
   # ignore commands that begin with space and ignore duplicate commmands

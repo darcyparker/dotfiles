@@ -18,10 +18,10 @@ if [ -z "$_frontPath" ]; then
   [ ! -z "$GOPATH" ] && _frontPath=${_frontPath}:${GOPATH}/bin
 
   # Move (or Add) /usr/local/bin to the front of the path
-  [ -d $HOME/.local/bin ] && _frontPath=${HOME}/.local/bin:${_frontPath}
+  [ -d "$HOME/.local/bin" ] && _frontPath=${HOME}/.local/bin:${_frontPath}
 
   # if there is a bin folder in home, add it to front of  PATH
-  [ -d $HOME/bin ] && _frontPath=${HOME}/bin:${_frontPath}
+  [ -d "$HOME/bin" ] && _frontPath=${HOME}/bin:${_frontPath}
 
   export _frontPath=$_frontPath;
 

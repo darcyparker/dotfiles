@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-if [ -z $_mingw32Env ]; then
+if [ -z "$_mingw32Env" ]; then
   export _mingw32Env=1
   #MSYS usually includes tools such as perl
   #If other installations of these tools are installed and in path, they need to be removed

@@ -42,7 +42,7 @@ if [ -z "$savePS1" ]; then
   #Start of PS1
   if type git &> /dev/null; then
     if ! declare -f __git_ps1 &>/dev/null ; then
-      . $_utilitiesDir/git-prompt.sh
+      . "$_utilitiesDir/git-prompt.sh"
       export -f __gitdir
       export -f __git_ps1_show_upstream
       export -f __git_ps1

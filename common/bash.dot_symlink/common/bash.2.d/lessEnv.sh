@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-if [ -z $_lessEnv ]; then
+if [ -z "$_lessEnv" ]; then
   export _lessEnv=1
   export PAGER="less"
 
