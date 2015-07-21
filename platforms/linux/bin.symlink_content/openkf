@@ -8,24 +8,25 @@
 debug(){ [ "$DEBUG" ] && echo "DEBUG>>> $*"; }
 
 _getActiveWindowID(){
-  echo $(wmctrl -a :ACTIVE: -v |& sed -e "1,1 d" -e "s/Using window: //")
+  wmctrl -a :ACTIVE: -v |& sed -e "1,1 d" -e "s/Using window: //"
 }
 
 main(){
-  if [ `which wmctrl 2> /dev/null` ]; then
+  if [ "$(which wmctrl 2> /dev/null)" ]; then
     #Saves the currently active window's ID to $cachedWindowID
-    local _cachedWindowID=$(_getActiveWindowID)
-    debug window id $(_getActiveWindowID)
-    xdg-open $* &> /dev/null
+    local _cachedWindowID
+    _cachedWindowID=$(_getActiveWindowID)
+    debug window id "$(_getActiveWindowID)"
+    xdg-open "$@" &> /dev/null
     #The sleep for 1s causes a slight delay for xdg-open to get started
     sleep 1s
-    debug window id $(_getActiveWindowID)
+    debug window id "$(_getActiveWindowID)"
     #restore focus to original window
-    wmctrl -i -a $_cachedWindowID
-    debug window id $(_getActiveWindowID)
+    wmctrl -i -a "$_cachedWindowID"
+    debug window id "$(_getActiveWindowID)"
   else
-    xdg-open $* &> /dev/null
+    xdg-open "$@" &> /dev/null
   fi
 }
 
-main $*
+main "$@"
