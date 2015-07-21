@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Additional settings for crouton (chromebook) chroot
-if [ -z $_isNotCroutonEnv ] && type croutonversion &>/dev/null; then
-  if [ -z $_croutonSwappedCtrl ]; then
+if [ -z "$_isNotCroutonEnv" ] && type croutonversion &>/dev/null; then
+  if [ -z "$_croutonSwappedCtrl" ]; then
     # Swap Ctrl and Search keys for ChromeOS Crouton chroots
     # Note: This works well with the crouton 'keyboard' target
     # Credit for this snippet: http://goo.gl/O8zaBR
