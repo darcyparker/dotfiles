@@ -36,7 +36,7 @@ The following sections provide installation steps based on the OS type.
 1. Set `%HOME%` environment variable to `%USERPROFILE%`
     * Example: `setx HOME %USERPROFILE%`
 2. As administrator, run `setup.bat`
-    * Note this must be executed as adminstrator because it uses mklink.exe to link
+    * Note this must be executed as administrator because it uses mklink.exe to link
       the `_vimrc` and `.vim` folder
 3. Also install consolas for powerline font
     * https://github.com/eugeneching/consolas-powerline-vim
@@ -49,7 +49,7 @@ The following sections provide installation steps based on the OS type.
       did not like having all of the `%USERPROFILE%` subdirs in my `$HOME` in cygwin.
       But I changed this practice because some tools assume `%USERPROFILE%===$HOME`.
 2. As administrator, run `setup.bat`
-    *  Note this must be executed as adminstrator because it uses `mklink.exe` to link
+    *  Note this must be executed as administrator because it uses `mklink.exe` to link
        the `_vimrc` and `.vim` folder to their source content in `my_dotfiles` repository.
 3. Then `setup.sh` script from inside a cygwin bash shell.
     * Note: `setup.sh` creates symlinks using windows `mklink`. This needs to be run as
