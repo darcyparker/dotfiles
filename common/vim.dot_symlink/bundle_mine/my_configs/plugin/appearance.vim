@@ -71,9 +71,9 @@ set number           " Show line numbers
 
 "Set relative number if exists
 "Instead of testing `if version >= 704`, test if option is available
-if exists("&relativenumber")
-  set relativenumber
-endif
+" if exists("&relativenumber")
+"   set relativenumber
+" endif
 
 set ruler            " show the cursor position all the time
 "set virtualedit=all  "allow the cursor to go to 'invalid' places
