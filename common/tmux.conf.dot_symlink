@@ -80,10 +80,13 @@ setw -g status-keys vi
 
 # Enable mouse in tmux. (can select panes, resize panes, and select windows with the mouse.)
 # (The mouse can slow me down... but I like it at times.)
-setw -g mode-mouse on
-set -g mouse-select-pane on
-set -g mouse-resize-pane on
-set -g mouse-select-window on
+set -g mouse-utf8 on
+set -g mouse on
+## The following options are obsolete in XMA 2.1
+# setw -g mode-mouse on
+# set -g mouse-select-pane on
+# set -g mouse-resize-pane on
+# set -g mouse-select-window on
 
 setw -g xterm-keys on
 
