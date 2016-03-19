@@ -79,17 +79,17 @@ bind -t vi-copy Escape cancel
 setw -g status-keys vi
 
 # Enable mouse in tmux.
-if-shell "[[ `tmux -V` == *2.* ]]" "\
-  set -g mouse on \;\
-  set -g mouse-utf8 on \;\
-  "
-if-shell "[[ `tmux -V` == *1.* ]]" "\
- setw -g mode-mouse on \;\
- set -g mouse-select-pane on \;\
- set -g mouse-resize-pane on \;\
- set -g mouse-select-window on \;\
- set -g mouse-utf8 on \;\
- "
+run-shell "tmux set-environment -g TMUX_VERSION_MAJOR $(tmux -V | cut -d' ' -f2 | cut -d'.' -f1 | sed 's/[^0-9]*//g')"
+run-shell "tmux set-environment -g TMUX_VERSION_MINOR $(tmux -V | cut -d' ' -f2 | cut -d'.' -f2 | sed 's/[^0-9]*//g')"
+if-shell '[ $TMUX_VERSION_MAJOR -eq 1 -a $TMUX_VERSION_MINOR -ge 9 ]' "\
+  setw -g mode-mouse on \; \
+  set -g mouse-utf8 on \; \
+  set -g mouse-select-window on \; \
+  set -g mouse-select-pane on \; \
+  set -g mouse-resize-pane on "
+if-shell '[ $TMUX_VERSION_MAJOR -ge 2 -a $TMUX_VERSION_MINOR -ge 1 ]' "\
+  set -g mouse on \; \
+  set -g mouse-utf8 on"
 
 setw -g xterm-keys on
 
