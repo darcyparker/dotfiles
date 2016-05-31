@@ -36,6 +36,7 @@ markdown             master   git://github.com/tpope/vim-markdown.git           
 markdown-folding     master   git://github.com/nelstrom/vim-markdown-folding.git      ;https://github.com/nelstrom/vim-markdown-folding
 matchit              master   git://github.com/vim-scripts/matchit.zip.git            ;https://github.com/vim-scripts/matchit.zip
 molokai              master   git://github.com/tomasr/molokai.git                     ;https://github.com/tomasr/molokai
+mustache-handlebars  master   git://github.com/mustache/vim-mustache-handlebars.git   ;https://github.com/mustache/vim-mustache-handlebars
 nerdtree             master   git://github.com/scrooloose/nerdtree.git                ;https://github.com/scrooloose/nerdtree
 pathogen             master   git://github.com/tpope/vim-pathogen.git                 ;https://github.com/tpope/vim-pathogen
 peg                  master   git://github.com/gf3/peg.vim.git                        ;https://github.com/gf3/peg.vim
@@ -48,6 +49,7 @@ scratch              master   git://github.com/vim-scripts/scratch.vim.git      
 scriptease           master   git://github.com/tpope/vim-scriptease.git               ;https://github.com/tpope/vim-scriptease
 scrollcolors         master   git://github.com/vim-scripts/ScrollColors.git           ;https://github.com/vim-scripts/ScrollColors
 sensible             master   git://github.com/tpope/vim-sensible.git                 ;https://github.com/tpope/vim-sensible
+slime                master   git://github.com/jpalardy/vim-slime.git                 ;https://github.com/jpalardy/vim-slime
 solarized            master   git://github.com/altercation/vim-colors-solarized.git   ;https://github.com/altercation/vim-colors-solarized
 space                master   git://github.com/spiiph/vim-space.git                   ;https://github.com/spiiph/vim-space
 splitjoin            master   git://github.com/AndrewRadev/splitjoin.vim.git          ;https://github.com/AndrewRadev/splitjoin.vim
@@ -60,7 +62,8 @@ tbone                master   git://github.com/tpope/vim-tbone.git              
 tern_for_vim         master   git://github.com/marijnh/tern_for_vim.git               ;https://github.com/marijnh/tern_for_vim
 tmux                 master   git://github.com/vimez/vim-tmux.git                     ;https://github.com/vimez/vim-tmux
 toml                 master   git://github.com/cespare/vim-toml.git                   ;https://github.com/cespare/vim-toml
-typescript-vim       master   git://github.com/leafgarland/typescript-vim.git         ;https://github.com/leafgarland/typescript-vim
+;typescript-vim       master   git://github.com/leafgarland/typescript-vim.git         ;https://github.com/leafgarland/typescript-vim
+yats                 master   git://github.com/HerringtonDarkholme/yats.vim.git       ;https://github.com/HerringtonDarkholme/yats.vim
 unimpaired           master   git://github.com/tpope/vim-unimpaired.git               ;https://github.com/tpope/vim-unimpaired
 vim-jsbeautify       master   git://github.com/maksimr/vim-jsbeautify.git             ;https://github.com/maksimr/vim-jsbeautify
 vim-go               master   git://github.com/fatih/vim-go.git                       ;https://github.com/fatih/vim-go
