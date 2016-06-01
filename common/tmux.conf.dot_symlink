@@ -81,15 +81,19 @@ setw -g status-keys vi
 # Enable mouse in tmux.
 run-shell "tmux set-environment -g TMUX_VERSION_MAJOR $(tmux -V | cut -d' ' -f2 | cut -d'.' -f1 | sed 's/[^0-9]*//g')"
 run-shell "tmux set-environment -g TMUX_VERSION_MINOR $(tmux -V | cut -d' ' -f2 | cut -d'.' -f2 | sed 's/[^0-9]*//g')"
+#if tmux version >= 1.9 and < 2.0
 if-shell '[ $TMUX_VERSION_MAJOR -eq 1 -a $TMUX_VERSION_MINOR -ge 9 ]' "\
   setw -g mode-mouse on \; \
   set -g mouse-utf8 on \; \
   set -g mouse-select-window on \; \
   set -g mouse-select-pane on \; \
   set -g mouse-resize-pane on "
+#If tmux version >= 2.1, set mouse options
 if-shell '[ $TMUX_VERSION_MAJOR -ge 2 -a $TMUX_VERSION_MINOR -ge 1 ]' "\
-  set -g mouse on \; \
-  set -g mouse-utf8 on"
+  set -g mouse on "
+#if tmux version >= 2.0 and < 2.2
+if-shell '[ $TMUX_VERSION_MAJOR -ge 2 -a $TMUX_VERSION_MINOR -lt 2 ]' "\
+  set -g mouse-utf8 on "
 
 setw -g xterm-keys on
 
@@ -111,8 +115,10 @@ bind-key C-x last-window
 set -g status-left-length 40
 set -g status-left "#[fg=green]Session: #S #[fg=yellow]#I #[fg=cyan]#P"
 set -g status-right "#[fg=cyan]%d %b %R"
+#if tmux version >= 2.0 and < 2.2
 # turn on utf-8 support for statusline in case I want to use utf-8 in status line in future
-set -g status-utf8 on
+if-shell '[ $TMUX_VERSION_MAJOR -ge 2 -a $TMUX_VERSION_MINOR -lt 2 ]' "\
+ set -g status-utf8 on "
 # refresh status line every 60 seconds (this is sufficient to keep time current) (don't set this too low)
 set -g status-interval 60
 # provide visual notification in status bar when a window's content changes
