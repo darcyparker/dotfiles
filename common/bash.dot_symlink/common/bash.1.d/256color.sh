@@ -9,7 +9,7 @@
 #   SEND_256_COLORS_TO_REMOTE=1
 
 # Terminals with any of the following set, support 256 colors (and are local)
-local256="$COLORTERM$XTERM_VERSION$ROXTERM_ID$KONSOLE_DBUS_SESSION"
+local256="$COLORTERM$XTERM_VERSION$ROXTERM_ID$KONSOLE_DBUS_SESSION$VTE_VERSION"
 
 #As well, mintty.exe supports 256 colors
 #Test for mintty.exe is added below
