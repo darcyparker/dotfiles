@@ -11,3 +11,4 @@
 gundo                master   git://github.com/sjl/gundo.vim.git                      ;https://github.com/sjl/gundo.vim
 openurl              master   git://github.com/kenkov/openurl.vim.git                 ;https://github.com/kenkov/openurl.vim
 ultiSnips            master   git://github.com/SirVer/ultisnips.git                   ;https://github.com/sirver/ultisnips
+youCompleteMe        master   git://github.com/Valloric/YouCompleteMe.git             ;https://github.com/Valloric/YouCompleteMe
