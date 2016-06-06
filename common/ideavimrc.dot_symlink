@@ -1,0 +1,76 @@
+" See https://github.com/JetBrains/ideavim
+"     ideavim/doc/set-commands.md
+
+let mapleader = ","
+
+set novisualbell     " No visual bell
+set number           " Show line numbers
+set hlsearch         " Highlight matching search result
+set incsearch        " Start to search as typing starts
+set surround         " enable vim-surround commands like ys, cs, ds, S
+
+" System clipboard copy/paste
+noremap "+y "*y
+noremap "+Y "*Y
+noremap "+p "*p
+noremap "+P "*P
+noremap <C-S-c> "*y
+noremap <C-S-v> "*P
+
+"Mappings to move around windows
+nnoremap <C-h> <C-W>h
+nnoremap <C-j> <C-W>j
+nnoremap <C-k> <C-W>k
+nnoremap <C-l> <C-W>l
+
+"splits
+nnoremap <leader>sh :split<cr>
+nnoremap <leader>sv :vsplit<cr>
+
+"Jumping through tabs
+nnoremap <leader>th gT
+nnoremap <leader>tl gt
+
+"vim.unimpaired mappings
+nnoremap [<Space> O<esc>j
+nnoremap ]<Space> o<esc>k
+nnoremap [q :action PreviousOccurence<cr>
+nnoremap ]q :action NextOccurence<cr>
+
+"vim navigation
+nnoremap [m :action MethodUp<cr>
+nnoremap ]m :action MethodDown<cr>
+nnoremap [c :action VcsShowPrevChangeMarker<cr>
+nnoremap ]c :action VcsShowNextChangeMarker<cr>
+
+"Usages
+nnoremap <C-u> :action FindUsages<r>
+nnoremap <C-S-u> :action HighlightUsagesInFile<cr>
+
+"Code refactoring
+nnoremap cre :action RenameElement<cr>
+nnoremap cs :action ChangeSignature<cr>
+nnoremap cts :action ChangeTypeSignature<cr>
+
+"Navigation
+nnoremap <C-p> :action GotoFile<CR>
+nnoremap <C-S-p> :action GotoClass<CR>
+nnoremap <C-s> :action GotoSymbol<CR>
+nnoremap <C-a> :action GotoAction<CR>
+
+nnoremap K :action GotoDeclaration<CR>
+nnoremap gK :action GotoTypeDeclaration<CR>
+nnoremap gje :action GoToErrorGroup<CR>
+nnoremap gji :action GotoImplementation<CR>
+nnoremap gs :action GotoSuperMethod<CR>
+nnoremap gjt :action GotoTest<CR>
+
+" built-in navigation to navigated items works better
+nnoremap <c-o> :action Back<cr>
+nnoremap <c-i> :action Forward<cr>
+" but preserve ideavim defaults
+nnoremap <C-S-o> <c-o>
+nnoremap <C-S-i> <c-i>
+
+" built in search
+ nnoremap g/ :action Find<cr>
