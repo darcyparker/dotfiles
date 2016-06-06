@@ -37,7 +37,7 @@
 # - On windows, mklink is used so that links work in everywhere (windows, cygwin, mingw32)
 ##########################################################################################
 add_symlink() {
-  SOURCE=$1 ; TARGET=$2
+  local SOURCE=$1 ; local TARGET=$2
   if [[ "$ENV_NAME" == "mingw32" || "$ENV_NAME" == "cygwin" ]] ; then
     if [ -e "$TARGET" ]; then
       echo "*** Warning: \"$TARGET\" already exists. No link will be created."
@@ -58,7 +58,8 @@ add_symlink() {
     #ln -s -i $SOURCE $TARGET
     if [ -e "$TARGET" ]; then
       echo "*** Warning: \"$TARGET\" already exists. Moving to $TARGET.old."
-      mv "$TARGET" "$TARGET.old"
+      local _currentSecond=$(date +%s)
+      mv "$TARGET" "${TARGET}.${_currentSecond}.old"
     fi
     ln -s "$SOURCE" "$TARGET"
   fi
@@ -78,12 +79,12 @@ add_symlink() {
 #   "template"           : Copies the template to the target with no transform of the name
 ##########################################################################################
 add_it() {
-  SOURCE=$2 ; TYPE=$1
-  NAME=${SOURCE##*/} #extract filename or dirname from $SOURCE
-  FROM_RELATIVE=${SOURCE#$FROM/} #strip $FROM from front of $SOURCE path
-  TO_RELATIVE=${FROM_RELATIVE#*/} # strip first folder (such as common or platform)
-  TO_RELATIVE=${TO_RELATIVE#$ENV_NAME/} # strip $ENV_NAME
-  TO_RELATIVE=${TO_RELATIVE%$NAME} #strip $NAME from end
+  local SOURCE=$2 ; local TYPE=$1
+  local NAME=${SOURCE##*/} #extract filename or dirname from $SOURCE
+  local FROM_RELATIVE=${SOURCE#$FROM/} #strip $FROM from front of $SOURCE path
+  local TO_RELATIVE=${FROM_RELATIVE#*/} # strip first folder (such as common or platform)
+  local TO_RELATIVE=${TO_RELATIVE#$ENV_NAME/} # strip $ENV_NAME
+  local TO_RELATIVE=${TO_RELATIVE%$NAME} #strip $NAME from end
 
   case "$TYPE" in
     "mkdir_for_symlinks")
