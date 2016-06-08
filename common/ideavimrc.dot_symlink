@@ -1,5 +1,9 @@
-" See https://github.com/JetBrains/ideavim
-"     ideavim/doc/set-commands.md
+" References:
+"  * https://github.com/JetBrains/ideavim
+"    * Look at: `ideavim/doc/set-commands.md`
+"  * https://www.jetbrains.com/help/idea/2016.1/tutorial-using-intellij-idea-as-the-vim-editor.html
+"    * *Remember* to: "Open Settings/Preferences dialog, and under the node
+"      Other Settings, click Vim Emulation:"
 
 let mapleader = ","
 
@@ -27,10 +31,6 @@ nnoremap <C-l> <C-W>l
 nnoremap <leader>sh :split<cr>
 nnoremap <leader>sv :vsplit<cr>
 
-"Jumping through tabs
-nnoremap <leader>th gT
-nnoremap <leader>tl gt
-
 "vim.unimpaired mappings
 nnoremap [<Space> O<esc>j
 nnoremap ]<Space> o<esc>k
@@ -44,7 +44,7 @@ nnoremap [c :action VcsShowPrevChangeMarker<cr>
 nnoremap ]c :action VcsShowNextChangeMarker<cr>
 
 "Usages
-nnoremap <C-u> :action FindUsages<r>
+nnoremap <C-u> :action FindUsages<cr>
 nnoremap <C-S-u> :action HighlightUsagesInFile<cr>
 
 "Code refactoring
@@ -53,10 +53,14 @@ nnoremap cs :action ChangeSignature<cr>
 nnoremap cts :action ChangeTypeSignature<cr>
 
 "Navigation
-nnoremap <C-p> :action GotoFile<CR>
-nnoremap <C-S-p> :action GotoClass<CR>
-nnoremap <C-s> :action GotoSymbol<CR>
-nnoremap <C-a> :action GotoAction<CR>
+" nnoremap <C-p> :action GotoFile<CR>
+" nnoremap <C-S-p> :action GotoClass<CR>
+" nnoremap <C-s> :action GotoSymbol<CR>
+" nnoremap <C-a> :action GotoAction<CR>
+nnoremap <leader>gf :action GotoFile<cr>
+nnoremap <leader>gc :action GotoClass<cr>
+nnoremap <leader>gs :action GotoSymbol<cr>
+nnoremap <leader>ga :action GotoAction<cr>
 
 nnoremap K :action GotoDeclaration<CR>
 nnoremap gK :action GotoTypeDeclaration<CR>
