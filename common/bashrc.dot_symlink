@@ -14,21 +14,21 @@ function _source_dir {
     _pattern="$2"
   fi
 
-  if [ -d $_dir ]; then
+  if [ -d "$_dir" ]; then
     for i in $_dir/$_pattern; do
-      if [ -d $i ]; then
-        _source_dir $i
-      elif [ -r $i ]; then
+      if [ -d "$i" ]; then
+        _source_dir "$i"
+      elif [ -r "$i" ]; then
         ##_debug is slow - even if it is off, so commenting out when not used
         #_debug "Sourcing \"$i\""
-        . $i
+        . "$i"
       fi
     done
   fi
 }
 
 function main {
-  local _utilitiesDir="$HOME/.bash/common/utilities"
+  # local _utilitiesDir="$HOME/.bash/common/utilities"
 
   #local _debug=1
   #. $_utilitiesDir/debug_func.sh
