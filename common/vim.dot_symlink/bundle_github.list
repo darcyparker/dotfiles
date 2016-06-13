@@ -14,7 +14,8 @@ confluencewiki       master   git://github.com/vim-scripts/confluencewiki.vim.gi
 css3-syntax          master   git://github.com/hail2u/vim-css3-syntax.git             ;https://github.com/hail2u/vim-css3-syntax
 ctrlp                master   git://github.com/kien/ctrlp.vim.git                     ;https://github.com/kien/ctrlp.vim
 dirdiff              master   git://github.com/vim-scripts/DirDiff.vim.git            ;https://github.com/vim-scripts/DirDiff.vim
-dispatch             master   git://github.com/tpope/vim-dispatch                     ;https://github.com/tpope/vim-dispatch
+dispatch             master   git://github.com/tpope/vim-dispatch.git                 ;https://github.com/tpope/vim-dispatch
+;easyclip             master   git://github.com/svermeulen/vim-easyclip.git            ;https://github.com/svermeulen/vim-easyclip
 easymotion           master   git://github.com/Lokaltog/vim-easymotion.git            ;https://github.com/Lokaltog/vim-easymotion
 editorconfig         master   git://github.com/editorconfig/editorconfig-vim.git      ;https://github.com/editorconfig/editorconfig-vim
 eunuch               master   git://github.com/tpope/vim-eunuch.git                   ;https://github.com/tpope/vim-eunuch

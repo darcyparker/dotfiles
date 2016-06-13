@@ -25,11 +25,19 @@ noremap <C-S-v> "*P
 nnoremap <C-h> <C-W>h
 nnoremap <C-j> <C-W>j
 nnoremap <C-k> <C-W>k
-nnoremap <C-l> <C-W>l
+nnoremap <C-l> <C-W>
 
-"splits
-nnoremap <leader>sh :split<cr>
-nnoremap <leader>sv :vsplit<cr>
+"splits: These work
+" ctrl-w s
+" ctrl-w v
+
+"folds: Opening and Closing Folds
+" * folds in ideavim is decent but not the same as vim
+" * These work reasonably well: zc zC zo zO
+" * These kind of work: zR zM
+" * These don't work: zr zm za zA zv zn zN zi
+" * Moving over folds doesn't work... but not a big deal because I can use [m
+"   and ]m
 
 "vim.unimpaired mappings
 nnoremap [<Space> O<esc>j
