@@ -121,7 +121,7 @@ add_it() {
       add_symlink "$SOURCE" "$TARGET"
       ;;
     *)
-      echo "*** Error: TYPE "$TYPE" is unknown. Cannot add."
+      echo "*** Error: TYPE \"$TYPE\" is unknown. Cannot add."
       ;;
   esac
 }
