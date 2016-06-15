@@ -28,7 +28,7 @@ function _source_dir {
 }
 
 function main {
-  # local _utilitiesDir="$HOME/.bash/common/utilities"
+  local _utilitiesDir="$HOME/.bash/common/utilities"
 
   #local _debug=1
   #. $_utilitiesDir/debug_func.sh
