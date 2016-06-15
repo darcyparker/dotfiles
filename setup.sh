@@ -38,8 +38,10 @@
 ##########################################################################################
 add_symlink() {
   local SOURCE=$1 ; local TARGET=$2
+  TARGET=${TARGET/\/\//\/} #clean up double "/" in some target paths
   if [[ "$ENV_NAME" == "mingw32" || "$ENV_NAME" == "cygwin" ]] ; then
-    if [ -e "$TARGET" ]; then
+    #If $TARGET exits or it is a link (that may not exist), mv it
+    if [ -e "$TARGET" -o -L "$TARGET" ]; then
       echo "*** Warning: \"$TARGET\" already exists. No link will be created."
     else
       if [ -d "$SOURCE" ]; then
@@ -53,14 +55,13 @@ add_symlink() {
       fi
     fi
   else
-    #On unix systems, use the regular link command (-i: interactive mode)
-    #To do: Why does prompt get skipped over?
-    #ln -s -i $SOURCE $TARGET
-    if [ -e "$TARGET" ]; then
-      echo "*** Warning: \"$TARGET\" already exists. Moving to $TARGET.old."
+    #If $TARGET exits or it is a link (that may not exist), mv it
+    if [ -e "$TARGET" -o -L "$TARGET" ]; then
       local _currentSecond=$(date +%s)
+      echo "*** Warning: \"$TARGET\" already exists. Moving to \"${TARGET}.${_currentSecond}.old\"."
       mv "$TARGET" "${TARGET}.${_currentSecond}.old"
     fi
+    echo "INFO: Adding symlink to \"$SOURCE\""
     ln -s "$SOURCE" "$TARGET"
   fi
 }
@@ -141,7 +142,8 @@ else
 fi
 
 # Identify folder to setup from
-FROM="$(cd "$(dirname \$\(which "$0"\))"; echo "$PWD")"
+thisFile=$(which "$0")
+FROM="$(cd "$(dirname "$thisFile")"; echo "$PWD")"
 
 echo "*** Create necessary folder structure if not present"
 find "$FROM/common" "$FROM/platforms/$ENV_NAME" -type d -regex ".*[.]symlink_content$" | \
