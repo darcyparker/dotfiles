@@ -1,23 +1,14 @@
-"See http://vimcasts.org/episodes/tidying-whitespace/
-"Preserves/Saves the state, executes a command, and returns to the saved state
-function! s:Preserve(command)
-  " Preparation: save last search, and cursor position.
-  let _s=@/
-  let l = line(".")
-  let c = col(".")
-  " Do the business:
-  execute a:command
-  " Clean up: restore previous search history, and cursor position
-  let @/=_s
-  call cursor(l, c)
-endfunction
+"See examples: https://github.com/maksimr/vim-jsbeautify#usage
+"normal mode maps for different filetypes
+autocmd FileType javascript noremap <buffer> <leader>b :call JsBeautify()<cr>
+autocmd FileType json noremap <buffer> <leader>b :call JsonBeautify()<cr>
+autocmd FileType jsx noremap <buffer> <leader>b :call JsxBeautify()<cr>
+autocmd FileType html noremap <buffer> <leader>b :call HtmlBeautify()<cr>
+autocmd FileType css noremap <buffer> <leader>b :call CSSBeautify()<cr>
 
-"js-beautify of whole file from normal mode
-autocmd FileType javascript,json nnoremap <buffer>  <leader>b :call <SID>Preserve("execute \"%!js-beautify -s 2 -f -\"")<cr>
-"js-beautify of visual selection only
-autocmd FileType javascript,json vnoremap <buffer>  <leader>b :call <SID>Preserve("execute \"silent '<,'>!js-beautify -s 2 -f -\"")<cr>
-
-" for html
-autocmd FileType html noremap <buffer> <leader>b :call <SID>Preserve('call HtmlBeautify()')<cr>
-" for css or scss
-autocmd FileType css noremap <buffer> <leader>b :call <SID>Preserve('call CSSBeautify()')<cr>
+"visual mode maps
+autocmd FileType javascript vnoremap <buffer> <leader>b :call RangeJsBeautify()<cr>
+autocmd FileType json vnoremap <buffer> <leader>b :call RangeJsonBeautify()<cr>
+autocmd FileType jsx vnoremap <buffer> <leader>b :call RangeJsxBeautify()<cr>
+autocmd FileType html vnoremap <buffer> <leader>b :call RangeHtmlBeautify()<cr>
+autocmd FileType css vnoremap <buffer> <leader>b :call RangeCSSBeautify()<cr>

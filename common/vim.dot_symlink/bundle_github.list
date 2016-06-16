@@ -28,7 +28,6 @@ indent-guides        master   git://github.com/nathanaelkane/vim-indent-guides.g
 indexedSearch        master   git://github.com/vim-scripts/IndexedSearch.git          ;https://github.com/vim-scripts/IndexedSearch
 jade                 master   git://github.com/vim-scripts/jade.vim.git               ;https://github.com/vim-scripts/jade.vim
 javascript           master   git://github.com/pangloss/vim-javascript.git            ;https://github.com/pangloss/vim-javascript
-js-beautify          master   git://github.com/einars/js-beautify.git                 ;https://github.com/einars/js-beautify
 json                 master   git://github.com/elzr/vim-json.git                      ;https://github.com/elzr/vim-json
 less                 master   git://github.com/groenewege/vim-less.git                ;https://github.com/groenewege/vim-less
 lightline            master   git://github.com/itchyny/lightline.vim.git              ;https://github.com/itchyny/lightline.vim
