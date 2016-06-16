@@ -30,6 +30,7 @@ jade                 master   git://github.com/vim-scripts/jade.vim.git         
 javascript           master   git://github.com/pangloss/vim-javascript.git            ;https://github.com/pangloss/vim-javascript
 json                 master   git://github.com/elzr/vim-json.git                      ;https://github.com/elzr/vim-json
 jsindent             master   git://github.com/jason0x43/vim-js-indent.git            ;https://github.com/jason0x43/vim-js-indent
+js-pretty-template   master   git://github.com/Quramy/vim-js-pretty-template.git      ;https://github.com/Quramy/vim-js-pretty-template
 less                 master   git://github.com/groenewege/vim-less.git                ;https://github.com/groenewege/vim-less
 lightline            master   git://github.com/itchyny/lightline.vim.git              ;https://github.com/itchyny/lightline.vim
 mango                master   git://github.com/goatslacker/mango.vim.git              ;https://github.com/goatslacker/mango.vim
