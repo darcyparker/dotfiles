@@ -29,6 +29,7 @@ indexedSearch        master   git://github.com/vim-scripts/IndexedSearch.git    
 jade                 master   git://github.com/vim-scripts/jade.vim.git               ;https://github.com/vim-scripts/jade.vim
 javascript           master   git://github.com/pangloss/vim-javascript.git            ;https://github.com/pangloss/vim-javascript
 json                 master   git://github.com/elzr/vim-json.git                      ;https://github.com/elzr/vim-json
+jsindent             master   git://github.com/jason0x43/vim-js-indent.git            ;https://github.com/jason0x43/vim-js-indent
 less                 master   git://github.com/groenewege/vim-less.git                ;https://github.com/groenewege/vim-less
 lightline            master   git://github.com/itchyny/lightline.vim.git              ;https://github.com/itchyny/lightline.vim
 mango                master   git://github.com/goatslacker/mango.vim.git              ;https://github.com/goatslacker/mango.vim
@@ -62,7 +63,7 @@ tbone                master   git://github.com/tpope/vim-tbone.git              
 tern_for_vim         master   git://github.com/marijnh/tern_for_vim.git               ;https://github.com/marijnh/tern_for_vim
 tmux                 master   git://github.com/vimez/vim-tmux.git                     ;https://github.com/vimez/vim-tmux
 toml                 master   git://github.com/cespare/vim-toml.git                   ;https://github.com/cespare/vim-toml
-;typescript-vim       master   git://github.com/leafgarland/typescript-vim.git         ;https://github.com/leafgarland/typescript-vim
+typescript-vim       master   git://github.com/leafgarland/typescript-vim.git         ;https://github.com/leafgarland/typescript-vim
 yats                 master   git://github.com/HerringtonDarkholme/yats.vim.git       ;https://github.com/HerringtonDarkholme/yats.vim
 unimpaired           master   git://github.com/tpope/vim-unimpaired.git               ;https://github.com/tpope/vim-unimpaired
 vim-jsbeautify       master   git://github.com/maksimr/vim-jsbeautify.git             ;https://github.com/maksimr/vim-jsbeautify
