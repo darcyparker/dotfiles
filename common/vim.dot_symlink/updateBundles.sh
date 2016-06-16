@@ -33,9 +33,15 @@ _updateRepo() {
     git checkout "$_REPO_BRANCH"
     git submodule update --init --recursive
   fi
-  if [[ -e ./package.json ]]; then
+  if [ -e ./package.json ]; then
     npm install
   fi
+  if [ -e ./Makefile ]; then
+    #TODO: Update this for windows
+    #Look at https://github.com/Shougo/vimproc.vim as an example to get working
+    make
+  fi
+  
 }
 
 ###################################################################################
