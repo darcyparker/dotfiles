@@ -1,15 +1,36 @@
 "Tagbar settings
 nnoremap <leader>tb :TagbarToggle<CR>
 
+" See https://github.com/majutsushi/tagbar/wiki#markdown
+" Uses https://github.com/jszakmeister/markdown2ctags
 let g:tagbar_type_markdown = {
-  \ 'ctagstype' : 'markdown',
-  \ 'kinds' : [
-    \ 'h:Heading_L1',
-    \ 'i:Heading_L2',
-    \ 'k:Heading_L3'
-  \ ]
+    \ 'ctagstype': 'markdown',
+    \ 'ctagsbin' : '~/bin/markdown2ctags.py',
+    \ 'ctagsargs' : '-f - --sort=yes',
+    \ 'kinds' : [
+        \ 's:sections',
+        \ 'i:images'
+    \ ],
+    \ 'sro' : '|',
+    \ 'kind2scope' : {
+        \ 's' : 'section',
+    \ },
+    \ 'sort': 0,
 \ }
 
+" CoffeeScript configuration comes from CoffeeTags vim plugin
+
+"https://github.com/majutsushi/tagbar/wiki#css
+let g:tagbar_type_css = {
+\ 'ctagstype' : 'Css',
+    \ 'kinds'     : [
+        \ 'c:classes',
+        \ 's:selectors',
+        \ 'i:identities'
+    \ ]
+\ }
+
+" https://github.com/majutsushi/tagbar/wiki#typescript
 let g:tagbar_type_typescript = {
   \ 'ctagstype': 'typescript',
   \ 'kinds': [
@@ -23,6 +44,37 @@ let g:tagbar_type_typescript = {
     \ 'e:enums',
   \ ]
 \ }
+
+" https://github.com/majutsushi/tagbar/wiki#ultisnips
+let g:tagbar_type_snippets = {
+    \ 'ctagstype' : 'snippets',
+    \ 'kinds' : [
+        \ 's:snippets',
+    \ ]
+\ }
+
+" https://github.com/majutsushi/tagbar/wiki#rust
+let g:tagbar_type_rust = {
+    \ 'ctagstype' : 'rust',
+    \ 'kinds' : [
+        \'T:types,type definitions',
+        \'f:functions,function definitions',
+        \'g:enum,enumeration names',
+        \'s:structure names',
+        \'m:modules,module names',
+        \'c:consts,static constants',
+        \'t:traits,traits',
+        \'i:impls,trait implementations',
+    \]
+    \}
+
+" https://github.com/majutsushi/tagbar/wiki#makefile-targets
+let g:tagbar_type_make = {
+            \ 'kinds':[
+                \ 'm:macros',
+                \ 't:targets'
+            \ ]
+\}
 
 let g:tagbar_type_xslt = {
 \ 'ctagstype' : 'xslt',
