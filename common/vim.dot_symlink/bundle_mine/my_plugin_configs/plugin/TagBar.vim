@@ -10,6 +10,20 @@ let g:tagbar_type_markdown = {
   \ ]
 \ }
 
+let g:tagbar_type_typescript = {
+  \ 'ctagstype': 'typescript',
+  \ 'kinds': [
+    \ 'c:classes',
+    \ 'n:modules',
+    \ 'f:functions',
+    \ 'v:variables',
+    \ 'v:varlambdas',
+    \ 'm:members',
+    \ 'i:interfaces',
+    \ 'e:enums',
+  \ ]
+\ }
+
 let g:tagbar_type_xslt = {
 \ 'ctagstype' : 'xslt',
 \ 'ctagsbin'  : '/home/darcy/src/xsltctags/xsltctags',

@@ -5,7 +5,8 @@
 # *.lst file
 
 pushd .
-_THIS_SCRIPT_DIR="$(cd `dirname \`which $0\``; pwd)"
+_thisFile=$(which "$0")
+_THIS_SCRIPT_DIR="$(cd "$(dirname "$_thisFile")"; echo "$PWD")"
 cd "$_THIS_SCRIPT_DIR"
 
 ###################################################################################
