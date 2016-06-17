@@ -1,5 +1,5 @@
 "Edit the vimrc (in my git repo and not the linked folders under home)
-execute "nnoremap <leader>ev :e! ".$HOME."/my_dotfiles/common/vimrc.dot_symlink<cr>"
+execute "nnoremap <leader>ev :e! ".$HOME."/.vimrc<cr>"
 
 "Open NERDTree in the folder of my modularized vimrc
 execute "nnoremap <leader>evr :NERDTree ".$HOME."/.vim/bundle_mine/my_configs<cr><cr>"
