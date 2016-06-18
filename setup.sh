@@ -57,6 +57,15 @@ add_symlink() {
   else
     #If $TARGET exits or it is a link (that may not exist), mv it
     if [ -e "$TARGET" -o -L "$TARGET" ]; then
+
+      # TODO: If it exists,
+      #           use `readlink` to test if $TARGET points to $SOURCE already
+      #               If so, do nothing...
+      #               Otherwise, mv the file and create new link
+      #       If it is a broken link,
+      #             mv it and let user know. And create new link.
+      #       If no such $TARGET exists, create the link.
+
       local _currentSecond=$(date +%s)
       echo "*** Warning: \"$TARGET\" already exists. Moving to \"${TARGET}.${_currentSecond}.old\"."
       mv "$TARGET" "${TARGET}.${_currentSecond}.old"
