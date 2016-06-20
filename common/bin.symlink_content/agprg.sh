@@ -10,7 +10,7 @@ __formatOut(){
       local file_and_line=$(echo "$_gitGrep" | cut -d: -f1,2)
       local match=$(echo "$_gitGrep" | sed 's/[^:]*:[^:]*:\(.*\)/\1/')
       local column=$(echo "$match" | awk "{print index(\$0, \"$_searchString\")}")
-      echo "$file_and_line:$column:$match"
+      echo "$_basePath$file_and_line:$column:$match"
 }
 
 __doGitGrep(){
@@ -24,21 +24,28 @@ export -f __doGitGrep
 
 main(){
   if [ -d .git ] || git rev-parse --git-dir > /dev/null 3>&1; then
-  _searchString="$@"
-  #   git grep -n "$@" | while read git_grep; do
 
-  #     file_and_line=$(echo "$git_grep" | cut -d: -f1,2)
-  #     match=$(echo "$git_grep" | sed 's/[^:]*:[^:]*:\(.*\)/\1/')
-  #     column=$(echo "$match" | awk "{print index(\$0, \"$1\")}")
+    # Temp hack to remove switches from vim unite-grep
+    # unite-grep is passing `--inH -- SearchTerm .`
+    # echo "filename:1:2:Args=$* Second=${3} Last=${@: -1}"
+    if [[ "$1" == "-inH" ]]; then
+      shift
+    fi
+    if [[ "$1" == "--" ]]; then
+      shift
+    fi
+    if [[ "${@: -1}" == "." ]]; then
+      _searchString="${*:1:$(($# - 1))}"
+    else
+      _searchString="$*"
+    fi
+    echo _searchString="$_searchString"
 
-  #     echo "$file_and_line:$column:$match"
-  #   done
-
-    __doGitGrep "" "$@"
+    __doGitGrep "" "$_searchString"
     # Next grep submodules
     # Note: Must create a bash subshell so exported functions are visible to the git foreach
-    git --no-pager submodule --quiet foreach "echo \$path"
-    # git --no-pager submodule --quiet foreach "bash -c \"__doGitGrep '$_searchString' \"; true"
+    # git --no-pager submodule --quiet foreach "echo \$path"
+    git --no-pager submodule --quiet foreach "bash -c \"__doGitGrep \\\"\${path}\\\"/ '$_searchString' \"; true"
   else
     ag --column "$@"
   fi
