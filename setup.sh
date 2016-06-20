@@ -27,51 +27,65 @@
 # - call updatebundles.sh
 # - check if dirs/links made correctly. On cygwin, mklink must be run as administrator
 
+
+##########################################################################################
+# Function: _ln(SOURCE,TARGET)
+# - Creates symbolic link using command appropriate for OS
+##########################################################################################
+_ln() {
+  local SOURCE=$1 ; local TARGET=$2
+  if [[ "$ENV_NAME" == "mingw32" || "$ENV_NAME" == "cygwin" ]] ; then
+    if [ -d "$SOURCE" ]; then
+      #if a directory, then create a directory soft link
+      echo "INFO: Adding symlink to dir \"$SOURCE\""
+      cygstart --action=runas cmd /c mklink /d "$(cygpath -a -w "$TARGET")" "$(cygpath -a -w "$SOURCE")"
+    else
+      #If not a directory, then make a regular link
+      echo "INFO: Adding symlink to file \"$SOURCE\""
+      cygstart --action=runas cmd /c mklink "$(cygpath -a -w "$TARGET")" "$(cygpath -a -w "$SOURCE")"
+    fi
+  else
+    echo "INFO: Adding symlink to \"$SOURCE\""
+    ln -s "$SOURCE" "$TARGET"
+  fi
+}
+
 ##########################################################################################
 # Function: add_symlink(SOURCE,TARGET)
 # - Creates TARGET as a link to SOURCE
-# - Before creating the link, tests whether or not the target already exists.
-#   - On windows, it just gives a warning if the target exists
-#   - On other unix systems, it uses the -i (interactive) link option and prompts
-#     to see if you want to overwrite it or not.
-# - On windows, mklink is used so that links work in everywhere (windows, cygwin, mingw32)
 ##########################################################################################
 add_symlink() {
   local SOURCE=$1 ; local TARGET=$2
   TARGET=${TARGET/\/\//\/} #clean up double "/" in some target paths
-  if [[ "$ENV_NAME" == "mingw32" || "$ENV_NAME" == "cygwin" ]] ; then
-    #If $TARGET exits or it is a link (that may not exist), mv it
-    if [ -e "$TARGET" -o -L "$TARGET" ]; then
-      echo "*** Warning: \"$TARGET\" already exists. No link will be created."
+
+  #If $TARGET exits or it is a link (that may not exist), mv it
+  # if [ -e "$TARGET" -o -L "$TARGET" ]; then
+  if [ -e "$TARGET" ]; then
+    local _itPointsTo=$(readlink "$TARGET")
+    #If $TARGET == $SOURCE, do nothing...
+    if  [[ $_itPointsTo != $SOURCE ]]; then
+      local _currentSecond=$(date +%s)
+      echo "*** Warning: \"$TARGET\" already exists"
+      echo "    and does not point to \"$SOURCE\"."
+      echo "    Moving to \"${TARGET}.${_currentSecond}.old\"."
+      mv "$TARGET" "${TARGET}.${_currentSecond}.old"
+      _ln "$SOURCE" "$TARGET"
     else
-      if [ -d "$SOURCE" ]; then
-        #if a directory, then create a directory soft link
-        echo "INFO: Adding symlink to dir \"$SOURCE\""
-        cygstart --action=runas cmd /c mklink /d "$(cygpath -a -w "$TARGET")" "$(cygpath -a -w "$SOURCE")"
-      else
-        #If not a directory, then make a regular link
-        echo "INFO: Adding symlink to file \"$SOURCE\""
-        cygstart --action=runas cmd /c mklink "$(cygpath -a -w "$TARGET")" "$(cygpath -a -w "$SOURCE")"
-      fi
+      echo "\"$TARGET\" already exists and links to this my_dotfiles repo."
     fi
   else
-    #If $TARGET exits or it is a link (that may not exist), mv it
-    if [ -e "$TARGET" -o -L "$TARGET" ]; then
-
-      # TODO: If it exists,
-      #           use `readlink` to test if $TARGET points to $SOURCE already
-      #               If so, do nothing...
-      #               Otherwise, mv the file and create new link
-      #       If it is a broken link,
-      #             mv it and let user know. And create new link.
-      #       If no such $TARGET exists, create the link.
-
+    if [ -L "$TARGET" ]; then
+      #TARGET is a link that does not exist (It is broken)
       local _currentSecond=$(date +%s)
-      echo "*** Warning: \"$TARGET\" already exists. Moving to \"${TARGET}.${_currentSecond}.old\"."
-      mv "$TARGET" "${TARGET}.${_currentSecond}.old"
+      echo "*** Warning: \"$TARGET\" is a broken link"
+      echo "    Moving to \"${TARGET}.${_currentSecond}.brokenLink\"."
+      mv "$TARGET" "${TARGET}.${_currentSecond}.brokenLink"
+      _ln "$SOURCE" "$TARGET"
+    else
+      #The link does not exist and is not a broken link
+      #So create it.
+      _ln "$SOURCE" "$TARGET"
     fi
-    echo "INFO: Adding symlink to \"$SOURCE\""
-    ln -s "$SOURCE" "$TARGET"
   fi
 }
 
