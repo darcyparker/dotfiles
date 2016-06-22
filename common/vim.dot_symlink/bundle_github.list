@@ -63,6 +63,7 @@ tmux                 master   git://github.com/vimez/vim-tmux.git               
 toml                 master   git://github.com/cespare/vim-toml.git                   ;https://github.com/cespare/vim-toml
 tsuquyomi            master   git://github.com/Quramy/tsuquyomi.git                   ;https://github.com/Quramy/tsuquyomi.git
 typescript-vim       master   git://github.com/leafgarland/typescript-vim.git         ;https://github.com/leafgarland/typescript-vim
+typings              master   git://github.com/mhartington/vim-typings.git            ;https://github.com/mhartington/vim-typings
 unimpaired           master   git://github.com/tpope/vim-unimpaired.git               ;https://github.com/tpope/vim-unimpaired
 unite                master   git://github.com/Shougo/unite.vim.git                   ;https://github.com/Shougo/unite.vim
 unite-help           master   git://github.com/Shougo/unite-help.git                  ;https://github.com/Shougo/unite-help
