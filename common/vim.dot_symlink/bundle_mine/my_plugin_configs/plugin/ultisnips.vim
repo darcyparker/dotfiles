@@ -1,10 +1,14 @@
 if has("python")
-  let g:UltiSnipsExpandTrigger="<tab>"
-  "Note, by default, most terminals don't pass c-tab
-  "So the terminal must be configured to pass c-tab
-  let g:UltiSnipsListSnippets="<c-tab>"
-  let g:UltiSnipsJumpForwardTrigger="<tab>"
-  let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+  let g:UltiSnipsUsePythonVersion = 2
+elseif has("python3")
+  let g:UltiSnipsUsePythonVersion = 3
+endif
+if has("python") || has('python3')
+  let g:UltiSnipsExpandTrigger = "<c-l>"
+  let g:UltiSnipsListSnippets="<c-h>"
+  let g:UltiSnipsJumpForwardTrigger = "<c-j>"
+  let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
+
   "Only load myUltiSnips
-  let g:UltiSnipsSnippetDirectories=["myUltiSnips"]
+  " let g:UltiSnipsSnippetDirectories=["myUltiSnips"]
 endif

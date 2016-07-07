@@ -50,6 +50,7 @@ scriptease           master   git://github.com/tpope/vim-scriptease.git         
 scrollcolors         master   git://github.com/vim-scripts/ScrollColors.git           ;https://github.com/vim-scripts/ScrollColors
 sensible             master   git://github.com/tpope/vim-sensible.git                 ;https://github.com/tpope/vim-sensible
 slime                master   git://github.com/jpalardy/vim-slime.git                 ;https://github.com/jpalardy/vim-slime
+snippets             master   git://github.com/honza/vim-snippets.git                 ;https://github.com/honza/vim-snippets
 solarized            master   git://github.com/altercation/vim-colors-solarized.git   ;https://github.com/altercation/vim-colors-solarized
 splitjoin            master   git://github.com/AndrewRadev/splitjoin.vim.git          ;https://github.com/AndrewRadev/splitjoin.vim
 stylus               master   git://github.com/wavded/vim-stylus.git                  ;https://github.com/wavded/vim-stylus
@@ -84,7 +85,6 @@ vimproc              master   git://github.com/Shougo/vimproc.vim.git           
 ;
 ;yankring             master   git://github.com/vim-scripts/YankRing.vim.git           ;https://github.com/vim-scripts/YankRing.vim
 ;nerdcommenter        master   git://github.com/scrooloose/nerdcommenter.git           ;https://github.com/scrooloose/nerdcommenter
-;snippets             master   git://github.com/honza/vim-snippets.git                 ;https://github.com/honza/vim-snippets
 ;statline             master   git://github.com/millermedeiros/vim-statline.git        ;https://github.com/millermedeiros/vim-statline
 ;tagbar               master   git@github.com:darcyparker/tagbar.git                   ;https://github.com/darcyparker/tagbar
 ;syntastic            master   git@github.com:darcyparker/syntastic.git                ;https://github.com/darcyparker/syntastic
