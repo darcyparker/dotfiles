@@ -24,8 +24,12 @@ let g:unite_source_file_mru_time_format = ''
 
 " Always assume I have agprg.sh which uses
 " `git grep` if it is a git repo and `ag` otherwise
-let g:unite_source_grep_command='agprg.sh'
-let g:unite_source_grep_recursive_opt=''
+" let g:unite_source_grep_command='agprg.sh'
+" let g:unite_source_grep_recursive_opt=''
+let g:unite_source_grep_command = 'pt'
+let g:unite_source_grep_default_opts = '--nogroup --nocolor'
+let g:unite_source_grep_recursive_opt = ''
+let g:unite_source_grep_encoding = 'utf-8'
 
 " Custom mappings for the unite buffer
 autocmd FileType unite call s:unite_settings()
@@ -114,6 +118,7 @@ nnoremap <silent> [unite]u :<C-u>Unite -buffer-name=buffers file_mru buffer<CR>
 
 " Quick grep from ProjectDir
 nnoremap <silent> [unite]/ :<C-u>UniteWithProjectDir -buffer-name=grep grep:.<CR>
+nnoremap <silent> [unite]g :<C-u>UniteWithProjectDir -buffer-name=grep grep/git:/<CR>
 
 " Quick registers
 nnoremap <silent> [unite]r :<C-u>Unite -buffer-name=register register<CR>
@@ -135,7 +140,7 @@ nnoremap <silent> [unite]a :<C-u>Unite -buffer-name=sources source<CR>
 
 " Quick help
 nnoremap <silent> [unite]h  :<C-u>Unite -buffer-name=help help<CR>
-nnoremap <silent> [unite]gh :<C-u>UniteWithCursorWord -buffer-name=help help<CR>
+nnoremap <silent> [unite]hw :<C-u>UniteWithCursorWord -buffer-name=help help<CR>
 
 " Quick line from word under cursor
 nnoremap <silent> [unite]l :<C-u>UniteWithCursorWord -buffer-name=search_file line<CR>

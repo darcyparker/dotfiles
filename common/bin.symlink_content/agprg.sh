@@ -3,6 +3,9 @@
 # See http://artemave.github.io/2014/06/02/vim-git-grep/
 # darcyparker@gmail Added support to grep git submodules
 
+#WIP Notes
+# git grep -n --no-color %s %s -- %s ; git --no-pager submodule --quiet foreach --recursive 'git grep -n --no-color %s %s -- %s | while read _gitGrep; do echo $path/$_gitGrep; done'
+
 __formatOut(){
       local _basePath=$1; shift
       local _searchString=$1; shift

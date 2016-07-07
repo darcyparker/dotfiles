@@ -72,6 +72,7 @@ unite-neomru         master   git://github.com/Shougo/neomru.vim.git            
 unite-history        master   git://github.com/thinca/vim-unite-history.git           ;https://github.com/thinca/vim-unite-history
 unite-quickfix       master   git://github.com/osyo-manga/unite-quickfix.git          ;https://github.com/osyo-manga/unite-quickfix
 unite-tig            master   git://github.com/Kocha/vim-unite-tig.git                ;https://github.com/Kocha/vim-unite-tig
+unite-mark           master   git://github.com/tacroe/unite-mark.git                  ;https://github.com/tacroe/unite-mark
 ;
 vim-go               master   git://github.com/fatih/vim-go.git                       ;https://github.com/fatih/vim-go
 vim-jsbeautify       master   git://github.com/maksimr/vim-jsbeautify.git             ;https://github.com/maksimr/vim-jsbeautify
