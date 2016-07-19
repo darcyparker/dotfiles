@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+# See http://www.linuxquestions.org/questions/linux-desktop-74/what-is-the-command-to-switch-workspaces-gsb-2-30-slackware-13-1-a-836383/
+#-------------------------------------------------------------------------------
+
+# Desktop number passed?
+if [ -z "$1" ]; then
+  echo "Error: missing desktop number"
+  exit 1
+fi
+
+if wmctrl -m | grep -i -q compiz; then
+  COMPIZ=1
+fi
+
+function _desktop () {
+  if [ -z "$COMPIZ" ]; then
+    wmctrl -s "$1"
+  else
+    # The target desktop number (begins with 0)
+    TVPN=$(( 1 % NF ))
+    # The X coordinate of the target viewport
+    TVPX=$(( TVPN * WW ))
+    # Change to the target viewport
+    wmctrl -o ${TVPX},0
+  fi
+}
+
+# The information about the desktop
+INFO=$(wmctrl -d | grep "\*")
+
+# The width of the desktop
+DW=$(echo "${INFO}" | awk '{sub(/x[0-9]+/, "", $4); print $4}')
+
+# The width of the workarea
+WW=$(echo "${INFO}" | awk '{sub(/x[0-9]+/, "", $9); print $9}')
+
+# The number of faces on the cube
+NF=$((DW/WW))
+
+_desktop "$1"
+sleep 2
+exit
