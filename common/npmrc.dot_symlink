@@ -1,1 +1,2 @@
-viewer = browser
+viewer=browser
+registry=http://registry.npmjs.org/
