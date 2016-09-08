@@ -23,6 +23,13 @@
 #                 : and symbolic links of its content will be made in the folder
 #                 : Target name will have the ".symlink_content" stripped
 #                 : The symbolic links will not change the name.
+#
+# dot_symlink_content : A folder will be created with dot prefixed and
+#                     : and symbolic links of its content will be made in the folder
+#                     : Target name will have the ".symlink_content" stripped
+#                     : The symbolic links will not change the name.
+#                     : Note, this is essentially same as `symlink_content` with a dot
+#                     : prefix added.
 #To do:
 # - call updatebundles.sh
 # - check if dirs/links made correctly. On cygwin, mklink must be run as administrator
@@ -94,13 +101,15 @@ add_symlink() {
 # - Adds $SOURCE from the dot files repo to the desired target folder (usually $HOME)
 # - The way it adds $SOURCE depends on the $TYPE value
 #
-#   "mkdir_for_symlinks" : makes a directory
-#   "dot_symlink"        : adds a symbolic link with name transformed to ".name"
-#   "symlink"            : adds a symbolic link (does not transform name)
-#   "symlink_content"    : adds a symbolic link (does not transform name)
-#                          (however it does strip the ".symlink_content" from its parent folder)
-#   "dot_template"       : Copies the template to the target with name transformed to ".name"
-#   "template"           : Copies the template to the target with no transform of the name
+#   "mkdir_for_symlinks"  : makes a directory
+#   "dot_symlink"         : adds a symbolic link with name transformed to ".name"
+#   "symlink"             : adds a symbolic link (does not transform name)
+#   "symlink_content"     : adds a symbolic link (does not transform name)
+#                           (however it does strip the ".symlink_content" from its parent folder)
+#   "dot_symlink_content" : adds a symbolic link (does not transform name)
+#                           (however it does strip the ".dot_symlink_content" from its parent folder)
+#   "dot_template"        : Copies the template to the target with name transformed to ".name"
+#   "template"            : Copies the template to the target with no transform of the name
 ##########################################################################################
 add_it() {
   local SOURCE=$2 ; local TYPE=$1
@@ -115,6 +124,10 @@ add_it() {
       TARGET=$TO/$TO_RELATIVE/${NAME%.symlink_content}
       mkdir -p "$TARGET"
       ;;
+    "mkdir_for_dot_symlinks")
+      TARGET=$TO/$TO_RELATIVE/.${NAME%.dot_symlink_content}
+      mkdir -p "$TARGET"
+      ;;
     "dot_symlink")
       TARGET=$TO/$TO_RELATIVE/.${NAME%.dot_symlink}
       add_symlink "$SOURCE" "$TARGET"
@@ -125,6 +138,10 @@ add_it() {
       ;;
     "symlink_content")
       TARGET=$TO/${TO_RELATIVE/.symlink_content/}/$NAME
+      add_symlink "$SOURCE" "$TARGET"
+      ;;
+    "dot_symlink_content")
+      TARGET=$TO/.${TO_RELATIVE/.dot_symlink_content/}/$NAME
       add_symlink "$SOURCE" "$TARGET"
       ;;
     "dot_template")
@@ -174,11 +191,23 @@ find "$FROM/common" "$FROM/platforms/$ENV_NAME" -type d -regex ".*[.]symlink_con
     add_it "mkdir_for_symlinks" "$i"
   done
 echo
+find "$FROM/common" "$FROM/platforms/$ENV_NAME" -type d -regex ".*[.]dot_symlink_content$" | \
+  while read i; do
+    add_it "mkdir_for_dot_symlinks" "$i"
+  done
+echo
 
 echo "*** Create symbolic links to content found in *.symlink_content folders"
 find "$FROM/common" "$FROM/platforms/$ENV_NAME" -regex ".*[.]symlink_content/[^/]*" | \
   while read i; do
     add_it "symlink_content" "$i"
+  done
+echo
+
+echo "*** Create symbolic links to content found in *.dot_symlink_content folders"
+find "$FROM/common" "$FROM/platforms/$ENV_NAME" -regex ".*[.]dot_symlink_content/[^/]*" | \
+  while read i; do
+    add_it "dot_symlink_content" "$i"
   done
 echo
 
