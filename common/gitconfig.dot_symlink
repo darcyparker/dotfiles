@@ -60,6 +60,7 @@
   f = "!git ls-files | grep -i"
   ;Search/grep your entire codebase for a string:
   grep = grep -Ii
+  grepall = "!f() { gitgrep "$1" "$2" "$3"; }; f"
   gr = grep -Ii
   ;Grep from root folder:
   gra = "!f() { A=$(pwd) && TOPLEVEL=$(git rev-parse --show-toplevel) && cd $TOPLEVEL && git grep --full-name -In $1 | xargs -I{} echo $TOPLEVEL/{} && cd $A; }; f"

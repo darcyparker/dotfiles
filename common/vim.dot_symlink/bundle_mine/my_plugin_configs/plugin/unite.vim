@@ -118,7 +118,7 @@ nnoremap <silent> [unite]u :<C-u>Unite -buffer-name=buffers file_mru buffer<CR>
 
 " Quick grep from ProjectDir
 nnoremap <silent> [unite]/ :<C-u>UniteWithProjectDir -buffer-name=grep grep:.<CR>
-nnoremap <silent> [unite]g :<C-u>UniteWithProjectDir -buffer-name=grep grep/git:/<CR>
+nnoremap <silent> [unite]g :<C-u>UniteWithProjectDir -buffer-name=grep grep/git:/:--cached<CR>
 
 " Quick registers
 nnoremap <silent> [unite]r :<C-u>Unite -buffer-name=register register<CR>
