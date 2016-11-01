@@ -52,3 +52,6 @@ function main {
 main
 
 BASHRC_LOADED=1
+
+export NVM_DIR="/home/dparker/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
