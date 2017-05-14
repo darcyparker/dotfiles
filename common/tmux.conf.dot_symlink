@@ -68,12 +68,22 @@ unbind p
 bind p paste-buffer
 #By default use vi keys is copy and choice modes
 setw -g mode-keys vi
-#These are defined in vi-copy and vi-choice table respectively
-bind -t vi-copy 'v' begin-selection
-bind -t vi-copy 'V' select-line
-bind -t vi-copy 'y' copy-selection
-bind -t vi-copy 'C-v' rectangle-toggle
-bind -t vi-copy Escape cancel
+# #These are defined in vi-copy and vi-choice table respectively
+# bind -t vi-copy 'v' begin-selection
+# bind -t vi-copy 'V' select-line
+# bind -t vi-copy 'y' copy-selection
+# bind -t vi-copy 'C-v' rectangle-toggle
+# bind -t vi-copy Escape cancel
+
+# New: https://github.com/tmux/tmux/issues/754
+bind-key -T edit-mode-vi Up send-keys -X history-up
+bind-key -T edit-mode-vi Down send-keys -X history-down
+unbind-key -T copy-mode-vi Space  ; bind-key -T copy-mode-vi v send-keys -X begin-selection
+unbind-key -T copy-mode-vi C-v    ; bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
+unbind-key -T copy-mode-vi y      ; bind-key -T copy-mode-vi y send-keys -X copy-selection
+unbind-key -T copy-mode-vi Escape ; bind-key -T copy-mode-vi Escape send-keys -X cancel
+# select-line is V by default
+
 #Use vi keys in tmux status (command) line (<prefix>-:)
 #These are defined in vi-edit table
 setw -g status-keys vi
