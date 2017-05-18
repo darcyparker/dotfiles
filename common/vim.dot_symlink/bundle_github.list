@@ -14,6 +14,7 @@ confluencewiki       master   git://github.com/vim-scripts/confluencewiki.vim.gi
 css3-syntax          master   git://github.com/hail2u/vim-css3-syntax.git             ;https://github.com/hail2u/vim-css3-syntax
 dirdiff              master   git://github.com/vim-scripts/DirDiff.vim.git            ;https://github.com/vim-scripts/DirDiff.vim
 dispatch             master   git://github.com/tpope/vim-dispatch.git                 ;https://github.com/tpope/vim-dispatch
+dtsm                 master   git://github.com/Quramy/vim-dtsm.git                    ;https://github.com/Quramy/vim-dtsm
 easymotion           master   git://github.com/Lokaltog/vim-easymotion.git            ;https://github.com/Lokaltog/vim-easymotion
 editorconfig         master   git://github.com/editorconfig/editorconfig-vim.git      ;https://github.com/editorconfig/editorconfig-vim
 eunuch               master   git://github.com/tpope/vim-eunuch.git                   ;https://github.com/tpope/vim-eunuch
@@ -68,13 +69,12 @@ typings              master   git://github.com/mhartington/vim-typings.git      
 unimpaired           master   git://github.com/tpope/vim-unimpaired.git               ;https://github.com/tpope/vim-unimpaired
 unite                master   git://github.com/Shougo/unite.vim.git                   ;https://github.com/Shougo/unite.vim
 unite-help           master   git://github.com/Shougo/unite-help.git                  ;https://github.com/Shougo/unite-help
-unite-neoyank        master   git://github.com/Shougo/neoyank.vim.git                 ;https://github.com/Shougo/neoyank.vim
-unite-neomru         master   git://github.com/Shougo/neomru.vim.git                  ;https://github.com/Shougo/neomru.vim
 unite-history        master   git://github.com/thinca/vim-unite-history.git           ;https://github.com/thinca/vim-unite-history
+unite-mark           master   git://github.com/tacroe/unite-mark.git                  ;https://github.com/tacroe/unite-mark
+unite-neomru         master   git://github.com/Shougo/neomru.vim.git                  ;https://github.com/Shougo/neomru.vim
+unite-neoyank        master   git://github.com/Shougo/neoyank.vim.git                 ;https://github.com/Shougo/neoyank.vim
 unite-quickfix       master   git://github.com/osyo-manga/unite-quickfix.git          ;https://github.com/osyo-manga/unite-quickfix
 unite-tig            master   git://github.com/Kocha/vim-unite-tig.git                ;https://github.com/Kocha/vim-unite-tig
-unite-mark           master   git://github.com/tacroe/unite-mark.git                  ;https://github.com/tacroe/unite-mark
-;
 vim-go               master   git://github.com/fatih/vim-go.git                       ;https://github.com/fatih/vim-go
 vim-jsbeautify       master   git://github.com/maksimr/vim-jsbeautify.git             ;https://github.com/maksimr/vim-jsbeautify
 vimproc              master   git://github.com/Shougo/vimproc.vim.git                 ;https://github.com/Shougo/vimproc.vim
