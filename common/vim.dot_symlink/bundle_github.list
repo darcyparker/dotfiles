@@ -70,6 +70,7 @@ unite                master   git://github.com/Shougo/unite.vim.git             
 unite-help           master   git://github.com/Shougo/unite-help.git                  ;https://github.com/Shougo/unite-help
 unite-history        master   git://github.com/thinca/vim-unite-history.git           ;https://github.com/thinca/vim-unite-history
 unite-mark           master   git://github.com/tacroe/unite-mark.git                  ;https://github.com/tacroe/unite-mark
+unite-outline        master   git://github.com/Shougo/unite-outline.git               ;https://github.com/Shougo/unite-outline
 unite-neomru         master   git://github.com/Shougo/neomru.vim.git                  ;https://github.com/Shougo/neomru.vim
 unite-neoyank        master   git://github.com/Shougo/neoyank.vim.git                 ;https://github.com/Shougo/neoyank.vim
 unite-quickfix       master   git://github.com/osyo-manga/unite-quickfix.git          ;https://github.com/osyo-manga/unite-quickfix
