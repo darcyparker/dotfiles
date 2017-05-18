@@ -3,7 +3,7 @@
   email = darcyparker@gmail.com
 [core]
   excludesfile = ~/.gitignore_global
-  editor = vim
+  editor = $EDITOR
   autocrlf = false
   quotepath = off
 [color]
