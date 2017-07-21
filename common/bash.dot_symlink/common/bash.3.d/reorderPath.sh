@@ -16,6 +16,8 @@ if [ -z "$_frontPath" ]; then
     fi
   fi
 
+  [ -d /usr/local/go/bin ] && _frontPathLocal=/usr/local/go/bin:${_frontPathLocal}
+
   [ ! -z "$GOPATH" ] && _frontPathLocal=${_frontPathLocal}:${GOPATH}/bin
 
   [ -d "$HOME/.cargo/bin" ] && _frontPathLocal=${HOME}/.cargo/bin:${_frontPathLocal}
