@@ -89,21 +89,13 @@ unbind-key -T copy-mode-vi Escape ; bind-key -T copy-mode-vi Escape send-keys -X
 setw -g status-keys vi
 
 # Enable mouse in tmux.
-run-shell "tmux set-environment -g TMUX_VERSION_MAJOR $(tmux -V | cut -d' ' -f2 | cut -d'.' -f1 | sed 's/[^0-9]*//g')"
-run-shell "tmux set-environment -g TMUX_VERSION_MINOR $(tmux -V | cut -d' ' -f2 | cut -d'.' -f2 | sed 's/[^0-9]*//g')"
-#if tmux version >= 1.9 and < 2.0
-if-shell '[ $TMUX_VERSION_MAJOR -eq 1 -a $TMUX_VERSION_MINOR -ge 9 ]' "\
-  setw -g mode-mouse on \; \
-  set -g mouse-utf8 on \; \
-  set -g mouse-select-window on \; \
-  set -g mouse-select-pane on \; \
-  set -g mouse-resize-pane on "
-#If tmux version >= 2.1, set mouse options
-if-shell '[ $TMUX_VERSION_MAJOR -ge 2 -a $TMUX_VERSION_MINOR -ge 1 ]' "\
-  set -g mouse on "
-#if tmux version >= 2.0 and < 2.2
-if-shell '[ $TMUX_VERSION_MAJOR -ge 2 -a $TMUX_VERSION_MINOR -lt 2 ]' "\
-  set -g mouse-utf8 on "
+# =====================
+# Note, mouse mode was rewritten in tmux v2.1 and there are no longer options for mouse-resize-pane, 
+# mouse-select-pane, mmouse-select-window and mode-mouse.
+# I used to have logic for tmux settings depending on version. But this broke when tmux is built
+# from git master branch because `tmux -V` returns "tmux master"... the logic is difficult to maintain
+# and I now always use a current version of tmux... so I eliminated the logic.
+set -g mouse on
 
 setw -g xterm-keys on
 
