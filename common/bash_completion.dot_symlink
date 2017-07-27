@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-for i in "$HOME/.bash/common/bash_completion.d/*.sh"; do
-  if [ -r $i ]; then
-    . $i
+for i in $HOME/.bash/common/bash_completion.d/*.sh; do
+  if [ -r "$i" ]; then
+    . "$i"
   fi
 done
