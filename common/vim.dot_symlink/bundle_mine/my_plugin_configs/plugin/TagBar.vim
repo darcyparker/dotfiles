@@ -41,6 +41,8 @@ let g:tagbar_type_typescript = {
     \ 'v:varlambdas',
     \ 'm:members',
     \ 'i:interfaces',
+    \ 'I:imports',
+    \ 't:types',
     \ 'e:enums',
   \ ]
 \ }
