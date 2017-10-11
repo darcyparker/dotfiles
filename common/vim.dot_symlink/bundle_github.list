@@ -60,7 +60,7 @@ tabular              master   git://github.com/godlygeek/tabular.git            
 tagbar               master   git://github.com/majutsushi/tagbar.git                  ;https://github.com/majutsushi/tagbar
 tbone                master   git://github.com/tpope/vim-tbone.git                    ;https://github.com/tpope/vim-tbone
 tern_for_vim         master   git://github.com/marijnh/tern_for_vim.git               ;https://github.com/marijnh/tern_for_vim
-tmux                 master   git://github.com/vimez/vim-tmux.git                     ;https://github.com/vimez/vim-tmux
+tmux                 master   git://github.com/ericpruitt/tmux.vim.git                ;https://github.com/ericpruitt/tmux.vim
 toml                 master   git://github.com/cespare/vim-toml.git                   ;https://github.com/cespare/vim-toml
 tsuquyomi            master   git://github.com/Quramy/tsuquyomi.git                   ;https://github.com/Quramy/tsuquyomi.git
 typescript-vim       master   git://github.com/leafgarland/typescript-vim.git         ;https://github.com/leafgarland/typescript-vim
