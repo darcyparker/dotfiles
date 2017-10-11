@@ -75,9 +75,9 @@ unite-neomru         master   git://github.com/Shougo/neomru.vim.git            
 unite-neoyank        master   git://github.com/Shougo/neoyank.vim.git                 ;https://github.com/Shougo/neoyank.vim
 unite-quickfix       master   git://github.com/osyo-manga/unite-quickfix.git          ;https://github.com/osyo-manga/unite-quickfix
 unite-tig            master   git://github.com/Kocha/vim-unite-tig.git                ;https://github.com/Kocha/vim-unite-tig
-vim-go               master   git://github.com/fatih/vim-go.git                       ;https://github.com/fatih/vim-go
 vim-jsbeautify       master   git://github.com/maksimr/vim-jsbeautify.git             ;https://github.com/maksimr/vim-jsbeautify
 vimproc              master   git://github.com/Shougo/vimproc.vim.git                 ;https://github.com/Shougo/vimproc.vim
+vim-go               master   git://github.com/fatih/vim-go.git                       ;https://github.com/fatih/vim-go
 ;*** For tern_for_vim, be sure to install jsctags. See https://github.com/ramitos/jsctags
 ;    npm install -g git://github.com/ramitos/jsctags.git
 ;
