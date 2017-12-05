@@ -1,11 +1,20 @@
 #!/usr/bin/env bash
 pushd . > /dev/null
-sudo apt-get update
-sudo apt-get install -y build-essential cmake
-sudo apt-get install -y python-dev python3-dev
 
-cd ~/.vim/bundle_python_github/youCompleteMe
-./install.py --tern-completer --racer-completer --gocode-completer
+function main {
+  local ENV_NAME
+  ENV_NAME=$(uname -s)
+  if [ "$ENV_NAME" == "linux" ]; then
+    sudo apt-get update
+    sudo apt-get install -y build-essential cmake
+    sudo apt-get install -y python-dev python3-dev
+  fi
+
+  cd ~/.vim/bundle_python_github/youCompleteMe
+  ./install.py --tern-completer --racer-completer --gocode-completer
+}
+
+main
 
 #See https://github.com/Valloric/YouCompleteMe
 # if [ ! -d "$HOME/src/ycm_build" ]; then
