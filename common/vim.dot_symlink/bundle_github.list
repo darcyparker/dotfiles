@@ -19,6 +19,7 @@ editorconfig         master   git://github.com/editorconfig/editorconfig-vim.git
 eunuch               master   git://github.com/tpope/vim-eunuch.git                   ;https://github.com/tpope/vim-eunuch
 fakeclip             master   git://github.com/kana/vim-fakeclip.git                  ;https://github.com/kana/vim-fakeclip
 fugitive             master   git://github.com/tpope/vim-fugitive.git                 ;https://github.com/tpope/vim-fugitive
+rhubarb              master   git://github.com/tpope/vim-rhubarb.git                  ;https://github.com/tpope/vim-rhubarb
 git                  master   git://github.com/tpope/vim-git.git                      ;https://github.com/tpope/vim-git
 gitgutter            master   git://github.com/airblade/vim-gitgutter.git             ;https://github.com/airblade/vim-gitgutter
 haml                 master   git://github.com/tpope/vim-haml.git                     ;https://github.com/tpope/vim-haml
