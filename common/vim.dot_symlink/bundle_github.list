@@ -19,7 +19,6 @@ editorconfig         master   git://github.com/editorconfig/editorconfig-vim.git
 eunuch               master   git://github.com/tpope/vim-eunuch.git                   ;https://github.com/tpope/vim-eunuch
 fakeclip             master   git://github.com/kana/vim-fakeclip.git                  ;https://github.com/kana/vim-fakeclip
 fugitive             master   git://github.com/tpope/vim-fugitive.git                 ;https://github.com/tpope/vim-fugitive
-rhubarb              master   git://github.com/tpope/vim-rhubarb.git                  ;https://github.com/tpope/vim-rhubarb
 git                  master   git://github.com/tpope/vim-git.git                      ;https://github.com/tpope/vim-git
 gitgutter            master   git://github.com/airblade/vim-gitgutter.git             ;https://github.com/airblade/vim-gitgutter
 haml                 master   git://github.com/tpope/vim-haml.git                     ;https://github.com/tpope/vim-haml
@@ -44,6 +43,7 @@ peg                  master   git://github.com/gf3/peg.vim.git                  
 ps1                  master   git://github.com/PProvost/vim-ps1.git                   ;https://github.com/PProvost/vim-ps1
 ragtag               master   git://github.com/tpope/vim-ragtag.git                   ;https://github.com/tpope/vim-ragtag
 repeat               master   git://github.com/tpope/vim-repeat.git                   ;https://github.com/tpope/vim-repeat
+rhubarb              master   git://github.com/tpope/vim-rhubarb.git                  ;https://github.com/tpope/vim-rhubarb
 roy                  master   git://github.com/esehara/Vim-Roy.git                    ;https://github.com/esehara/Vim-Roy
 rust                 master   git://github.com/wting/rust.vim.git                     ;https://github.com/wting/rust.vim
 scratch              master   git://github.com/vim-scripts/scratch.vim.git            ;https://github.com/vim-scripts/scratch.vim
@@ -59,6 +59,7 @@ surround             master   git://github.com/tpope/vim-surround.git           
 syntastic            master   git://github.com/scrooloose/syntastic.git               ;https://github.com/scrooloose/syntastic
 tabular              master   git://github.com/godlygeek/tabular.git                  ;https://github.com/godlygeek/tabular
 tagbar               master   git://github.com/majutsushi/tagbar.git                  ;https://github.com/majutsushi/tagbar
+targets              master   git://github.com/wellle/targets.vim.git                 ;https://github.com/wellle/targets.vim
 tbone                master   git://github.com/tpope/vim-tbone.git                    ;https://github.com/tpope/vim-tbone
 tern_for_vim         master   git://github.com/marijnh/tern_for_vim.git               ;https://github.com/marijnh/tern_for_vim
 tmux                 master   git://github.com/ericpruitt/tmux.vim.git                ;https://github.com/ericpruitt/tmux.vim
@@ -71,13 +72,14 @@ unite                master   git://github.com/Shougo/unite.vim.git             
 unite-help           master   git://github.com/Shougo/unite-help.git                  ;https://github.com/Shougo/unite-help
 unite-history        master   git://github.com/thinca/vim-unite-history.git           ;https://github.com/thinca/vim-unite-history
 unite-mark           master   git://github.com/tacroe/unite-mark.git                  ;https://github.com/tacroe/unite-mark
-unite-outline        master   git://github.com/Shougo/unite-outline.git               ;https://github.com/Shougo/unite-outline
 unite-neomru         master   git://github.com/Shougo/neomru.vim.git                  ;https://github.com/Shougo/neomru.vim
 unite-neoyank        master   git://github.com/Shougo/neoyank.vim.git                 ;https://github.com/Shougo/neoyank.vim
+unite-outline        master   git://github.com/Shougo/unite-outline.git               ;https://github.com/Shougo/unite-outline
 unite-quickfix       master   git://github.com/osyo-manga/unite-quickfix.git          ;https://github.com/osyo-manga/unite-quickfix
 unite-tig            master   git://github.com/Kocha/vim-unite-tig.git                ;https://github.com/Kocha/vim-unite-tig
 vim-jsbeautify       master   git://github.com/maksimr/vim-jsbeautify.git             ;https://github.com/maksimr/vim-jsbeautify
 vimproc              master   git://github.com/Shougo/vimproc.vim.git                 ;https://github.com/Shougo/vimproc.vim
+visual-split         master   git://github.com/wellle/visual-split.vim.git            ;https://github.com/wellle/visual-split.vim
 vim-go               master   git://github.com/fatih/vim-go.git                       ;https://github.com/fatih/vim-go
 ;*** For tern_for_vim, be sure to install jsctags. See https://github.com/ramitos/jsctags
 ;    npm install -g git://github.com/ramitos/jsctags.git
