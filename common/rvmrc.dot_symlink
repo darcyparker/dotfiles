@@ -1,0 +1,2 @@
+# See https://rvm.io/workflow/rvmrc
+rvm_silence_path_mismatch_check_flag=1
