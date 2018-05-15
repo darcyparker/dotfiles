@@ -47,6 +47,12 @@ if has('python') || has('python3')
   endif
   call pathogen#infect('bundle_python_github/{}')
 endif
+if has('ruby')
+  if has('nvim')
+    let g:ruby_host_prog = 'ruby'
+  endif
+  call pathogen#infect('bundle_ruby_github/{}')
+endif
 call pathogen#infect('bundle_mine/{}')
 call pathogen#helptags() "only needs to be run after adding new docs... but it's quick
 

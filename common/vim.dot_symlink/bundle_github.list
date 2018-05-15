@@ -8,7 +8,6 @@
 ;Folder Name         branch   URL to github repo                                      ;Comment (URL to repo's web page)
 ;-----------------------------------------------------------------------------------------------------------------------------------------
 coffee-script        master   git://github.com/kchmck/vim-coffee-script.git           ;https://github.com/kchmck/vim-coffee-script
-coffee-tags          master   git://github.com/lukaszkorecki/CoffeeTags.git           ;https://github.com/lukaszkorecki/CoffeeTags
 commentary           master   git://github.com/tpope/vim-commentary.git               ;https://github.com/tpope/vim-commentary
 confluencewiki       master   git://github.com/vim-scripts/confluencewiki.vim.git     ;https://github.com/vim-scripts/confluencewiki.vim
 css3-syntax          master   git://github.com/hail2u/vim-css3-syntax.git             ;https://github.com/hail2u/vim-css3-syntax
