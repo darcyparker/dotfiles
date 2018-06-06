@@ -3,6 +3,7 @@
 if ! declare -f getTimeStamp &>/dev/null ; then
   if date --version >/dev/null 2>&1 ; then
     #Has GNU Date
+    #shellcheck disable=SC2154
     if [ -n "$_debug" ]; then
       echo Has GNU Date
     fi
