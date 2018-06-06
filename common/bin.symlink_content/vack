@@ -6,4 +6,5 @@
 # will search recursively downwards from the current directory to find
 # shapes.rb, then open it in Vim.
 #
-vim $(ack -g $@)
+# shellcheck disable=SC2046
+vim $(ack -g "$@")
