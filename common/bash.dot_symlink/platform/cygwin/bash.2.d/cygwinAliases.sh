@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 alias ls="ls --color -F"
 
-alias desktop="cd `cygpath $USERPROFILE`/Desktop"
-alias downloads="cd `cygpath $USERPROFILE`/Downloads"
-alias mydocs="cd `cygpath $USERPROFILE`/Documents"
+_cygpathUserProfile="$(cygpath "$USERPROFILE")"
+alias desktop=cd "${_cygpathUserProfile}/Desktop"
+alias downloads=cd "${_cygpathUserProfile}/Downloads"
+alias mydocs=cd "${_cygpathUserProfile}/Documents"
 alias work="cd /cygdrive/d/work"
-alias dropbox="cd `cygpath $USERPROFILE`/Dropbox"
 
 alias open=cygstart
 
@@ -32,8 +32,6 @@ alias 7zip="cygstart /cygdrive/c/Program\ Files/7-Zip/7zFM.exe"
 alias freemind="cygstart /cygdrive/c/Program\ Files\ \(x86\)/FreeMind/Freemind.exe"
 alias windirstat="cygstart /cygdrive/c/Program\ Files\ \(x86\)/WinDirStat/windirstat.exe"
 alias vnc="cygstart /cygdrive/c/Program\ Files\ \(x86\)/TightVNC/vncviewer.exe"
-alias skype="cygstart /cygdrive/c/Program\ Files\ \(x86\)/Skype/Phone/Skype.exe"
-alias yammer="cygstart /cygdrive/c/Program\ Files\ \(x86\)/Yammer/Yammer.exe"
 
 alias ie="cygstart /cygdrive/c/Program\ Files/Internet\ Explorer/iexplore.exe"
 alias chrome="cygstart /cygdrive/d/Users/dparker/AppData/Local/Google/Chrome/Application/chrome.exe"
@@ -43,7 +41,7 @@ alias explore='cyg-wrapper.sh "explorer" --slashed-opt'
 
 #Alternate (may be better...)
 #alias explorer="cygstart -x ."
-alias remotedesktop="cygstart `which mstsc.exe`"
+alias remotedesktop=cygstart "$(which mstsc.exe)"
 
 alias outlook="cygstart /cygdrive/c/ProgramData/Microsoft/Windows/Start\ Menu/Programs/Microsoft\ Office\ 2013/Outlook\ 2013.lnk"
 alias excel="cygstart /cygdrive/c/ProgramData/Microsoft/Windows/Start\ Menu/Programs/Microsoft\ Office\ 2013/Excel\ 2013.lnk"
@@ -53,23 +51,6 @@ alias onenote="cygstart /cygdrive/c/ProgramData/Microsoft/Windows/Start\ Menu/Pr
 alias msaccess="cygstart /cygdrive/c/ProgramData/Microsoft/Windows/Start\ Menu/Programs/Microsoft\ Office\ 2013/Access\ 2013.lnk"
 alias msproject="cygstart /cygdrive/c/Program\ Files\ \(x86\)/Microsoft\ Office/Office14/winproj.exe"
 alias visio="cygstart /cygdrive/c/Program\ Files\ \(x86\)/Microsoft\ Office/Office14/visio.exe"
-alias lync="cygstart /cygdrive/c/ProgramData/Microsoft/Windows/Start\ Menu/Programs/Microsoft\ Office\ 2013/Lync\ 2013.lnk"
-
-alias hipchat="cygstart /cygdrive/c/Program\ Files\ \(x86\)/Atlassian/HipChat/HipChat.exe"
-alias quassel="cygstart /cygdrive/c/Program\ Files\ \(x86\)/Quassel/bin/quassel.exe"
 
 alias mindmap="cygstart /cygdrive/c/Program\ Files\ \(x86\)/Mindjet/MindManager\ 10/MindManager.exe"
 alias vmware="cygstart /cygdrive/c/Program\ Files\ \(x86\)/VMware/VMware\ Workstation/vmware.exe"
-alias beyondcompare="cygstart /cygdrive/c/Program\ Files\ \(x86\)/Beyond\ Compare\ 2/BC2.exe"
-
-alias wf4="cygstart -d /cygdrive/d/ptc/pro_workingdirs/Wildfire_4.0-Workingdir /cygdrive/d/ptc/proeWildfire4.0_M220/bin/proe.exe"
-alias wf5="cygstart -d /cygdrive/d/ptc/pro_workingdirs/Wildfire_5.0-Workingdir /cygdrive/d/ptc/Creo\ Elements/Pro5.0_M140/bin/proe.exe"
-alias creo1p="cygstart -d /cygdrive/d/ptc/pro_workingdirs/Creo_1.0-Workingdir /cygdrive/d/ptc/Creo\ 1.0_m040/Parametric/bin/parametric.exe"
-alias creo1d="cygstart -d /cygdrive/d/ptc/pro_workingdirs/Creo_1.0_Direct_WorkingDir /cygdrive/d/ptc/Creo\ 1.0_m040/Direct/bin/direct.exe"
-alias creo2p="cygstart -d /cygdrive/d/ptc/pro_workingdirs/Creo_2.0-Workingdir /cygdrive/d/ptc/Creo\ 2.0/Parametric/bin/parametric.exe"
-alias creo2d="cygstart -d /cygdrive/d/ptc/pro_workingdirs/Creo_2.0_Direct_WorkingDir /cygdrive/d/ptc/Creo\ 2.0/Direct/bin/direct.exe"
-alias creop="cygstart -d /cygdrive/d/ptc/pro_workingdirs/Creo_2.0-Workingdir /cygdrive/d/ptc/Creo\ 2.0/Parametric/bin/parametric.exe"
-alias creod="cygstart -d /cygdrive/d/ptc/pro_workingdirs/Creo_2.0_Direct_WorkingDir /cygdrive/d/ptc/Creo\ 2.0/Direct/bin/direct.exe"
-alias mathcad15="cygstart /cygdrive/c/Program\ Files\ \(x86\)/Mathcad/Mathcad\ 15/mathcad.exe"
-alias mathcadprime="cygstart /cygdrive/c/Program\ Files\ \(x86\)/Mathcad/Mathcad\ Prime\ 1.0/mathcadprime.exe"
-alias arbortext="cygstart /cygdrive/c/Program\ Files\ \(x86\)/PTC/Arbortext\ Editor/bin/editor.exe"
