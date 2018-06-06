@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-ecstatic . --showDir=true $*
+ecstatic . --showDir=true "$@"
