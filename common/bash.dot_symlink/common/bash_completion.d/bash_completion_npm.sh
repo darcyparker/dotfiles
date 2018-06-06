@@ -1,5 +1,6 @@
-# Created 7/27/2017 with npm v4.6.1 with command:
+# Created 6/6/2018 with npm v5.10.0 with command:
 # `npm completion > ./bash_completion_npm.sh`
+# Then modified to fixed shellcheck errors
 #
 ###-begin-npm-completion-###
 #
@@ -34,23 +35,24 @@ if type complete &>/dev/null; then
 elif type compdef &>/dev/null; then
   _npm_completion() {
     local si=$IFS
-    compadd -- $(COMP_CWORD=$((CURRENT-1)) \
+    compadd -- "$(COMP_CWORD=$((CURRENT-1)) \
                  COMP_LINE=$BUFFER \
                  COMP_POINT=0 \
                  npm completion -- "${words[@]}" \
-                 2>/dev/null)
+                 2>/dev/null)"
     IFS=$si
   }
   compdef _npm_completion npm
 elif type compctl &>/dev/null; then
   _npm_completion () {
     local cword line point words si
-    read -Ac words
-    read -cn cword
+    read -Acr words
+    read -cnr cword
     let cword-=1
-    read -l line
-    read -ln point
+    read -lr line
+    read -lnr point
     si="$IFS"
+    #shellcheck disable=SC2034
     IFS=$'\n' reply=($(COMP_CWORD="$cword" \
                        COMP_LINE="$line" \
                        COMP_POINT="$point" \
