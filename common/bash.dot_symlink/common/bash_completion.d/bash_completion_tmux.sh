@@ -7,6 +7,7 @@ _tmux()
     local cur prev opts
     COMPREPLY=()
     cur="${COMP_WORDS[COMP_CWORD]}"
+    #shellcheck disable=SC2034
     prev="${COMP_WORDS[COMP_CWORD-1]}"
 
     opts=" \
@@ -93,7 +94,7 @@ _tmux()
     unlink-window \
     up-pane"
 
-    COMPREPLY=($(compgen -W "${opts}" -- ${cur}))
+    COMPREPLY=($(compgen -W "${opts}" -- "${cur}"))
     return 0
 
 }
