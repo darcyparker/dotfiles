@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 if [ -z "$EDITOR" ]; then
-  export EDITOR="$(which vim)"
+  EDITOR=$(which vim)
+  export EDITOR
 fi
