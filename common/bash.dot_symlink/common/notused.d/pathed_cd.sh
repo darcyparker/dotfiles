@@ -5,9 +5,9 @@
 # source: http://gist.github.com/132456
 function pathed_cd () {
     if [ "$1" == "" ]; then
-        cd
+        cd || exit
     else
-        cd "$1"
+        cd "$1" || exit
     fi
     pwd > ~/.cdpath
 }
