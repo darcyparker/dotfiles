@@ -16,7 +16,7 @@ local256="$COLORTERM$XTERM_VERSION$ROXTERM_ID$KONSOLE_DBUS_SESSION$VTE_VERSION"
 
 if [ -n "$local256" ] || \
   [ -n "$SEND_256_COLORS_TO_REMOTE" ] || \
-  [ -n "$MSYSCON" -a "$MSYSCON" == "mintty.exe" ]; then
+  [ -n "$MSYSCON" ] && [ "$MSYSCON" == "mintty.exe" ]; then
 
   case "$TERM" in
     'xterm') TERM=xterm-256color;;
@@ -26,6 +26,7 @@ if [ -n "$local256" ] || \
   export TERM
 
   if [ -n "$TERMCAP" ] && [ "$TERM" = "screen-256color" ]; then
+    #shellcheck disable=SC2001
     TERMCAP=$(echo "$TERMCAP" | sed -e 's/Co#8/Co#256/g')
     export TERMCAP
   fi
