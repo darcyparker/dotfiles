@@ -10,16 +10,20 @@ __formatOut(){
       local _basePath=$1; shift
       local _searchString=$1; shift
       local _gitGrep=$*
-      local file_and_line=$(echo "$_gitGrep" | cut -d: -f1,2)
-      local match=$(echo "$_gitGrep" | sed 's/[^:]*:[^:]*:\(.*\)/\1/')
-      local column=$(echo "$match" | awk "{print index(\$0, \"$_searchString\")}")
+      local file_and_line
+      file_and_line=$(echo "$_gitGrep" | cut -d: -f1,2)
+      local match
+      #shellcheck disable=SC2001
+      match=$(echo "$_gitGrep" | sed 's/[^:]*:[^:]*:\(.*\)/\1/')
+      local column
+      column=$(echo "$match" | awk "{print index(\$0, \"$_searchString\")}")
       echo "$_basePath$file_and_line:$column:$match"
 }
 
 __doGitGrep(){
   local _basePath=$1; shift
   local _searchString=$1;
-  git --no-pager grep -n "$@" | while read _gitGrep; do __formatOut "$_basePath" "$_searchString" "$_gitGrep"; done
+  git --no-pager grep -n "$@" | while read -r _gitGrep; do __formatOut "$_basePath" "$_searchString" "$_gitGrep"; done
 }
 
 export -f __formatOut
