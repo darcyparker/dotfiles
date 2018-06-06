@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+#shellcheck disable=SC2154 disable=SC1090
 . "$_utilitiesDir/time_func.sh"
 
 if ! declare -f _debug &>/dev/null ; then
@@ -10,10 +11,14 @@ if ! declare -f _debug &>/dev/null ; then
   }
 
   function _debug() {
-    local _currentTime=$(date +"%H:%M:%S.%3N")
-    local _startms=$(ts_get_msec "$_lastDebugTime")
-    local _endms=$(ts_get_msec "$_currentTime")
-    local _timediff=$((10#$_endms - 10#$_startms))ms
+    local _currentTime
+    local _startms
+    local _endms
+    local _timediff
+    _currentTime=$(date +"%H:%M:%S.%3N")
+    _startms=$(ts_get_msec "$_lastDebugTime")
+    _endms=$(ts_get_msec "$_currentTime")
+    _timediff=$((10#$_endms - 10#$_startms))ms
     if [ -n "$_debug" ]; then
       echo "${_currentTime}:timeDiff=${_timediff}: " "$@"
     fi
