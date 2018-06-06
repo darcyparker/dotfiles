@@ -31,7 +31,7 @@ case "$(uname)" in
   MINGW*)
     #Assumes %JAVA_HOME% was set in Windows
     #Convert $JAVA_HOME to unix-like path
-    JAVA_HOME="$(cd "$JAVA_HOME"; pwd)"
+    JAVA_HOME="$(cd "$JAVA_HOME" || exit; pwd)"
     ;;
 esac
 echo \$JAVA_HOME="$JAVA_HOME"
