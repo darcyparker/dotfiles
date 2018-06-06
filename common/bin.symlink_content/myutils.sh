@@ -2,7 +2,7 @@
 
 # Function:    get_abs_path(relative_path)
 # Description: echos absolute path of relative_path
-get_abs_path() { save="$PWD"; cd $1; echo $PWD; cd $save; }
+get_abs_path() { save="$PWD"; cd "$1" || exit; echo "$PWD"; cd "$save" || exit; }
 
 # usage: relpath from to
 #http://stackoverflow.com/questions/2564634/bash-convert-absolute-path-into-relative-path-given-a-current-directory
@@ -21,7 +21,7 @@ relpath() {
   abssize=${#absolute[@]}
   cursize=${#current[@]}
 
-  while [[ ${absolute[level]} == ${current[level]} ]]
+  while [[ "${absolute[level]}" == "${current[level]}" ]]
   do
       (( level++ ))
       if (( level > abssize || level > cursize ))
