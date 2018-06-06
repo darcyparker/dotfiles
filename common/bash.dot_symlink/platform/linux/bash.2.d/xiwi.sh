@@ -9,7 +9,8 @@ if ! declare -f xiwi &>/dev/null ; then
           xiwiargs="$xiwiargs $1"
           shift
       done
-      local cmd="`alias "$1" 2>/dev/null`"
+      local cmd
+      cmd="$(alias "$1" 2>/dev/null)"
       if [ -z "$cmd" ]; then
           cmd="$1"
       else
