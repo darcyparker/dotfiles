@@ -6,6 +6,9 @@
 "
 " :exec ListMapShaddows()
 
+nnoremap <leader>lm :exec ListMapShaddows()<CR>
+nnoremap <leader>lmv :exec ListMapShaddows_visual()<CR>
+
 function! ListMapShaddows()
      silent! redir @a
      silent! nmap <LEADER>
