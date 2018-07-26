@@ -21,7 +21,7 @@ fugitive             master   git://github.com/tpope/vim-fugitive.git           
 git                  master   git://github.com/tpope/vim-git.git                      ;https://github.com/tpope/vim-git
 gitgutter            master   git://github.com/airblade/vim-gitgutter.git             ;https://github.com/airblade/vim-gitgutter
 haml                 master   git://github.com/tpope/vim-haml.git                     ;https://github.com/tpope/vim-haml
-indent-guides        master   git://github.com/nathanaelkane/vim-indent-guides.git    ;https://github.com/nathanaelkane/vim-indent-guides
+indentLine           master   git://github.com/Yggdroot/indentLine.git                ;https://github.com/Yggdroot/indentLine
 indexedSearch        master   git://github.com/vim-scripts/IndexedSearch.git          ;https://github.com/vim-scripts/IndexedSearch
 jade                 master   git://github.com/vim-scripts/jade.vim.git               ;https://github.com/vim-scripts/jade.vim
 javascript           master   git://github.com/pangloss/vim-javascript.git            ;https://github.com/pangloss/vim-javascript
@@ -85,6 +85,7 @@ vim-go               master   git://github.com/fatih/vim-go.git                 
 ;
 ;===========UNUSED============================================================================================================
 ;
+;indent-guides        master   git://github.com/nathanaelkane/vim-indent-guides.git    ;https://github.com/nathanaelkane/vim-indent-guides
 ;yankring             master   git://github.com/vim-scripts/YankRing.vim.git           ;https://github.com/vim-scripts/YankRing.vim
 ;nerdcommenter        master   git://github.com/scrooloose/nerdcommenter.git           ;https://github.com/scrooloose/nerdcommenter
 ;statline             master   git://github.com/millermedeiros/vim-statline.git        ;https://github.com/millermedeiros/vim-statline
