@@ -19,5 +19,4 @@ set nosmartindent " Smart code auto-indent turned off since autoindent is on
 vnoremap < <gv
 vnoremap > >gv
 
-"let g:indent_guides_start_level = 2
-let g:indent_guides_guide_size = 1
+"Also see my_plugin_configs/plugin/indentGuides.vim
