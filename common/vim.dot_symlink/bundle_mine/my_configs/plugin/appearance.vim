@@ -95,6 +95,9 @@ set showmatch        "show matching bracket briefly
 set matchtime=2      "time to show matching bracket 0.2 seconds
 set matchpairs+=<:>  "add these for html/xml (not a substitute for matchit.vim, but useful)
 
+"don't load matchparen plugin that comes with vim. It throws lots of errors in some cases... (typescript for example)
+let loaded_matchparen = 1
+
 " Show invisible characters
 set list
 
