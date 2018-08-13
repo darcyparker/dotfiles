@@ -26,7 +26,7 @@
 #
 # dot_symlink_content : A folder will be created with dot prefixed and
 #                     : and symbolic links of its content will be made in the folder
-#                     : Target name will have the ".symlink_content" stripped
+#                     : Target name will have the ".dot_symlink_content" stripped
 #                     : The symbolic links will not change the name.
 #                     : Note, this is essentially same as `symlink_content` with a dot
 #                     : prefix added.
