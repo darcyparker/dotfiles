@@ -1,0 +1,9 @@
+# Source tig configurations
+source ~/.tigrc.git-flow
+source ~/.tigrc.vim
+source ~/.tigrc.large
+
+bind generic ? view-help
+
+#Override .tigrc.large setting for show-changes
+set show-changes = yes
