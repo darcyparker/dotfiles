@@ -60,7 +60,6 @@ tabular              master   git://github.com/godlygeek/tabular.git            
 tagbar               master   git://github.com/majutsushi/tagbar.git                  ;https://github.com/majutsushi/tagbar
 targets              master   git://github.com/wellle/targets.vim.git                 ;https://github.com/wellle/targets.vim
 tbone                master   git://github.com/tpope/vim-tbone.git                    ;https://github.com/tpope/vim-tbone
-tern_for_vim         master   git://github.com/marijnh/tern_for_vim.git               ;https://github.com/marijnh/tern_for_vim
 tmux                 master   git://github.com/ericpruitt/tmux.vim.git                ;https://github.com/ericpruitt/tmux.vim
 toml                 master   git://github.com/cespare/vim-toml.git                   ;https://github.com/cespare/vim-toml
 tsuquyomi            master   git://github.com/Quramy/tsuquyomi.git                   ;https://github.com/Quramy/tsuquyomi.git
@@ -98,3 +97,5 @@ vim-go               master   git://github.com/fatih/vim-go.git                 
 ;ctrlp                master   git://github.com/kien/ctrlp.vim.git                     ;https://github.com/kien/ctrlp.vim
 ;;stopped using space after installing unite
 ;space                master   git://github.com/spiiph/vim-space.git                   ;https://github.com/spiiph/vim-space
+;No need for tern anymore. Using typescript services for js
+;tern_for_vim         master   git://github.com/marijnh/tern_for_vim.git               ;https://github.com/marijnh/tern_for_vim
