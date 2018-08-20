@@ -24,3 +24,6 @@ alias df="df -h"
 alias cls="clear"
 alias more="less"
 alias del="rm"
+
+alias ng="npm list -g --depth=0 2>/dev/null"
+alias nl="npm list --depth=0 2>/dev/null"
