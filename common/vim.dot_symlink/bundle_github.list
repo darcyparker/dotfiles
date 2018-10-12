@@ -37,6 +37,7 @@ matchit              master   git://github.com/vim-scripts/matchit.zip.git      
 molokai              master   git://github.com/tomasr/molokai.git                     ;https://github.com/tomasr/molokai
 mustache-handlebars  master   git://github.com/mustache/vim-mustache-handlebars.git   ;https://github.com/mustache/vim-mustache-handlebars
 nerdtree             master   git://github.com/scrooloose/nerdtree.git                ;https://github.com/scrooloose/nerdtree
+nerdtree-git-plugin  master   git://github.com/Xuyuanp/nerdtree-git-plugin.git        ;https://github.com/Xuyuanp/nerdtree-git-plugin
 pathogen             master   git://github.com/tpope/vim-pathogen.git                 ;https://github.com/tpope/vim-pathogen
 peg                  master   git://github.com/gf3/peg.vim.git                        ;https://github.com/gf3/peg.vim
 ps1                  master   git://github.com/PProvost/vim-ps1.git                   ;https://github.com/PProvost/vim-ps1
