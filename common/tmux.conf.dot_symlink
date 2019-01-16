@@ -96,6 +96,8 @@ setw -g status-keys vi
 # from git master branch because `tmux -V` returns "tmux master"... the logic is difficult to maintain
 # and I now always use a current version of tmux... so I eliminated the logic.
 set -g mouse on
+#m toggles mouse on/off and displays state
+bind m set -g mouse \; display "Mouse is #{?#{mouse},on,off}"
 
 setw -g xterm-keys on
 
