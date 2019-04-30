@@ -1,34 +1,32 @@
-#### COLOUR (Solarized dark)
+#### COLOUR (Solarized 256)
 
 # default statusbar colors
-set-option -g status-style bg=black #base02
-set-option -g status-style fg=yellow #yellow
-#set-option -g status-style default
+set-option -g status-style fg=colour136,bg=colour235 #yellow and base02
 
 # default window title colors
-set-window-option -g window-status-style fg=brightblue #base0
-set-window-option -g window-status-style bg=default
+set-window-option -g window-status-style fg=colour244,bg=default #base0 and default
 #set-window-option -g window-status-style dim
 
 # active window title colors
-set-window-option -g window-status-current-style fg=brightred #orange
-set-window-option -g window-status-current-style bg=default
-set-window-option -g window-status-current-style bright
+set-window-option -g window-status-current-style fg=colour166,bg=default #orange and default
+#set-window-option -g window-status-current-style bright
 
 # pane border
-set-option -g pane-border-style fg=black #base02
-set-option -g pane-active-border-style fg=brightgreen #base01
+set-option -g pane-border-style fg=colour235 #base02
+set-option -g pane-active-border-style fg=colour240 #base01
 
 # message text
-set-option -g message-style bg=black #base01
-set-option -g message-style fg=brightred #orange
+set-option -g message-style fg=colour166,bg=colour235 #orange and base02
 
 # pane number display
-set-option -g display-panes-active-colour blue #blue
-set-option -g display-panes-colour brightred #orange
+set-option -g display-panes-active-colour colour33 #blue
+set-option -g display-panes-colour colour166 #orange
 
 # clock
-set-window-option -g clock-mode-colour green #green
+set-window-option -g clock-mode-colour colour64 #green
 
 # bell
-set-window-option -g window-status-bell-style fg=black,bg=red #base02, red
+set-window-option -g window-status-bell-style fg=colour235,bg=colour160 #base02, red
+
+#Switch to solarized light
+bind b source-file ~/.tmux.solarizedlight.conf \; display "Loaded ~/.tmux.solarizedlight"
