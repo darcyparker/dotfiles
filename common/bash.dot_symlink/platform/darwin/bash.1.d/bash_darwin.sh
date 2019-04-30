@@ -53,9 +53,6 @@ alias .w="~/bin/terminal --new-window"
 
 alias gvim="mvim"
 
-export EDITOR="vim"
-export GIT_EDITOR="vim -f"
-
 #Set colors for OS X (BSD)
 export CLICOLOR=1
 export LSCOLORS="CxgxexexFxexexFxFxcxcx"
