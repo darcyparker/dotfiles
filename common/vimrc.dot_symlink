@@ -18,6 +18,11 @@ let g:mapleader = ","
 "g:my_vim_dir is used elsewhere in my vim configurations
 let g:my_vim_dir=expand("$HOME/.vim")
 
+if has('nvim')
+  let g:python_host_prog = '/usr/bin/python'
+  let g:python3_host_prog = '/usr/bin/python3'
+endif
+
 if has("win32") || has("win64") || has("win16")
   "Remove the $HOME/vimfiles folders from the &rtp and replace with $HOME/.vim
   "This way I can use the same $HOME/.vim when using cygwin or windows
@@ -42,9 +47,6 @@ runtime bundle_github/pathogen/autoload/pathogen.vim
 
 call pathogen#infect('bundle_github/{}')
 if has('python') || has('python3')
-  if has('nvim')
-    let g:python_host_prog = 'python'
-  endif
   call pathogen#infect('bundle_python_github/{}')
 endif
 if has('ruby')
