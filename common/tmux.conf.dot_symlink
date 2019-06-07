@@ -11,6 +11,8 @@ unbind C-b
 # tmux use Ctrl-a Ctrl-a
 bind C-a send-prefix
 
+set-option -sa terminal-overrides ',xterm-256color:RGB'
+
 # reduce the delay inbetween tmux commands so that it doesn't interfer with
 # entering vim keystrokes right away after changing tmux panes/windows
 set -sg escape-time 1
