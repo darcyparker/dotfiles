@@ -1,7 +1,3 @@
-if has('python') && !has('win32') && !has('win64') && !has('win16')
-  let g:EditorConfig_core_mode="python_builtin"
-else
-  "Use external python interpreter if vim is NOT compiled with python
-  "or windows
-  let g:EditorConfig_core_mode="python_external"
-endif
+"Note:
+"Don't set g:EditorConfig_core_mode. It used to support values 'python_builtin' and 'python_external'
+"Today only valid option is vim_core and that is default
