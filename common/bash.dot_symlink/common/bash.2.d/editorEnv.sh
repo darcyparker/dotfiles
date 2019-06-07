@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 if [ -z "$EDITOR" ]; then
-  EDITOR=$(which nvim)
-  if [ -z "$EDITOR" ]; then
-    EDITOR=$(which vim)
+  if type nvim &> /dev/null; then
+    EDITOR=nvim
+    alias vim=nvim
   else
-    # shellcheck disable=SC2139
-    alias vim="$EDITOR"
+    EDITOR=vim
   fi
   export EDITOR
 else
-  # shellcheck disable=SC2139
-  alias vim="$EDITOR"
+  if type nvim &> /dev/null; then
+    alias vim=nvim
+  fi
 fi
