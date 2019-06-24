@@ -33,7 +33,7 @@ set -g default-terminal "screen-256color"
 # \ is for when I forget to type shift to get |
 # Not necessarily easier to type though... so may consider another binding
 bind | split-window -h
-bind \ split-window -h
+bind \\ split-window -h
 bind - split-window -v
 
 # bind movements between panes to h,j,k,l
