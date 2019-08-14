@@ -12,7 +12,7 @@ _getActiveWindowID(){
 }
 
 main(){
-  if [ "$(which wmctrl 2> /dev/null)" ]; then
+  if [ -x "$(command -v wmctrl)" ]; then
     #Saves the currently active window's ID to $cachedWindowID
     local _cachedWindowID
     _cachedWindowID=$(_getActiveWindowID)
