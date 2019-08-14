@@ -43,9 +43,9 @@ _searchWithPdfgrep(){
 
 _search(){
   #First try pdfgrep
-  [ "$(which pdfgrep 2> /dev/null)" ] && _searchWithPdfgrep "$@"
+  [ -x "$(command -v pdfgrep)" ] && _searchWithPdfgrep "$@"
   #if there is no pdfgrep, use pdftotext
-  [ "$(which pdftotext 2> /dev/null)" ] && [ "$(which grep 2> /dev/null)" ] && _searchWithPdfToText "$@"
+  [ -x "$(command -v pdftotext)" ] && [ -x "$(command -v grep)" ] && _searchWithPdfToText "$@"
   #if pdfgrep or pdftotext and grep are not available, then show requirements
   _requirements
 }
