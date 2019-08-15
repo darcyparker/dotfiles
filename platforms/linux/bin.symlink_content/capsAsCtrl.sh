@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-# Additional settings for crouton (chromebook) chroot
 if [ -z "$_isNotCroutonEnv" ] && type croutonversion &>/dev/null; then
+  # For crouton (chromebook) chroot
+  # Swap the search key and ctrl key
   if [ -z "$_croutonSwappedCtrl" ]; then
     # Swap Ctrl and Search keys for ChromeOS Crouton chroots
     # Note: This works well with the crouton 'keyboard' target
@@ -16,5 +17,7 @@ if [ -z "$_isNotCroutonEnv" ] && type croutonversion &>/dev/null; then
     export _croutonSwappedCtrl=1
   fi
 else
+  #If not crouton, just make capslock ctrl key
   export _isNotCroutonEnv=1
+  setxkbmap -option ctrl:nocaps
 fi
