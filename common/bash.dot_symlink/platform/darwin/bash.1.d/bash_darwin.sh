@@ -2,18 +2,20 @@
 # Aliases specific to OS X
 
 # which will look for aliases, functions and binaries
-if [[ ! $(declare -F which) ]]; then
-  function which { (alias; declare -f) | gwhich --tty-only --read-alias --read-functions --show-tilde --show-dot $@; }
-  export -f which
-fi
+# if [[ ! $(declare -F which) ]]; then
+#   function which { (alias; declare -f) | gwhich --tty-only --read-alias --read-functions --show-tilde --show-dot $@; }
+#   export -f which
+# fi
 
 #Note: Can't use $(brew --prefix) because brew is not in path yet
 #I know my brew prefix... so I am hard coding it for now
 if [ -f /usr/local/etc/bash_completion ]; then
+  # shellcheck disable=SC1091
   . /usr/local/etc/bash_completion
 fi
 
-if [ -z "$JAVA_HOME" ]; then
+
+if [ -x "$(command -v java)" -a -z "$JAVA_HOME" ]; then
   if [ -x "/usr/libexec/java_home" ]; then
     export JAVA_HOME=$(/usr/libexec/java_home)
   elif [ -d "/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Home" ]; then
@@ -24,19 +26,25 @@ fi
 alias ls="ls -F"
 
 #MS Office Aliases
+# shellcheck disable=SC1117
 alias word="open -a Microsoft\ Word"
+# shellcheck disable=SC1117
 alias excel="open -a Microsoft\ Excel"
+# shellcheck disable=SC1117
 alias ppt="open -a Microsoft\ Powerpoint"
 
 alias xcode="open -a Xcode.app"
 alias itunes="open -a iTunes.app"
 alias facetime="open -a facetime.app"
 
+# shellcheck disable=SC1117
 alias address="open -a Address\ Book"
+# shellcheck disable=SC1117
 alias activity="open -a Activity\ Monitor"
 alias textedit="open -a TextEdit.app"
 
 alias filezilla="open -a Filezilla"
+# shellcheck disable=SC1117
 alias chrome="open -a Google\ Chrome"
 alias firefox="open -a Firefox"
 alias mu="open -a muCommander"
