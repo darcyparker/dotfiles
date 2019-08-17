@@ -33,7 +33,10 @@ set -g default-terminal "screen-256color"
 # \ is for when I forget to type shift to get |
 # Not necessarily easier to type though... so may consider another binding
 bind | split-window -h
-bind \\ split-window -h
+# On newer versions of tmux built from src, \ needs to be escaped like: bind \\ split-window -h
+# On older builds I could use: bind \ split-window -h
+# It works when surrounded by quotes too
+bind '\' split-window -h
 bind - split-window -v
 
 # bind movements between panes to h,j,k,l
