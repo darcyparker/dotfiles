@@ -4,7 +4,10 @@ if [ -z "$_lessEnv" ]; then
   export PAGER="less"
 
   #less default behaviour
-  export LESS="ReMqXi~g"
+  #* -F -X Don't paginate if < 1 page
+  export LESS="-F -X ReMqXi~g"
+
+
   #R Raw color codes in output (don't remove color codes)
   #e exit the second time it reaches end of line
   #M verbose prompt
