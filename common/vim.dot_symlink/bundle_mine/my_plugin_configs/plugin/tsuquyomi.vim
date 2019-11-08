@@ -16,7 +16,12 @@ else
   autocmd FileType typescript nmap <buffer> <Leader>t : <C-u>echo tsuquyomi#hint()<CR>
 endif
 
+"First serach the rood directory (with package.json) then search node_modules for 
+"typescript/bin/tsserver.js
 let g:tsuquyomi_use_local_typescript = 1
+"Then use global installed tsserver command
+let g:tsuquyomi_use_dev_node_module = 0
+
 let g:tsuquyomi_disable_quickfix = 1 "Using syntastic instead
 
 let g:tsuquyomi_single_quote_import = 1
