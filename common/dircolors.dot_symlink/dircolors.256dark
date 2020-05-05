@@ -10,6 +10,7 @@
 
 # Term Section
 TERM Eterm
+TERM alacritty
 TERM ansi
 TERM color-xterm
 TERM con132x25
@@ -26,6 +27,8 @@ TERM cons25
 TERM console
 TERM cygwin
 TERM dtterm
+TERM dvtm
+TERM dvtm-256color
 TERM eterm-color
 TERM fbterm
 TERM gnome
@@ -56,17 +59,22 @@ TERM screen-256color
 TERM screen-256color-bce
 TERM screen-256color-s
 TERM screen-256color-bce-s
+TERM screen-256color-italic
 TERM screen-bce
 TERM screen-w
 TERM screen.linux
+TERM screen.xterm-256color
 TERM st
 TERM st-meta
 TERM st-256color
 TERM st-meta-256color
+TERM tmux
+TERM tmux-256color
 TERM vt100
 TERM xterm
 TERM xterm-16color
 TERM xterm-256color
+TERM xterm-256color-italic
 TERM xterm-88color
 TERM xterm-color
 TERM xterm-debian
@@ -166,6 +174,7 @@ EXEC 00;38;5;64
 .tif    00;38;5;136
 .tiff   00;38;5;136
 .png    00;38;5;136
+.PNG    00;38;5;136
 .svg    00;38;5;136
 .svgz   00;38;5;136
 .mng    00;38;5;136
@@ -179,6 +188,8 @@ EXEC 00;38;5;64
 .eps    00;38;5;136
 .CR2    00;38;5;136
 .ico    00;38;5;136
+.nef    00;38;5;136 # Nikon RAW format
+.NEF    00;38;5;136
 
 # Files of special interest (base1)
 .tex             00;38;5;245
@@ -191,6 +202,7 @@ EXEC 00;38;5;64
 .xml             00;38;5;245
 *Makefile        00;38;5;245
 *Rakefile        00;38;5;245
+*Dockerfile      00;38;5;245
 *build.xml       00;38;5;245
 *rc              00;38;5;245
 *1               00;38;5;245
@@ -204,10 +216,17 @@ EXEC 00;38;5;64
 .yml             00;38;5;245
 .cfg             00;38;5;245
 .conf            00;38;5;245
+.h               00;38;5;245
+.hpp             00;38;5;245
 .c               00;38;5;245
 .cpp             00;38;5;245
+.cxx             00;38;5;245
 .cc              00;38;5;245
+.objc            00;38;5;245
 .sqlite          00;38;5;245
+.go              00;38;5;245
+.sql             00;38;5;245
+.csv             00;38;5;245
 
 # "unimportant" files as logs and backups (base01)
 .log        00;38;5;240
@@ -242,6 +261,7 @@ EXEC 00;38;5;64
 .mp3    00;38;5;166
 .mpc    00;38;5;166
 .ogg    00;38;5;166
+.opus   00;38;5;166
 .ra     00;38;5;166
 .wav    00;38;5;166
 .m4a    00;38;5;166
@@ -253,6 +273,7 @@ EXEC 00;38;5;64
 
 # Video formats (as audio + bold)
 .mov    00;38;5;166
+.MOV    00;38;5;166
 .mpg    00;38;5;166
 .mpeg   00;38;5;166
 .m2v    00;38;5;166
