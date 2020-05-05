@@ -5,8 +5,11 @@
 # Check that we haven't already been sourced.
 [ -z "$BASHRC_LOADED" ] || return
 
+set -o vi
+
 function _source_dir {
-  local i _dir="$1" _pattern
+  local i
+  local _pattern
 
   if [ -z "$2" ]; then
     _pattern="*.sh"
@@ -14,13 +17,14 @@ function _source_dir {
     _pattern="$2"
   fi
 
-  if [ -d "$_dir" ]; then
-    for i in $_dir/$_pattern; do
+  if [ -d "$1" ]; then
+    for i in $1/$_pattern; do
       if [ -d "$i" ]; then
         _source_dir "$i"
       elif [ -r "$i" ]; then
         ##_debug is slow - even if it is off, so commenting out when not used
         #_debug "Sourcing \"$i\""
+        # shellcheck source=/dev/null
         . "$i"
       fi
     done
@@ -28,27 +32,29 @@ function _source_dir {
 }
 
 function main {
-  local _utilitiesDir="$HOME/.bash/common/utilities"
-
   #local _debug=1
-  #. $_utilitiesDir/debug_func.sh
+  #. $HOME/.bash/common/utilities/debug_func.sh
   #_debugInitTime
   #_debug "Loading \"~/.bashrc\""
 
-  #lowercase `uname -s` and remove trailing chars starting with "_"
-  ENV_NAME=$(uname -s | sed -e 's/\([^_]*\)_\?.*/\L\1/')
-
-  #_source_dir "/etc/profile.d"
   _source_dir "$HOME/.bash/common" "bash.*.d"
-  _source_dir "$HOME/.bash/platform/$ENV_NAME" "bash.*.d"
+
+  #For each applicable platform, _source_dir
+  for i in "$HOME/.bash/platforms"/*; do
+    if [ -d "$i" ] && [ -x "$i/isPlatform.sh" ] && "$i/isPlatform.sh"; then
+      _source_dir "$i" "bash.*.d"
+    fi
+  done
 
   #_debug "Finished"
 
-  if [ -z "$TMUX" -a "$TERM" = "xterm-256color"  ]; then
+  if [ -x "$(command -v tmux)" ] && [ -z "$TMUX" ] && [ "$TERM" == "xterm-256color" ]; then
     tmux new
   fi
 }
 
 main
+unset -f main
+unset -f _source_dir
 
 BASHRC_LOADED=1
