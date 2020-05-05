@@ -1,0 +1,1 @@
+../../msys/bash.2.d/dirColors.sh

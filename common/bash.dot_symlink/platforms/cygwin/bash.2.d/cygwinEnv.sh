@@ -4,5 +4,4 @@ if [ -z "$_cygwinEnv" ]; then
   #See http://www.cygwin.com/cygwin-ug-net/using-cygwinenv.html
   # Note: Not using obsolete options
   export CYGWIN="nodosfilewarning"
-  unset PYTHONHOME
 fi

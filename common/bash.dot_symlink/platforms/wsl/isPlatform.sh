@@ -1,0 +1,1 @@
+../../../../platforms/wsl/isPlatform.sh
