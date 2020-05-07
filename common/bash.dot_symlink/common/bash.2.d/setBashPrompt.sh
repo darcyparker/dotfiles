@@ -37,23 +37,27 @@ if [ -z "$savePS1" ]; then
   export GIT_PS1_DESCRIBE_STYLE="branch"
   export GIT_PS1_SHOWUPSTREAM="auto git verbose"
 
+  # shellcheck disable=1117
   PS1="$(tput setaf 2)\#$(tput sgr0) $(tput setaf 7)\u$(tput setaf 1)@$(tput setaf 7)\h$(tput sgr0):$(tput setaf 6)\w$(tput setaf 3)"
 
   #Start of PS1
   if type git &> /dev/null; then
     if ! declare -f __git_ps1 &>/dev/null ; then
-      . "$_utilitiesDir/git-prompt.sh"
-      export -f __gitdir
-      export -f __git_ps1_show_upstream
-      export -f __git_ps1
+      if [ -e "$HOME/.bash/common/utilities/git-prompt.sh" ]; then
+        # shellcheck disable=1090
+        . "$HOME/.bash/common/utilities/git-prompt.sh"
+      fi
     fi
-    #Note: For some reason on mingw64 and mingw32, git-prompt.sh function `__git_ps1`
-    #      only works if it is called with `__git_ps1`.
-    #      $(__git_ps1) does not work.
-    PS1=$PS1'`__git_ps1`'" "
+    if declare -f __git_ps1 &>/dev/null ; then
+      #Note: For some reason on mingw64 and mingw32, git-prompt.sh function `__git_ps1`
+      #      only works if it is called with `__git_ps1`.
+      #      $(__git_ps1) does not work.
+      PS1=$PS1'`__git_ps1`'" "
+    fi
   fi
   #Add end of PS1 and export
-  export PS1=$PS1$(tput sgr0)'\n\$ '
+  PS1=$PS1$(tput sgr0)'\n\$ '
+  export PS1
   export savePS1=$PS1
 else
   #For some reason on cygwin, $PS1 gets overwritten because
