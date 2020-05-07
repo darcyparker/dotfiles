@@ -6,6 +6,8 @@
   editor = $EDITOR
   autocrlf = false
   quotepath = off
+  ;symlinks support for windows: https://github.com/git-for-windows/git/wiki/Symbolic-Links
+  symlinks = true
 [color]
   branch = auto
   diff = auto
