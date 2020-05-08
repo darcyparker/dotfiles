@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-#shellcheck disable=SC2154 disable=SC1090
-. "$_utilitiesDir/time_func.sh"
+#shellcheck disable=SC2154 disable=SC1091
+source "./time_func.sh"
 
 if ! declare -f _debug &>/dev/null ; then
   function _debugInitTime() {
