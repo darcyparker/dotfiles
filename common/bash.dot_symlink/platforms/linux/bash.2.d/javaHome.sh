@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-if [ -x "$(command -v java)" -a -z "$JAVA_HOME" ]; then
+if [ -x "$(command -v java)" ] && [ -z "$JAVA_HOME" ]; then
   #Not: this assumes gnu readlink (darwin and perhaps others use BSD
   #readlink where -f has different meaning)
   #Sometimes java is pointing to JRE inside a JDK
