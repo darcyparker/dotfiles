@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Open files without having to specify their path.
+# Example: `vimFind isPlatform.sh`
+# will search recursively downwards from the current directory to find
+# isPlatform.sh, then open the results in vim in separate tabs
+
+# files read into array because they may have spaces
+readarray -t _toOpen <<< "$(ag -g "$@")"
+vim -p "${_toOpen[@]}"
