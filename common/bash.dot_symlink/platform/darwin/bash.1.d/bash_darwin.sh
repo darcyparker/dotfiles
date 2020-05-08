@@ -15,9 +15,10 @@ if [ -f /usr/local/etc/bash_completion ]; then
 fi
 
 
-if [ -x "$(command -v java)" -a -z "$JAVA_HOME" ]; then
+if [ -x "$(command -v java)" ] && [ -z "$JAVA_HOME" ]; then
   if [ -x "/usr/libexec/java_home" ]; then
-    export JAVA_HOME=$(/usr/libexec/java_home)
+    JAVA_HOME="$(/usr/libexec/java_home)"
+    export JAVA_HOME
   elif [ -d "/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Home" ]; then
     export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Home
   fi
