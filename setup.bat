@@ -20,6 +20,21 @@ if NOT EXIST "%HOME%\.vim" (
 )
 echo.
 
+if NOT EXIST "%HOME%\.config" (
+  echo Creating "%HOME%\.config"
+  mkdir "%HOME%\.config"
+)
+
+echo Linking common\config.dot_symlink_content\nvim folder to %HOME%\.config\nvim
+if NOT EXIST "%HOME%\.config\nvim" (
+  mklink /D "%HOME%\.config\nvim" "%~dp0\common\config.dot_symlink_content\nvim"
+) else (
+  echo   No link created. "%HOME%\.config\nvim" already exists.
+  echo   If you want to replace the link, manually remove this folder
+  echo   and re-run setup.bat to create the link.
+)
+echo.
+
 echo Linking common\vimrc.dot_symlink to "%HOME%\_vimrc"
 if NOT EXIST "%HOME%\_vimrc" (
   ::creates a hard link so that it can be edited from either location
