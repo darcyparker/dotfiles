@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+#unzips files into separate dirs (where dir name is base name of zip file)
+for i in *.zip; do unzip "$i" -d "${i%%.zip}"; done
