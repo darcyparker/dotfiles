@@ -66,19 +66,19 @@ bind -r L resize-pane -R 5
 #  p to paste text from buffer
 #  Escape to exit copy mode
 #  use vi movements when working inside the tmux buffer
-#  See <prefix>-:list-keys -t vi-copy
+#  See <prefix>-:list-keys -t copy-mode-vi
 unbind [
 bind Escape copy-mode
 unbind p
 bind p paste-buffer
 #By default use vi keys is copy and choice modes
 setw -g mode-keys vi
-# #These are defined in vi-copy and vi-choice table respectively
-# bind -t vi-copy 'v' begin-selection
-# bind -t vi-copy 'V' select-line
-# bind -t vi-copy 'y' copy-selection
-# bind -t vi-copy 'C-v' rectangle-toggle
-# bind -t vi-copy Escape cancel
+# #These are defined in copy-mode-vi and vi-choice table respectively
+# bind -t copy-mode-vi 'v' begin-selection
+# bind -t copy-mode-vi 'V' select-line
+# bind -t copy-mode-vi 'y' copy-selection
+# bind -t copy-mode-vi 'C-v' rectangle-toggle
+# bind -t copy-mode-vi Escape cancel
 
 # New: https://github.com/tmux/tmux/issues/754
 bind-key -T edit-mode-vi Up send-keys -X history-up
@@ -137,5 +137,5 @@ set -g visual-activity on
 set -g status-justify centre
 
 #Finally source settings specific to platform
-source ~/.tmux.platform.conf
-source ~/.tmux.solarizeddark.conf
+source-file ~/.tmux.platform.conf
+source-file ~/.tmux.solarizeddark.conf
