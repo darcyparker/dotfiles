@@ -28,6 +28,14 @@
 # - rev : Turn on reverse mode
 # - smso : Enter standout mode (bold on rxvt)
 # - rmso : Exit standout mode
+if ! declare -f __git_ps1 &>/dev/null ; then
+  if [ -e "/usr/share/git/completion/git-prompt.sh" ]; then
+    . "/usr/share/git/completion/git-prompt.sh"
+  elif [ -e "$HOME/.bash/common/utilities/git-prompt.sh" ]; then
+    # shellcheck disable=1090
+    . "$HOME/.bash/common/utilities/git-prompt.sh"
+  fi
+fi
 
 if [ -z "$savePS1" ]; then
   export GIT_PS1_SHOWDIRTYSTATE=1
@@ -42,12 +50,6 @@ if [ -z "$savePS1" ]; then
 
   #Start of PS1
   if type git &> /dev/null; then
-    if ! declare -f __git_ps1 &>/dev/null ; then
-      if [ -e "$HOME/.bash/common/utilities/git-prompt.sh" ]; then
-        # shellcheck disable=1090
-        . "$HOME/.bash/common/utilities/git-prompt.sh"
-      fi
-    fi
     if declare -f __git_ps1 &>/dev/null ; then
       #Note: For some reason on mingw64 and mingw32, git-prompt.sh function `__git_ps1`
       #      only works if it is called with `__git_ps1`.
