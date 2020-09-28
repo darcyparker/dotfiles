@@ -10,12 +10,16 @@ let g:syntastic_warning_symbol='⚠'
 " eslintLocal.sh runs eslint in local node_modules and falls back to global install otherwise
 let g:syntastic_javascript_eslint_exec = 'eslintLocal.sh'
 let g:syntastic_javascript_eslint_args=['--cache'] "only check changed files
+" let g:syntastic_javascript_checkers=['xo', 'eslint']
+" let g:syntastic_javascript_checkers=['xo']
 let g:syntastic_javascript_checkers=['eslint']
 
 " eslintLocal.sh runs eslint in local node_modules and falls back to global install otherwise
 let g:syntastic_typescript_eslint_exec = 'eslintLocal.sh'
 let g:syntastic_typescript_eslint_args=['--cache'] "only check changed files
 let g:syntastic_typescript_checkers = ["tsuquyomi","eslint"] " You shouldn't use 'tsc' checker.
+" let g:syntastic_typescript_checkers = ["tsuquyomi", "xo", "eslint"] " You shouldn't use 'tsc' checker.
+" let g:syntastic_typescript_checkers = ["tsuquyomi", "xo"] " You shouldn't use 'tsc' checker.
 
 " sassLocal.sh runs node-sass (a wrapper of sassc) in local node_modules and falls back to 
 " global install otherwise.
