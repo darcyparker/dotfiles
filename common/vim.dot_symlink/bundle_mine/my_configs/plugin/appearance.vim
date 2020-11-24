@@ -69,6 +69,21 @@ endif
 
 set number           " Show line numbers
 
+" Cycle through relativenumber + number, number (only), and no numbering.
+function! s:cycle_numbering() abort
+  if exists('+relativenumber')
+    execute {
+          \ '00': 'set relativenumber   | set number',
+          \ '01': 'set norelativenumber | set number',
+          \ '10': 'set norelativenumber | set nonumber',
+          \ '11': 'set norelativenumber | set number' }[&number . &relativenumber]
+  else
+    " No relative numbering, just toggle numbers on and off.
+    set number!
+  endif
+endfunction
+nnoremap <silent> <leader>n  :call <SID>cycle_numbering()<CR>
+
 "Set relative number if exists
 "Instead of testing `if version >= 704`, test if option is available
 " if exists("&relativenumber")
@@ -105,10 +120,17 @@ set list
 noremap <leader>l :set list!<CR>
 
 "reset screen
-"See http://stackoverflow.com/questions/19236090/bash-shell-turns-to-symbols-when-using-vim-ack-plugin
-"noremap <silent> <leader>r :!echo -e '\ec\e(K\e[J'<CR><CR>
+"- resync syntax coloring from start
+"- redraw
+"- In future, may wish to send ANSI escape sequences to reset the terminal
+"  noremap <silent> <leader>r :!echo -e '\ec\e(K\e[J'<CR><CR>
+"  * ANSI escape sequences to reset the terminal
+"    # "ESC c"   - sends reset to the terminal.
+"    # "ESC ( K" - reloads the screen output mapping table.
+"    # "ESC [ J" - erases display.
+"  * See http://stackoverflow.com/questions/19236090/bash-shell-turns-to-symbols-when-using-vim-ack-plugin
 set nolazyredraw
-noremap <silent> <leader>r :redraw!<CR>
+noremap <silent> <leader>r :syntax sync fromstart<CR>:redraw!<CR>
 
 "See http://vim.wikia.com/wiki/Highlight_unwanted_spaces
 "highlight ExtraWhitespace ctermbg=red guibg=red
