@@ -7,6 +7,15 @@ nnoremap <C-left> <C-W>h
 nnoremap <C-down> <C-W>j
 nnoremap <C-up> <C-W>k
 nnoremap <C-right> <C-W>l
+"Same mappings to move around windows (but for visual mode)
+xnoremap <C-h> <C-W>h
+xnoremap <C-j> <C-W>j
+xnoremap <C-k> <C-W>k
+xnoremap <C-l> <C-W>l
+xnoremap <C-left> <C-W>h
+xnoremap <C-down> <C-W>j
+xnoremap <C-up> <C-W>k
+xnoremap <C-right> <C-W>l
 
 "Splits
 "http://technotales.wordpress.com/2010/04/29/vim-splits-a-guide-to-doing-exactly-what-you-want/
