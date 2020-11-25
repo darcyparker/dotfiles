@@ -1,0 +1,3 @@
+#!/bin/sh
+echo "Init/update submodules"
+git submodule update --init --recursive

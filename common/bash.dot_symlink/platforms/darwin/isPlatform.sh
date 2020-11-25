@@ -1,1 +1,0 @@
-../../../../platforms/darwin/isPlatform.sh

@@ -1,0 +1,15 @@
+local cmd = vim.cmd  -- to execute Vim commands e.g. cmd('pwd')
+local fn = vim.fn    -- to call Vim functions e.g. fn.bufnr()
+local g = vim.g      -- a table to access global variables
+
+-- require('general.config')
+-- require('utils.packer')
+-- require('utils.betterment')
+-- require('general.keymap')
+-- require('general.theme')
+-- require('general.line')
+-- require('utils.lsp')
+-- require('utils.compe')
+-- require('utils.lspextra')
+-- require('utils.telescope')
+-- require('utils.formatter')

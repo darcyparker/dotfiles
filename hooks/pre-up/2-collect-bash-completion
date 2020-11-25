@@ -1,0 +1,10 @@
+#!/bin/sh
+echo "Getting npm's bash completion"
+npm completion > ../../bash/bash_completion.d/npm.sh
+
+#Commented because of #https://github.com/jonas/tig/issues/1011#issuecomment-736922515
+# echo "Get tig completion"
+# curl https://raw.githubusercontent.com/jonas/tig/master/contrib/tig-completion.bash > ../../bash/bash_completion.d/tig-completion.bash
+
+echo "Get lpass completion"
+curl https://raw.githubusercontent.com/lastpass/lastpass-cli/master/contrib/lpass_bash_completion > ../../bash/bash_completion.d/lpass.sh

@@ -1,0 +1,24 @@
+#!/bin/sh
+
+set -e
+
+if ! type rcup >/dev/null 2>&1; then
+  echo "Error: rcm is not installed (See readme.md and https://github.com/thoughtbot/rcm)"
+  exit 1
+fi
+
+# update rc files and include rc files tagged for `uname` environment
+case "$(uname -s)" in
+  Linux)
+    RCRC=rcrc rcup -t Linux -v
+    ;;
+  Darwin)
+    RCRC=rcrc rcup -t Darwin -v
+    ;;
+  *MSYS* | *MINGW*)
+    RCRC=rcrc rcup -t MSYS -v
+    ;;
+  *CYGWIN*)
+    RCRC=rcrc rcup -t Cygwin -v
+    ;;
+esac
