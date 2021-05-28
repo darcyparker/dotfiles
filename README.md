@@ -9,8 +9,8 @@
 ## Setup/Install
 
 ```bash
-git submodule update --init --recursive
 ./setup
+~/.config/nvim/setup.sh
 ```
 
 ## Additional notes for Windows 10

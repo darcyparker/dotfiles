@@ -1,5 +1,6 @@
-# Add gitignore rules with:  git config --global core.excludesfile ~/.gitignore_global
-
+*.log
+*.pdf
+neovim/.config/nvim/pack
 powerline-fonts
 .netrwhist
 
@@ -13,10 +14,6 @@ powerline-fonts
 *.rar
 *.tar
 *.zip
-
-# Logs #
-######################
-*.log
 
 # OS generated files #
 ######################

@@ -9,10 +9,6 @@
 "   - When cygwin is not used, I set %HOME%=%USERPROFILE%
 "   - When cygwin is used, I set %HOME%=PATH_TO_CYGWIN_USER_HOME
 
-if v:progname == 'vi'
-  set noloadplugins
-endif
-
 set nocompatible "be iMproved
 
 " Define the leader key early
@@ -21,11 +17,6 @@ let g:mapleader = ","
 
 "g:my_vim_dir is used elsewhere in my vim configurations
 let g:my_vim_dir=expand("$HOME/.vim")
-
-" if has('nvim')
-"   let g:python_host_prog = '/usr/bin/python'
-"   let g:python3_host_prog = '/usr/bin/python3'
-" endif
 
 if has("win32") || has("win64") || has("win16")
   "Remove the $HOME/vimfiles folders from the &rtp and replace with $HOME/.vim
@@ -46,21 +37,24 @@ if has("win32") || has("win64") || has("win16")
   endif
 endif
 
-" Load pathogen
-runtime bundle_github/pathogen/autoload/pathogen.vim
-
-call pathogen#infect('bundle_github/{}')
-if has('python') || has('python3')
-  call pathogen#infect('bundle_python_github/{}')
-endif
-if has('ruby')
-  if has('nvim')
-    let g:ruby_host_prog = 'ruby'
+if &loadplugins
+  if !has('packages')
+    " Load pathogen
+    source $HOME/.vim/pack/bundle/opt/vim-pathogen/autoload/pathogen.vim
+    call pathogen#infect('pack/bundle/opt/{}')
+    if has('python') || has('python3')
+      call pathogen#infect('pack/bundle_python_github/opt/{}')
+    endif
+    if has('ruby')
+      if has('nvim')
+        let g:ruby_host_prog = 'ruby'
+      endif
+      call pathogen#infect('pack/bundle_ruby_github/opt/{}')
+    endif
+    call pathogen#infect('bundle_mine/{}')
+    call pathogen#helptags() "only needs to be run after adding new docs... but it's quick
   endif
-  call pathogen#infect('bundle_ruby_github/{}')
 endif
-call pathogen#infect('bundle_mine/{}')
-call pathogen#helptags() "only needs to be run after adding new docs... but it's quick
 
 syntax on
 filetype plugin indent on
