@@ -46,7 +46,7 @@ endif
 runtime bundle_github/pathogen/autoload/pathogen.vim
 
 call pathogen#infect('bundle_github/{}')
-if has('python') || has('python3')
+if has('python3')
   call pathogen#infect('bundle_python_github/{}')
 endif
 if has('ruby')
