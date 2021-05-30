@@ -20,7 +20,7 @@ g.mapleader = ','
 local disabled_built_ins = {
   'gzip', 'man', 'matchit', 'matchparen', 'shada_plugin', 'tarPlugin', 'tar', 'zipPlugin', 'zip', 'netrwPlugin'
 }
-for _,value in pairs(disabled_built_ins) do g['loaded_' .. value] = 1 end
+for _,plugin in ipairs(disabled_built_ins) do g['loaded_' .. plugin] = 1 end
 
 require('darcy.plugins')
 require('darcy.config')
