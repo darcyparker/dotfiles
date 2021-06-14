@@ -7,7 +7,8 @@ if [ -s "$HOME/.rvm/scripts/rvm" ]; then
 
     # Load RVM into a shell session *as a function*
     # shellcheck disable=SC1090
-    source "$HOME/.rvm/scripts/rvm"
+    source "$HOME/.rvm/scripts/rvm" > /dev/null 2>&1
+    rvm use default > /dev/null 2>&1
   fi
 fi
 
