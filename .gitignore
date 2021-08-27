@@ -1,14 +1,10 @@
-# Add gitignore rules with:  git config --global core.excludesfile ~/.gitignore_global
-
-TAGS
-tags
-tags-ja
-powerline-fonts
+*.log
+*.pdf
+config/nvim/plugin/packer_compiled.lua
+.netrwhist
 
 # Packages #
 ############
-# it's better to unpack these files and commit the raw source
-# git has its own built in compression methods
 *.7z
 *.dmg
 *.gz
@@ -17,10 +13,6 @@ powerline-fonts
 *.rar
 *.tar
 *.zip
-
-# Logs #
-######################
-*.log
 
 # OS generated files #
 ######################

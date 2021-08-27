@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+#This file (~/.bash_completion) is typically sourced by
+# `/usr/share/bash-completion/bash_completion` or indirectly via
+# `/etc/bash_completion` or `/etc/profile.d/bash_completion`
+#* See https://github.com/scop/bash-completion/blob/master/bash_completion
+# This file is eagerly loaded (before other `completions` are loaded).  Many
+# completions are loaded dynamically on demand.
+
+for i in "$HOME/.bash/bash_completion.d"/*.{sh,bash}; do
+  if [ "${BASH_SOURCE[0]}" != "$i" ] && [ -f "$i" ] && [ -r "$i" ]; then
+    #echo "source $i"
+    #shellcheck disable=SC1090
+    . "$i"
+  fi
+done

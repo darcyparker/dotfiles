@@ -1,0 +1,1 @@
+../submodules/set_jdk_JAVA_HOME/set_jdk_JAVA_HOME.sh

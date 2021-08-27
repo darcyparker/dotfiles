@@ -1,1 +1,0 @@
-../vimrc.dot_symlink

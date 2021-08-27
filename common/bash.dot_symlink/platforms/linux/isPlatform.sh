@@ -1,1 +1,0 @@
-../../../../platforms/linux/isPlatform.sh

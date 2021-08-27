@@ -1,0 +1,128 @@
+#!/bin/sh
+
+set -e
+
+_pwd=$(pwd) #this is not bash: pushd . &> /dev/null || exit 1
+
+git submodule update --init --recursive
+
+if ! type rcup >/dev/null 2>&1; then
+  cd "$(dirname $0)/submodules/rcm" #this is not bash: pushd . &> /dev/null || exit 1
+  ./autogen.sh && ./configure --prefix=/usr/local && make && make install
+  cd $_pwd #this is not bash: popd &> /dev/null || exit 1
+  if ! type rcup >/dev/null 2>&1; then
+    echo "Error: rcm is not installed (See readme.md and https://github.com/thoughtbot/rcm)"
+    exit 1
+  fi
+fi
+
+# update rc files and include rc files tagged for `uname` environment
+case "$(uname -s)" in
+  Linux)
+    echo Updating rc files for Linux
+    RCRC=rcrc rcup -t Linux -v
+    ;;
+  Darwin)
+    echo Updating rc files for MacOS
+    RCRC=rcrc rcup -t Darwin -v
+    ;;
+  *MSYS* | *MINGW*)
+    echo Updating rc files for MSYS/MingGW
+    RCRC=rcrc rcup -t MSYS -v
+    ;;
+  *CYGWIN*)
+    echo Updating rc files for Cygwin
+    RCRC=rcrc rcup -t Cygwin -v
+    ;;
+esac
+
+echo
+echo "Downloading fonts"
+mkdir -p "$HOME/.local/share/fonts"
+cd "$HOME/.local/share/fonts"
+
+echo "Downloading Roboto Mono fonts"
+curl -fLo \
+  "Roboto Mono Bold Italic Nerd Font Complete Mono.ttf" \
+  "https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/RobotoMono/Bold-Italic/complete/Roboto%20Mono%20Bold%20Italic%20Nerd%20Font%20Complete%20Mono.ttf?raw=true";
+curl -fLo \
+  "Roboto Mono Bold Nerd Font Complete Mono.ttf" \
+  "https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/RobotoMono/Bold/complete/Roboto%20Mono%20Bold%20Nerd%20Font%20Complete%20Mono.ttf?raw=true";
+curl -fLo \
+  "Roboto Mono Italic Nerd Font Complete Mono.ttf" \
+  "https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/RobotoMono/Italic/complete/Roboto%20Mono%20Italic%20Nerd%20Font%20Complete%20Mono.ttf?raw=true";
+curl -fLo \
+  "Roboto Mono Light Italic Nerd Font Complete Mono.ttf" \
+  "https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/RobotoMono/Light-Italic/complete/Roboto%20Mono%20Light%20Italic%20Nerd%20Font%20Complete%20Mono.ttf?raw=true";
+curl -fLo \
+  "Roboto Mono Light Nerd Font Complete Mono.ttf" \
+  "https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/RobotoMono/Light/complete/Roboto%20Mono%20Light%20Nerd%20Font%20Complete%20Mono.ttf?raw=true";
+curl -fLo \
+  "Roboto Mono Medium Italic Nerd Font Complete Mono.ttf" \
+  "https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/RobotoMono/Medium-Italic/complete/Roboto%20Mono%20Medium%20Italic%20Nerd%20Font%20Complete%20Mono.ttf?raw=true";
+curl -fLo \
+  "Roboto Mono Medium Nerd Font Complete Mono.ttf" \
+  "https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/RobotoMono/Medium/complete/Roboto%20Mono%20Medium%20Nerd%20Font%20Complete%20Mono.ttf?raw=true";
+curl -fLo \
+  "Roboto Mono Nerd Font Complete Mono.ttf" \
+  "https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/RobotoMono/Regular/complete/Roboto%20Mono%20Nerd%20Font%20Complete%20Mono.ttf?raw=true";
+curl -fLo \
+  "Roboto Mono Thin Italic Nerd Font Complete Mono.ttf" \
+  "https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/RobotoMono/Thin-Italic/complete/Roboto%20Mono%20Thin%20Italic%20Nerd%20Font%20Complete%20Mono.ttf?raw=true";
+curl -fLo \
+  "Roboto Mono Thin Nerd Font Complete Mono.ttf" \
+  "https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/RobotoMono/Thin/complete/Roboto%20Mono%20Thin%20Nerd%20Font%20Complete%20Mono.ttf?raw=true";
+
+echo "Downloading DejaVu Sans Mono fonts"
+curl -fLo \
+  "DejaVu Sans Mono Bold Oblique Nerd Font Complete Mono.ttf" \
+  "https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/DejaVuSansMono/Bold-Italic/complete/DejaVu%20Sans%20Mono%20Bold%20Oblique%20Nerd%20Font%20Complete%20Mono.ttf?raw=true";
+curl -fLo \
+  "DejaVu Sans Mono Bold Nerd Font Complete Mono.ttf" \
+  "https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/DejaVuSansMono/Bold/complete/DejaVu%20Sans%20Mono%20Bold%20Nerd%20Font%20Complete%20Mono.ttf?raw=true";
+curl -fLo \
+  "DejaVu Sans Mono Oblique Nerd Font Complete Mono.ttf" \
+  "https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/DejaVuSansMono/Italic/complete/DejaVu%20Sans%20Mono%20Oblique%20Nerd%20Font%20Complete%20Mono.ttf?raw=true";
+curl -fLo \
+  "DejaVu Sans Mono Nerd Font Complete Mono.ttf" \
+  "https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/DejaVuSansMono/Regular/complete/DejaVu%20Sans%20Mono%20Nerd%20Font%20Complete%20Mono.ttf?raw=true";
+
+echo "Downloading Hack Mono fonts"
+curl -fLo \
+  "Hack Bold Nerd Font Complete Mono.ttf" \
+  "https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Hack/Bold/complete/Hack%20Bold%20Nerd%20Font%20Complete%20Mono.ttf?raw=true";
+curl -fLo \
+  "Hack Italic Nerd Font Complete Mono.ttf" \
+  "https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Hack/Italic/complete/Hack%20Italic%20Nerd%20Font%20Complete%20Mono.ttf?raw=true";
+curl -fLo \
+  "Hack Bold Italic Nerd Font Complete Mono.ttf" \
+  "https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Hack/BoldItalic/complete/Hack%20Bold%20Italic%20Nerd%20Font%20Complete%20Mono.ttf?raw=true";
+curl -fLo \
+  "Hack Regular Nerd Font Complete Mono.ttf" \
+  "https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Hack/Regular/complete/Hack%20Regular%20Nerd%20Font%20Complete%20Mono.ttf?raw=true";
+
+echo "Downloading Meslo LG M DZ (medium dotted zero) fonts"
+curl -fLo \
+  "Meslo LG M DZ Bold Italic Nerd Font Complete Mono.ttf" \
+  "https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Meslo/M-DZ/Bold-Italic/complete/Meslo%20LG%20M%20DZ%20Bold%20Italic%20Nerd%20Font%20Complete%20Mono.ttf?raw=true";
+curl -fLo \
+  "Meslo LG M DZ Bold Nerd Font Complete Mono.ttf" \
+  "https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Meslo/M-DZ/Bold/complete/Meslo%20LG%20M%20DZ%20Bold%20Nerd%20Font%20Complete%20Mono.ttf?raw=true";
+curl -fLo \
+  "Meslo LG M DZ Italic Nerd Font Complete Mono.ttf" \
+  "https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Meslo/M-DZ/Italic/complete/Meslo%20LG%20M%20DZ%20Italic%20Nerd%20Font%20Complete%20Mono.ttf?raw=true";
+curl -fLo \
+  "Meslo LG M DZ Regular Nerd Font Complete Mono.ttf" \
+  "https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Meslo/M-DZ/Regular/complete/Meslo%20LG%20M%20DZ%20Regular%20Nerd%20Font%20Complete%20Mono.ttf?raw=true";
+
+echo "Finished downloading fonts"
+echo
+echo "Updating font cache"
+fc-cache -v
+
+echo
+echo "Setting up nvim"
+. $HOME/.config/nvim/setup
+
+cd $_pwd #this is not bash: popd &> /dev/null || exit 1
+unset _pwd
