@@ -29,6 +29,8 @@ return require('packer').startup({
 
         -- nvim-tree, statusline, bufferline and others require a patched font: https://www.nerdfonts.com/
 
+        --https://github.com/yamatsum/nvim-nonicons (configurations for nvim-webicons)
+
         -- statusline
         use {'hoob3rt/lualine.nvim',
             requires = {'kyazdani42/nvim-web-devicons', opt = true},
@@ -87,6 +89,7 @@ return require('packer').startup({
             }
            end
         }
+        -- Also see https://github.com/ms-jpq/chadtree
 
         -- Git Signs
         use { 'lewis6991/gitsigns.nvim',
@@ -171,6 +174,13 @@ return require('packer').startup({
         -- andymoss/vim-match replaces 'vim-scripts/matchit.zip' and 'matchparen'
         use {'andymass/vim-matchup', event = 'VimEnter'}
         --TODO: https://github.com/andymass/vim-matchup#tree-sitter-integration
+        --
+        --use {
+        --  'windwp/nvim-autopairs',
+        --  config = function()
+        --     require('nvim-autopairs').setup{}
+        --  end
+        --}
 
         -- Comments
         use 'terrortylor/nvim-comment' -- like 'tpope/vim-commentary' but in lua
@@ -223,7 +233,9 @@ return require('packer').startup({
         -- use 'tweekmonster/startuptime.vim'
 
         -- -- Neovim Completion
-        -- use 'hrsh7th/nvim-compe'
+        -- use 'hrsh7th/nvim-cmp'
+        --      hrsh7th/nvim-compe
+        -- https://github.com/ms-jpq/coq_nvim
 
         -- -- A debug adapter protocol implementation for step-through debugging of your code.
         -- use 'mfussenegger/nvim-dap'
@@ -259,6 +271,9 @@ return require('packer').startup({
 
         -- -- Neovim LSP
         -- use 'neovim/nvim-lspconfig'
+        -- https://github.com/nanotee/nvim-lsp-basics
+        -- https://github.com/kabouzeid/nvim-lspinstall
+        -- use 'ray-x/lsp_signature.nvim'
 
         -- -- Lsp based folding
         -- use 'pierreglaser/folding-nvim'
@@ -308,6 +323,18 @@ return require('packer').startup({
         -- https://github.com/jpalardy/vim-slime
         --
         -- https://github.com/sotte/presenting.vim
+        --
+        -- use {'akinsho/toggleterm.nvim'}
+        --
+        -- https://github.com/jose-elias-alvarez/nvim-lsp-ts-utils
+        -- https://github.com/liuchengxu/vista.vim
+        -- https://github.com/simrat39/symbols-outline.nvim
+        -- https://github.com/stevearc/aerial.nvim
+        --
+        -- Language Packs
+        -- https://github.com/sheerun/vim-polyglot
+        --
+        -- https://github.com/alec-gibson/nvim-tetris
 
     end,
     -- -- config: https://github.com/wbthomason/packer.nvim#custom-initialization
