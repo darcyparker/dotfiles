@@ -2,14 +2,16 @@
 
 set -e
 
-_pwd=$(pwd) #this is not bash: pushd . &> /dev/null || exit 1
+_pwd="$(pwd)" #this is not bash: pushd . &> /dev/null || exit 1
 
 git submodule update --init --recursive
 
+npm completion > "$(dirname "$0")/bash/bash_completion.d/npm.sh"
+
 if ! type rcup >/dev/null 2>&1; then
-  cd "$(dirname $0)/submodules/rcm" #this is not bash: pushd . &> /dev/null || exit 1
+  cd "$(dirname "$0")/submodules/rcm" #this is not bash: pushd . &> /dev/null || exit 1
   ./autogen.sh && ./configure --prefix=/usr/local && make && make install
-  cd $_pwd #this is not bash: popd &> /dev/null || exit 1
+  cd "$_pwd" #this is not bash: popd &> /dev/null || exit 1
   if ! type rcup >/dev/null 2>&1; then
     echo "Error: rcm is not installed (See readme.md and https://github.com/thoughtbot/rcm)"
     exit 1
@@ -122,7 +124,8 @@ fc-cache -v
 
 echo
 echo "Setting up nvim"
-. $HOME/.config/nvim/setup
+# shellcheck disable=SC1090
+. "$HOME/.config/nvim/setup"
 
-cd $_pwd #this is not bash: popd &> /dev/null || exit 1
+cd "$_pwd" #this is not bash: popd &> /dev/null || exit 1
 unset _pwd
