@@ -10,16 +10,21 @@ vimp.add_chord_cancellations('n', '<leader>') -- https://github.com/svermeulen/v
 -- Open Files Tree
 nnoremap({'silent'}, '<C-n>', [[:NvimTreeToggle<CR>]])
 nnoremap({'silent'}, '<leader>f', [[:NvimTreeFindFile<CR>]])
---TODO: How to open a NvimTree at specific dir?
+nnoremap({'<leader>e'}, function()
+  -- Open Files tree focused on my nvim configuration files
+  vim.cmd[[:cd $HOME/src/dotfiles/config/nvim/lua/darcy]]
+  vim.cmd[[:NvimTreeToggle]]
+  --vim.cmd[[:e $HOME/src/dotfiles/config/nvim/lua/darcy]]
+end)
 
 --bufferline
 nnoremap({'silent'}, 'gb', [[:BufferLinePick<CR>]]) -- go buffer
 nnoremap({'silent'}, 'gD', [[:BufferLinePickClose<CR>]]) -- close/delete buffer
-nnoremap({'silent', 'override'}, '[b', [[:BufferLineCycleNext<CR>]])
-nnoremap({'silent', 'override'}, 'b]', [[:BufferLineCyclePrev<CR>]])
-nnoremap({'silent'}, 'be', [[:BufferLineSortByExtension<CR>]])
-nnoremap({'silent'}, 'bd', [[:BufferLineSortByDirectory<CR]])
-nnoremap({'silent'}, 'bt', [[:BufferLineSortByTabs<CR>]])
+nnoremap({'silent', 'override'}, '[b', [[:BufferLineCycleNext<CR>]]) -- previous buffer
+nnoremap({'silent', 'override'}, 'b]', [[:BufferLineCyclePrev<CR>]]) -- next buffer
+nnoremap({'silent'}, 'be', [[:BufferLineSortByExtension<CR>]]) -- sort buffers by extension (language)
+nnoremap({'silent'}, 'bd', [[:BufferLineSortByDirectory<CR]]) -- sort buffers by directory
+nnoremap({'silent'}, 'bt', [[:BufferLineSortByTabs<CR>]]) -- sort buffers by tabs
 
 --Move lines up/down (uses 'vim-repeat' plugin)
 bind({'repeatable'}, '[e', ':move--<cr>')
@@ -58,7 +63,7 @@ nnoremap('<leader>n', function()
 end)
 
 -- toggle wrapping of lines
-nnoremap({'silent'}, '<leader>w', ':set wrap!<CR>')
+nnoremap({'silent'}, '<leader>W', ':set wrap!<CR>')
 
 -- toggle display of invisible chars (whitespace, newlines)
 nnoremap('<leader>l', function()
@@ -69,6 +74,11 @@ nnoremap('<leader>l', function()
     print('hide invisible characters')
   end
 end)
+
+-- Trim trailing white space (and preserve cursor)
+-- See http://vimcasts.org/episodes/tidying-whitespace/
+-- https://github.com/McAuleyPenney/tidy.nvim
+nnoremap('<leader>ws', require('tidy.init').tidy_up)
 
 --windows and tabs
 
@@ -148,3 +158,11 @@ nnoremap('c*', '*Ncgn') -- https://www.youtube.com/watch?v=7Bx_mLDBtRc (change w
 -- `:h magic` `\v` prefix before allows regular regex's without crazy escape patterns
 nnoremap('/', '/\\v')
 vnoremap('/', '/\\v')
+
+-- Command mode mappings
+-- c_CTRL-B -- move to beginning of line
+-- c_CTRL-E -- move to ending of line
+-- c_CTRL-F -- command line history and editing
+-- c_CTRL-U -- remove chars from cursor to beginning of line
+-- c_CTRL-W -- Delete word before cursor
+-- c_CTRL-H -- Delete character before cursor

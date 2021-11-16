@@ -42,8 +42,8 @@ return require('packer').startup({
                   icons_enabled = false
                 },
                 extensions = {
-                  --'nvim-tree',
-                  --'quickfix'
+                  'nvim-tree',
+                  'quickfix'
                 },
                 sections = {
                   lualine_a = {'mode'}, --vim mode
@@ -71,21 +71,32 @@ return require('packer').startup({
 
         -- Nvim Tree
         use {
-          'kyazdani42/nvim-tree.lua', 
+          'kyazdani42/nvim-tree.lua',
           requires = {'kyazdani42/nvim-web-devicons', opt = true},
           config = function()
             local g = vim.g
-            g.nvim_tree_auto_close = 1 -- closes the tree when it's the last window
-            g.nvim_tree_follow = 1 -- show selected file on open
             g.nvim_tree_git_hl = 1 -- file highlight for git attributes
             g.nvim_tree_indent_markers = 1 -- indent markers when folders are open
-            g.nvim_tree_auto_resize = 1 -- resize the tree to it's saved width when opening a new file
-            g.nvim_tree_hide_dotfiles = 1 -- hide dotfiles
-            g.nvim_tree_ignore = {
-              '.DS_Store',
-              '.cache',
-              '.git',
-              'fugitive:',
+
+            -- https://github.com/kyazdani42/nvim-tree.lua#setup
+            require'nvim-tree'.setup {
+              auto_close = true, -- closes the tree when it's the last window
+              update_focused_file = {
+                enable = true, -- show selected file on open
+              },
+              filters = {
+                dotfiles = true, -- hide dotfiles by default
+                custom = {
+                  '.DS_Store',
+                  '.cache',
+                  '.git',
+                  'fugitive:',
+                }
+              },
+              update_cwd = true,
+              view = {
+                auto_resize = true -- resize the tree to it's saved width when opening a new file
+              },
             }
            end
         }
@@ -231,6 +242,8 @@ return require('packer').startup({
         -- Profile Startup Time
         use 'dstein64/vim-startuptime'
         -- use 'tweekmonster/startuptime.vim'
+
+        use 'McAuleyPenney/Tidy.nvim'
 
         -- -- Neovim Completion
         -- use 'hrsh7th/nvim-cmp'

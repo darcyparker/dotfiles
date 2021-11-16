@@ -97,7 +97,7 @@ opt.fileformat = 'unix'
 --filetypes
 --cmd([[autocmd BufNewFile,BufRead * if expand('%:t') == 'web.config' | set filetype=xml | endif]])
 --cmd([[autocmd BufNewFile,BufRead * if match(expand('%:t'), '\.html\.template$') > -1 | set filetype=html | endif]])
-cmd([[autocmd BufNewFile,BufRead .jshintrc,.jsbeautifyrc set filetype=json]])
+cmd([[autocmd BufNewFile,BufRead .jshintrc,.jsbeautifyrc,.eslintcache set filetype=json]])
 cmd([[autocmd BufNewFile,BufRead *.sch set filetype=xml]]) -- schematron
 
 --insert mode
