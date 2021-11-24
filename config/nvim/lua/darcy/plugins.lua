@@ -32,6 +32,7 @@ return require('packer').startup({
         --https://github.com/yamatsum/nvim-nonicons (configurations for nvim-webicons)
 
         -- statusline
+        -- TODO: Compare to https://github.com/Famiu/feline.nvim#why-feline
         use {'hoob3rt/lualine.nvim',
             requires = {'kyazdani42/nvim-web-devicons', opt = true},
             config = function()
@@ -201,7 +202,7 @@ return require('packer').startup({
 
         use 'tpope/vim-eunuch'
 
-        use 'tpope/vim-surround'
+        use 'tpope/vim-surround' -- compare to blackCauldron7/surround.nvim
 
         use 'tpope/vim-ragtag'
         use {'tpope/vim-unimpaired', run = ':helptags unimpaired/doc'}
