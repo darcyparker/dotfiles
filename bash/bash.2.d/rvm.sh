@@ -11,4 +11,3 @@ if [ -s "$HOME/.rvm/scripts/rvm" ]; then
     rvm use default > /dev/null 2>&1
   fi
 fi
-
