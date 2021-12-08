@@ -1,9 +1,28 @@
 #!/bin/sh
-pip3 install --upgrade neovim
-pip install --upgrade neovim
+if type pip3 >/dev/null 2>&1; then
+  echo "pip3: upgrade neovim"
+  pip3 install --upgrade neovim
+  echo "pip3: upgrade neovim: done"
+fi
 
-gem install neovim
+if type pip >/dev/null 2>&1; then
+  echo "pip: upgrade neovim"
+  pip install --upgrade neovim
+  echo "pip: upgrade neovim: done"
+fi
 
-npm install -g neovim@latest
+if type gem >/dev/null 2>&1; then
+  echo "gem: install neovim"
+  gem install neovim
+  echo "gem: install neovim: done"
+fi
 
+if type npm >/dev/null 2>&1; then
+  echo "npm: install neovim"
+  npm install -g neovim@latest
+  echo "npm: install neovim: done"
+fi
+
+echo "nvim: headless PackerComplete and PackerSync"
 nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+echo "nvim: headless PackerComplete and PackerSync: done"
