@@ -1,115 +1,98 @@
 #!/usr/bin/env bash
-# #!/bin/sh
 
-# set -e
+set -e
 
-_run() {
-
-  pushd . > /dev/null || exit
-
-  local _dotfilesDir
-  _dotfilesDir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-  cd $_dotfilesDir;
-
-  git submodule update --init --recursive
-
-  #NVM
-  if ! declare -f nvm &>/dev/null ; then
-    if [ -z "$NVM_DIR" ]; then
-      #Then try to guess/set $NVM_DIR: Two guesses for $NVM_DIR
-      #1) $XDG_CONFIG_HOME/nvm ($XDG_CONFIG_HOME is typically $HOME/.config, but not always) IF $XDG_CONFIG_HOME is defined (ie running xwindows)
-      #2) $HOME/.nvm
-      #3) $HOME/.config/nvm
-      NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "$XDG_CONFIG_HOME/nvm")"
-      if [ -s "$NVM_DIR/nvm.sh" ]; then
-        export NVM_DIR #first guess was correct
-      elif [ -s "$HOME/.nvm/nvm.sh" ]; then
-        export NVM_DIR="$HOME/.nvm" #second guess was correct
-      elif [ -s "$HOME/.config/nvm/nvm.sh" ]; then
-        export NVM_DIR="$HOME/.config/nvm" #third guess was correct
-      else
-        #Could not guess it, so install it
-        unset NVM_DIR
-        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
-        export NVM_DIR="$HOME/.config/nvm"
-        [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-        [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-      fi
-    fi
-
-    #Source nvm.sh if $NVM_DIR is not empty and $NVM_DIR/nvm.sh is sourceable
-    if [ ! -z "$NVM_DIR" ] && [ -s "$NVM_DIR/nvm.sh" ]; then
-      #shellcheck disable=SC1090
-      . "$NVM_DIR/nvm.sh" # This loads nvm
-    else
-      unset NVM_DIR
-      echo "Error nvm is not installed"
-      exit 1
-    fi
-  fi
-
-  if ! type node >/dev/null 2>&1; then
-    nvm install --lts #install LTS version of node
-  fi
-  if type npm >/dev/null 2>&1; then
-    npm completion > "$(dirname "$0")/bash/bash_completion.d/npm.sh"
-  fi
-
-  #if ! type ruby >/dev/null 2>&1; then
-  #  echo "Error: ruby is not installed (it is required to build rcm)"
-  #  exit 1
-  #fi
-  #if ! type rcup >/dev/null 2>&1; then
-  #  cd "$(dirname "$0")/submodules/rcm" #this is not bash: pushd . &> /dev/null || exit 1
-  #  ./autogen.sh && ./configure --prefix=/usr/local && make && make install
-  #  cd "$_dotfilesDir" #this is not bash: popd &> /dev/null || exit 1
-  #  popd &> /dev/null || exit 1
-  #  if ! type rcup >/dev/null 2>&1; then
-  #    echo "Error: rcm is not installed (See readme.md and https://github.com/thoughtbot/rcm)"
-  #    exit 1
-  #  fi
-  #fi
-
-  if ! type rcup >/dev/null 2>&1; then
-    curl -LO https://thoughtbot.github.io/rcm/dist/rcm-1.3.4.tar.gz &&
-
-    sha=$(sha256sum rcm-1.3.4.tar.gz | cut -f1 -d' ') &&
-    [ "$sha" = "9b11ae37449cf4d234ec6d1348479bfed3253daba11f7e9e774059865b66c24a" ] &&
-
-    tar -xvf rcm-1.3.4.tar.gz &&
-    pushd . > /dev/null || exit
-
-    cd rcm-1.3.4 &&
-
-    ./configure --prefix=/usr/local && make && make install
-
-    popd &> /dev/null || exit 1
-
-    rm -rf rcm-1.3.4
-    rm rcm-1.3.4.tar.gz
-  fi
-
-  # update rc files and include rc files tagged for `uname` environment
+_linkRCFiles() {
   case "$(uname -s)" in
     Linux)
+      if ! type rcup >/dev/null 2>&1; then
+        curl -LO https://thoughtbot.github.io/rcm/dist/rcm-1.3.4.tar.gz &&
+
+        sha=$(sha256sum rcm-1.3.4.tar.gz | cut -f1 -d' ') &&
+        [ "$sha" = "9b11ae37449cf4d234ec6d1348479bfed3253daba11f7e9e774059865b66c24a" ] &&
+
+        tar -xvf rcm-1.3.4.tar.gz &&
+        pushd . > /dev/null || exit
+
+        cd rcm-1.3.4 &&
+
+        ./configure --prefix=/usr/local && make && make install
+
+        popd &> /dev/null || exit 1
+
+        rm -rf rcm-1.3.4
+        rm rcm-1.3.4.tar.gz
+      fi
       echo Updating rc files for Linux
       RCRC=./rcrc rcup -t Linux -v
       ;;
     Darwin)
+      if ! type rcup >/dev/null 2>&1; then
+        brew install rcm
+      fi
       echo Updating rc files for MacOS
       RCRC=./rcrc rcup -t Darwin -v
       ;;
-    *MSYS* | *MINGW*)
-      echo Updating rc files for MSYS/MingGW
-      RCRC=./rcrc rcup -t MSYS -v
-      ;;
-    *CYGWIN*)
-      echo Updating rc files for Cygwin
-      RCRC=./rcrc rcup -t Cygwin -v
-      ;;
   esac
+}
 
-  echo
+_installNvm() {
+  if ! declare -f nvm &>/dev/null ; then
+    case "$(uname -s)" in
+      Linux)
+        unset NVM_DIR
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+        export NVM_DIR="$HOME/.config/nvm"
+        mkdir -p ~/.config/nvim
+        [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+        [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+        ;;
+      Darwin)
+        if [ -z "$NVM_DIR" ]; then
+          mkdir -p ~/.config/nvim
+        fi
+        export NVM_DIR="$HOME/.config/nvm"
+        brew install nvm
+        ;;
+    esac
+  fi
+}
+
+_installNode() {
+  if ! type node >/dev/null 2>&1; then
+    echo "Installing node"
+    nvm install --lts #install LTS version of node
+  fi
+  if type npm >/dev/null 2>&1; then
+    echo "Adding npm completion"
+    npm completion > "$(dirname "$0")/bash/bash_completion.d/npm.sh"
+  fi
+}
+
+_installRvmAndRuby() {
+  if [ ! -s "$HOME/.rvm/scripts/rvm" ]; then
+    echo "Installing rvm"
+    echo "...When done, \`rvm install 2.7\` or some known ruby version and re-run setup to continue"
+    if ! type gpg >/dev/null 2>&1; then
+      echo
+      echo "  First installing gpg"
+      case "$(uname -s)" in
+        Linux)
+          sudo apt-get install gnupg2 -y
+          ;;
+        Darwin)
+          brew install gnupg
+          ;;
+      esac
+    fi
+    export rvm_ignore_dotfiles=yes
+    gpg --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+    curl -sSL https://get.rvm.io | bash -s stable --ruby
+    echo
+  fi
+}
+
+_installFonts() {
   echo "Downloading fonts"
   mkdir -p "$HOME/.local/share/fonts"
   cd "$HOME/.local/share/fonts"
@@ -189,17 +172,62 @@ _run() {
     "https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Meslo/M-DZ/Regular/complete/Meslo%20LG%20M%20DZ%20Regular%20Nerd%20Font%20Complete%20Mono.ttf?raw=true";
 
   echo "Finished downloading fonts"
-  echo
-  echo "Updating font cache"
-  fc-cache -v
 
-  echo
+  case "$(uname -s)" in
+    Linux)
+      echo
+      echo "Updating font cache"
+      fc-cache -v
+      ;;
+    Darwin)
+      echo
+      echo "Manually install fonts"
+      ;;
+  esac
+}
+
+_setupNvim() {
   echo "Setting up nvim"
   # shellcheck disable=SC1090
   . "$HOME/.config/nvim/setup"
+}
+
+_run() {
+  pushd . > /dev/null || exit
+
+  local _dotfilesDir
+  _dotfilesDir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+  cd $_dotfilesDir;
+
+  git submodule update --init --recursive
+
+  echo
+  _linkRCFiles
+
+  echo
+  _installNvm
+  _installNode
+
+  echo
+  _installRvmAndRuby
+
+  #echo
+  #_installFonts
+
+  echo
+  _setupNvim
+
+  echo
+  echo "Done"
 
   popd &> /dev/null || exit 1
 }
 
 _run
 unset -f _run
+unset -f _linkRCFiles
+unset -f _installNvm
+unset -f _installNode
+unset -f _installRvmAndRuby
+unset -f _installFonts
+unset -f _setupNvim
