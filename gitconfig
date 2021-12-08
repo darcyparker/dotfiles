@@ -1,6 +1,6 @@
 [user]
   name = Darcy Parker
-  email = darcyparker@gmail.com
+  email = darcy.parker@paperlessparts.com
 [core]
   excludesfile = ~/.gitignore_global
   editor = $EDITOR
@@ -23,7 +23,7 @@
   cl = clone
   ci = commit
   co = checkout
-  br = branch 
+  br = branch
   diff = diff --word-diff
   dc = diff --cached
   r = reset
