@@ -1,6 +1,29 @@
-[user]
-  name = Darcy Parker
-  email = darcy.parker@paperlessparts.com
+[include]
+  ; A local gitconfig, outside of version control.
+  ; If the file doesn't exist it is silently ignored
+  path = ~/.gitconfig_local
+
+; Put the following in ~/.gitconfig-local
+; =====================================
+; [includeIf "gitdir:~/work/"]
+;   path = ~/.gitconfig_work
+; [includeIf "gitdir:~/dotfiles/"]
+;   path = ~/.gitconfig_github
+; [includeIf "gitdir:~/github/"]
+;   path = ~/.gitconfig_github
+;
+; Put the following in ~/.gitconfig_github
+; =====================================
+; [user]
+;   name = Darcy Parker
+;   email = private email
+;
+; Put the following in ~/.gitconfig_work
+; =====================================
+; [user]
+;   name = Darcy Parker
+;   email = ...
+
 [core]
   excludesfile = ~/.gitignore_global
   editor = $EDITOR
