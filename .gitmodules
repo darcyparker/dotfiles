@@ -25,3 +25,6 @@
 [submodule "submodules/rcm"]
 	path = submodules/rcm
 	url = https://github.com/thoughtbot/rcm
+[submodule "submodules/yarn-completion"]
+	path = submodules/yarn-completion
+	url = https://github.com/dsifford/yarn-completion.git

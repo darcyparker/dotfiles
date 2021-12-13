@@ -1,0 +1,1 @@
+../../submodules/yarn-completion/yarn-completion.bash
