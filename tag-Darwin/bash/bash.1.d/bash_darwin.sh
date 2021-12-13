@@ -45,7 +45,7 @@ alias gvim="mvim"
 
 #Set colors for OS X (BSD)
 export CLICOLOR=1
-export LSCOLORS="CxgxexexFxexexFxFxcxcx"
+#export LSCOLORS="CxgxexexFxexexFxFxcxcx"
 # Colors
 #   a     black
 #   b     red
