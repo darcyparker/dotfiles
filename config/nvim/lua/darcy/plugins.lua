@@ -49,7 +49,7 @@ return require('packer').startup({
                 sections = {
                   lualine_a = {'mode'}, --vim mode
                   lualine_b = {'branch', 'diff'}, --git branch and diff status
-                  lualine_c = {{'diagnostics', sources = {'nvim_lsp'}}, {'filename'}},
+                  lualine_c = {{'diagnostics', sources = {'nvim_diagnostic'}}, {'filename'}},
                   lualine_x = {'encoding', 'fileformat', 'filetype'},
                   lualine_y = {'progress'},
                   lualine_z = {'location'}
