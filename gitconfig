@@ -3,7 +3,7 @@
   ; If the file doesn't exist it is silently ignored
   path = ~/.gitconfig_local
 
-; Put the following in ~/.gitconfig-local
+; Put the following in ~/.gitconfig_local
 ; =====================================
 ; [includeIf "gitdir:~/work/"]
 ;   path = ~/.gitconfig_work
