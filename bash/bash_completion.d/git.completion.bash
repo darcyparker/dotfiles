@@ -1,1 +1,0 @@
-../../submodules/bash-it/completion/available/git.completion.bash

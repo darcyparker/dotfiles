@@ -46,21 +46,25 @@ function main {
 }
 
 #Load bash_completion IF it appears they are not loaded.
-# * Uses simple test for __git_complete
-# * About bash_completion script:
-# * Eagerly sources definitions in $compat_dir (ie /etc/bash_completion.d)
-# * Eagerly sources $user_completion (ie $HOME/.bash_completion)
-# * And sets up dynamic loading of completions in /usr/share/bash-completion/completions
-# if ! compgen -c | grep -q __git_complete; then
-if ! declare -f __git_complete &>/dev/null; then
-  _bash_completion=$(pkg-config --variable=completionsdir bash-completion 2>/dev/null) ||
-    _bash_completion='/usr/share/bash-completion/completions/'
-  _bash_completion=$(dirname "$_bash_completion")/bash_completion
-  if [ -f "$_bash_completion" ]; then
-    # shellcheck disable=1090
-    . "$_bash_completion"
+if [ -n "$BASH_COMPLETION" ]; then
+  if [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]]; then
+    #Typically Darwin
+    . "/usr/local/etc/profile.d/bash_completion.sh"
+  else
+    #Typically linux
+    # * About `bash_completion` scrip
+    # * Eagerly sources definitions in $compat_dir (ie /etc/bash_completion.d)
+    # * Eagerly sources $user_completion (ie $HOME/.bash_completion)
+    # * And sets up dynamic loading of completions in /usr/share/bash-completion/completions
+    _bash_completion=$(pkg-config --variable=completionsdir bash-completion 2>/dev/null) ||
+      _bash_completion='/usr/share/bash-completion/completions/'
+    _bash_completion=$(dirname "$_bash_completion")/bash_completion
+    if [ -f "$_bash_completion" ]; then
+      # shellcheck disable=1090
+      . "$_bash_completion"
+    fi
+    unset _bash_completion
   fi
-  unset _bash_completion
 fi
 
 main
