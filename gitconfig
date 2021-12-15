@@ -5,11 +5,11 @@
 
 ; Put the following in ~/.gitconfig_local
 ; =====================================
-; [includeIf "gitdir:~/work/"]
+; [includeIf "gitdir:~/src/work/"]
 ;   path = ~/.gitconfig_work
-; [includeIf "gitdir:~/dotfiles/"]
+; [includeIf "gitdir:~/src/dotfiles/"]
 ;   path = ~/.gitconfig_github
-; [includeIf "gitdir:~/github/"]
+; [includeIf "gitdir:~/src/github/"]
 ;   path = ~/.gitconfig_github
 ;
 ; Put the following in ~/.gitconfig_github
@@ -22,7 +22,7 @@
 ; =====================================
 ; [user]
 ;   name = Darcy Parker
-;   email = ...
+;   email = private email
 
 [core]
   excludesfile = ~/.gitignore_global
