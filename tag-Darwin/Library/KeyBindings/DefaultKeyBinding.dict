@@ -59,6 +59,6 @@ which is completely different.
   "$^\UF729" = "moveToBeginningOfDocumentAndModifySelection:"; /* Shift + Ctrl + Home */
   "$^\UF72B" = "moveToEndOfDocumentAndModifySelection:"; /* Shift + Ctrl + End */
 
-  "\UF72C"   = "pageUp:";                                      /* PageUp       */
-  "\UF72D"   = "pageDown:";                                    /* PageDown     */
+  "\UF72C"   = "pageUp:"; /* PageUp */
+  "\UF72D"   = "pageDown:"; /* PageDown */
 }
