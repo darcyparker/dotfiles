@@ -33,6 +33,7 @@ alias pip="pip3.7"
 # shellcheck disable=SC1117
 alias chrome="open -a Google\ Chrome"
 alias desktop="cd ~/Desktop"
+alias freecad="open -a freeCAD"
 
 #copy the working directory into the clipboard
 alias cwd="pwd | pbcopy"
