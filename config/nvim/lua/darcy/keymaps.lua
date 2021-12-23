@@ -30,6 +30,14 @@ nnoremap({'silent'}, 'bt', [[:BufferLineSortByTabs<CR>]]) -- sort buffers by tab
 bind({'repeatable'}, '[e', ':move--<cr>')
 bind({'repeatable'}, ']e', ':move+<cr>')
 
+if (vim.g.neovide) then
+  vim.cmd[[:command -nargs=0 NeovideToggleFullscreen :let g:neovide_fullscreen = !g:neovide_fullscreen]]
+  -- Cmd-Enter toggles fullscreen
+  -- Broken: https://github.com/neovide/neovide/issues/994
+  bind('<D-enter>', [[:NeovideToggleFullscreen<CR>]])
+end
+
+
 -- reload darcy.config & darcy.keymaps
 local util = require('darcy.util')
 nnoremap('<leader>r', function()

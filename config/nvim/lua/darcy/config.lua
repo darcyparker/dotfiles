@@ -82,6 +82,7 @@ opt.colorcolumn = '100,101' -- vim.wo
 vim.cmd 'highlight ColorColumn ctermbg=lightgrey guibg=#5C5558'
 
 -- GUI Appearance
+-- https://github.com/neovide/neovide/wiki/Configuration
 opt.guifont = 'MesloLGMDZ Nerd Font Mono:h16'
 
 -- undo, swap & backup
