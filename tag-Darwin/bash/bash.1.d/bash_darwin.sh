@@ -34,6 +34,7 @@ alias pip="pip3.7"
 alias chrome="open -a Google\ Chrome"
 alias desktop="cd ~/Desktop"
 alias freecad="open -a freeCAD"
+alias neovide="open -a neovide"
 
 #copy the working directory into the clipboard
 alias cwd="pwd | pbcopy"
