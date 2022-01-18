@@ -1,0 +1,1 @@
+/Users/darcyparker/src/dotfiles/vim/pack/bundle/opt/vim-pathogen/autoload/pathogen.vim

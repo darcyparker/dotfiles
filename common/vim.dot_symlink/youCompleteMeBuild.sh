@@ -11,8 +11,8 @@ function main {
   fi
 
   cd ~/.vim/bundle_python_github/youCompleteMe
-  ./install.py --ts-completer
-  #./install.py --ts-completer --clang-completer
+  #./install.py --ts-completer
+  ./install.py --ts-completer --clang-completer
 }
 
 main
