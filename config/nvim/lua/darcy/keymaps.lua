@@ -1,4 +1,8 @@
-require('vimp') -- https://github.com/svermeulen/vimpeccable
+
+local status_ok, vimp = pcall(require, "vimp") -- https://github.com/svermeulen/vimpeccable
+if not status_ok then
+  return
+end
 local nnoremap = vimp.nnoremap
 local vnoremap = vimp.vnoremap
 local xnoremap = vimp.xnoremap
@@ -9,22 +13,17 @@ vimp.add_chord_cancellations('n', '<leader>') -- https://github.com/svermeulen/v
 
 -- Open Files Tree
 nnoremap({'silent'}, '<C-n>', [[:NvimTreeToggle<CR>]])
-nnoremap({'silent'}, '<leader>f', [[:NvimTreeFindFile<CR>]])
-nnoremap({'<leader>e'}, function()
-  -- Open Files tree focused on my nvim configuration files
-  vim.cmd[[:cd $HOME/src/dotfiles/config/nvim/lua/darcy]]
-  vim.cmd[[:NvimTreeToggle]]
-  --vim.cmd[[:e $HOME/src/dotfiles/config/nvim/lua/darcy]]
-end)
+-- nnoremap({'silent'}, '<leader>f', [[:NvimTreeFindFile<CR>]])
+-- nnoremap({'<leader>e'}, function()
+--   -- Open Files tree focused on my nvim configuration files
+--   vim.cmd[[:cd $HOME/src/dotfiles/config/nvim/lua/darcy]]
+--   vim.cmd[[:NvimTreeToggle]]
+--   --vim.cmd[[:e $HOME/src/dotfiles/config/nvim/lua/darcy]]
+-- end)
 
---bufferline
-nnoremap({'silent'}, 'gb', [[:BufferLinePick<CR>]]) -- go buffer
-nnoremap({'silent'}, 'gD', [[:BufferLinePickClose<CR>]]) -- close/delete buffer
-nnoremap({'silent', 'override'}, '[b', [[:BufferLineCycleNext<CR>]]) -- previous buffer
-nnoremap({'silent', 'override'}, 'b]', [[:BufferLineCyclePrev<CR>]]) -- next buffer
-nnoremap({'silent'}, 'be', [[:BufferLineSortByExtension<CR>]]) -- sort buffers by extension (language)
-nnoremap({'silent'}, 'bd', [[:BufferLineSortByDirectory<CR]]) -- sort buffers by directory
-nnoremap({'silent'}, 'bt', [[:BufferLineSortByTabs<CR>]]) -- sort buffers by tabs
+--Navigate Buffers
+nnoremap("<S-l>", ":bnext<CR>")
+nnoremap("<S-h>", ":bprevious<CR>")
 
 --Move lines up/down (uses 'vim-repeat' plugin)
 bind({'repeatable'}, '[e', ':move--<cr>')
@@ -37,19 +36,18 @@ if (vim.g.neovide) then
   bind('<D-enter>', [[:NeovideToggleFullscreen<CR>]])
 end
 
-
 -- reload darcy.config & darcy.keymaps
 local util = require('darcy.util')
 nnoremap('<leader>r', function()
 
-  local darcyConfig = 'darcy.config'
+  local darcyOptions = 'darcy.options'
   local darcyKeyMaps = 'darcy.keymaps'
-  util.unload_lua_namespace(darcyConfig)
+  util.unload_lua_namespace(darcyOptions)
   util.unload_lua_namespace(darcyKeyMaps)
   vim.cmd('silent wa') -- Make sure all open buffers are saved
 
-  require(darcyConfig)
-  print('Reloaded '..darcyConfig)
+  require(darcyOptions)
+  print('Reloaded '..darcyOptions)
 
   vimp.unmap_all() -- Remove all previously added vimpeccable maps
   require(darcyKeyMaps)
@@ -74,14 +72,14 @@ end)
 nnoremap({'silent'}, '<leader>W', ':set wrap!<CR>')
 
 -- toggle display of invisible chars (whitespace, newlines)
-nnoremap('<leader>l', function()
-  vim.wo.list = not(vim.wo.list)
-  if (vim.wo.list) then
-    print('show invisible characters')
-  else
-    print('hide invisible characters')
-  end
-end)
+-- nnoremap('<leader>l', function()
+--   vim.wo.list = not(vim.wo.list)
+--   if (vim.wo.list) then
+--     print('show invisible characters')
+--   else
+--     print('hide invisible characters')
+--   end
+-- end)
 
 -- Trim trailing white space (and preserve cursor)
 -- See http://vimcasts.org/episodes/tidying-whitespace/
@@ -91,9 +89,9 @@ nnoremap('<leader>ws', require('tidy.init').tidy_up)
 --windows and tabs
 
 -- Mappings to move around windows
-nnoremap('<C-h>', '<C-W>h')
-nnoremap('<C-j>', '<C-W>j')
-nnoremap('<C-k>', '<C-W>k')
+nnoremap(              '<C-h>', '<C-W>h')
+nnoremap(              '<C-j>', '<C-W>j')
+nnoremap(              '<C-k>', '<C-W>k')
 nnoremap({'override'}, '<C-l>', '<C-W>l') -- override ctrl-l (clear and redraw screen)
 nnoremap('<C-left>', '<C-W>h')
 nnoremap('<C-down>', '<C-W>j')

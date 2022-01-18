@@ -2,27 +2,39 @@
 if type pip3 >/dev/null 2>&1; then
   echo "pip3: upgrade neovim"
   pip3 install --upgrade neovim
-  echo "pip3: upgrade neovim: done"
+  echo "Done: pip3 install --upgrade neovim"
 fi
 
 if type pip >/dev/null 2>&1; then
   echo "pip: upgrade neovim"
   pip install --upgrade neovim
-  echo "pip: upgrade neovim: done"
+  echo "Done: pip install --upgrade neovim"
 fi
 
 if type gem >/dev/null 2>&1; then
   echo "gem: install neovim"
   gem install neovim
-  echo "gem: install neovim: done"
+  echo "Done: gem install neovim"
 fi
 
 if type npm >/dev/null 2>&1; then
   echo "npm: install neovim"
   npm install -g neovim@latest
-  echo "npm: install neovim: done"
+  echo "Done: npm install neovim"
+
+  #Language Servers: css, eslint, html, json
+  echo "npm: install vscode-langservers-extracted"
+  npm install -g vscode-langservers-extracted@latest
+  echo "Done: npm install vscode-langservers-extracted"
+
+  #Language server: typescript
+  echo "npm: install typescript typescript-language-server"
+  npm install -g typescript@latest typescript-language-server@latest
+  echo "Done: npm install typescript typescript-language-server"
+
 fi
 
-echo "nvim: headless PackerComplete and PackerSync"
+git clone --depth 1 https://github.com/wbthomason/packer.nvim\ "$HOME/.local/share/nvim/site/pack/packer/start/packer.nvim"
+echo "Run PackerComplete and PackerSync in headless nvim"
 nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
-echo "nvim: headless PackerComplete and PackerSync: done"
+echo "Done: PackerComplete and PackerSync"

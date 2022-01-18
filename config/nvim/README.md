@@ -5,3 +5,4 @@
 * [neovim craft](https://neovimcraft.com/)
 * [Awesome Vim](https://github.com/akrawchyk/awesome-vim#awesome-vim)
 * [vim awesome](https://vimawesome.com/)
+* [NeoVim from Scratch](https://github.com/LunarVim/Neovim-from-scratch)
