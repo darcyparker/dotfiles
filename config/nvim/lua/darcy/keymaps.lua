@@ -1,8 +1,8 @@
-
 local status_ok, vimp = pcall(require, "vimp") -- https://github.com/svermeulen/vimpeccable
 if not status_ok then
   return
 end
+
 local nnoremap = vimp.nnoremap
 local vnoremap = vimp.vnoremap
 local xnoremap = vimp.xnoremap
@@ -13,6 +13,7 @@ vimp.add_chord_cancellations('n', '<leader>') -- https://github.com/svermeulen/v
 
 -- Open Files Tree
 nnoremap({'silent'}, '<C-n>', [[:NvimTreeToggle<CR>]])
+-- nnoremap({'silent'}, '<C-n>', [[:NvimTreeFindFile<CR>]])
 -- nnoremap({'silent'}, '<leader>f', [[:NvimTreeFindFile<CR>]])
 -- nnoremap({'<leader>e'}, function()
 --   -- Open Files tree focused on my nvim configuration files

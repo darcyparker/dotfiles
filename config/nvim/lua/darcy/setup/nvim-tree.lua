@@ -4,7 +4,7 @@ g.nvim_tree_indent_markers = 1 -- indent markers when folders are open
 
 -- https://github.com/kyazdani42/nvim-tree.lua#setup
 require'nvim-tree'.setup {
-  auto_close = true, -- closes the tree when it's the last window
+  -- auto_close = true, -- closes the tree when it's the last window
   update_focused_file = {
     enable = true, -- show selected file on open
   },
