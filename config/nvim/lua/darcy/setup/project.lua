@@ -24,7 +24,15 @@ project.setup({
   detection_methods = { "pattern" },
 
   ---@usage patterns used to detect root dir, when **"pattern"** is in detection_methods
-  patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json" },
+  patterns = {
+    ".git",
+    "_darcs",
+    ".hg",
+    ".bzr",
+    ".svn",
+    -- "Makefile",
+    -- "package.json" -- disabled because some projects have workspaces and I want to use telescope Live Grep across all workspaces
+  },
 
   ---@ Show hidden files in telescope when searching for files in a project
   show_hidden = false,

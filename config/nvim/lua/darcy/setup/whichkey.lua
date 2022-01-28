@@ -3,6 +3,14 @@ if not status_ok then
   return
 end
 
+-- Prevent which-key from hijacking <C-r> in telescope
+-- https://github.com/nvim-telescope/telescope.nvim/issues/1047#issuecomment-914336070
+vim.api.nvim_exec([[
+    augroup telescope
+        autocmd!
+        autocmd FileType TelescopePrompt inoremap <buffer> <silent> <C-r> <C-r>
+    augroup END]], false)
+
 local setup = {
   plugins = {
     marks = true, -- shows a list of your marks on ' and `
