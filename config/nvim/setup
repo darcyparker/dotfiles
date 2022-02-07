@@ -11,6 +11,18 @@ if type pip >/dev/null 2>&1; then
   echo "Done: pip install --upgrade neovim"
 fi
 
+if type pip3 >/dev/null 2>&1; then
+  echo "pip3: upgrade pynvim"
+  pip3 install --upgrade pynvim
+  echo "Done: pip3 install --upgrade pynvim"
+fi
+
+if type pip >/dev/null 2>&1; then
+  echo "pip: upgrade pynvim"
+  pip install --upgrade pynvim
+  echo "Done: pip install --upgrade pynvim"
+fi
+
 if type gem >/dev/null 2>&1; then
   echo "gem: install neovim"
   gem install neovim
@@ -31,6 +43,11 @@ if type npm >/dev/null 2>&1; then
   echo "npm: install typescript typescript-language-server"
   npm install -g typescript@latest typescript-language-server@latest
   echo "Done: npm install typescript typescript-language-server"
+
+  #Language server: eslint
+  echo "npm: install eslint_d"
+  npm install -g eslint_d@latest
+  echo "Done: npm install eslint_d"
 
 fi
 

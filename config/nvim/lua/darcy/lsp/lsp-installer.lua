@@ -3,6 +3,28 @@ if not status_ok then
   return
 end
 
+-- Install these servers
+local servers = {
+  "bashls",
+  "cssls",
+  "cssmodules_ls",
+  "eslint",
+  "html",
+  "jsonls",
+  "pyright",
+  "remark_ls",
+  "sumneko_lua",
+  "tsserver",
+  "yamlls",
+}
+for _, name in pairs(servers) do
+  local server_is_found, server = lsp_installer.get_server(name)
+  if server_is_found and not server:is_installed() then
+    print("Installing " .. name)
+    server:install()
+  end
+end
+
 -- Register a handler that will be called for all installed servers.
 -- Alternatively, you may also register handlers on specific server instances instead (see example below).
 lsp_installer.on_server_ready(function(server)
