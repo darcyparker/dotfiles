@@ -12,7 +12,7 @@ local servers = {
   "html",
   "jsonls",
   "pyright",
-  "remark_ls",
+  -- "remark_ls", -- disabled
   "sumneko_lua",
   "tsserver",
   "yamlls",
