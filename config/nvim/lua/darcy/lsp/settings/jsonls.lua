@@ -1,7 +1,22 @@
+local function read_json(file_path)
+    local file = io.open(file_path, "r")
+    local table = vim.fn.json_decode(file:read("a"))
+    file.close()
+
+    return table
+end
+
 local default_schemas = nil
-local status_ok, jsonls_settings = pcall(require, "nlspsettings.jsonls")
+local status_ok, nlspsettings = pcall(require, "nlspsettings")
 if status_ok then
-  default_schemas = jsonls_settings.get_default_schemas()
+    local all_schemas = nlspsettings.get_default_schemas()
+    for _, schema in ipairs(all_schemas) do
+        if schema["fileMatch"][1] == "jsonls.json" then
+            local file_path = schema["url"]
+            default_schemas = read_json(file_path)
+            break
+        end
+    end
 end
 
 local schemas = {
