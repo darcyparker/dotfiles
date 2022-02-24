@@ -12,7 +12,8 @@ local bind = vimp.bind
 vimp.add_chord_cancellations('n', '<leader>') -- https://github.com/svermeulen/vimpeccable#chord-cancellation-maps
 
 -- Open Files Tree
-nnoremap({'silent'}, '<C-n>', [[:NvimTreeToggle<CR>]])
+-- nnoremap({'silent'}, '<C-n>', [[:NvimTreeToggle<CR>]])
+nnoremap({'silent'}, '<C-n>', [[:NvimTreeFindFileToggle<CR>]])
 -- nnoremap({'silent'}, '<C-n>', [[:NvimTreeFindFile<CR>]])
 -- nnoremap({'silent'}, '<leader>f', [[:NvimTreeFindFile<CR>]])
 -- nnoremap({'<leader>e'}, function()
