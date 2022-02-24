@@ -103,6 +103,7 @@ return packer.startup(function(use)
   }
   use "JoosepAlviste/nvim-ts-context-commentstring"
   use "windwp/nvim-ts-autotag"
+  use "RRethy/nvim-treesitter-textsubjects"
 
   -- Git
   use "lewis6991/gitsigns.nvim"
