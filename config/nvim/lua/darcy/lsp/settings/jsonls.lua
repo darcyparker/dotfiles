@@ -47,6 +47,7 @@ local schemas = {
     fileMatch = {
       ".eslintrc.json",
       ".eslintrc",
+      ".eslintrc.js",
     },
     url = "https://json.schemastore.org/eslintrc.json",
   },
