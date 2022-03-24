@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+echo Current Speed: $(defaults read -g com.apple.mouse.scaling)
+defaults write -g com.apple.mouse.scaling  5.0
+echo New Speed: $(defaults read -g com.apple.mouse.scaling)
