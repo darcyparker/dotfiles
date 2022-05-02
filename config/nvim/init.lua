@@ -1,4 +1,4 @@
-local g = vim.g      -- a table to access global variables
+local g = vim.g -- a table to access global variables
 --local cmd = vim.cmd  -- to execute Vim commands e.g. cmd('pwd')
 --local fn = vim.fn    -- to call Vim functions e.g. fn.bufnr()
 --local map = vim.api.nvim_set_keymap
@@ -18,9 +18,20 @@ g.mapleader = ","
 
 -- Disable these built-in plugins
 local disabled_built_ins = {
-  "gzip", "man", "matchit", "matchparen", "shada_plugin", "tarPlugin", "tar", "zipPlugin", "zip", "netrwPlugin"
+  "gzip",
+  "man",
+  "matchit",
+  "matchparen",
+  "shada_plugin",
+  "tarPlugin",
+  "tar",
+  "zipPlugin",
+  "zip",
+  "netrwPlugin",
 }
-for _,plugin in ipairs(disabled_built_ins) do g["loaded_" .. plugin] = 1 end
+for _, plugin in ipairs(disabled_built_ins) do
+  g["loaded_" .. plugin] = 1
+end
 
 require "darcy.plugins"
 require "darcy.options"
