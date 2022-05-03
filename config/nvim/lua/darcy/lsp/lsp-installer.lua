@@ -8,7 +8,7 @@ local servers = {
   "bashls",
   "cssls",
   "cssmodules_ls",
-  "eslint",
+  -- "eslint", //use null-ls for eslint
   "html",
   "jsonls",
   "pyright",
