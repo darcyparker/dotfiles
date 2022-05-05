@@ -22,7 +22,7 @@ null_ls.setup({
 		  extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" },
 		}),
 
-    -- eslint
+    -- eslint (javscript, typescript, ...)
     null_ls.builtins.diagnostics.eslint_d,
 	  null_ls.builtins.code_actions.eslint_d,
 	  -- null_ls.builtins.formatting.eslint_d, --use prettier
@@ -37,6 +37,7 @@ null_ls.setup({
 
     -- json
     null_ls.builtins.diagnostics.jsonlint,
+    null_ls.builtins.formatting.fixjson,
 
 	  -- shell scripts (bash)
 	  null_ls.builtins.diagnostics.shellcheck,
