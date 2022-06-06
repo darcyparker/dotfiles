@@ -1,5 +1,3 @@
-local g = vim.g
-g.nvim_tree_git_hl = 1 -- file highlight for git attributes
 
 -- https://github.com/kyazdani42/nvim-tree.lua#setup
 require("nvim-tree").setup {
@@ -20,6 +18,7 @@ require("nvim-tree").setup {
     indent_markers = {
       enable = true,
     },
+    highlight_git = true,
   },
   update_cwd = true,
   actions = {

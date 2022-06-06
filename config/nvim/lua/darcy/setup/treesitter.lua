@@ -6,7 +6,7 @@ end
 configs.setup {
   ensure_installed = "all", -- A list of parser names, or "all"
   sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
-  ignore_install = { "" }, -- List of parsers to ignore installing
+  ignore_install = { "phpdoc" }, --phpdoc does not install on M1... and I don't need it
   autopairs = {
     enable = true,
   },

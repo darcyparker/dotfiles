@@ -35,6 +35,12 @@ function main {
   #. $HOME/.bash/utilities/debug_func.sh
   #_debugInitTime
   #_debug "Loading \"~/.bashrc\""
+ 
+
+  #Mac M1 arch installs brew to /opt/homebrew/bin and not /usr/local
+  if [ -s /opt/homebrew/bin/brew ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  fi
 
   _source_dir "$HOME/.bash/" "bash.*.d"
 

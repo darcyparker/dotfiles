@@ -27,8 +27,13 @@ PATH="/Library/Frameworks/Python.framework/Versions/3.7/bin:${PATH}"
 export PATH
 
 #TODO: Find better home
-alias python="python3.7"
-alias pip="pip3.7"
+if [ -x $(command -v python3.9) ]; then
+  alias python="python3.9"
+  alias pip="pip3.9"
+elif [ -x $(command -v python3.7) ]; then
+  alias python="python3.7"
+  alias pip="pip3.7"
+fi
 
 # shellcheck disable=SC1117
 alias chrome="open -a Google\ Chrome"

@@ -11,3 +11,9 @@ if [ -s "$HOME/.rvm/scripts/rvm" ]; then
     rvm use default > /dev/null 2>&1
   fi
 fi
+if [ -z "$GEM_HOME" ]; then
+    export GEM_HOME=~/.gem
+fi
+if [ -z "$GEM_PATH" ]; then
+    export GEM_PATH=~/.gem
+fi

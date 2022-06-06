@@ -25,6 +25,8 @@ fi
 
 if type gem >/dev/null 2>&1; then
   echo "gem: install neovim"
+  export GEM_HOME=~/.gem
+  export GEM_PATH=~/.gem
   gem install neovim
   echo "Done: gem install neovim"
 fi
@@ -63,7 +65,9 @@ if type npm >/dev/null 2>&1; then
 
 fi
 
-git clone --depth 1 https://github.com/wbthomason/packer.nvim\ "$HOME/.local/share/nvim/site/pack/packer/start/packer.nvim"
+if [ ! -d "$HOME/.local/share/nvim/site/pack/packer/start/packer.nvim" ]; then
+  git clone --depth 1 https://github.com/wbthomason/packer.nvim\ "$HOME/.local/share/nvim/site/pack/packer/start/packer.nvim"
+fi
 echo "Run PackerComplete and PackerSync in headless nvim"
 nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 echo "Done: PackerComplete and PackerSync"
