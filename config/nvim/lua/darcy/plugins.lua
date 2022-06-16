@@ -60,7 +60,7 @@ return packer.startup(function(use)
   use "akinsho/nvim-bufferline.lua"
   use "moll/vim-bbye" -- close buffers without closing windows or messing up layout
   use "hoob3rt/lualine.nvim" -- TODO: Compare to https://github.com/Famiu/feline.nvim#why-feline
-  use "akinsho/toggleterm.nvim" -- https://github.com/akinsho/toggleterm.nvim
+  -- use "akinsho/toggleterm.nvim" -- https://github.com/akinsho/toggleterm.nvim
   use "ahmedkhalf/project.nvim"
   use "lewis6991/impatient.nvim" -- Speed up loading Lua modules in Neovim to improve startup time.
   use "lukas-reineke/indent-blankline.nvim" -- indent guidelines
@@ -274,8 +274,6 @@ return packer.startup(function(use)
   -- https://github.com/jpalardy/vim-slime
   --
   -- https://github.com/sotte/presenting.vim
-  --
-  -- use {'akinsho/toggleterm.nvim'}
   --
   -- https://github.com/jose-elias-alvarez/nvim-lsp-ts-utils
   -- https://github.com/liuchengxu/vista.vim
