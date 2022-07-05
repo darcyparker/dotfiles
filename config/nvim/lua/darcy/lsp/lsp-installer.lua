@@ -8,6 +8,9 @@ local servers = {
   "bashls",
   "cssls",
   "cssmodules_ls",
+
+  "ccls", --C/C++/Objective C
+
   -- "eslint", //use null-ls for eslint
   "html",
   "jsonls",

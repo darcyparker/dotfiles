@@ -93,6 +93,10 @@ return packer.startup(function(use)
   use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
   use "jose-elias-alvarez/nvim-lsp-ts-utils" -- for formatters and linters
 
+  -- C/C++/Objective C
+  use "jackguo380/vim-lsp-cxx-highlight"
+  use "rhysd/vim-clang-format"
+
   -- Telescope
   use "nvim-telescope/telescope.nvim"
 
@@ -221,7 +225,6 @@ return packer.startup(function(use)
   -- See https://github.com/andymass/vim-matchup#tree-sitter-integration
 
   -- -- Neovim LSP
-  -- use 'neovim/nvim-lspconfig'
   -- https://github.com/nanotee/nvim-lsp-basics
   -- https://github.com/kabouzeid/nvim-lspinstall
   -- use 'ray-x/lsp_signature.nvim'
