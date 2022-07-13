@@ -44,6 +44,7 @@ _installNvm() {
         curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
         export NVM_DIR="$HOME/.config/nvm"
         mkdir -p "$HOME/.config/nvim"
+        # shellcheck disable=SC1091
         [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
         [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
         ;;
@@ -57,6 +58,7 @@ _installNvm() {
           export NVM_DIR="$HOME/.config/nvm"
         fi
         brew install nvm
+        # shellcheck disable=SC1091
         [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
         ;;
     esac
@@ -196,7 +198,7 @@ _installFonts() {
 
 _setupNvim() {
   echo "Setting up nvim"
-  # shellcheck disable=SC1090
+  # shellcheck disable=SC1091
   . "$HOME/.config/nvim/setup"
 }
 
@@ -205,7 +207,7 @@ _run() {
 
   local _dotfilesDir
   _dotfilesDir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-  cd $_dotfilesDir;
+  cd "$_dotfilesDir";
 
   git submodule update --init --recursive
 
