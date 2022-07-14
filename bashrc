@@ -52,7 +52,7 @@ function main {
 }
 
 #Load bash_completion IF it appears they are not loaded.
-if [ -n "$BASH_COMPLETION" ]; then
+if [ -z "$BASH_COMPLETION" ]; then
   if [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]]; then
     #Typically Darwin
     . "/usr/local/etc/profile.d/bash_completion.sh"
