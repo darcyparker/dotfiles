@@ -58,7 +58,7 @@ if [ -z "$BASH_COMPLETION" ]; then
     . "/usr/local/etc/profile.d/bash_completion.sh"
   else
     #Typically linux
-    # * About `bash_completion` scrip
+    # * About `bash_completion` script
     # * Eagerly sources definitions in $compat_dir (ie /etc/bash_completion.d)
     # * Eagerly sources $user_completion (ie $HOME/.bash_completion)
     # * And sets up dynamic loading of completions in /usr/share/bash-completion/completions
