@@ -7,5 +7,5 @@ require('bufferline').setup{
   --https://github.com/akinsho/bufferline.nvim#configuration
   --options = {
   --},
-  diagnostics = 'nvim-lsp'
+  --[[ diagnostics = 'nvim-lsp' ]]
 }
