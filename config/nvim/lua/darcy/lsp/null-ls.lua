@@ -23,17 +23,21 @@ null_ls.setup({
 		}),
 
     -- eslint (javscript, typescript, ...)
-    null_ls.builtins.diagnostics.eslint_d,
-	  null_ls.builtins.code_actions.eslint_d,
+    null_ls.builtins.diagnostics.eslint_d.with({
+      prefer_local = "node_modules/.bin",
+    }),
+	  null_ls.builtins.code_actions.eslint_d.with({
+      prefer_local = "node_modules/.bin",
+    }),
 	  -- null_ls.builtins.formatting.eslint_d, --use prettier
 
 	  -- xo
-	  null_ls.builtins.diagnostics.xo.with({
-      prefer_local = "node_modules/.bin",
-	  }),
-	  null_ls.builtins.code_actions.xo.with({
-      prefer_local = "node_modules/.bin",
-	  }),
+	  -- null_ls.builtins.diagnostics.xo.with({
+   --    prefer_local = "node_modules/.bin",
+	  -- }),
+	  -- null_ls.builtins.code_actions.xo.with({
+   --    prefer_local = "node_modules/.bin",
+	  -- }),
 
     -- json
     null_ls.builtins.diagnostics.jsonlint,
@@ -53,8 +57,8 @@ null_ls.setup({
 	  -- null_ls.builtins.diagnostics.gitlint, -- consider?
 
 	  --markdown
-	  null_ls.builtins.diagnostics.proselint,
-	  null_ls.builtins.code_actions.proselint,
+	  --[[ null_ls.builtins.diagnostics.proselint, ]]
+	  --[[ null_ls.builtins.code_actions.proselint, ]]
 
 	  -- consider
 	  -- - https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/lua/null-ls/builtins/code_actions/refactoring.lua
