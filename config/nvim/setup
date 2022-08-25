@@ -66,7 +66,7 @@ if type npm >/dev/null 2>&1; then
 fi
 
 if [ ! -d "$HOME/.local/share/nvim/site/pack/packer/start/packer.nvim" ]; then
-  git clone --depth 1 https://github.com/wbthomason/packer.nvim\ "$HOME/.local/share/nvim/site/pack/packer/start/packer.nvim"
+  git clone --depth 1 https://github.com/wbthomason/packer.nvim.git  "$HOME/.local/share/nvim/site/pack/packer/start/packer.nvim"
 fi
 echo "Run PackerComplete and PackerSync in headless nvim"
 nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
