@@ -44,6 +44,7 @@ if [ -s "$(brew --prefix)/opt/nvm/nvm.sh" ]; then
            fi
        fi
    }
+   nvm use default
    alias cd='cdnvm'
 fi
 [ -s "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" ] && . "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
