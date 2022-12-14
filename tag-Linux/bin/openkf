@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+#openkf == Open and Keep Focused
+#Written by Darcy Parker http://github.com/darcyparker/dotfiles
+#Opens the desired URL or filename and returns the focus to the terminal
+
+#Uncomment DEBUG variable to enable debugging
+#DEBUG=1
+debug(){ [ "$DEBUG" ] && echo "DEBUG>>> $*"; }
+
+_getActiveWindowID(){
+  wmctrl -a :ACTIVE: -v |& sed -e "1,1 d" -e "s/Using window: //"
+}
+
+main(){
+  if [ -x "$(command -v wmctrl)" ]; then
+    #Saves the currently active window's ID to $cachedWindowID
+    local _cachedWindowID
+    _cachedWindowID=$(_getActiveWindowID)
+    debug window id "$(_getActiveWindowID)"
+    xdg-open "$@" &> /dev/null
+    #The sleep for 1s causes a slight delay for xdg-open to get started
+    sleep 1s
+    debug window id "$(_getActiveWindowID)"
+    #restore focus to original window
+    wmctrl -i -a "$_cachedWindowID"
+    debug window id "$(_getActiveWindowID)"
+  else
+    xdg-open "$@" &> /dev/null
+  fi
+}
+
+main "$@"

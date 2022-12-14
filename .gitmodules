@@ -1,0 +1,30 @@
+[submodule "submodules/dircolors-solarized"]
+	path = submodules/dircolors-solarized
+	url = https://github.com/seebi/dircolors-solarized.git
+[submodule "submodules/markdown2ctags"]
+	path = submodules/markdown2ctags
+	url = https://github.com/jszakmeister/markdown2ctags.git
+[submodule "submodules/pdfsearch"]
+	path = submodules/pdfsearch
+	url = git@gist.github.com:016930578862a407e0f0.git
+[submodule "submodules/gitgrepall"]
+	path = submodules/gitgrepall
+	url = git@gist.github.com:d5b9168ada88d0527564a11d9d9899c4.git
+[submodule "submodules/gitdiffbinstat"]
+	path = submodules/gitdiffbinstat
+	url = https://github.com/matthiaskrgr/gitdiffbinstat.git
+[submodule "submodules/set_jdk_JAVA_HOME"]
+	path = submodules/set_jdk_JAVA_HOME
+	url = git@gist.github.com:7138415.git
+[submodule "submodules/bash-it"]
+	path = submodules/bash-it
+	url = https://github.com/Bash-it/bash-it.git
+[submodule "vim/pack/bundle/opt/vim-pathogen"]
+	path = vim/pack/bundle/opt/vim-pathogen
+	url = https://github.com/tpope/vim-pathogen.git
+[submodule "submodules/rcm"]
+	path = submodules/rcm
+	url = https://github.com/thoughtbot/rcm
+[submodule "submodules/yarn-completion"]
+	path = submodules/yarn-completion
+	url = https://github.com/dsifford/yarn-completion.git

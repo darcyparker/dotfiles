@@ -1,0 +1,98 @@
+[include]
+  ; A local gitconfig, outside of version control.
+  ; If the file doesn't exist it is silently ignored
+  path = ~/.gitconfig_local
+
+; Put the following in ~/.gitconfig_local
+; =====================================
+; [includeIf "gitdir:~/src/work/"]
+;   path = ~/.gitconfig_work
+; [includeIf "gitdir:~/src/dotfiles/"]
+;   path = ~/.gitconfig_github
+; [includeIf "gitdir:~/src/github/"]
+;   path = ~/.gitconfig_github
+;
+; Put the following in ~/.gitconfig_github
+; =====================================
+; [user]
+;   name = Darcy Parker
+;   email = private email
+;
+; Put the following in ~/.gitconfig_work
+; =====================================
+; [user]
+;   name = Darcy Parker
+;   email = private email
+
+[core]
+  excludesfile = ~/.gitignore_global
+  editor = $EDITOR
+  autocrlf = false
+  quotepath = off
+  ;symlinks support for windows: https://github.com/git-for-windows/git/wiki/Symbolic-Links
+  symlinks = true
+[color]
+  branch = auto
+  diff = auto
+  interactive = auto
+  status = auto
+[github]
+  user = darcyparker
+[push]
+  default = current
+[alias]
+  cp = cherry-pick
+  st = status -s
+  cl = clone
+  ci = commit
+  co = checkout
+  br = branch
+  diff = diff --word-diff
+  dc = diff --cached
+  r = reset
+  r1 = reset HEAD^
+  r2 = reset HEAD^^
+  rh = reset --hard
+  rh1 = reset HEAD^ --hard
+  rh2 = reset HEAD^^ --hard
+  sl = stash list
+  sa = stash apply
+  ss = stash save
+  ;List commits in short form, with colors and branch/tag annotations
+  ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+  ;List commits showing changed files
+  ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+  ;List with no colors to chain the out put with Unix pipes:
+  lnc = log --pretty=format:"%h\\ %s\\ [%cn]"
+  ;List oneline commits showing dates:
+  lds = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+  ;List oneline commits showing relative dates:
+  ld = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
+  ;List short git log
+  le = log --oneline --decorate
+  ;Show the history of a file, with diffs
+  filelog = log -u
+  fl = log -u
+  ;Show modified files in last commit:
+  dl = "!git ll -1"
+  ;Show a diff last commit:
+  dlc = diff --cached HEAD^
+  ;Show content (full diff) of a commit given a revision:
+  dr  = "!f() { git diff "$1"^.."$1"; }; f"
+  lc  = "!f() { git ll "$1"^.."$1"; }; f"
+  diffr  = "!f() { git diff "$1"^.."$1"; }; f"
+  ;Find a file path in codebase
+  f = "!git ls-files | grep -i"
+  ;Search/grep your entire codebase for a string:
+  grep = grep -Ii
+  grepall = "!f() { gitgrep "$1" "$2" "$3"; }; f"
+  gr = grep -Ii
+  ;Grep from root folder:
+  gra = "!f() { A=$(pwd) && TOPLEVEL=$(git rev-parse --show-toplevel) && cd $TOPLEVEL && git grep --full-name -In $1 | xargs -I{} echo $TOPLEVEL/{} && cd $A; }; f"
+  ;list all aliases
+  la = "!git config -l | grep alias | cut -c 7-"
+  ;Show the last tag:
+  lasttag = describe --tags --abbrev=0
+  lt = describe --tags --abbrev=0
+[gh]
+	autoUpdate = always

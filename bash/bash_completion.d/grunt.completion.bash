@@ -1,0 +1,1 @@
+../../submodules/bash-it/completion/available/grunt.completion.bash

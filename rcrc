@@ -1,0 +1,7 @@
+# For info, see man rcrc(5) or http://thoughtbot.github.io/rcm/rcrc.5.html
+# Same as default folder
+DOTFILES_DIRS="$HOME/src/dotfiles"
+TAGS="Linux Darwin MSYS Cygwin"
+EXCLUDES="README.md setup submodules"
+UNDOTTED="bin"
+SYMLINK_DIRS="config/nvim conifg/xfce4/terminal dircolors"

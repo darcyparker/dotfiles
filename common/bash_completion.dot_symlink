@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-for i in $HOME/.bash/common/bash_completion.d/*.sh; do
-  if [ -r "$i" ]; then
-    #shellcheck disable=SC1090
-    . "$i"
-  fi
-done

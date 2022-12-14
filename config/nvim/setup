@@ -1,0 +1,73 @@
+#!/bin/sh
+if type pip3 >/dev/null 2>&1; then
+  echo "pip3: upgrade neovim"
+  pip3 install --upgrade neovim
+  echo "Done: pip3 install --upgrade neovim"
+fi
+
+if type pip >/dev/null 2>&1; then
+  echo "pip: upgrade neovim"
+  pip install --upgrade neovim
+  echo "Done: pip install --upgrade neovim"
+fi
+
+if type pip3 >/dev/null 2>&1; then
+  echo "pip3: upgrade pynvim"
+  pip3 install --upgrade pynvim
+  echo "Done: pip3 install --upgrade pynvim"
+fi
+
+if type pip >/dev/null 2>&1; then
+  echo "pip: upgrade pynvim"
+  pip install --upgrade pynvim
+  echo "Done: pip install --upgrade pynvim"
+fi
+
+if type gem >/dev/null 2>&1; then
+  echo "gem: install neovim"
+  export GEM_HOME=~/.gem
+  export GEM_PATH=~/.gem
+  gem install neovim
+  echo "Done: gem install neovim"
+fi
+
+if type npm >/dev/null 2>&1; then
+  echo "npm: install neovim"
+  npm install -g neovim@latest
+  echo "Done: npm install neovim"
+
+  #Language Servers: css, eslint, html, json
+  echo "npm: install vscode-langservers-extracted"
+  npm install -g vscode-langservers-extracted@latest
+  echo "Done: npm install vscode-langservers-extracted"
+
+  #Language server: typescript
+  echo "npm: install typescript typescript-language-server"
+  npm install -g typescript@latest typescript-language-server@latest
+  echo "Done: npm install typescript typescript-language-server"
+
+  #Language server: eslint
+  echo "npm: install eslint_d"
+  npm install -g eslint_d@latest
+  echo "Done: npm install eslint_d"
+
+  #Language server: remark, remark-cli, remark-language-server
+  echo "npm: install remark"
+  npm install -g remark@latest
+  echo "Done: npm install remark"
+  echo "npm: install remark-cli"
+  npm install -g remark-cli@latest
+  echo "Done: npm install remark-cli"
+
+  echo "npm: install remark-language-server"
+  npm install -g remark-language-server@latest
+  echo "Done: npm install remark-language-server"
+
+fi
+
+if [ ! -d "$HOME/.local/share/nvim/site/pack/packer/start/packer.nvim" ]; then
+  git clone --depth 1 https://github.com/wbthomason/packer.nvim.git  "$HOME/.local/share/nvim/site/pack/packer/start/packer.nvim"
+fi
+echo "Run PackerComplete and PackerSync in headless nvim"
+nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+echo "Done: PackerComplete and PackerSync"
