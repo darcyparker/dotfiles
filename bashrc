@@ -44,6 +44,10 @@ function main {
 
   _source_dir "$HOME/.bash/" "bash.*.d"
 
+  if [ -e "$HOME/.bashrc.local" ]; then
+    . "$HOME/.bashrc.local"
+  fi
+
   #_debug "Finished"
 
   if [ -x "$(command -v tmux)" ] && [ -z "$TMUX" ] && [ "$TERM" == "xterm-256color" ]; then
