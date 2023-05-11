@@ -16,7 +16,7 @@ local servers = {
   "jsonls",
   "pyright",
   -- "remark_ls", -- disabled
-  "sumneko_lua",
+  "lua_ls",
   "tsserver",
   "yamlls",
 }
@@ -41,9 +41,9 @@ lsp_installer.on_server_ready(function(server)
     opts = vim.tbl_deep_extend("force", jsonls_opts, opts)
   end
 
-  if server.name == "sumneko_lua" then
-    local sumneko_opts = require("darcy.lsp.settings.sumneko_lua")
-    opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
+  if server.name == "lua_ls" then
+    local lua_ls_opts = require("darcy.lsp.settings.lua_ls")
+    opts = vim.tbl_deep_extend("force", lua_ls_opts, opts)
   end
 
   if server.name == "tsserver" then
