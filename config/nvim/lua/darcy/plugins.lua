@@ -57,7 +57,7 @@ return packer.startup(function(use)
   -- nvim-tree, statusline, bufferline and others require a patched font: https://www.nerdfonts.com/
   use "kyazdani42/nvim-web-devicons"
   use "kyazdani42/nvim-tree.lua" -- Also see https://github.com/ms-jpq/chadtree
-  use "akinsho/nvim-bufferline.lua"
+  use "akinsho/bufferline.nvim"
   use "moll/vim-bbye" -- close buffers without closing windows or messing up layout
   use "hoob3rt/lualine.nvim" -- TODO: Compare to https://github.com/Famiu/feline.nvim#why-feline
   -- use "akinsho/toggleterm.nvim" -- https://github.com/akinsho/toggleterm.nvim
@@ -185,7 +185,7 @@ return packer.startup(function(use)
   use 'dstein64/vim-startuptime'
   -- use 'tweekmonster/startuptime.vim'
 
-  use 'McAuleyPenney/Tidy.nvim'
+  use 'mcauley-penney/tidy.nvim'
 
   -- -- Neovim Completion
   -- use 'hrsh7th/nvim-cmp'
