@@ -4,40 +4,30 @@ if not null_ls_status_ok then
 end
 
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
+local formatting = null_ls.builtins.formatting
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
+local diagnostics = null_ls.builtins.diagnostics
 
 null_ls.setup({
 	debug = false,
 	sources = {
 
-		-- python
-		null_ls.builtins.formatting.black.with({
-		  extra_args = { "--fast" }
-		}),
+		formatting.black.with({ extra_args = { "--fast" } }),
+		formatting.stylua,
     -- diagnostics.flake8
 
-		-- prettier (js, ts, etc)
-		null_ls.builtins.formatting.prettier.with({
-		  prefer_local = "node_modules/.bin",
-		  extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" },
-		}),
-
-    -- eslint (javscript, typescript, ...)
     null_ls.builtins.diagnostics.eslint_d.with({
       prefer_local = "node_modules/.bin",
     }),
+
 	  null_ls.builtins.code_actions.eslint_d.with({
       prefer_local = "node_modules/.bin",
     }),
-	  -- null_ls.builtins.formatting.eslint_d, --use prettier
 
-	  -- xo
-	  -- null_ls.builtins.diagnostics.xo.with({
-   --    prefer_local = "node_modules/.bin",
-	  -- }),
-	  -- null_ls.builtins.code_actions.xo.with({
-   --    prefer_local = "node_modules/.bin",
-	  -- }),
+		formatting.prettier.with({ 
+		  prefer_local = "node_modules/.bin",
+		  extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" },
+		}),
 
     -- json
     null_ls.builtins.diagnostics.jsonlint,
@@ -48,12 +38,13 @@ null_ls.setup({
 	  null_ls.builtins.code_actions.shellcheck,
 
 	  -- lua
-		null_ls.builtins.formatting.stylua,
-	  null_ls.builtins.diagnostics.selene,
+		-- null_ls.builtins.formatting.stylua,
+	  -- null_ls.builtins.diagnostics.selene,
 
 	  -- git
 	  null_ls.builtins.code_actions.gitrebase,
 	  null_ls.builtins.code_actions.gitsigns,
+
 	  -- null_ls.builtins.diagnostics.gitlint, -- consider?
 
 	  --markdown

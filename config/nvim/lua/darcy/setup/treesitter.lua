@@ -1,35 +1,18 @@
 local status_ok, configs = pcall(require, "nvim-treesitter.configs")
 if not status_ok then
-  return
+	return
 end
 
-configs.setup {
+configs.setup({
+  --ensure_installed = { "bash", "c", "javascript", "json", "lua", "python", "typescript", "tsx", "css", "rust", "java", "yaml", "markdown", "markdown_inline" }, -- one of "all" or a list of languages
   ensure_installed = "all", -- A list of parser names, or "all"
-  sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
   ignore_install = { "phpdoc" }, --phpdoc does not install on M1... and I don't need it
-  autopairs = {
-    enable = true,
-  },
-  autotag = {
-    enable = true,
-  },
-  highlight = {
-    enable = true, -- false will disable the whole extension
-    disable = { "" }, -- list of language that will be disabled
-    additional_vim_regex_highlighting = true,
-  },
-  indent = { enable = true, disable = { "yaml" } },
-  context_commentstring = {
-    enable = true,
-    enable_autocmd = false,
-  },
-  textsubjects = {
-    enable = true,
-    prev_selection = ',', -- (Optional) keymap to select the previous selection
-    keymaps = {
-      ['.'] = 'textsubjects-smart',
-      [';'] = 'textsubjects-container-outer',
-      ['i;'] = 'textsubjects-container-inner',
-    },
-  },
-}
+	highlight = {
+		enable = true, -- false will disable the whole extension
+		disable = { "css" }, -- list of language that will be disabled
+	},
+	autopairs = {
+		enable = true,
+	},
+	indent = { enable = true, disable = { "python", "css" } },
+})

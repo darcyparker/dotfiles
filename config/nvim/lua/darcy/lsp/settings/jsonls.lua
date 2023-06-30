@@ -1,22 +1,7 @@
-local function read_json(file_path)
-    local file = io.open(file_path, "r")
-    local table = vim.fn.json_decode(file:read("a"))
-    file.close()
-
-    return table
-end
-
 local default_schemas = nil
-local status_ok, nlspsettings = pcall(require, "nlspsettings")
+local status_ok, jsonls_settings = pcall(require, "nlspsettings.jsonls")
 if status_ok then
-    local all_schemas = nlspsettings.get_default_schemas()
-    for _, schema in ipairs(all_schemas) do
-        if schema["fileMatch"][1] == "jsonls.json" then
-            local file_path = schema["url"]
-            default_schemas = read_json(file_path)
-            break
-        end
-    end
+  default_schemas = jsonls_settings.get_default_schemas()
 end
 
 local schemas = {
@@ -185,7 +170,7 @@ local schemas = {
 }
 
 local function extend(tab1, tab2)
-  for _, value in ipairs(tab2) do
+  for _, value in ipairs(tab2 or {}) do
     table.insert(tab1, value)
   end
   return tab1

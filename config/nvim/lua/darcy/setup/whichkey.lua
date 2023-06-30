@@ -3,14 +3,6 @@ if not status_ok then
   return
 end
 
--- Prevent which-key from hijacking <C-r> in telescope
--- https://github.com/nvim-telescope/telescope.nvim/issues/1047#issuecomment-914336070
-vim.api.nvim_exec([[
-    augroup telescope
-        autocmd!
-        autocmd FileType TelescopePrompt inoremap <buffer> <silent> <C-r> <C-r>
-    augroup END]], false)
-
 local setup = {
   plugins = {
     marks = true, -- shows a list of your marks on ' and `
@@ -92,9 +84,9 @@ local mappings = {
     "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
     "Buffers",
   },
-  -- ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
-  -- ["w"] = { "<cmd>w!<CR>", "Save" },
-  -- ["q"] = { "<cmd>q!<CR>", "Quit" },
+  ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
+  ["w"] = { "<cmd>w!<CR>", "Save" },
+  ["q"] = { "<cmd>q!<CR>", "Quit" },
   ["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
   ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
   ["f"] = {
@@ -140,22 +132,22 @@ local mappings = {
     name = "LSP",
     a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
     d = {
-      "<cmd>Telescope lsp_document_diagnostics<cr>",
+      "<cmd>Telescope diagnostics bufnr=0<cr>",
       "Document Diagnostics",
     },
     w = {
-      "<cmd>Telescope lsp_workspace_diagnostics<cr>",
+      "<cmd>Telescope diagnostics<cr>",
       "Workspace Diagnostics",
     },
-    f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
+    f = { "<cmd>lua vim.lsp.buf.format{async=true}<cr>", "Format" },
     i = { "<cmd>LspInfo<cr>", "Info" },
     I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
     j = {
-      "<cmd>lua vim.diagnostic.goto_next()<CR>",
+      "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>",
       "Next Diagnostic",
     },
     k = {
-      "<cmd>lua vim.diagnostic.goto_prev()<cr>",
+      "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>",
       "Prev Diagnostic",
     },
     l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
@@ -179,16 +171,16 @@ local mappings = {
     C = { "<cmd>Telescope commands<cr>", "Commands" },
   },
 
-  -- t = {
-  --   name = "Terminal",
-  --   n = { "<cmd>lua _NODE_TOGGLE()<cr>", "Node" },
-  --   u = { "<cmd>lua _NCDU_TOGGLE()<cr>", "NCDU" },
-  --   t = { "<cmd>lua _HTOP_TOGGLE()<cr>", "Htop" },
-  --   p = { "<cmd>lua _PYTHON_TOGGLE()<cr>", "Python" },
-  --   f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
-  --   h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
-  --   v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
-  -- },
+  t = {
+    name = "Terminal",
+    n = { "<cmd>lua _NODE_TOGGLE()<cr>", "Node" },
+    u = { "<cmd>lua _NCDU_TOGGLE()<cr>", "NCDU" },
+    t = { "<cmd>lua _HTOP_TOGGLE()<cr>", "Htop" },
+    p = { "<cmd>lua _PYTHON_TOGGLE()<cr>", "Python" },
+    f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
+    h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
+    v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
+  },
 }
 
 which_key.setup(setup)

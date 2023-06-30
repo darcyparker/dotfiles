@@ -76,11 +76,6 @@ telescope.setup {
         ["?"] = actions.which_key,
       },
     },
-    file_ignore_patterns = {
-      "node_modules",
-      "dist/.*",
-      ".git/.*"
-    },
   },
   pickers = {
     -- Default configuration for builtin pickers goes here:
@@ -90,6 +85,9 @@ telescope.setup {
     -- }
     -- Now the picker_config_key will be applied every time you call this
     -- builtin picker
+    planets = {
+      show_pluto = true,
+    },
   },
   extensions = {
     -- Your extension configuration goes here:

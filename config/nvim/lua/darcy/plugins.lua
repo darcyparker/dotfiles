@@ -2,20 +2,20 @@
 -- https://github.com/wbthomason/packer.nvim#bootstrapping
 local fn = vim.fn
 
---Automatically install packer
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+-- Automatically install packer
+local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 print(install_path)
 if fn.empty(fn.glob(install_path)) > 0 then
-  packer_bootstrap = fn.system({
-    'git',
-    'clone',
-    '--depth',
-    '1',
-    'https://github.com/wbthomason/packer.nvim',
-    install_path
-  })
-  print "Installing packer close and reopen Neovim..."
-  vim.api.nvim_command('packadd packer.nvim')
+	PACKER_BOOTSTRAP = fn.system({
+		"git",
+		"clone",
+		"--depth",
+		"1",
+		"https://github.com/wbthomason/packer.nvim",
+		install_path,
+	})
+	print("Installing packer close and reopen Neovim...")
+	vim.cmd([[packadd packer.nvim]])
 end
 
 -- Autocommand to reload neovim when plugins.lua (this file) is saved
@@ -34,39 +34,36 @@ end
 
 -- Have packer use a popup window
 -- https://github.com/wbthomason/packer.nvim#using-a-floating-window
-packer.init {
-  display = {
-    open_fn = function()
-      return require("packer.util").float { border = "rounded" }
-    end,
-  },
-}
+packer.init({
+	display = {
+		open_fn = function()
+			return require("packer.util").float({ border = "rounded" })
+		end,
+	},
+})
 
 return packer.startup(function(use)
   -- See https://github.com/wbthomason/packer.nvim#specifying-plugins
 
-  use "wbthomason/packer.nvim" -- Let Packer manage itself
+  use "wbthomason/packer.nvim"  -- Let Packer manage itself
+  use "nvim-lua/plenary.nvim"  -- Useful lua functions used in lots of plugins
+  use "windwp/nvim-autopairs"  -- Autopairs, integrates with both cmp and treesitter
+  use "numToStr/Comment.nvim"  -- Also looked at 'terrortylor/nvim-comment', 'tpope/vim-commentary'
+  use "kyazdani42/nvim-web-devicons" 
+  use "kyazdani42/nvim-tree.lua"  -- Also see https://github.com/ms-jpq/chadtree
+  use "akinsho/bufferline.nvim"
+	use "moll/vim-bbye"  -- close buffers without closing windows or messing up layout
+  use "nvim-lualine/lualine.nvim"  -- TODO: Compare to https://github.com/Famiu/feline.nvim#why-feline
+  -- use "akinsho/toggleterm.nvim"  -- https://github.com/akinsho/toggleterm.nvim
+  use "ahmedkhalf/project.nvim" 
+  use "lewis6991/impatient.nvim"  -- Speed up loading Lua modules in Neovim to improve startup time.
+  use "lukas-reineke/indent-blankline.nvim"  -- indent guidelines
+  use "goolord/alpha-nvim"  -- greeter for nvim
+	use "folke/which-key.nvim"  -- displays a popup with possible key bindings of the command you started typing
 
   use "svermeulen/vimpeccable"
 
-  use "nvim-lua/popup.nvim" -- Popup API from vim in Neovim
-  use "nvim-lua/plenary.nvim" -- Useful lua functions used in lots of plugins
-  use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
-  use "numToStr/Comment.nvim" -- Also looked at 'terrortylor/nvim-comment', 'tpope/vim-commentary'
-
-  -- nvim-tree, statusline, bufferline and others require a patched font: https://www.nerdfonts.com/
-  use "kyazdani42/nvim-web-devicons"
-  use "kyazdani42/nvim-tree.lua" -- Also see https://github.com/ms-jpq/chadtree
-  use "akinsho/bufferline.nvim"
-  use "moll/vim-bbye" -- close buffers without closing windows or messing up layout
-  use "hoob3rt/lualine.nvim" -- TODO: Compare to https://github.com/Famiu/feline.nvim#why-feline
-  -- use "akinsho/toggleterm.nvim" -- https://github.com/akinsho/toggleterm.nvim
-  use "ahmedkhalf/project.nvim"
-  use "lewis6991/impatient.nvim" -- Speed up loading Lua modules in Neovim to improve startup time.
-  use "lukas-reineke/indent-blankline.nvim" -- indent guidelines
-  use "goolord/alpha-nvim" -- greeter for nvim
-  use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
-  use "folke/which-key.nvim" -- displays a popup with possible key bindings of the command you started typing
+  -- use "nvim-lua/popup.nvim" -- Popup API from vim in Neovim
 
   -- Color themes
   use "tiagovla/tokyodark.nvim" -- dark theme written in lua for neovim 0.5
@@ -81,6 +78,7 @@ return packer.startup(function(use)
   use "hrsh7th/cmp-cmdline" -- cmdline completions
   use "saadparwaiz1/cmp_luasnip" -- snippet completions
   use "hrsh7th/cmp-nvim-lsp"
+  use "hrsh7th/cmp-nvim-lua"
 
   -- snippets
   use "L3MON4D3/LuaSnip" -- snippet engine
@@ -88,10 +86,11 @@ return packer.startup(function(use)
 
   -- LSP
   use "neovim/nvim-lspconfig" -- enable LSP
-  use "williamboman/nvim-lsp-installer" -- simple to use language server installer
-  use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
+  use "williamboman/mason.nvim"  -- simple to use language server installer
+  use "williamboman/mason-lspconfig.nvim" 
   use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
   use "jose-elias-alvarez/nvim-lsp-ts-utils" -- for formatters and linters
+  use "RRethy/vim-illuminate" -- automatic highlighting other uses of the word under the cursor
 
   -- C/C++/Objective C
   use "jackguo380/vim-lsp-cxx-highlight"
@@ -106,8 +105,8 @@ return packer.startup(function(use)
     run = ":TSUpdate",
   }
   use "JoosepAlviste/nvim-ts-context-commentstring"
-  use "windwp/nvim-ts-autotag"
-  use "RRethy/nvim-treesitter-textsubjects"
+  use "windwp/nvim-ts-autotag" -- Use treesitter to autoclose and autorename html tag
+  use "RRethy/nvim-treesitter-textsubjects" -- Syntax aware text-objects, select, move, swap, and peek support.
 
   -- Git
   use "lewis6991/gitsigns.nvim"
@@ -131,13 +130,6 @@ return packer.startup(function(use)
   -- andymoss/vim-match replaces 'vim-scripts/matchit.zip' and 'matchparen'
   use {'andymass/vim-matchup', event = 'VimEnter'}
   --TODO: https://github.com/andymass/vim-matchup#tree-sitter-integration
-  --
-  --use {
-  --  'windwp/nvim-autopairs',
-  --  config = function()
-  --     require('nvim-autopairs').setup{}
-  --  end
-  --}
 
   -- Editor Config https://editorconfig.org/
   use 'editorconfig/editorconfig-vim'
@@ -290,7 +282,7 @@ return packer.startup(function(use)
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
-  if packer_bootstrap then
-    require('packer').sync()
-  end
+	if PACKER_BOOTSTRAP then
+		require("packer").sync()
+	end
 end)
