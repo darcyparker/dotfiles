@@ -49,13 +49,13 @@ return packer.startup(function(use)
   use "nvim-lua/plenary.nvim"  -- Useful lua functions used in lots of plugins
   use "windwp/nvim-autopairs"  -- Autopairs, integrates with both cmp and treesitter
   use "numToStr/Comment.nvim"  -- Also looked at 'terrortylor/nvim-comment', 'tpope/vim-commentary'
-  use "kyazdani42/nvim-web-devicons" 
+  use "kyazdani42/nvim-web-devicons"
   use "kyazdani42/nvim-tree.lua"  -- Also see https://github.com/ms-jpq/chadtree
   use "akinsho/bufferline.nvim"
 	use "moll/vim-bbye"  -- close buffers without closing windows or messing up layout
   use "nvim-lualine/lualine.nvim"  -- TODO: Compare to https://github.com/Famiu/feline.nvim#why-feline
   -- use "akinsho/toggleterm.nvim"  -- https://github.com/akinsho/toggleterm.nvim
-  use "ahmedkhalf/project.nvim" 
+  use "ahmedkhalf/project.nvim"
   use "lewis6991/impatient.nvim"  -- Speed up loading Lua modules in Neovim to improve startup time.
   use "lukas-reineke/indent-blankline.nvim"  -- indent guidelines
   use "goolord/alpha-nvim"  -- greeter for nvim
@@ -73,21 +73,43 @@ return packer.startup(function(use)
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
-  use "hrsh7th/cmp-buffer" -- buffer completions
-  use "hrsh7th/cmp-path" -- path completions
-  use "hrsh7th/cmp-cmdline" -- cmdline completions
-  use "saadparwaiz1/cmp_luasnip" -- snippet completions
-  use "hrsh7th/cmp-nvim-lsp"
-  use "hrsh7th/cmp-nvim-lua"
+  use "hrsh7th/cmp-buffer" -- Completion source for buffer words
+  use "hrsh7th/cmp-path" -- Completion source for filesystem paths
+  use "hrsh7th/cmp-cmdline" -- Completion source for vim's cmdline
+  use "saadparwaiz1/cmp_luasnip" -- Completion source for luasnip
+  use "hrsh7th/cmp-nvim-lsp" -- Completion source for LSP
+  use "hrsh7th/cmp-nvim-lua" -- Completion source for lua
+  use "hrsh7th/cmp-calc" -- Completion source for math calculations
 
   -- snippets
   use "L3MON4D3/LuaSnip" -- snippet engine
   use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
 
-  -- LSP
-  use "neovim/nvim-lspconfig" -- enable LSP
-  use "williamboman/mason.nvim"  -- simple to use language server installer
-  use "williamboman/mason-lspconfig.nvim" 
+  -- LSP (Order matters for setup)
+  use {
+    "williamboman/mason.nvim",
+    run = ":MasonUpdate" -- :MasonUpdate updates registry contents
+  }
+  use "williamboman/mason-lspconfig.nvim"
+  use "neovim/nvim-lspconfig" -- LSP configurations
+
+  use "RubixDev/mason-update-all"
+  use "jay-babu/mason-nvim-dap.nvim"
+  use 'WhoIsSethDaniel/mason-tool-installer.nvim'
+
+  use {
+    "jay-babu/mason-null-ls.nvim",
+    requires = {
+      "williamboman/mason.nvim",
+      "jose-elias-alvarez/null-ls.nvim",
+    }
+  }
+
+  --TODO: 
+  -- Look at https://github.com/CKolkey/ts-node-action
+  -- Look at https://github.com/ThePrimeagen/refactoring.nvim
+
+  --use "jose-elias-alvarez/typescript.nvim"
   use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
   use "jose-elias-alvarez/nvim-lsp-ts-utils" -- for formatters and linters
   use "RRethy/vim-illuminate" -- automatic highlighting other uses of the word under the cursor
@@ -185,7 +207,8 @@ return packer.startup(function(use)
   -- https://github.com/ms-jpq/coq_nvim
 
   -- -- A debug adapter protocol implementation for step-through debugging of your code.
-  -- use 'mfussenegger/nvim-dap'
+  use 'mfussenegger/nvim-dap'
+  use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
 
   -- -- Snippets
   -- use 'hrsh7th/vim-vsnip'

@@ -5,4 +5,12 @@ end
 
 require "darcy.lsp.mason"
 require("darcy.lsp.handlers").setup()
+require("mason-null-ls").setup({
+  ensure_installed = {
+    "stylua",
+    "jq",
+    "eslint_d",
+    "prettierd"
+  }
+})
 require "darcy.lsp.null-ls"
