@@ -13,4 +13,4 @@ require("mason-null-ls").setup({
     "prettierd"
   }
 })
-require "darcy.lsp.null-ls"
+-- require "darcy.lsp.null-ls"
