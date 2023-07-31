@@ -132,7 +132,7 @@ return packer.startup(function(use)
 
   -- Git
   use "lewis6991/gitsigns.nvim"
-  use "TimUntersberger/neogit" -- magit clone for neovim
+  use { 'NeogitOrg/neogit', requires = 'nvim-lua/plenary.nvim' } -- magit clone for neovim
   use "tpope/vim-fugitive"
   use "tpope/vim-rhubarb"
 
