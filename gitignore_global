@@ -24,6 +24,6 @@ tags-ja
 # OS generated files #
 ######################
 .DS_Store*
-Icon?
+#Icon?
 Thumbs.db
 __MACOSX/*
