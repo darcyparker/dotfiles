@@ -97,21 +97,23 @@ return packer.startup(function(use)
   use "jay-babu/mason-nvim-dap.nvim"
   use 'WhoIsSethDaniel/mason-tool-installer.nvim'
 
-  use {
-    "jay-babu/mason-null-ls.nvim",
-    requires = {
-      "williamboman/mason.nvim",
-      "jose-elias-alvarez/null-ls.nvim",
-    }
-  }
+  -- use {
+  --   "jay-babu/mason-null-ls.nvim",
+  --   requires = {
+  --     "williamboman/mason.nvim",
+  --     "jose-elias-alvarez/null-ls.nvim",
+  --   }
+  -- }
 
   --TODO: 
   -- Look at https://github.com/CKolkey/ts-node-action
   -- Look at https://github.com/ThePrimeagen/refactoring.nvim
 
   --use "jose-elias-alvarez/typescript.nvim"
-  use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
-  use "jose-elias-alvarez/nvim-lsp-ts-utils" -- for formatters and linters
+  --use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters (End of life...)
+
+  --TODO: https://github.com/jose-elias-alvarez/typescript.nvim ???
+
   use "RRethy/vim-illuminate" -- automatic highlighting other uses of the word under the cursor
 
   -- C/C++/Objective C
@@ -239,15 +241,11 @@ return packer.startup(function(use)
   -- use 'nvim-treesitter/nvim-treesitter-refactor'
   -- See https://github.com/andymass/vim-matchup#tree-sitter-integration
 
-  -- -- Neovim LSP
-  -- https://github.com/nanotee/nvim-lsp-basics
-  -- https://github.com/kabouzeid/nvim-lspinstall
-  -- use 'ray-x/lsp_signature.nvim'
-
   -- -- Lsp based folding
   -- use 'pierreglaser/folding-nvim'
 
   -- --lsp
+  -- use 'ray-x/lsp_signature.nvim'
   -- use 'onsails/lspkind-nvim' -- pictograms next to lsp choices
   -- use 'simrat39/symbols-outline.nvim' --lsp symbols in tree like view (an outline like tagbar)
   -- use 'glepnir/lspsaga.nvim' -- lsp widgets/helpers
@@ -293,7 +291,6 @@ return packer.startup(function(use)
   --
   -- https://github.com/sotte/presenting.vim
   --
-  -- https://github.com/jose-elias-alvarez/nvim-lsp-ts-utils
   -- https://github.com/liuchengxu/vista.vim
   -- https://github.com/simrat39/symbols-outline.nvim
   -- https://github.com/stevearc/aerial.nvim

@@ -16,7 +16,14 @@ local servers = {
 	--'sumneko_lua', --deprecated
 }
 
-local settings = {
+-- Order matters: Load mason first, then mason_lspconfig, and finally lspconfig
+
+local mason_status_ok, mason = pcall(require, 'mason')
+if not mason_status_ok then
+  vim.notify('Could not load mason')
+  return
+end
+mason.setup({
 	ui = {
 		border = 'none',
 		icons = {
@@ -27,11 +34,15 @@ local settings = {
 	},
 	log_level = vim.log.levels.INFO,
 	max_concurrent_installers = 4,
-}
+})
 
--- Order matters
-require('mason').setup(settings)
-require('mason-lspconfig').setup({
+local mason_lspconfig_status_ok, mason_lspconfig = pcall(require, 'mason-lspconfig')
+if not mason_lspconfig_status_ok then
+  vim.notify('Could not load mason_lspconfig')
+  return
+end
+
+mason_lspconfig.setup({
 	ensure_installed = servers,
 	automatic_installation = true,
 })
@@ -39,10 +50,23 @@ require('mason-lspconfig').setup({
 --After setting up mason-lspconfig, load servers via lspconfig
 local lspconfig_status_ok, lspconfig = pcall(require, 'lspconfig')
 if not lspconfig_status_ok then
+  vim.notify('Could not load lspconfig')
 	return
 end
 
-require('mason-lspconfig').setup_handlers({
+local defaultOpts = {
+  on_attach = require('darcy.lsp.handlers').on_attach,
+  capabilities = require('darcy.lsp.handlers').capabilities,
+}
+
+local util = require "lspconfig.util"
+local function get_typescript_server_path(root_dir)
+  local project_root = util.find_node_modules_ancestor(root_dir)
+  return project_root and (util.path.join(project_root, 'node_modules', 'typescript', 'lib')) or '/Users/darcyparker/.nvm/versions/node/v18.16.1/lib/node_modules/typescript/lib' -- `npm root -g`
+end
+
+mason_lspconfig.setup_handlers({
+  --default handler reads from darcy.lsp.settings.<server>
   function(server)
     local opts = {}
     local require_ok, conf_opts = pcall(require, 'darcy.lsp.settings.' .. server)
@@ -51,15 +75,69 @@ require('mason-lspconfig').setup_handlers({
         'force',
         conf_opts,
         {
-          on_attach = require('darcy.lsp.handlers').on_attach,
-          capabilities = require('darcy.lsp.handlers').capabilities,
+          on_attach = defaultOpts.on_attach,
+          capabilities = defaultOpts.capabilities,
         }
       )
     end
-
-    lspconfig[server].setup(opts)
+    lspconfig[server].setup(opts);
+    -- lspconfig[server].setup({
+    --   on_attach = defaultOpts.on_attach,
+    --   capabilities = defaultOpts.capabilities,
+    -- })
+  end,
+  ['tsserver'] = function()
+    lspconfig.tsserver.setup({
+      on_attach = defaultOpts.on_attach,
+      capabilities = defaultOpts.capabilities,
+      -- settings = {
+      -- },
+      root_dir = util.root_pattern('package.json', 'tsconfig.json', 'jsconfig.json', '.git'),
+    });
   end,
 })
+
+--Can't serialize function in darcy.lsp.settings.tsserver, so adding it here
+-- lspconfig.tsserver.setup({
+--   settings = {
+-- 
+--     -- root_dir = util.root_pattern('package.json', 'tsconfig.json', 'jsconfig.json', '.git'),
+--     -- root_dir = '/Users/darcyparker/src/paperless/frontend',
+--     --See https://github.com/typescript-language-server/typescript-language-server
+--     -- completions = {
+--     --   completeFunctionCalls = true
+--     -- },
+--     -- --See https://github.com/typescript-language-server/typescript-language-server#initializationoptions
+--     -- init_options = {
+--     --   javascaript = {
+--     --     suggest = {
+--     --       completeFunctionCalls = true
+--     --     }
+--     --   },
+--     --   typescript = {
+--     --     tsserver = {
+--     --       enableTracing = 'on',
+--     --       log = 'on'
+--     --     },
+--     --     -- tdsk = '/Users/darcyparker/src/paperless/frontend/node_modules/typescript/lib',
+--     --   },
+--     --   preferences = {
+--     --     -- importModuleSpecifierPreference = "relative"
+--     --     -- implicitProjectConfiguration = {
+--     --     --   target = "2020"
+--     --     -- }
+--     --   }
+--     -- },
+--     --TODO: Still can't serialize this...
+--     -- on_new_config = function(new_config, new_root_dir)
+--     --   new_config.init_options.typescript.tsdk = get_typescript_server_path(new_root_dir)
+--     --   -- if vim.tbl_get(new_config.init_options, 'typescript') and not new_config.init_options.typescript.tsdk then
+--     --   --   new_config.init_options.typescript.tsdk = get_typescript_server_path(new_root_dir)
+--     --   -- end
+--     --   vim.notify('updating tsserver')
+--     -- end
+--   },
+-- })
 
 require('mason-update-all').setup()
 

@@ -76,10 +76,9 @@ M.on_attach = function(client, bufnr)
 		client.server_capabilities.documentFormattingProvider = false
 	end
 
-	-- sumneko_lua is deprecated. Use lua-ls
-	-- if client.name == "sumneko_lua" then
-	-- 	client.server_capabilities.documentFormattingProvider = false
-	-- end
+	if client.name == "lua_ls" then
+	  client.server_capabilities.documentFormattingProvider = false
+	end
 
 	lsp_keymaps(bufnr)
 	local status_ok, illuminate = pcall(require, "illuminate")
