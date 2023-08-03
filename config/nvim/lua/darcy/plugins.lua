@@ -97,6 +97,15 @@ return packer.startup(function(use)
   use "jay-babu/mason-nvim-dap.nvim"
   use 'WhoIsSethDaniel/mason-tool-installer.nvim'
 
+  -- typescript
+  use {
+    "pmizio/typescript-tools.nvim",
+    requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" }
+  }
+
+  --Not used: using pmizio/typescript-tools.nvim instead...
+  --use "jose-elias-alvarez/typescript.nvim"
+
   -- use {
   --   "jay-babu/mason-null-ls.nvim",
   --   requires = {
@@ -109,7 +118,6 @@ return packer.startup(function(use)
   -- Look at https://github.com/CKolkey/ts-node-action
   -- Look at https://github.com/ThePrimeagen/refactoring.nvim
 
-  --use "jose-elias-alvarez/typescript.nvim"
   --use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters (End of life...)
 
   --TODO: https://github.com/jose-elias-alvarez/typescript.nvim ???
