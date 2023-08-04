@@ -4,7 +4,7 @@ if not status_ok then
 end
 
 require "darcy.lsp.mason"
-require "darcy.lsp.typescript"
+-- require "darcy.lsp.typescript"
 require("darcy.lsp.handlers").setup()
 
 --TODO find replacement for null-ls
