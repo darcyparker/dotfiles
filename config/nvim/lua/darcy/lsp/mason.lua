@@ -20,7 +20,11 @@ local servers = {
 
 -- Order matters: Load mason first, then mason_lspconfig, and finally lspconfig
 
-require('mason').setup({
+local mason_status_ok, mason = pcall(require, 'mason')
+if not mason_status_ok then
+	return
+end
+mason.setup({
 	ui = {
 		border = 'none',
 		icons = {
@@ -33,7 +37,11 @@ require('mason').setup({
 	max_concurrent_installers = 4,
 })
 
-require('mason-lspconfig').setup({
+local mason_lspconfig_status_ok, mason_lspconfig = pcall(require, 'mason-lspconfig')
+if not mason_lspconfig_status_ok then
+	return
+end
+mason_lspconfig.setup({
 	ensure_installed = servers,
 	-- automatic_installation = true,
 	automatic_installation = false,
@@ -42,12 +50,7 @@ require('mason-lspconfig').setup({
 --After setting up mason-lspconfig, load servers via lspconfig
 local lspconfig = require('lspconfig')
 
-local defaultOpts = {
-  on_attach = require('darcy.lsp.handlers').on_attach,
-  capabilities = require('darcy.lsp.handlers').capabilities,
-}
-
-require('mason-lspconfig').setup_handlers({
+mason_lspconfig.setup_handlers({
   --default handler reads from darcy.lsp.settings.<server>
   function(server)
     local opts = {}
@@ -57,18 +60,25 @@ require('mason-lspconfig').setup_handlers({
         'force',
         conf_opts,
         {
-          on_attach = defaultOpts.on_attach,
-          capabilities = defaultOpts.capabilities,
+          on_attach = require('darcy.lsp.handlers').on_attach,
+          capabilities = require('darcy.lsp.handlers').capabilities,
         }
       )
       lspconfig[server].setup(opts);
     else
-      lspconfig[server].setup(defaultOpts);
+      lspconfig[server].setup({
+        on_attach = require('darcy.lsp.handlers').on_attach,
+        capabilities = require('darcy.lsp.handlers').capabilities,
+      });
     end
   end,
 })
 
-require('mason-update-all').setup()
+local mason_update_all_status_ok, mason_update_all = pcall(require, 'mason-update-all')
+if not mason_update_all_status_ok then
+	return
+end
+mason_update_all.setup()
 
 vim.api.nvim_create_autocmd('User', {
   pattern = 'MasonUpdateAllComplete',
@@ -77,19 +87,26 @@ vim.api.nvim_create_autocmd('User', {
   end,
 })
 
-require('mason-nvim-dap').setup()
+-- require('mason-nvim-dap').setup()
 
-require('mason-tool-installer').setup({
+local mason_tool_installer_status_ok, mason_tool_installer = pcall(require, 'mason-tool-installer')
+if not mason_tool_installer_status_ok then
+	return
+end
+mason_tool_installer.setup({
 
   -- a list of all tools you want to ensure are installed upon
   -- start; they should be the names Mason uses for each tool
   ensure_installed = {
 
     -- you can pin a tool to a particular version
-    { 'golangci-lint', version = 'v1.47.0' },
+    -- { 'golangci-lint', version = 'v1.47.0' },
+    { 'golangci-lint' },
 
     -- you can turn off/on auto_update per tool
     { 'bash-language-server', auto_update = true },
+
+    { 'typescript-language-server', auto_update = true },
 
     'lua-language-server',
     'vim-language-server',

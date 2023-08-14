@@ -74,26 +74,26 @@ local function lsp_keymaps(bufnr)
 end
 
 M.on_attach = function(client, bufnr)
-	-- if client.name == "tsserver" then
-	-- 	client.server_capabilities.documentFormattingProvider = false
-	-- 	client.config.root_dir = util.root_pattern('package.json', 'tsconfig.json', 'jsconfig.json', '.git')(vim.fn.expand('%'))
-	-- 	--TODO: dir is correct now.. but client is not changing...
-	-- 	print('new dir ' .. client.config.root_dir);
-	-- 	-- for key,_ in pairs(client) do
-	-- 	--   print(key)
-	-- 	-- end
-	-- end
+  if client.name == "tsserver" then
+    client.server_capabilities.documentFormattingProvider = false
+    -- client.config.root_dir = util.root_pattern('package.json', 'tsconfig.json', 'jsconfig.json', '.git')(vim.fn.expand('%'))
+    --TODO: dir is correct now.. but client is not changing...
+    -- print('new dir ' .. client.config.root_dir);
+    -- for key,_ in pairs(client) do
+    --   print(key)
+    -- end
+  end
 
-	if client.name == "lua_ls" then
-	  client.server_capabilities.documentFormattingProvider = false
-	end
+  if client.name == "lua_ls" then
+    client.server_capabilities.documentFormattingProvider = false
+  end
 
-	lsp_keymaps(bufnr)
-	local status_ok, illuminate = pcall(require, "illuminate")
-	if not status_ok then
-		return
-	end
-	illuminate.on_attach(client)
+  lsp_keymaps(bufnr)
+  local status_ok, illuminate = pcall(require, "illuminate")
+  if not status_ok then
+    return
+  end
+  illuminate.on_attach(client)
 end
 
 return M

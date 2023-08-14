@@ -4,16 +4,8 @@ if not status_ok then
 end
 
 require "darcy.lsp.mason"
--- require "darcy.lsp.typescript"
-require("darcy.lsp.handlers").setup()
+require("darcy.lsp.lspconfig")
 
---TODO find replacement for null-ls
---require("mason-null-ls").setup({
---  ensure_installed = {
---    "stylua",
---    "jq",
---    "eslint_d",
---    "prettierd"
---  }
---})
--- require "darcy.lsp.null-ls"
+-- require("darcy.lsp.typescript-tools")
+require("darcy.lsp.handlers").setup()
+--require("darcy.lsp.typescript")

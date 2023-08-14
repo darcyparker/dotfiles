@@ -93,18 +93,18 @@ return packer.startup(function(use)
   use "williamboman/mason-lspconfig.nvim"
   use "neovim/nvim-lspconfig" -- LSP configurations
 
-  use "RubixDev/mason-update-all"
-  use "jay-babu/mason-nvim-dap.nvim"
+  -- use "RubixDev/mason-update-all"
+  -- use "jay-babu/mason-nvim-dap.nvim"
   use 'WhoIsSethDaniel/mason-tool-installer.nvim'
 
   -- typescript
-  use {
-    "pmizio/typescript-tools.nvim",
-    requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" }
-  }
+  -- use {
+  --   "pmizio/typescript-tools.nvim",
+  --   requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" }
+  -- }
 
-  --Not used: using pmizio/typescript-tools.nvim instead...
-  --use "jose-elias-alvarez/typescript.nvim"
+  --plugin for tsserver/typescript-tools. Adds additional features to lsp
+  -- use "jose-elias-alvarez/typescript.nvim"
 
   -- use {
   --   "jay-babu/mason-null-ls.nvim",
@@ -217,8 +217,8 @@ return packer.startup(function(use)
   -- https://github.com/ms-jpq/coq_nvim
 
   -- -- A debug adapter protocol implementation for step-through debugging of your code.
-  use 'mfussenegger/nvim-dap'
-  use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+  -- use 'mfussenegger/nvim-dap'
+  -- use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
 
   -- -- Snippets
   -- use 'hrsh7th/vim-vsnip'
