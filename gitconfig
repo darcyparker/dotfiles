@@ -96,3 +96,8 @@
   lt = describe --tags --abbrev=0
 [gh]
 	autoUpdate = always
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
