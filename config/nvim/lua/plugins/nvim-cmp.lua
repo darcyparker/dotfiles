@@ -1,10 +1,11 @@
 return {
   "hrsh7th/nvim-cmp",
+  enabled=false, -- keep getting errors from nvim-cmp
   dependencies = {
-    "hrsh7th/cmp-buffer", -- Completion source for buffer words
-    "hrsh7th/cmp-calc", -- Completion source for math calculations
+    -- "hrsh7th/cmp-buffer", -- Completion source for buffer words
+    -- "hrsh7th/cmp-calc", -- Completion source for math calculations
     "hrsh7th/cmp-cmdline", -- Completion source for vim's cmdline
-    "hrsh7th/cmp-emoji", -- completion source for emojis
+    -- "hrsh7th/cmp-emoji", -- completion source for emojis
     "saadparwaiz1/cmp_luasnip", -- Completion source for luasnip
     "hrsh7th/cmp-nvim-lsp", -- Completion source for LSP
     "hrsh7th/cmp-nvim-lua", -- Completion source for lua
@@ -17,12 +18,10 @@ return {
     table.insert(opts.sorting.comparators, 1, require("clangd_extensions.cmp_scores"))
 
     opts.sources = cmp.config.sources(vim.list_extend(opts.sources, {
-      { name = "buffer" },
-      { name = "buffer" },
-      { name = "calc" },
+      -- { name = "buffer" },
+      -- { name = "calc" },
       { name = "cmdline" },
-      { name = "emoji" },
-      { name = "emoji" },
+      -- { name = "emoji" },
       { name = "luasnip" },
       { name = "nvim-lsp" },
       { name = "nvim-lua" },
