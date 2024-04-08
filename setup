@@ -41,7 +41,7 @@ _installNvm() {
     case "$(uname -s)" in
       Linux)
         unset NVM_DIR
-        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
         export NVM_DIR="$HOME/.config/nvm"
         mkdir -p "$HOME/.config/nvm"
         # shellcheck disable=SC1091

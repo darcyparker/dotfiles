@@ -35,7 +35,7 @@ function main {
   #. $HOME/.bash/utilities/debug_func.sh
   #_debugInitTime
   #_debug "Loading \"~/.bashrc\""
- 
+
 
   #Mac M1 arch installs brew to /opt/homebrew/bin and not /usr/local
   if [ -s /opt/homebrew/bin/brew ]; then
@@ -77,7 +77,7 @@ if [ -z "$BASH_COMPLETION" ]; then
   fi
 fi
 
-export NVM_DIR="$HOME/.nvm"
+export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
