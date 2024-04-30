@@ -81,6 +81,19 @@ export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+
+#If WSL2? set $DISPLAY for xserver
+if [ -f "/etc/wsl.conf" ]; then
+  export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
+  # Direct rendering: LIBGL_ALWAYS_INDIRECT=0
+  # * Supports whatever version of OpenGL the graphics driver supports, which could be up to OpenGL 4.x or higher if OpenGL ever releases a new version.
+  # * Requires the environment variable LIBGL_ALWAYS_INDIRECT to be unset.
+  # * Sends all OpenGL commands using dynamic loading to the symbols available in libGL.so (with the appropriate version on the end, like libGL.so.1, etc.) -- these are native function calls.
+  # * The X server does not directly "see" the OpenGL rendering commands. All it sees is a rectangular region that it sets aside in the frame buffer for the graphics driver to render into. It doesn't know what is rendered, only where.
+  # * Is not network-transparent, meaning it only works locally on the same computer.
+  export LIBGL_ALWAYS_INDIRECT=0
+fi
+
 main
 unset -f main
 unset -f _source_dir
