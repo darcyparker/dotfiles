@@ -68,7 +68,7 @@ _installNvm() {
 _installNode() {
   if ! type node >/dev/null 2>&1; then
     echo "Installing node"
-    nvm install --lts #install LTS version of node
+    nvm install node #install LTS version of node
   fi
   if [ ! -e "$(dirname "$0")/bash/bash_completion.d/npm.sh" ]; then
     if type npm >/dev/null 2>&1; then

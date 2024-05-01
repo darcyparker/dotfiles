@@ -19,8 +19,15 @@ fi
 
 if type pip >/dev/null 2>&1; then
 	echo "pip: upgrade pynvim"
-	pip install --upgrade pynvim
-	echo "Done: pip install --upgrade pynvim"
+  pip uninstall pynvim neovim
+  pip install neovim  # only if needed by third-party software
+	echo "Done: pip install pynvim and neovim"
+fi
+
+if type cpanm >/dev/null 2>&1; then
+	echo "perl: upgrade cpanm Neovim::Ext"
+  cpanm -n Neovim::Ext
+	echo "Done: cpanm -n Neovim::Ext"
 fi
 
 if type gem >/dev/null 2>&1; then
@@ -36,31 +43,31 @@ if type npm >/dev/null 2>&1; then
 	npm install -g neovim@latest
 	echo "Done: npm install neovim"
 
-	#Language Servers: css, eslint, html, json
-	echo "npm: install vscode-langservers-extracted"
-	npm install -g vscode-langservers-extracted@latest
-	echo "Done: npm install vscode-langservers-extracted"
+	# #Language Servers: css, eslint, html, json
+	# echo "npm: install vscode-langservers-extracted"
+	# npm install -g vscode-langservers-extracted@latest
+	# echo "Done: npm install vscode-langservers-extracted"
 
-	#Language server: typescript
-	echo "npm: install typescript typescript-language-server"
-	npm install -g typescript@latest typescript-language-server@latest
-	echo "Done: npm install typescript typescript-language-server"
+	# #Language server: typescript
+	# echo "npm: install typescript typescript-language-server"
+	# npm install -g typescript@latest typescript-language-server@latest
+	# echo "Done: npm install typescript typescript-language-server"
 
-	#Language server: eslint
-	echo "npm: install eslint_d"
-	npm install -g eslint_d@latest
-	echo "Done: npm install eslint_d"
+	# #Language server: eslint
+	# echo "npm: install eslint_d"
+	# npm install -g eslint_d@latest
+	# echo "Done: npm install eslint_d"
 
-	#Language server: remark, remark-cli, remark-language-server
-	echo "npm: install remark"
-	npm install -g remark@latest
-	echo "Done: npm install remark"
-	echo "npm: install remark-cli"
-	npm install -g remark-cli@latest
-	echo "Done: npm install remark-cli"
+	# #Language server: remark, remark-cli, remark-language-server
+	# echo "npm: install remark"
+	# npm install -g remark@latest
+	# echo "Done: npm install remark"
+	# echo "npm: install remark-cli"
+	# npm install -g remark-cli@latest
+	# echo "Done: npm install remark-cli"
 
-	echo "npm: install remark-language-server"
-	npm install -g remark-language-server@latest
-	echo "Done: npm install remark-language-server"
+	# echo "npm: install remark-language-server"
+	# npm install -g remark-language-server@latest
+	# echo "Done: npm install remark-language-server"
 
 fi

@@ -9,7 +9,7 @@ vim.g.maplocalleader = ","
 -- * a function with signature `function(buf) -> string|string[]`
 vim.g.root_spec = { "lsp", { ".git", "lua" }, "cwd" }
 
-vim.g.python3_host_prog = "/usr/local/bin/python3"
+-- vim.g.python3_host_prog = "/usr/local/bin/python3"
 
 local opt = vim.opt -- https://github.com/neovim/neovim/pull/13479
 local g = vim.g
@@ -115,7 +115,7 @@ cmd([[autocmd BufNewFile,BufRead .jshintrc,.jsbeautifyrc,.eslintcache set filety
 cmd([[autocmd BufNewFile,BufRead *.sch set filetype=xml]]) -- schematron
 
 --insert mode
-opt.pastetoggle = "<F2>" -- when in insert mode, press <F2> to go to paste mode, where you can paste mass data that won't be autoindented
+-- opt.pastetoggle = "<F2>" -- when in insert mode, press <F2> to go to paste mode, where you can paste mass data that won't be autoindented
 
 --movement
 opt.whichwrap = "h,l,~,[,],<,>" -- Which movemenent characters to wrap
