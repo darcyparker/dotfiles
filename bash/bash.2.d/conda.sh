@@ -8,7 +8,7 @@ else
     if [ -f "/home/darcy/anaconda3/etc/profile.d/conda.sh" ]; then
         . "/home/darcy/anaconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/home/darcy/anaconda3/bin:$PATH"
+      [ -d "$HOME/anaconda3/bin" ] && [ "${PATH#*$HOME/anaconda3/bin:}" == "$PATH" ] && export PATH="/home/darcy/anaconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
