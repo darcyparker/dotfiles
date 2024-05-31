@@ -55,12 +55,12 @@ return {
       dockerls = {},
       docker_compose_language_service = {},
 
-      -- eslint = {
-      --   settings = {
-      --     -- helps eslint find the eslintrc when it's placed in a subfolder instead of the cwd root
-      --     workingDirectory = { mode = "auto" },
-      --   },
-      -- },
+      eslint = {
+        settings = {
+          -- helps eslint find the eslintrc when it's placed in a subfolder instead of the cwd root
+          workingDirectory = { mode = "auto" },
+        },
+      },
 
       jsonls = {
         -- lazy-load schemastore when needed
@@ -147,55 +147,55 @@ return {
       marksman = {},
 
       ---@type lspconfig.options.tsserver
-      tsserver = {
-        keys = {
-          {
-            "<leader>co",
-            function()
-              vim.lsp.buf.code_action {
-                apply = true,
-                context = {
-                  only = { "source.organizeImports.ts" },
-                  diagnostics = {},
-                },
-              }
-            end,
-            desc = "Organize Imports",
-          },
-          {
-            "<leader>cR",
-            function()
-              vim.lsp.buf.code_action {
-                apply = true,
-                context = {
-                  only = { "source.removeUnused.ts" },
-                  diagnostics = {},
-                },
-              }
-            end,
-            desc = "Remove Unused Imports",
-          },
-        },
-        settings = {
-          typescript = {
-            format = {
-              indentSize = vim.o.shiftwidth,
-              convertTabsToSpaces = vim.o.expandtab,
-              tabSize = vim.o.tabstop,
-            },
-          },
-          javascript = {
-            format = {
-              indentSize = vim.o.shiftwidth,
-              convertTabsToSpaces = vim.o.expandtab,
-              tabSize = vim.o.tabstop,
-            },
-          },
-          completions = {
-            completeFunctionCalls = true,
-          },
-        },
-      },
+      -- tsserver = {
+      --   keys = {
+      --     {
+      --       "<leader>co",
+      --       function()
+      --         vim.lsp.buf.code_action {
+      --           apply = true,
+      --           context = {
+      --             only = { "source.organizeImports.ts" },
+      --             diagnostics = {},
+      --           },
+      --         }
+      --       end,
+      --       desc = "Organize Imports",
+      --     },
+      --     {
+      --       "<leader>cR",
+      --       function()
+      --         vim.lsp.buf.code_action {
+      --           apply = true,
+      --           context = {
+      --             only = { "source.removeUnused.ts" },
+      --             diagnostics = {},
+      --           },
+      --         }
+      --       end,
+      --       desc = "Remove Unused Imports",
+      --     },
+      --   },
+      --   settings = {
+      --     typescript = {
+      --       format = {
+      --         indentSize = vim.o.shiftwidth,
+      --         convertTabsToSpaces = vim.o.expandtab,
+      --         tabSize = vim.o.tabstop,
+      --       },
+      --     },
+      --     javascript = {
+      --       format = {
+      --         indentSize = vim.o.shiftwidth,
+      --         convertTabsToSpaces = vim.o.expandtab,
+      --         tabSize = vim.o.tabstop,
+      --       },
+      --     },
+      --     completions = {
+      --       completeFunctionCalls = true,
+      --     },
+      --   },
+      -- },
 
       yamlls = {
         -- Have to add this for yamlls to understand that we support line folding

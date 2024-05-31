@@ -6,6 +6,7 @@ return {
       cmake = { "cmakelint" },
       dockerfile = { "hadolint" },
       markdown = { "markdownlint" },
+      typescript = { "eslint" },
     },
   },
 }

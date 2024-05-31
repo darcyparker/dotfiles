@@ -3,7 +3,8 @@ return {
   opts = {
     filetype_exclude = { "markdown", "diff" },
   },
-  init = function()
-    vim.keymap.set("n", "<leader>te", require("tidy").toggle, {})
-  end,
+  -- stylua: ignore
+  keys = {
+    { "<leader>te", function() require("tidy").toggle() end, desc = "Toggle trailing whitespace" },
+  },
 }
