@@ -32,8 +32,6 @@ fi
 
 if type gem >/dev/null 2>&1; then
 	echo "gem: install neovim"
-	export GEM_HOME=~/.gem
-	export GEM_PATH=~/.gem
 	gem install neovim
 	echo "Done: gem install neovim"
 fi

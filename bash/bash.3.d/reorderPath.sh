@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 [ -d /usr/local/go/bin ] && [ "${PATH#*/usr/local/go/bin:}" == "$PATH" ] && export PATH="/usr/local/go/bin:$PATH"
 [ -n "$GOPATH" ] && [ "${PATH#*$GOPATH/bin:}" == "$PATH" ] && export PATH="$GOPATH/bin:$PATH"
-[ -d "$HOME/.gem/bin" ] && [ "${PATH#*$HOME/.gem/bin:}" == "$PATH" ] && export PATH="$HOME/.gem/bin:$PATH"
+# [ -d "$HOME/.gem/bin" ] && [ "${PATH#*$HOME/.gem/bin:}" == "$PATH" ] && export PATH="$HOME/.gem/bin:$PATH"
+# [ -d "$HOME/.gem/ruby/3.0.0/bin" ] && [ "${PATH#*$HOME/.gem/ruby/3.0.0/bin:}" == "$PATH" ] && export PATH="$HOME/.gem/ruby/3.0.0/bin:$PATH"
 [ -d "$HOME/.cargo/bin" ] && [ "${PATH#*$HOME/.cargo/bin:}" == "$PATH" ] && export PATH="$HOME/.cargo/bin:$PATH"
 [ -d /usr/local/bin ] && [ "${PATH#*/usr/local/bin:}" == "$PATH" ] && export PATH="/usr/local/bin:$PATH"
 [ -d /usr/local/sbin ] && [ "${PATH#*/usr/local/sbin:}" == "$PATH" ] && export PATH="/usr/local/sbin:$PATH"
