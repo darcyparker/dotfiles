@@ -28,3 +28,6 @@
 [submodule "submodules/yarn-completion"]
 	path = submodules/yarn-completion
 	url = https://github.com/dsifford/yarn-completion.git
+[submodule "submodules/installNeovim"]
+	path = submodules/installNeovim
+	url = git@gist.github.com:153124662b05c679c417.git
