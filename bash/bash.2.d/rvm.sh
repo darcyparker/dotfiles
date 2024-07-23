@@ -7,12 +7,9 @@ if [ -s "$HOME/.rvm/scripts/rvm" ]; then
 
     # Load RVM into a shell session *as a function*
     # shellcheck disable=SC1090
-    source "$HOME/.rvm/scripts/rvm" > /dev/null 2>&1
+    [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" > /dev/null 2>&1 # Load RVM into a shell session *as a function*
     rvm use default > /dev/null 2>&1
   fi
-fi
-if [ -z "$GEM_HOME" ]; then
-    export GEM_HOME=~/.gem
 fi
 if [ -z "$GEM_PATH" ]; then
     export GEM_PATH=~/.gem
