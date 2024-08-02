@@ -63,13 +63,14 @@ _installNvm() {
         [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
         ;;
     esac
+    nvm install --lts --latest-npm #install LTS version of node and npm
   fi
 }
 
 _installNode() {
   if ! type node >/dev/null 2>&1; then
     echo "Installing node"
-    nvm install --lts --latest-npm #install LTS version of node
+    nvm install --lts --latest-npm #install LTS version of node and npm
   fi
   if [ ! -e "$(dirname "$0")/bash/bash_completion.d/npm.sh" ]; then
     if type npm >/dev/null 2>&1; then
