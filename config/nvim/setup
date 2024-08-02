@@ -41,6 +41,10 @@ if type npm >/dev/null 2>&1; then
 	npm install -g neovim@latest
 	echo "Done: npm install neovim"
 
+	echo "npm: install tree-sitter"
+	npm install -g tree-sitter@latest
+	echo "Done: npm install tree-sitter"
+
 	# #Language Servers: css, eslint, html, json
 	# echo "npm: install vscode-langservers-extracted"
 	# npm install -g vscode-langservers-extracted@latest
