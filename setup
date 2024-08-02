@@ -42,7 +42,7 @@ _installNvm() {
     case "$(uname -s)" in
       Linux)
         unset NVM_DIR
-        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
         export NVM_DIR="$HOME/.config/nvm"
         mkdir -p "$HOME/.config/nvm"
         # shellcheck disable=SC1091
@@ -69,7 +69,7 @@ _installNvm() {
 _installNode() {
   if ! type node >/dev/null 2>&1; then
     echo "Installing node"
-    nvm install node #install LTS version of node
+    nvm install --lts --latest-npm #install LTS version of node
   fi
   if [ ! -e "$(dirname "$0")/bash/bash_completion.d/npm.sh" ]; then
     if type npm >/dev/null 2>&1; then
