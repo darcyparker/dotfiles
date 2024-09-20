@@ -15,6 +15,7 @@ return {
       -- "js-debug-adapter",
       "markdownlint", --markdown
       "marksman", --markdown
+      "vtsls", --typescript
     })
   end,
 }
