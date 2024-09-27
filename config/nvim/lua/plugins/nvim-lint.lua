@@ -5,7 +5,7 @@ return {
     linters_by_ft = {
       cmake = { "cmakelint" },
       dockerfile = { "hadolint" },
-      markdown = { "markdownlint" },
+      -- markdown = { "markdownlint" },
       typescript = { "eslint" },
     },
   },

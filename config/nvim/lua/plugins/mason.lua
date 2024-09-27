@@ -1,7 +1,8 @@
 return {
   "williamboman/mason.nvim",
   opts = function(_, opts)
-    opts.ensure_installed = opts.ensure_installed or {}
+    opts.ensure_installed = {}
+    -- opts.ensure_installed = opts.ensure_installed or {}
     vim.list_extend(opts.ensure_installed, {
       "cmakelang", --cmake
       "cmakelint", --cmake
@@ -13,8 +14,8 @@ return {
       "hadolint", -- docker
       "impl", --go-lang
       -- "js-debug-adapter",
-      "markdownlint", --markdown
-      "marksman", --markdown
+      -- "markdownlint", --markdown
+      -- "marksman", --markdown
       "vtsls", --typescript
     })
   end,

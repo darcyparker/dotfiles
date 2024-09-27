@@ -144,7 +144,7 @@ return {
       },
 
       --markdown
-      marksman = {},
+      -- marksman = {},
 
       ---@type lspconfig.options.tsserver
       -- tsserver = {
