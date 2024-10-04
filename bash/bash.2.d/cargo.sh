@@ -1,2 +1,4 @@
 #!/usr/bin/env bash
-. "$HOME/.cargo/env"
+if type "$HOME/.cargo/env" &> /dev/null; then
+  . "$HOME/.cargo/env"
+fi
