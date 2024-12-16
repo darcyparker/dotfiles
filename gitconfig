@@ -27,10 +27,22 @@
 [core]
   excludesfile = ~/.gitignore_global
   editor = $EDITOR
+  pager = delta
   autocrlf = false
   quotepath = off
   ;symlinks support for windows: https://github.com/git-for-windows/git/wiki/Symbolic-Links
   symlinks = true
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true  # use n and N to move between diff sections
+    dark = true      # or light = true, or omit for auto-detection
+
+[merge]
+    conflictstyle = zdiff3
+
 [color]
   branch = auto
   diff = auto
