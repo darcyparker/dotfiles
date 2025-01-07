@@ -1,10 +1,11 @@
 return {
   "mcauley-penney/tidy.nvim",
   opts = {
-    filetype_exclude = { "markdown", "diff" },
+    enabled_on_save = false,
+    filetype_exclude = { "markdown", "diff" }
   },
-  -- stylua: ignore
-  keys = {
-    { "<leader>te", function() require("tidy").toggle() end, desc = "Toggle trailing whitespace" },
-  },
+  init = function()
+    vim.keymap.set('n', "<leader>tt", require("tidy").toggle, {})
+    vim.keymap.set('n', "<leader>tr", require("tidy").run, {})
+  end
 }

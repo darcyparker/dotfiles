@@ -1,11 +1,3 @@
--- local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
--- if not vim.loop.fs_stat(lazypath) then
---   -- bootstrap lazy.nvim
---   -- stylua: ignore
---   vim.fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable", lazypath })
--- end
--- vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
-
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -27,26 +19,6 @@ require("lazy").setup {
   spec = {
     -- add LazyVim and import its plugins
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
-    -- import any extras modules here
-    { import = "lazyvim.plugins.extras.dap.core" },
-    -- { import = "lazyvim.plugins.extras.editor.symbols-outline" },
-    -- { import = "lazyvim.plugins.extras.formatting.prettier" },
-    { import = "lazyvim.plugins.extras.lang.clangd" },
-    { import = "lazyvim.plugins.extras.lang.cmake" },
-    { import = "lazyvim.plugins.extras.lang.docker" },
-    { import = "lazyvim.plugins.extras.lang.go" },
-    { import = "lazyvim.plugins.extras.lang.json" },
-    { import = "lazyvim.plugins.extras.lang.markdown" },
-    { import = "lazyvim.plugins.extras.lang.python" },
-    { import = "lazyvim.plugins.extras.lang.typescript" },
-
-    { import = "lazyvim.plugins.extras.linting.eslint" }, -- Eslint fix on save
-
-    { import = "lazyvim.plugins.extras.lang.yaml" },
-    -- { import = "lazyvim.plugins.extras.linting.eslint" },
-    -- { import = "lazyvim.plugins.extras.lsp.none-ls" },
-    -- { import = "lazyvim.plugins.extras.ui.mini-animate" },
-    -- { import = "lazyvim.plugins.extras.vscode" },
     -- import/override with your plugins
     { import = "plugins" },
   },
@@ -60,7 +32,10 @@ require("lazy").setup {
     -- version = "*", -- try installing the latest stable version for plugins that support semver
   },
   install = { colorscheme = { "solarized" } },
-  checker = { enabled = true }, -- automatically check for plugin updates
+  checker = { 
+    enabled = true, -- check for plugin updates periodically
+    notify = false, -- notify on update
+  },
   performance = {
     rtp = {
       -- disable some rtp plugins
