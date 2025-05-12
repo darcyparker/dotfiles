@@ -218,18 +218,18 @@ _run() {
   echo
   _linkRCFiles
 
-  echo
-  _installNvm
-  _installNode
-
-  echo
-  _installRvmAndRuby
-
   # echo
-  # _installFonts
-
-  echo
-  _setupNvim
+  # _installNvm
+  # _installNode
+  #
+  # echo
+  # _installRvmAndRuby
+  #
+  # # echo
+  # # _installFonts
+  #
+  # echo
+  # _setupNvim
 
   echo
   echo "Done"
