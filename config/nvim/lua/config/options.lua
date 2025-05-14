@@ -104,6 +104,7 @@ opt.undodir = os.getenv("HOME") .. "/.cache/nvim/undodir/"
 opt.undolevels = 1000
 
 --encoding
+opt.modifiable = true -- must set modifiable to change fileencoding
 opt.encoding = "utf-8"
 opt.fileencoding = "utf-8"
 opt.fileformat = "unix"
