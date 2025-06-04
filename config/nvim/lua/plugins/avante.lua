@@ -7,19 +7,25 @@ return {
     -- for example
     -- provider = "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot"
     provider = "openrouter",
-    openai = {
+    providers = {
+      openai = {
         endpoint = "https://api.openai.com/v1",
         model = "gpt-4o",
-        api_key_name="OPENAI_API_KEY",
-        temperature = 0.6,
-        max_tokens = 8000,
-    },
-    vendors = {
+        api_key_name = "OPENAI_API_KEY",
+        extra_request_body = {
+          temperature = 0.6,
+          max_tokens = 8000,
+        },
+      },
       openrouter = {
         __inherited_from = 'openai',
         endpoint = 'https://openrouter.ai/api/v1', -- OpenRouter's endpoint
-        api_key_name="OPENROUTER_API_KEY",
-        model = 'anthropic/claude-3.7-sonnet',
+        api_key_name = "OPENROUTER_API_KEY",
+        model = 'anthropic/claude-4.0-sonnet',
+        extra_request_body = {
+          temperature = 0.6,
+          max_tokens = 8000,
+        },
       },
     },
   },
