@@ -15,7 +15,7 @@ local opt = vim.opt -- https://github.com/neovim/neovim/pull/13479
 local g = vim.g
 local cmd = vim.cmd
 
-g.autoformat = false
+g.autoformat = true
 
 opt.eol = false
 opt.hidden = true -- Allows hiding buffers even though they contain modifications which have not yet been written back to the associated file
