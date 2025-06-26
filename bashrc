@@ -36,7 +36,6 @@ function main {
   #_debugInitTime
   #_debug "Loading \"~/.bashrc\""
 
-
   #Mac M1 arch installs brew to /opt/homebrew/bin and not /usr/local
   if [ -s /opt/homebrew/bin/brew ]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -50,8 +49,9 @@ function main {
 
   #_debug "Finished"
 
-  if [ -x "$(command -v tmux)" ] && [ -z "$TMUX" ] && [ "$TERM" == "xterm-256color" ]; then
-    tmux new
+  if [[ -x "$(command -v tmux)" && -z "$TMUX" && -z "$SSH_CLIENT" && ("$TERM" == "xterm-256color" || "$TERM" == "xterm-kitty") ]]; then
+    # Attach to the last session, OR create a new one if none exist.
+    tmux attach || tmux new
   fi
 }
 
@@ -78,9 +78,8 @@ if [ -z "$BASH_COMPLETION" ]; then
 fi
 
 export NVM_DIR="$HOME/.config/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
 #If WSL2? set $DISPLAY for xserver
 if [ -f "/etc/wsl.conf" ]; then
