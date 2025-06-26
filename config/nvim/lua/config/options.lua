@@ -9,7 +9,14 @@ vim.g.maplocalleader = ","
 -- * a function with signature `function(buf) -> string|string[]`
 vim.g.root_spec = { "lsp", { ".git", "lua" }, "cwd" }
 
-vim.g.python3_host_prog = "~/.config/nvim/pynvim-venv/bin/python"
+-- Define the path to your Neovim virtual environment's bin directory
+local venv_bin_path = vim.fn.expand("~/.config/nvim/pynvim-venv/bin")
+
+-- Prepend the venv bin directory to Neovim's PATH environment variable.
+-- This allows Neovim and its plugins to find executables like 'ueberzugpp'.
+vim.env.PATH = venv_bin_path .. ":" .. vim.env.PATH
+
+vim.g.python3_host_prog = venv_bin_path .. "/python"
 
 local opt = vim.opt -- https://github.com/neovim/neovim/pull/13479
 local g = vim.g
