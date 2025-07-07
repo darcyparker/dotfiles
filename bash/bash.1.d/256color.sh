@@ -1,35 +1,29 @@
 #!/usr/bin/env bash
-#See https://fedoraproject.org/wiki/Features/256_Color_Terminals#Scope
+#
+# Safely upgrades the TERM variable to its 256-color variant if the
+# terminal appears capable but is using a generic TERM setting.
 ######################################################################
-# Enable 256 color capabilities for appropriate terminals
 
-# Set this variable in your local shell config if you want remote
-# xterms connecting to this system, to be sent 256 colors.
-# This can be done in /etc/csh.cshrc, or in an earlier profile.d script.
-#   SEND_256_COLORS_TO_REMOTE=1
-
-# Terminals with any of the following set, support 256 colors (and are local)
-local256="$COLORTERM$XTERM_VERSION$ROXTERM_ID$KONSOLE_DBUS_SESSION$VTE_VERSION"
-
-#As well, mintty.exe supports 256 colors
-#Test for mintty.exe is added below
-
-if [ -n "$local256" ] || \
-  [ -n "$SEND_256_COLORS_TO_REMOTE" ] || \
-  [ -n "$MSYSCON" ] && [ "$MSYSCON" == "mintty.exe" ]; then
-
-  case "$TERM" in
-    'xterm') TERM=xterm-256color;;
-    'screen') TERM=screen-256color;;
-    'Eterm') TERM=Eterm-256color;;
-  esac
-  export TERM
-
-  if [ -n "$TERMCAP" ] && [ "$TERM" = "screen-256color" ]; then
-    #shellcheck disable=SC2001
-    TERMCAP=$(echo "$TERMCAP" | sed -e 's/Co#8/Co#256/g')
-    export TERMCAP
+# This script will only act if $TERM is a generic value. If it already
+# contains "256color", "kitty", "alacritty", "wezterm", etc., this
+# case statement will not match, and your correct TERM will be preserved.
+case "$TERM" in
+xterm | Eterm | vt220)
+  # The $COLORTERM variable is a modern, de-facto standard for a
+  # terminal to announce color capabilities (e.g., 'truecolor').
+  # If it's set, we can be confident about upgrading TERM.
+  if [ -n "$COLORTERM" ]; then
+    export TERM=xterm-256color
   fi
-fi
+  ;;
 
-unset local256
+screen)
+  # Also handle the 'screen' case, common inside multiplexers.
+  if [ -n "$COLORTERM" ]; then
+    export TERM=screen-256color
+  fi
+  ;;
+esac
+
+# Note: The legacy TERMCAP logic from the original script has been
+# removed. It is an obsolete mechanism that is not needed today.
