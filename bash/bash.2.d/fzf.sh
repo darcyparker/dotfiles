@@ -1,2 +1,5 @@
 #!/usr/bin/env bash
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+if [ -f ~/.fzf.bash ]; then
+  source ~/.fzf.bash
+  # fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"
+fi

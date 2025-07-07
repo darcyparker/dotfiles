@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
-# A modern, flicker-free, and robust bash prompt with git integration.
-
-# Find and load the git prompt helper script.
+# --- Load Git Helper ---
 if [ -f "/usr/share/git/completion/git-prompt.sh" ]; then
   # shellcheck disable=SC1091
   . "/usr/share/git/completion/git-prompt.sh"
@@ -10,7 +8,7 @@ elif [ -f "/usr/lib/git-core/git-sh-prompt" ]; then
   . "/usr/lib/git-core/git-sh-prompt"
 fi
 
-# Configure the git prompt display (only if the function exists).
+# --- Configure Git Prompt ---
 if type __git_ps1 &>/dev/null; then
   export GIT_PS1_SHOWDIRTYSTATE=1
   export GIT_PS1_SHOWSTASHSTATE=1
@@ -19,22 +17,38 @@ if type __git_ps1 &>/dev/null; then
   export GIT_PS1_SHOWCOLORHINTS=1
 fi
 
-# --- Color Codes ---
-readonly GREEN='\[\e[32m\]'
-readonly WHITE='\[\e[37m\]'
-readonly RED='\[\e[31m\]'
-readonly CYAN='\[\e[36m\]'
-readonly YELLOW='\[\e[33m\]'
-readonly RESET='\[\e[0m\]'
+# readonly GREEN='\[\e[32m\]'
+# readonly WHITE='\[\e[37m\]'
+# readonly RED='\[\e[31m\]'
+# readonly CYAN='\[\e[36m\]'
+# readonly YELLOW='\[\e[33m\]'
+# readonly RESET='\[\e[0m\]'
 
-# --- Construct the Prompt ---
-PS1="${GREEN}\#${RESET} "
-PS1+="${WHITE}\u${RED}@${WHITE}\h${RESET}:${CYAN}\w"
+# Start with the green # and a space.
+PS1='\[\e[32m\]\#\[\e[0m\] '
+# Add the user@host part.
+PS1+='\[\e[37m\]\u\[\e[31m\]@\[\e[37m\]\h\[\e[0m\]'
+# Add the working directory.
+PS1+=':\[\e[36m\]\w'
 
-# **Only add the git part if the function was successfully loaded.**
+# Add the git part, if available. This part uses double quotes
+# to allow the `$(__git_ps1 ...)` command to run.
 if type __git_ps1 &>/dev/null; then
-  PS1+="${YELLOW}\$(__git_ps1 ' (%s)')"
+  PS1+="\[\e[33m\]\$(__git_ps1 ' (%s)')"
 fi
 
-PS1+="${RESET}\n\$ "
+# Add the final reset, newline, and prompt character.
+PS1+='\[\e[0m\]\n\$ '
+
 export PS1
+
+# --- Set Cursor Fix ---
+if ! declare -f _fix_cursor >/dev/null; then
+  _fix_cursor() {
+    printf '\e[5 q'
+  }
+fi
+
+if ! [[ "$PROMPT_COMMAND" == *"_fix_cursor"* ]]; then
+  PROMPT_COMMAND="_fix_cursor;$PROMPT_COMMAND"
+fi

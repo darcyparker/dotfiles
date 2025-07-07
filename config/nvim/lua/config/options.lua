@@ -84,6 +84,12 @@ opt.background = "dark"
 g.solarized_termtrans = 1 --relevant to altercation/vim-colors-solarized
 g.solarized_termcolors = 256 --relevant to altercation/vim-colors-solarized
 opt.cursorline = true --marks the cursor's line with a line
+
+-- Explicitly set cursor styles for different modes to avoid ambiguity.
+-- n-v-c (Normal, Visual, Command-line): block
+-- i (Insert): ver25 (vertical line of 25% cell width)
+vim.opt.guicursor = "n-v-c:block,i:ver25"
+
 opt.number = true --aways show numbers -- vim.wo
 opt.signcolumn = "yes" -- vim.wo
 opt.showtabline = 2 --always show tab labels
