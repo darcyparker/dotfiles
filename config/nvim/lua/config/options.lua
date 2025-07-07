@@ -81,8 +81,11 @@ opt.termguicolors = true
 opt.title = true --display filename in window title
 opt.titlestring = "%<%F%=%l/%L - nvim"
 opt.background = "dark"
-g.solarized_termtrans = 1 --relevant to altercation/vim-colors-solarized
-g.solarized_termcolors = 256 --relevant to altercation/vim-colors-solarized
+
+-- These are not used by maxmx03/solarized.nvim
+-- g.solarized_termtrans = 1 --relevant to altercation/vim-colors-solarized
+-- g.solarized_termcolors = 256 --relevant to altercation/vim-colors-solarized
+
 opt.cursorline = true --marks the cursor's line with a line
 
 -- Explicitly set cursor styles for different modes to avoid ambiguity.
