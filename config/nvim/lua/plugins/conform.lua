@@ -1,4 +1,5 @@
 return {
+  -- formatter plugin
   "stevearc/conform.nvim",
   opts = {
     formatters_by_ft = {
@@ -21,7 +22,7 @@ return {
       graphql = { "prettier" },
       handlebars = { "prettier" },
     },
-    formatters = {
+    formattters = {
       clang_format = {
         -- Ensure it uses your .clang-format file
         args = { "--style=file", "--fallback-style=LLVM" },

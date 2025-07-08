@@ -1,4 +1,5 @@
 return {
+  -- removes trailing white space and empty lines at EOF on save.
   "mcauley-penney/tidy.nvim",
   opts = {
     enabled_on_save = false,
