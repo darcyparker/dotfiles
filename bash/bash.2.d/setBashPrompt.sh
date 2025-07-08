@@ -24,8 +24,12 @@ fi
 # readonly YELLOW='\[\e[33m\]'
 # readonly RESET='\[\e[0m\]'
 
-# Start with the green # and a space.
-PS1='\[\e[32m\]\#\[\e[0m\] '
+# --- Construct the Prompt ---
+
+# Start with a master reset, then the green # and a space.
+# The initial \[\e[0m\] resets all text attributes (color, bold, etc.),
+# neutralizing any broken sequences left on the line; so prompt always starts drawing correctly.
+PS1='\[\e[0m\]\[\e[32m\]\#\[\e[0m\] '
 # Add the user@host part.
 PS1+='\[\e[37m\]\u\[\e[31m\]@\[\e[37m\]\h\[\e[0m\]'
 # Add the working directory.
