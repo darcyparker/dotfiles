@@ -12,3 +12,6 @@ theme = "solarized_dark"
 
 selection-foreground = "#000000"
 selection-background = "#fffacd"
+
+#This syntax requires recent version of ghostty (ie 1.1.14)
+keybind = f11=toggle_fullscreen
