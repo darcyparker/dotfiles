@@ -1,0 +1,12 @@
+# Solarized Dark theme for Ghostty - Minimal Palette
+
+# General colors
+foreground = "#839496"
+background = "#002B36"
+
+# Cursor colors
+cursor-color = "#cccccc"
+
+# Selection colors
+selection-foreground = "#000000"
+selection-background = "#fffacd"

@@ -1,0 +1,14 @@
+#--- Fonts ---
+font-family = "FiraMono Nerd Font Mono"
+font-size = 11.0
+
+# 'cursor-style' values are "bar", "block", "underline", "block_hollow"
+cursor-style = "bar"
+# Apply Solarized Dark theme
+foreground = "#839496"
+background = "#002B36"
+theme = "solarized_dark"
+# background-opacity = 0.9
+
+selection-foreground = "#000000"
+selection-background = "#fffacd"
