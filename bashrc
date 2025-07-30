@@ -49,8 +49,7 @@ function main {
 
   #_debug "Finished"
 
-  if [[ -x "$(command -v tmux)" && -z "$TMUX" && -z "$SSH_CLIENT" && ("$TERM" == "xterm-256color" || "$TERM" == "xterm-kitty") ]]; then
-    # Attach to the last session, OR create a new one if none exist.
+  if [[ -x "$(command -v tmux)" && -z "$TMUX" && -z "$SSH_CLIENT" && "$TERM" =~ ^xterm ]]; then
     tmux attach || tmux new
   fi
 }
