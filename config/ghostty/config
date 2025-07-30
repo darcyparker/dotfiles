@@ -7,7 +7,8 @@ cursor-style = "bar"
 # Apply Solarized Dark theme
 foreground = "#839496"
 background = "#002B36"
-theme = "solarized_dark"
+theme = Solarized Dark - Patched
+
 # background-opacity = 0.9
 
 selection-foreground = "#000000"
