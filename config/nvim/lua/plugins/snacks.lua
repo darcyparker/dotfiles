@@ -1,6 +1,6 @@
 -- lua/plugins/snacks.lua
 return {
-  "nvimdev/snacks.nvim",
+  "folke/snacks.nvim",
   opts = {
     image = {
       enabled = true,
