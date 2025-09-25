@@ -47,7 +47,7 @@ return {
     "nvim-lua/plenary.nvim",
     "MunifTanjim/nui.nvim",
     --- The below dependencies are optional,
-    "echasnovski/mini.pick", -- for file_selector provider mini.pick
+    "nvim-mini/mini.pick", -- for file_selector provider mini.pick
     "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
     -- "nvim-telescope/telescope.nvim", -- for file_selector provider telescope (not used in lazyvim. Using fzf below)
     "ibhagwan/fzf-lua", -- for file_selector provider fzf
@@ -75,7 +75,7 @@ return {
     },
     {
       -- Make sure to set this up properly if you have lazy=true
-      'MeanderingProgrammer/render-markdown.nvim',
+      "MeanderingProgrammer/render-markdown.nvim",
       opts = {
         file_types = { "markdown", "Avante" },
       },
