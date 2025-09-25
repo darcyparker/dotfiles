@@ -7,8 +7,8 @@ return {
       --python
       pyright = {},
 
-      --python
-      ruff_lsp = {
+      --python - using ruff (the modern replacement for ruff_lsp)
+      ruff = {
         keys = {
           {
             "<leader>co",
@@ -44,11 +44,25 @@ return {
       },
 
       vtsls = {
-        -- https://github.com/yioneko/vtsls/issues/167#issuecomment-2162166505
-        root_dir = function()
-          local lazyvimRoot = require("lazyvim.util.root")
-          return lazyvimRoot.git()
-        end,
+        -- Let vtsls use its default root detection (looks for tsconfig.json, package.json, etc.)
+        -- This ensures proper cross-file navigation and project understanding
+      
+        -- Settings to prevent TypeScript server crashes (commented out to enable auto-imports)
+        -- Note: includePackageJsonAutoImports provides helpful auto-completion from package.json
+        -- but can cause "Bad line number" crashes in some cases. If you experience vtsls crashes,
+        -- uncomment these settings to disable the feature.
+        -- settings = {
+        --   typescript = {
+        --     preferences = {
+        --       includePackageJsonAutoImports = "off",
+        --     },
+        --   },
+        --   javascript = {
+        --     preferences = {
+        --       includePackageJsonAutoImports = "off",
+        --     },
+        --   },
+        -- },
       },
     },
   },
