@@ -1,5 +1,6 @@
 return {
   "nvim-treesitter/nvim-treesitter",
+  ---@module 'nvim-treesitter'
   dependencies = {
     "nvim-treesitter/nvim-treesitter-textobjects",
   },

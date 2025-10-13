@@ -1,5 +1,7 @@
 return {
   "folke/sidekick.nvim",
+  ---@module 'sidekick'
+  ---@type sidekick.Config
   opts = {
     term = {
       -- Terminal application to use.
