@@ -1,5 +1,6 @@
 {
   "extras": [
+    "lazyvim.plugins.extras.ai.sidekick",
     "lazyvim.plugins.extras.editor.outline",
     "lazyvim.plugins.extras.editor.refactoring",
     "lazyvim.plugins.extras.lang.clangd",
