@@ -1,3 +1,18 @@
+# Tig configuration
+#
+# View Navigation (from tigrc.vim):
+#   vm = main      vd = diff       vl = log        vt = tree
+#   vb = blob      vx = blame      vr = refs       vs = status
+#   vu = stage     vy = stash      vg = grep       vh = help
+#
+# Movement (vim-style):
+#   j/k = up/down    gg/G = top/bottom    gn = next view
+#   gj/gk = next/prev item    gp = parent commit    gP = back
+#
+# Quick reference:
+#   Enter = open/expand    q = close view    Q = quit
+#   ? = help    / = search    n/N = next/prev match
+#
 # Source tig configurations
 source ~/.tigrc.git-flow
 source ~/.tigrc.vim
@@ -7,3 +22,27 @@ bind generic ? view-help
 
 #Override .tigrc.large setting for show-changes
 set show-changes = yes
+
+# GitHub CLI integration (B = browse)
+bind main    B !gh browse %(commit)
+bind diff    B !gh browse %(commit)
+bind log     B !gh browse %(commit)
+bind blob    B !gh browse %(file):%(lineno)
+bind blame   B !gh browse %(file):%(lineno)
+bind tree    B !gh browse %(file)
+bind refs    B !sh -c "gh pr view %(branch) --web 2>/dev/null || gh browse"
+
+# PR operations (P = pull request)
+bind status  P !gh pr create --web
+bind refs    P !sh -c "gh pr view %(branch) --web 2>/dev/null || gh pr create --web --head %(branch)"
+
+# Quick git operations
+bind main    Y !git cherry-pick %(commit)
+bind main    ! ?git revert %(commit)
+bind main    R !git rebase -i %(commit)^
+bind refs    M ?git merge %(branch)
+bind refs    D ?git branch -d %(branch)
+
+# Fetch (note: overrides git-flow's F prefix from tigrc.git-flow)
+# Use Fi, Ffs, Fff, Frs, Frf, Fhs, Fhf for git-flow commands
+bind generic F !git fetch --all --prune
