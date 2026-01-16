@@ -1,0 +1,6 @@
+# gh CLI configuration
+# Git commands are routed by the shell function in bash.2.d/gh.sh
+# When adding aliases here, also add them to bash.2.d/gh.sh
+
+aliases: {}
+version: "1"
