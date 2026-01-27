@@ -28,3 +28,6 @@
 [submodule "submodules/installNeovim"]
 	path = submodules/installNeovim
 	url = git@gist.github.com:153124662b05c679c417.git
+[submodule "submodules/git-prlog"]
+	path = submodules/git-prlog
+	url = git@gist.github.com:6eb3625fa02e1b072d65d5b53356aac1.git

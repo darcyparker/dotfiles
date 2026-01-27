@@ -62,6 +62,10 @@
   ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
   ;List commits showing changed files
   ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+  ;PR-expanded log (shows original PR commits under squash-merged commits)
+  ;Requires gh CLI. Use git-prlog/git-prls scripts in ~/src/dotfiles/bin
+  prlog = "!git-prlog"
+  prls = "!git-prls"
   ;Show the history of a file, with diffs
   filelog = log -u
   fl = log -u

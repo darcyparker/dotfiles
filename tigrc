@@ -36,6 +36,12 @@ bind refs    B !sh -c "gh pr view %(branch) --web 2>/dev/null || gh browse"
 bind status  P !gh pr create --web
 bind refs    P !sh -c "gh pr view %(branch) --web 2>/dev/null || gh pr create --web --head %(branch)"
 
+# Show PR commits for squash-merged commit (extracts PR# from commit message)
+# Shows in terminal, press Enter to return to tig
+bind main    P !sh -c "git-prls -1 %(commit)"
+bind diff    P !sh -c "git-prls -1 %(commit)"
+bind log     P !sh -c "git-prls -1 %(commit)"
+
 # Quick git operations
 bind main    Y !git cherry-pick %(commit)
 bind main    ! ?git revert %(commit)
