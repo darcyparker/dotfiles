@@ -1,12 +1,25 @@
 #!/usr/bin/env bash
-# --- Load Git Helper ---
-if [ -f "/usr/share/git/completion/git-prompt.sh" ]; then
-  # shellcheck disable=SC1091
-  . "/usr/share/git/completion/git-prompt.sh"
-elif [ -f "/usr/lib/git-core/git-sh-prompt" ]; then
-  # shellcheck disable=SC1091
-  . "/usr/lib/git-core/git-sh-prompt"
+# --- Load Git Helper (Cross-Platform) ---
+if command -v brew >/dev/null; then
+  # Only run brew prefix if not already set to keep shell start fast
+  BREW_PREFIX="${BREW_PREFIX:-$(brew --prefix)}"
 fi
+
+GIT_PROMPT_LOCATIONS=(
+  "/usr/share/git/completion/git-prompt.sh"
+  "/usr/lib/git-core/git-sh-prompt"
+  "$BREW_PREFIX/etc/bash_completion.d/git-prompt.sh"
+  "/Library/Developer/CommandLineTools/usr/share/git-core/git-prompt.sh"
+  "/Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-prompt.sh"
+)
+
+for PROMPT_PATH in "${GIT_PROMPT_LOCATIONS[@]}"; do
+  if [ -f "$PROMPT_PATH" ]; then
+    # shellcheck disable=SC1090
+    . "$PROMPT_PATH"
+    break
+  fi
+done
 
 # --- Configure Git Prompt ---
 if type __git_ps1 &>/dev/null; then

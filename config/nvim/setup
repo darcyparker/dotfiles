@@ -1,5 +1,35 @@
 #!/usr/bin/env bash
+# --- macOS Homebrew Dependencies ---
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  echo "macOS detected: Checking for Homebrew dependencies..."
 
+  # Ensure Homebrew is installed
+  if ! type brew >/dev/null 2>&1; then
+    echo "Homebrew not found. Please install it from https://brew.sh/"
+    exit 1
+  fi
+
+  echo "Installing runtimes..."
+  brew install python ruby go rust luarocks wget perl-build
+
+  # 2. Search & Navigation (Fixes LazyVim, Fzf-lua, and Snacks errors)
+  echo "Installing search and git tools..."
+  brew install ripgrep fd fzf lazygit
+
+  # 3. Formatters & Linters (Fixes Conform warnings)
+  echo "Installing formatters..."
+  brew install clang-format prettier shfmt stylua fish
+
+  # 4. Media & Rendering (Fixes Snacks.image and Fzf-lua media warnings)
+  echo "Installing media tools..."
+  brew install imagemagick ghostscript chafa viu
+
+  # Add Homebrew Ruby to PATH so 'gem install' doesn't hit system folders
+  # This only affects the current script execution
+  export PATH="$(brew --prefix ruby)/bin:$PATH"
+fi
+
+# -- python
 if type python3 >/dev/null 2>&1; then
   echo "pip install --upgrade pynvim"
   VENV_DIR="$HOME/.config/nvim/pynvim-venv"
@@ -20,24 +50,31 @@ if type python3 >/dev/null 2>&1; then
   unset VENV_DIR
 fi
 
+#--- Perl ---
 if type cpanm >/dev/null 2>&1; then
   echo "perl: upgrade cpanm Neovim::Ext"
   cpanm -n Neovim::Ext
   echo "Done: cpanm -n Neovim::Ext"
 fi
 
+# --- Ruby ---
 if type gem >/dev/null 2>&1; then
   echo "gem: install neovim"
-  gem install neovim
+  # If it still fails, it will try user-install.
+  gem install neovim --no-document || gem install neovim --user-install --no-document
   echo "Done: gem install neovim"
 fi
 
+# --- Node / NPM ---
 if type npm >/dev/null 2>&1; then
   echo "npm: install neovim"
   npm install -g neovim@latest
   echo "Done: npm install neovim"
 
   echo "npm: install tree-sitter"
+  # Fix for the C++20 error: We explicitly tell the compiler to use c++20
+  # and ensure we are using the global prefix for nvm-managed nodes.
+  export CXXFLAGS="-std=c++20"
   # npm install -g tree-sitter@latest
   npm install -g tree-sitter@0.25.0     #newer than latest?
   npm install -g tree-sitter-cli@0.25.0 #newer than latest?

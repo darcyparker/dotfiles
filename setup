@@ -26,6 +26,7 @@ _linkRCFiles() {
     ;;
   Darwin)
     if ! type rcup >/dev/null 2>&1; then
+      brew install coreutils # for gdircolors
       brew install rcm
     fi
     echo Updating rc files for MacOS
@@ -39,7 +40,7 @@ _installNvm() {
     case "$(uname -s)" in
     Linux)
       unset NVM_DIR
-      curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+      curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
       export NVM_DIR="$HOME/.config/nvm"
       mkdir -p "$HOME/.config/nvm"
       # shellcheck disable=SC1091
@@ -61,20 +62,9 @@ _installNvm() {
       ;;
     esac
     nvm install --lts --latest-npm #install LTS version of node and npm
-  fi
-}
-
-_installNode() {
-  if ! type node >/dev/null 2>&1; then
-    echo "Installing node"
-    nvm install --lts --latest-npm #install LTS version of node and npm
-  fi
-  if [ ! -e "$(dirname "$0")/bash/bash_completion.d/npm.sh" ]; then
-    if type npm >/dev/null 2>&1; then
-      echo "Adding npm completion"
-      npm completion >"$(dirname "$0")/bash/bash_completion.d/npm.sh"
-      chmod +x "$(dirname "$0")/bash/bash_completion.d/npm.sh"
-    fi
+    nvm alias default 'lts/*'
+    nvm use default
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
   fi
 }
 
@@ -127,11 +117,10 @@ _run() {
   _linkRCFiles
 
   echo
-  _installNvm
-  _installNode
+  ./bin/installNvm.sh
 
   echo
-  _installRvmAndRuby
+  //_installRvmAndRuby
 
   echo
   _setupNvim
@@ -145,7 +134,6 @@ _run() {
 _run
 unset -f _run
 unset -f _linkRCFiles
-unset -f _installNvm
 unset -f _installNode
 unset -f _installRvmAndRuby
 unset -f _setupNvim

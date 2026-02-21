@@ -76,9 +76,7 @@ if [ -z "$BASH_COMPLETION" ]; then
   fi
 fi
 
-export NVM_DIR="$HOME/.config/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+# Note: NVM_DIR, nvm and nvm completion loads with ~/.bash/bash.2.d/nvm.sh and ~/.bash/bash.3.d/cdnvm.sh
 
 #If WSL2? set $DISPLAY for xserver
 if [ -f "/etc/wsl.conf" ]; then
