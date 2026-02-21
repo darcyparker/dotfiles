@@ -33,7 +33,7 @@ if ! declare -f nvm &>/dev/null; then
 fi
 
 # Setup npm bash completion
-COMPLETION_DIR="$(dirname "$0")/bash/bash_completion.d"
+COMPLETION_DIR="$(dirname "$0")/../bash/bash_completion.d"
 
 if [ ! -e "$COMPLETION_DIR/npm.sh" ]; then
   if type npm >/dev/null 2>&1; then
