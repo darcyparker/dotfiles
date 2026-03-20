@@ -43,22 +43,28 @@ zig build -Doptimize=ReleaseFast -fno-sys=gtk4-layer-shell
 
 # 5. Deployment
 if [ -d "zig-out" ]; then
-  echo "💾 Deploying full zig-out to $INSTALL_PREFIX..."
-
+  echo "💾 Deploying to $INSTALL_PREFIX..."
   cp -r zig-out/* "$INSTALL_PREFIX/"
 
-  # Patch the .desktop file to use the system paths instead of build paths
-  DESKTOP_FILE="$INSTALL_PREFIX/share/applications/com.mitchellh.ghostty.desktop"
-  if [ -f "$DESKTOP_FILE" ]; then
-    echo "📄 Sanitizing Desktop Entry paths..."
-    sed -i "s|Exec=.*|Exec=$INSTALL_PREFIX/bin/ghostty|" "$DESKTOP_FILE"
-    sed -i "s|TryExec=.*|TryExec=$INSTALL_PREFIX/bin/ghostty|" "$DESKTOP_FILE"
-    sed -i 's/DBusActivatable=true/DBusActivatable=false/' "$DESKTOP_FILE"
-    sed -i 's/^Icon=.*/Icon=com.mitchellh.ghostty/' "$DESKTOP_FILE"
-  fi
+  # Ensure the icon is in the standard hicolor path
+  mkdir -p "$INSTALL_PREFIX/share/icons/hicolor/128x128/apps"
+  cp "images/Ghostty.icon/Assets/Ghostty.png" "$INSTALL_PREFIX/share/icons/hicolor/128x128/apps/com.mitchellh.ghostty.png"
 
-  # Final cache refresh
-  update-desktop-database "$INSTALL_PREFIX/share/applications" &>/dev/null
+  # Sanitize the desktop file
+  DESKTOP_FILE="$INSTALL_PREFIX/share/applications/com.mitchellh.ghostty.desktop"
+  sed -i "s|Exec=.*|Exec=$INSTALL_PREFIX/bin/ghostty|" "$DESKTOP_FILE"
+  sed -i "s|TryExec=.*|TryExec=$INSTALL_PREFIX/bin/ghostty|" "$DESKTOP_FILE"
+  sed -i 's/^Icon=.*/Icon=com.mitchellh.ghostty/' "$DESKTOP_FILE"
+  sed -i 's/DBusActivatable=true/DBusActivatable=false/' "$DESKTOP_FILE"
+
+  # Ensure the ID matches the window class perfectly
+  sed -i '/^StartupWMClass=/d' "$DESKTOP_FILE"
+  echo "StartupWMClass=com.mitchellh.ghostty" >>"$DESKTOP_FILE"
+
+  # Wipe local overrides
+  rm -f ~/.local/share/applications/com.mitchellh.ghostty.desktop
+
+  update-desktop-database "$INSTALL_PREFIX/share/applications"
   kbuildsycoca6 --noincremental &>/dev/null
 
   echo "🎉 Success! Ghostty is ready."
