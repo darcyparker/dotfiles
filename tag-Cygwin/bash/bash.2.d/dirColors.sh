@@ -1,1 +1,1 @@
-../../msys/bash.2.d/dirColors.sh
+../../../tag-MSYS/bash/bash.2.d/dirColors.sh
