@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# Toggle tmux and Ghostty between Solarized dark and light themes.
+# Called from tmux bind b in tmux.solarized{dark,light}.conf
+
+CURRENT=$(tmux show-environment -g SOLARIZED_THEME 2>/dev/null | cut -d= -f2)
+
+if [ "$CURRENT" = "light" ]; then
+  tmux set-environment -g SOLARIZED_THEME dark
+  tmux source-file ~/.tmux.solarizeddark.conf
+
+  # $GHOSTTY_RESOURCES_DIR is set by Ghostty and inherited by the tmux server
+  # at launch, making it reliable for detecting Ghostty from inside run-shell.
+  # $TERM_PROGRAM is not used because tmux overwrites it with "tmux".
+  if [ -n "$GHOSTTY_RESOURCES_DIR" ]; then
+    ghostty_config=$(readlink -f ~/.config/ghostty/config)
+    sed -i 's/^theme = .*/theme = iTerm2 Solarized Dark/' "$ghostty_config"
+    gdbus call --session --dest com.mitchellh.ghostty \
+      --object-path /com/mitchellh/ghostty \
+      --method org.gtk.Actions.Activate \
+      'reload-config' '[]' '{}' >/dev/null 2>&1
+  fi
+else
+  # Default to switching to light (handles unset state too)
+  tmux set-environment -g SOLARIZED_THEME light
+  tmux source-file ~/.tmux.solarizedlight.conf
+
+  # $GHOSTTY_RESOURCES_DIR is set by Ghostty and inherited by the tmux server
+  # at launch, making it reliable for detecting Ghostty from inside run-shell.
+  # $TERM_PROGRAM is not used because tmux overwrites it with "tmux".
+  if [ -n "$GHOSTTY_RESOURCES_DIR" ]; then
+    ghostty_config=$(readlink -f ~/.config/ghostty/config)
+    sed -i 's/^theme = .*/theme = iTerm2 Solarized Light/' "$ghostty_config"
+    gdbus call --session --dest com.mitchellh.ghostty \
+      --object-path /com/mitchellh/ghostty \
+      --method org.gtk.Actions.Activate \
+      'reload-config' '[]' '{}' >/dev/null 2>&1
+  fi
+fi
