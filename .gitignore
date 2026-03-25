@@ -20,3 +20,4 @@ config/nvim/plugin/packer_compiled.lua
 Icon?
 Thumbs.db
 __MACOSX/*
+.claude/settings.local.json
