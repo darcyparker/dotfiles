@@ -1,3 +1,5 @@
+if vim.g.vscode then return {} end
+
 return {
   -- formatter plugin
   "stevearc/conform.nvim",

@@ -1,3 +1,5 @@
+if vim.g.vscode then return {} end
+
 -- lua/plugins/render-markdown.lua
 return {
   "MeanderingProgrammer/render-markdown.nvim",
