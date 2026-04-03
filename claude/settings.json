@@ -1,0 +1,36 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(/home/darcy/.config/Code/User/**)",
+      "Read(/home/darcy/.config/nvim/**)",
+      "Read(/home/darcy/.vscode/extensions/**)",
+      "Read(/home/darcy/src/dotfiles/**)",
+      "WebSearch",
+      "WebFetch(domain:www.anthropic.com)",
+      "WebFetch(domain:docs.anthropic.com)",
+      "WebFetch(domain:support.claude.com)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:blog.bront.rodeo)",
+      "Skill(update-config)",
+      "Skill(update-config:*)",
+      "Bash(find:*)",
+      "Bash(grep:*)",
+      "Bash(ls:*)",
+      "Bash(cat:*)",
+      "Bash(head:*)",
+      "Bash(tail:*)",
+      "Bash(wc:*)",
+      "Bash(ag:*)",
+      "Bash(gh:*)",
+      "Bash(git:*)",
+      "Bash(xargs:*)"
+    ],
+    "additionalDirectories": [
+      "/home/darcy/.claude",
+      "/home/darcy/.config/Code/User",
+      "/home/darcy/.config/nvim/lua/config",
+      "/home/darcy/src/dotfiles"
+    ]
+  },
+  "effortLevel": "medium"
+}
