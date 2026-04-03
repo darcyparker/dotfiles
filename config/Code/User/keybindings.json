@@ -1,0 +1,56 @@
+[
+    // From sidebar: use ctrl+h or ctrl+l to return focus to the editor
+    {
+        "key": "ctrl+h",
+        "command": "workbench.action.focusActiveEditorGroup",
+        "when": "sideBarFocus"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "workbench.action.focusActiveEditorGroup",
+        "when": "sideBarFocus"
+    },
+    // --- Claude Code (Cursor-style) ---
+    // Built-in Claude Code bindings (no config needed, documented here for reference):
+    //   Alt+K           → add selection to Claude (insertAtMention) — works in any editor mode
+    //   Ctrl+Escape     → toggle focus in/out of Claude panel
+    //   Ctrl+Shift+Esc  → open Claude editor panel
+    //
+    // Custom bindings below:
+    // Ctrl+L → add selection to Claude (Cursor: Ctrl+Shift+L)
+    // Only fires in visual mode; normal mode Ctrl+L stays as neovim window nav
+    {
+        "key": "ctrl+l",
+        "command": "claude-vscode.insertAtMention",
+        "when": "editorTextFocus && neovim.mode == visual && !config.claudeCode.useTerminal"
+    },
+    // Ctrl+L from explorer → add file to Claude (no neovim conflict here)
+    {
+        "key": "ctrl+l",
+        "command": "claude-vscode.insertAtMention",
+        "when": "explorerViewletFocus && !config.claudeCode.useTerminal"
+    },
+    // Ctrl+Shift+L → focus/toggle Claude panel (Cursor: Ctrl+L to open chat)
+    {
+        "key": "ctrl+shift+l",
+        "command": "claude-vscode.focus",
+        "when": "editorTextFocus && !config.claudeCode.useTerminal"
+    },
+    {
+        "key": "ctrl+shift+l",
+        "command": "claude-vscode.blur",
+        "when": "!editorTextFocus && !config.claudeCode.useTerminal"
+    },
+    // Ctrl+Shift+I → open Claude editor panel (Cursor: Ctrl+I for Composer)
+    {
+        "key": "ctrl+shift+i",
+        "command": "claude-vscode.editor.open",
+        "when": "!config.claudeCode.useTerminal"
+    },
+    // Ctrl+Shift+N → new Claude conversation (Cursor: Ctrl+N in chat)
+    {
+        "key": "ctrl+shift+n",
+        "command": "claude-vscode.newConversation",
+        "when": "!editorTextFocus && !config.claudeCode.useTerminal"
+    }
+]
