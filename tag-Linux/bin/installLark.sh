@@ -131,7 +131,7 @@ rm -f "$TARGET_BIN"
 cat <<EOF >"$TARGET_BIN"
 #!/usr/bin/env bash
 # This script runs Lark inside a private home directory (~/sandboxes/lark)
-firejail --profile="$PROFILE_OUT" --dns=$DNS_SERVER --private="$SANDBOX_DIR" "$INTERNAL_EXEC" "\$@"
+firejail --profile="$PROFILE_OUT" --dns=$DNS_SERVER --env=IBUS_USE_PORTAL=1 --private="$SANDBOX_DIR" "$INTERNAL_EXEC" "\$@"
 EOF
 chmod +x "$TARGET_BIN" || exit
 
