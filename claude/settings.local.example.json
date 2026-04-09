@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [],
+    "deny": [],
+    "additionalDirectories": []
+  },
+  "effortLevel": "max",
+  "model": "opus[1m]"
+}

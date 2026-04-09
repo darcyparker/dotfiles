@@ -1,4 +1,7 @@
 {
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  },
   "permissions": {
     "allow": [
       "Read(/home/darcy/.config/Code/User/**)",
@@ -13,24 +16,34 @@
       "WebFetch(domain:blog.bront.rodeo)",
       "Skill(update-config)",
       "Skill(update-config:*)",
-      "Bash(find:*)",
-      "Bash(grep:*)",
-      "Bash(ls:*)",
-      "Bash(cat:*)",
-      "Bash(head:*)",
-      "Bash(tail:*)",
-      "Bash(wc:*)",
       "Bash(ag:*)",
+      "Bash(awk:*)",
+      "Bash(cat:*)",
+      "Bash(find:*)",
       "Bash(gh:*)",
       "Bash(git:*)",
-      "Bash(xargs:*)"
+      "Bash(grep:*)",
+      "Bash(head:*)",
+      "Bash(ls:*)",
+      "Bash(mkdir:*)",
+      "Bash(node:*)",
+      "Bash(npx:*)",
+      "Bash(pnpm exec:*)",
+      "Bash(pnpm run:*)",
+      "Bash(pnpm:*)",
+      "Bash(python3:*)",
+      "Bash(sed:*)",
+      "Bash(tail:*)",
+      "Bash(turbo run:*)",
+      "Bash(wc:*)",
+      "Bash(xargs:*)",
+      "Bash(echo \"exit: $?\")"
     ],
     "additionalDirectories": [
-      "/home/darcy/.claude",
-      "/home/darcy/.config/Code/User",
       "/home/darcy/.config/nvim/lua/config",
       "/home/darcy/src/dotfiles"
     ]
   },
-  "effortLevel": "medium"
+  "model": "opus[1m]",
+  "effortLevel": "max"
 }
