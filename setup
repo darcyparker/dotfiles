@@ -101,7 +101,82 @@ _installRvmAndRuby() {
 _setupNvim() {
   echo "Setting up nvim"
   # shellcheck disable=SC1091
-  . "$HOME/.config/nvim/setup"
+  . "$HOME/.config/nvim/setup" || echo "Warning: nvim setup had errors — continuing"
+}
+
+_setupWSL2() {
+  if [ -z "$WSL_DISTRO_NAME" ]; then
+    return
+  fi
+
+  # Enable gnome-keyring socket activation for VS Code secret storage
+  # Install if missing:
+  #   Arch/Manjaro: sudo pacman -S gnome-keyring
+  #   Debian/Ubuntu: sudo apt install gnome-keyring
+  if type gnome-keyring-daemon &>/dev/null; then
+    echo "Enabling gnome-keyring systemd socket"
+    systemctl --user enable gnome-keyring-daemon.socket 2>/dev/null
+    systemctl --user start gnome-keyring-daemon.socket 2>/dev/null
+  else
+    echo "Warning: gnome-keyring not installed — VS Code secret storage will not persist"
+  fi
+
+  # Symlink VS Code config into Windows via WSL UNC paths
+  echo "Symlinking VS Code config to Windows"
+  local winUser
+  winUser="$(cmd.exe /c "echo %USERNAME%" 2>/dev/null | tr -d '\r')"
+  local winCodeDir="/mnt/c/Users/$winUser/AppData/Roaming/Code/User"
+  local winCodeDirWin="C:\\Users\\${winUser}\\AppData\\Roaming\\Code\\User"
+
+  if [ -d "$winCodeDir" ]; then
+    local dotfilesCodeDir
+    dotfilesCodeDir="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)/config/Code/User"
+
+    for file in keybindings.json settings.json; do
+      if [ ! -f "$dotfilesCodeDir/$file" ]; then
+        echo "  $file not found in dotfiles — skipping"
+        continue
+      fi
+
+      local wslSrc="\\\\wsl.localhost\\${WSL_DISTRO_NAME}${dotfilesCodeDir}/${file}"
+      wslSrc="${wslSrc//\//\\}"
+      local winDest="${winCodeDirWin}\\${file}"
+
+      cmd.exe /c "del \"${winDest}\" 2>nul" 2>/dev/null
+      if cmd.exe /c "mklink \"${winDest}\" \"${wslSrc}\"" 2>/dev/null; then
+        echo "  Linked $file"
+      else
+        echo "  Failed to link $file — enable Developer Mode or run as admin"
+      fi
+    done
+  else
+    echo "  VS Code User dir not found at $winCodeDir — skipping"
+  fi
+
+  # Symlink Neovim config so Windows nvim shares the WSL dotfiles config
+  echo "Symlinking Neovim config to Windows"
+  local winUserProfile
+  winUserProfile="$(cmd.exe /c "echo %USERPROFILE%" 2>/dev/null | tr -d '\r')"
+
+  if [ -z "$winUserProfile" ]; then
+    echo "  Could not determine USERPROFILE — skipping nvim symlink"
+    return
+  fi
+
+  local dotfilesNvimSrc
+  dotfilesNvimSrc="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)/config/nvim"
+  local wslNvimSrc="\\\\wsl.localhost\\${WSL_DISTRO_NAME}${dotfilesNvimSrc}"
+  wslNvimSrc="${wslNvimSrc//\//\\}"
+  local winConfigDir="${winUserProfile}\\.config"
+  local winNvimDest="${winConfigDir}\\nvim"
+
+  cmd.exe /c "if not exist \"${winConfigDir}\" mkdir \"${winConfigDir}\"" 2>/dev/null
+  cmd.exe /c "if exist \"${winNvimDest}\" rmdir \"${winNvimDest}\"" 2>/dev/null
+  if cmd.exe /c "mklink /D \"${winNvimDest}\" \"${wslNvimSrc}\"" 2>/dev/null; then
+    echo "  Created symlink: ${winNvimDest}"
+  else
+    echo "  Failed to create symlink — enable Developer Mode in Windows Settings or run as admin"
+  fi
 }
 
 _run() {
@@ -126,6 +201,9 @@ _run() {
   _setupNvim
 
   echo
+  _setupWSL2
+
+  echo
   echo "Done"
 
   popd &>/dev/null || exit 1
@@ -137,3 +215,4 @@ unset -f _linkRCFiles
 unset -f _installNode
 unset -f _installRvmAndRuby
 unset -f _setupNvim
+unset -f _setupWSL2
