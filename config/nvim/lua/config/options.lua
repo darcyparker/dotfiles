@@ -14,7 +14,8 @@ local venv_bin_path = vim.fn.expand("~/.config/nvim/pynvim-venv/bin")
 
 -- Prepend the venv bin directory to Neovim's PATH environment variable.
 -- This allows Neovim and its plugins to find executables like 'ueberzugpp'.
-vim.env.PATH = venv_bin_path .. ":" .. vim.env.PATH
+local sep = vim.fn.has("win32") == 1 and ";" or ":"
+vim.env.PATH = venv_bin_path .. sep .. vim.env.PATH
 
 vim.g.python3_host_prog = venv_bin_path .. "/python"
 
@@ -116,7 +117,8 @@ opt.history = 1000
 opt.backup = false
 opt.swapfile = false
 opt.undofile = true
-opt.undodir = os.getenv("HOME") .. "/.cache/nvim/undodir/"
+local home = vim.fn.has("win32") == 1 and os.getenv("USERPROFILE") or os.getenv("HOME")
+opt.undodir = home .. "/.cache/nvim/undodir/"
 opt.undolevels = 1000
 
 --encoding
