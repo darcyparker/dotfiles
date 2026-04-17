@@ -16,9 +16,30 @@ sudo apt update && sudo apt install -y \
   wget tar curl git libxml2-utils python3-typing-extensions \
   libgtk4-layer-shell-dev gettext
 
-# 2. Build Tooling (Homebrew)
+# 2. Build Tooling (Homebrew + Zig)
 echo "🍺 Verifying Brew toolchain..."
-brew update && brew install zig blueprint-compiler libadwaita
+brew update && brew install blueprint-compiler libadwaita
+
+# Ghostty requires Zig 0.15.x — Homebrew may have a newer incompatible version.
+# Install the correct version directly.
+ZIG_REQUIRED="0.15.2"
+ZIG_INSTALL_DIR="$HOME/.local/zig-${ZIG_REQUIRED}"
+ZIG_BIN="$ZIG_INSTALL_DIR/zig"
+
+if [ ! -x "$ZIG_BIN" ]; then
+  echo "⚡ Installing Zig $ZIG_REQUIRED to $ZIG_INSTALL_DIR..."
+  ZIG_TARBALL="zig-x86_64-linux-${ZIG_REQUIRED}.tar.xz"
+  ZIG_URL="https://ziglang.org/download/${ZIG_REQUIRED}/${ZIG_TARBALL}"
+  mkdir -p "$ZIG_INSTALL_DIR"
+  if ! curl -fL "$ZIG_URL" | tar -xJ --strip-components=1 -C "$ZIG_INSTALL_DIR"; then
+    echo "❌ Failed to download/extract Zig from $ZIG_URL"
+    rm -rf "$ZIG_INSTALL_DIR"
+    exit 1
+  fi
+fi
+
+export PATH="$ZIG_INSTALL_DIR:$PATH"
+echo "✅ Using Zig $(zig version) from $(which zig)"
 
 # 3. Ghostty Source Management
 mkdir -p "$SRC_DIR"
