@@ -49,8 +49,20 @@ function main {
 
   #_debug "Finished"
 
-  if [[ -x "$(command -v tmux)" && -z "$TMUX" && -z "$SSH_CLIENT" && "$TERM" =~ ^xterm ]]; then
-    tmux attach || tmux new
+  # if [[ -x "$(command -v tmux)" && -z "$TMUX" && -z "$SSH_CLIENT" && "$TERM" =~ ^xterm ]]; then
+  #   tmux attach || tmux new
+  # fi
+
+  # To support proxy sessions:
+  if [[ -x "$(command -v tmux)" && -z "$TMUX" && "$TERM" =~ ^xterm ]]; then
+    # 1. If it's a local shell (not SSH), start tmux.
+    # 2. If it's SSH and we specifically forced it, start tmux.
+    # 3. IF it's an 'import' (PROXY_IMPORT), STAY QUIET (prevents nesting).
+    if [[ -z "$SSH_CLIENT" || "$FORCE_TMUX" == "true" ]]; then
+      if [[ "$PROXY_IMPORT" != "true" ]]; then
+        tmux attach || tmux new
+      fi
+    fi
   fi
 }
 
