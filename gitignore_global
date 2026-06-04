@@ -27,3 +27,5 @@ tags-ja
 #Icon?
 Thumbs.db
 __MACOSX/*
+
+**/.claude/settings.local.json

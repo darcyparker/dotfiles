@@ -45,5 +45,8 @@
     ]
   },
   "model": "opus[1m]",
-  "skipDangerousModePermissionPrompt": true
+  "skipDangerousModePermissionPrompt": true,
+  "enabledPlugins": {
+    "lua-lsp@claude-plugins-official": true
+  }
 }
