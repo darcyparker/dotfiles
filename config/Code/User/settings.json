@@ -29,5 +29,6 @@
     },
     "security.workspace.trust.untrustedFiles": "open",
     "chat.viewSessions.orientation": "stacked",
-    "claudeCode.allowDangerouslySkipPermissions": true
+    "claudeCode.allowDangerouslySkipPermissions": true,
+    "typescript.experimental.useTsgo": true
 }
