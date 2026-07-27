@@ -16,30 +16,9 @@ sudo apt update && sudo apt install -y \
   wget tar curl git libxml2-utils python3-typing-extensions \
   libgtk4-layer-shell-dev gettext
 
-# 2. Build Tooling (Homebrew + Zig)
+# 2. Build Tooling (Homebrew)
 echo "🍺 Verifying Brew toolchain..."
 brew update && brew install blueprint-compiler libadwaita
-
-# Ghostty requires Zig 0.15.x — Homebrew may have a newer incompatible version.
-# Install the correct version directly.
-ZIG_REQUIRED="0.15.2"
-ZIG_INSTALL_DIR="$HOME/.local/zig-${ZIG_REQUIRED}"
-ZIG_BIN="$ZIG_INSTALL_DIR/zig"
-
-if [ ! -x "$ZIG_BIN" ]; then
-  echo "⚡ Installing Zig $ZIG_REQUIRED to $ZIG_INSTALL_DIR..."
-  ZIG_TARBALL="zig-x86_64-linux-${ZIG_REQUIRED}.tar.xz"
-  ZIG_URL="https://ziglang.org/download/${ZIG_REQUIRED}/${ZIG_TARBALL}"
-  mkdir -p "$ZIG_INSTALL_DIR"
-  if ! curl -fL "$ZIG_URL" | tar -xJ --strip-components=1 -C "$ZIG_INSTALL_DIR"; then
-    echo "❌ Failed to download/extract Zig from $ZIG_URL"
-    rm -rf "$ZIG_INSTALL_DIR"
-    exit 1
-  fi
-fi
-
-export PATH="$ZIG_INSTALL_DIR:$PATH"
-echo "✅ Using Zig $(zig version) from $(which zig)"
 
 # 3. Ghostty Source Management
 mkdir -p "$SRC_DIR"
@@ -51,18 +30,74 @@ else
   cd "$GHOSTTY_DIR" && git pull origin main
 fi
 
-# 4. Build Ghostty
+# 4. Zig Toolchain
+# Ghostty pins the exact Zig version it needs in build.zig.zon. Read it from
+# there so this script never goes stale when Ghostty bumps the requirement
+# (Homebrew's zig drifts to whatever is newest, which is often incompatible).
+ZIG_REQUIRED="$(grep -oP '\.minimum_zig_version\s*=\s*"\K[^"]+' "$GHOSTTY_DIR/build.zig.zon")"
+if [ -z "$ZIG_REQUIRED" ]; then
+  echo "❌ Could not read minimum_zig_version from $GHOSTTY_DIR/build.zig.zon"
+  exit 1
+fi
+ZIG_INSTALL_DIR="$HOME/.local/zig-${ZIG_REQUIRED}"
+ZIG_BIN="$ZIG_INSTALL_DIR/zig"
+
+if [ ! -x "$ZIG_BIN" ]; then
+  echo "⚡ Installing Zig $ZIG_REQUIRED to $ZIG_INSTALL_DIR..."
+  ZIG_TARBALL="zig-x86_64-linux-${ZIG_REQUIRED}.tar.xz"
+  # Tagged releases live under /download/<ver>/; dev (nightly) builds under /builds/.
+  case "$ZIG_REQUIRED" in
+    *-*) ZIG_URL="https://ziglang.org/builds/${ZIG_TARBALL}" ;;
+    *) ZIG_URL="https://ziglang.org/download/${ZIG_REQUIRED}/${ZIG_TARBALL}" ;;
+  esac
+  mkdir -p "$ZIG_INSTALL_DIR"
+  if ! curl -fL "$ZIG_URL" | tar -xJ --strip-components=1 -C "$ZIG_INSTALL_DIR"; then
+    echo "❌ Failed to download/extract Zig from $ZIG_URL"
+    rm -rf "$ZIG_INSTALL_DIR"
+    exit 1
+  fi
+fi
+
+export PATH="$ZIG_INSTALL_DIR:$PATH"
+echo "✅ Using Zig $(zig version) from $(which zig)"
+
+# 5. Build Ghostty
 cd "$GHOSTTY_DIR" || exit 1
 echo "🧹 Clearing old build artifacts..."
 rm -rf .zig-cache zig-out
 
-echo "🏗️ Building Ghostty using Zig $(zig version)..."
 export PKG_CONFIG_PATH="/usr/lib/x86_64-linux-gnu/pkgconfig:/usr/share/pkgconfig"
+BUILD_FLAGS=(-Doptimize=ReleaseFast -fno-sys=gtk4-layer-shell)
 
+# Pre-fetch ALL dependencies (including lazy ones) before the long compile.
+# Zig pulls 40+ packages over many concurrent TLS connections at once; on
+# networks with TLS inspection some simultaneous handshakes get reset — failing
+# with "TlsInitializationFailed" or occasionally hanging. --fetch=all also grabs
+# lazy deps (spirv-cross, glslang, dcimgui, ...) that plain --fetch skips and
+# that would otherwise only download partway through the compile, so the build
+# below runs fully offline from the cache (~/.cache/zig). The retry loop plus a
+# per-attempt timeout make a transient failure or hang recoverable instead of
+# wasting the whole build.
+echo "📥 Fetching Ghostty dependencies (incl. lazy)..."
+fetch_ok=0
+for attempt in 1 2 3 4 5 6 7 8; do
+  if timeout 180 zig build --fetch=all "${BUILD_FLAGS[@]}"; then
+    fetch_ok=1
+    break
+  fi
+  echo "⚠️  Fetch attempt $attempt failed; retrying in $((attempt * 3))s..."
+  sleep "$((attempt * 3))"
+done
+if [ "$fetch_ok" -ne 1 ]; then
+  echo "❌ Could not fetch Ghostty dependencies after multiple attempts."
+  exit 1
+fi
+
+echo "🏗️ Building Ghostty using Zig $(zig version)..."
 # builds to the local zig-out folder
-zig build -Doptimize=ReleaseFast -fno-sys=gtk4-layer-shell
+zig build "${BUILD_FLAGS[@]}"
 
-# 5. Deployment
+# 6. Deployment
 if [ -d "zig-out" ]; then
   echo "💾 Deploying to $INSTALL_PREFIX..."
   cp -r zig-out/* "$INSTALL_PREFIX/"
