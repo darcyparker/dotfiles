@@ -53,6 +53,9 @@ function main {
   #   tmux attach || tmux new
   # fi
 
+  # herdr ("tmux for AI agents") was trialed and backed out; its configs are kept as WIP but
+  # NOT launched here (see config/herdr/ + installHerdr.sh to retry later).
+  #
   # To support proxy sessions:
   if [[ -x "$(command -v tmux)" && -z "$TMUX" && "$TERM" =~ ^xterm ]]; then
     # 1. If it's a local shell (not SSH), start tmux.

@@ -192,6 +192,7 @@ _run() {
   _linkRCFiles
 
   echo
+  # herdr backed out — not auto-installed. Run ./installHerdr.sh manually to retry herdr.
   ./bin/installNvm.sh
 
   echo

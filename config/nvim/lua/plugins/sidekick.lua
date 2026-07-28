@@ -1,5 +1,6 @@
--- sidekick.nvim runs your AI CLIs (claude/codex/…) in a tmux pane (or a Neovim terminal
--- in plain nvim), with CLI keymaps under the "," leader.
+-- sidekick.nvim runs your AI CLIs (claude/codex/…) in a terminal multiplexer pane.
+-- Uses the tmux backend (or a Neovim terminal in plain nvim). The herdr-native backend
+-- (sidekick_herdr shim, below) is DISABLED — herdr was trialed and backed out.
 return {
   {
     "folke/sidekick.nvim",
@@ -149,5 +150,75 @@ return {
         desc = "Sidekick Gemini",
       },
     },
+  },
+  {
+    -- herdr-native backend: runs sidekick's CLI as a real herdr agent pane. DISABLED — herdr was
+    -- trialed and backed out. Kept as WIP: monkeypatches the shim's `_spawn_agent` to herdr 0.7.x's
+    -- `pane split` + `agent start --kind --pane` API (sync, race fixed). Set enabled = true to resume.
+    "UN-9BOT/sidekick_herdr",
+    enabled = false,
+    dependencies = { "folke/sidekick.nvim" },
+    cond = vim.env.HERDR_ENV == "1",
+    config = function()
+      require("sidekick_herdr").setup {}
+
+      local Herdr = require("sidekick_herdr")
+      local S = require("sidekick_herdr.session")
+      function S:_spawn_agent()
+        if self.herdr_pane_id and self.herdr_pane_id ~= "" then
+          return
+        end
+        local Util = require("sidekick.util")
+        local Config = require("sidekick.config")
+        local split = Config.cli.mux.split or {}
+        local menv = vim.tbl_extend("force", Herdr.env(), { HERDR = false, HERDR_CONFIG_PATH = false })
+
+        -- 1. Create a herdr pane next to the current (nvim) pane, at a shell prompt, in self.cwd.
+        local scmd = {
+          "herdr",
+          "pane",
+          "split",
+          "--cwd",
+          self.cwd,
+          "--direction",
+          (split.vertical == false) and "down" or "right",
+          "--ratio",
+          tostring(split.size or 0.4),
+        }
+        local src = vim.env.HERDR_PANE_ID
+        if src and src ~= "" then
+          vim.list_extend(scmd, { "--pane", src })
+        else
+          scmd[#scmd + 1] = "--current"
+        end
+        local r1 = vim.system(scmd, { env = menv, text = true }):wait()
+        local ok, dec = pcall(vim.json.decode, r1.stdout or "")
+        local pane = ok and dec and ((dec.result and dec.result.pane) or dec.pane) or nil
+        if r1.code ~= 0 or not (pane and pane.pane_id) then
+          Util.error("sidekick_herdr: `herdr pane split` failed: " .. ((r1.stderr or "") .. (r1.stdout or "")))
+          return
+        end
+        self.herdr_pane_id = pane.pane_id
+        self.herdr_workspace_id = pane.workspace_id
+        self.herdr_tab_id = pane.tab_id
+        -- 2. Promote that pane to the agent. SYNCHRONOUS on purpose: sidekick sends the file/
+        -- selection context right after start() returns, so the agent must already be up or that
+        -- text lands in the shell. herdr's --timeout bounds the wait; it returns as soon as the
+        -- agent is detected (usually a few seconds).
+        local kind = self.tool.name
+        local acmd = { "herdr", "agent", "start", kind, "--kind", kind, "--pane", pane.pane_id, "--timeout", "20000" }
+        local r2 = vim.system(acmd, { env = menv, text = true }):wait()
+        if r2.code ~= 0 then
+          Util.error(
+            ("sidekick_herdr: `herdr agent start` failed (code=%d): %s"):format(
+              r2.code,
+              ((r2.stderr or "") .. (r2.stdout or "")):gsub("%s+", " ")
+            )
+          )
+          return
+        end
+        self.started = true
+      end
+    end,
   },
 }

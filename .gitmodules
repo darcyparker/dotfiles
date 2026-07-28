@@ -31,3 +31,6 @@
 [submodule "submodules/git-prlog"]
 	path = submodules/git-prlog
 	url = git@gist.github.com:6eb3625fa02e1b072d65d5b53356aac1.git
+[submodule "submodules/herdr-splits.nvim"]
+	path = submodules/herdr-splits.nvim
+	url = https://github.com/lmilojevicc/herdr-splits.nvim

@@ -1,0 +1,112 @@
+# herdr configuration — mirrors Darcy's tmux muscle memory.
+# Deployed to ~/.config/herdr/config.toml via rcm (single-file symlink from config/herdr/).
+# Verify after edits:  herdr config check   then   herdr server reload-config  (or prefix+shift+r)
+# See all defaults:    herdr --default-config
+onboarding = false
+
+# Match your solarized-dark tmux/nvim aesthetic. (herdr also ships: catppuccin,
+# tokyo-night, dracula, nord, gruvbox, one-dark, kanagawa, rose-pine, vesper.)
+[theme]
+name = "solarized"
+
+auto_switch = false
+[keys]
+# Prefix = tmux Ctrl-a. (Shadows readline C-a inside panes, same tradeoff as tmux.
+# Send a literal Ctrl-a with Ctrl-a Ctrl-a.)
+prefix = "ctrl+a"
+
+# Pane focus — matches your tmux `bind h/j/k/l select-pane` (prefixed fallback).
+# Seamless prefixless Ctrl-h/j/k/l is the herdr-splits.nvim bridge below.
+focus_pane_left  = "prefix+h"
+focus_pane_down  = "prefix+j"
+focus_pane_up    = "prefix+k"
+focus_pane_right = "prefix+l"
+
+# Splits — tmux |/\ = side-by-side, - = stacked.
+# (herdr calls side-by-side "vertical" and stacked "horizontal" — inverted vs tmux -h/-v.)
+split_vertical   = ["prefix+backslash", "prefix+|"]
+split_horizontal = "prefix+minus"
+
+# Tabs (~ tmux windows) — Ctrl-h/Ctrl-l aliases mirror tmux window-nav.
+new_tab      = "prefix+c"
+next_tab     = ["prefix+n", "prefix+ctrl+l"]
+previous_tab = ["prefix+p", "prefix+ctrl+h"]
+
+# tmux-muscle-memory remaps (herdr defaults differ — verified via `herdr config check`):
+detach     = "prefix+d"          # herdr default prefix+q
+rename_tab = "prefix+comma"      # tmux `prefix ,`; herdr default prefix+shift+t
+goto       = "prefix+s"          # session navigator ~ tmux `prefix s`; herdr default prefix+g
+settings   = "prefix+shift+s"    # moved off prefix+s so goto can use it
+last_pane  = "prefix+semicolon"  # tmux `prefix ;` last-pane; unset in herdr by default
+# close_tab = "prefix+ampersand" # tmux `prefix &` kill-window; herdr default prefix+shift+x
+
+# Modes (herdr defaults, restated for clarity):
+resize_mode   = "prefix+r"       # NOTE: tmux `prefix r` = reload; in herdr this ENTERS resize mode
+copy_mode     = "prefix+["
+reload_config = "prefix+shift+r"
+
+# Seamless nav (Ctrl-h/j/k/l) + resize (Alt-h/j/k/l) bridge to Neovim via herdr-splits.nvim.
+# plugin id = "herdr-splits"; provisioned as a git submodule + `herdr plugin link` (see installHerdr.sh).
+[[keys.command]]
+key = "ctrl+h"
+type = "plugin_action"
+command = "herdr-splits.nav-left"
+description = "Nav: left split (nvim/herdr)"
+[[keys.command]]
+key = "ctrl+j"
+type = "plugin_action"
+command = "herdr-splits.nav-down"
+description = "Nav: down split (nvim/herdr)"
+[[keys.command]]
+key = "ctrl+k"
+type = "plugin_action"
+command = "herdr-splits.nav-up"
+description = "Nav: up split (nvim/herdr)"
+[[keys.command]]
+key = "ctrl+l"
+type = "plugin_action"
+command = "herdr-splits.nav-right"
+description = "Nav: right split (nvim/herdr)"
+[[keys.command]]
+key = "alt+h"
+type = "plugin_action"
+command = "herdr-splits.resize-left"
+description = "Resize: split left"
+[[keys.command]]
+key = "alt+j"
+type = "plugin_action"
+command = "herdr-splits.resize-down"
+description = "Resize: split down"
+[[keys.command]]
+key = "alt+k"
+type = "plugin_action"
+command = "herdr-splits.resize-up"
+description = "Resize: split up"
+[[keys.command]]
+key = "alt+l"
+type = "plugin_action"
+command = "herdr-splits.resize-right"
+description = "Resize: split right"
+
+[ui]
+mouse_capture  = true   # mirror tmux `set -g mouse on`
+copy_on_select = true   # drag-select auto-copies (herdr writes clipboard via native tools / OSC52)
+
+# --- Sidebar + tab bar: herdr's answer to a tmux status line ---
+# Left sidebar (toggle prefix+b) shows the Session > Workspace > Tab > Pane tree with
+# agent state + git info. "compact" keeps a slim always-on status rail when collapsed.
+sidebar_width                     = 28
+sidebar_collapsed_mode            = "compact"
+hide_tab_bar_when_single_tab      = false  # always show the tab row (your "windows" list, up top)
+show_agent_labels_on_pane_borders = true   # label agent panes on their borders
+
+# Sidebar row layout. Icons come from built-in tokens (state_icon + herdr's own branch/
+# git_status rendering) — literal glyphs are rejected (custom tokens must start with `$`).
+[ui.sidebar.spaces]
+# branch = herdr's built-in (magenta, truncation-managed); $git = just the __git_ps1 state
+# symbols (* unstaged, + staged, % untracked, < > <> = upstream; no stash) reported by
+# bin/herdr-git-status.sh, styled solarized-yellow like the prompt's git segment.
+rows = [["state_icon", "workspace"], ["branch", { token = "$git", fg = "#b58900" }]]
+
+[ui.sidebar.agents]
+rows = [["state_icon", "workspace", "tab"], ["agent"]]
