@@ -193,8 +193,33 @@ _run() {
 
   echo
   # Install tmux plugins headlessly (TPM is symlinked at ~/.tmux/plugins/tpm by rcup above).
+  # TPM reads its plugin dir from the tmux *server* env var TMUX_PLUGIN_MANAGER_PATH, which is
+  # normally set by the `run '.../tpm/tpm'` line when tmux.conf is sourced. A fresh machine may
+  # have no configured server yet, so set it explicitly first — otherwise install_plugins aborts
+  # with "unknown variable: TMUX_PLUGIN_MANAGER_PATH".
   if [ -x "$HOME/.tmux/plugins/tpm/bin/install_plugins" ]; then
+    tmux start-server \; set-environment -g TMUX_PLUGIN_MANAGER_PATH "$HOME/.tmux/plugins/" 2>/dev/null || true
     "$HOME/.tmux/plugins/tpm/bin/install_plugins" || echo "Warning: tmux plugin install had errors"
+  fi
+
+  # tmux-agent-sidebar ships a Rust binary that TPM does NOT fetch: its installer is an
+  # interactive tmux menu that the plugin backgrounds via `run-shell -b`, which can't render
+  # headlessly — so on a fresh machine the sidebar's prefix+e / prefix+E never bind. Pull the
+  # prebuilt binary directly via the wizard's non-interactive `download-binary` subcommand.
+  local _sidebarDir="$HOME/.tmux/plugins/tmux-agent-sidebar"
+  if [ -f "$_sidebarDir/install-wizard.sh" ] && [ ! -x "$_sidebarDir/bin/tmux-agent-sidebar" ]; then
+    echo "Fetching tmux-agent-sidebar binary"
+    bash "$_sidebarDir/install-wizard.sh" download-binary ||
+      echo "Warning: sidebar binary download failed — run: bash \"$_sidebarDir/install-wizard.sh\" download-binary"
+  fi
+
+  # tmux-resurrect: seed an initial save so continuum's restore-on-start (@continuum-restore 'on')
+  # doesn't flash "Tmux resurrect file not found!" on a brand-new machine. Idempotent — only when
+  # no save exists yet; continuum's periodic auto-save takes over afterward.
+  local _resurrectSave="$HOME/.tmux/plugins/tmux-resurrect/scripts/save.sh"
+  if [ -x "$_resurrectSave" ] && [ ! -e "$HOME/.local/share/tmux/resurrect/last" ]; then
+    echo "Seeding initial tmux-resurrect save"
+    tmux start-server \; run-shell "$_resurrectSave" 2>/dev/null || true
   fi
 
   echo
