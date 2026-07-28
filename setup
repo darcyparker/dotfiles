@@ -192,6 +192,12 @@ _run() {
   _linkRCFiles
 
   echo
+  # Install tmux plugins headlessly (TPM is symlinked at ~/.tmux/plugins/tpm by rcup above).
+  if [ -x "$HOME/.tmux/plugins/tpm/bin/install_plugins" ]; then
+    "$HOME/.tmux/plugins/tpm/bin/install_plugins" || echo "Warning: tmux plugin install had errors"
+  fi
+
+  echo
   # herdr backed out — not auto-installed. Run ./installHerdr.sh manually to retry herdr.
   ./bin/installNvm.sh
 

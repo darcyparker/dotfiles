@@ -34,3 +34,6 @@
 [submodule "submodules/herdr-splits.nvim"]
 	path = submodules/herdr-splits.nvim
 	url = https://github.com/lmilojevicc/herdr-splits.nvim
+[submodule "tmux/plugins/tpm"]
+	path = tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm
