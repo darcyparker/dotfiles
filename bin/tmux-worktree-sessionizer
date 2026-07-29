@@ -1,0 +1,160 @@
+#!/usr/bin/env bash
+# tmux-worktree-sessionizer — fuzzy-pick a git worktree and jump to (or create) a
+# tmux session rooted in it with nvim open.
+#
+# Prior art / inspired by:
+#   * ThePrimeagen's tmux-sessionizer:
+#     https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/scripts/tmux-sessionizer
+#   * jrmoulton/tmux-sessionizer (`tms`) — a fuller, config-driven Rust reimplementation:
+#     https://github.com/jrmoulton/tmux-sessionizer
+# This is a deliberately minimal, worktree-focused take: one session PER worktree, no deps
+# beyond fzf/git/tmux. Consider `tms` in future if you want a general project switcher with
+# bookmarks / clone-repo / marks — note it models worktrees as WINDOWS within a repo's
+# session, vs this script's one-session-per-worktree.
+#
+# Orchestrator-agnostic: worktrees made by `git worktree add`, dmux, or firstmate all
+# work. A worktree maps to a stable session name (basename + path hash); an existing
+# session for the worktree — ours by name, or an orchestrator's detected by pane cwd —
+# is switched-to, never duplicated.
+#
+# Bound to `prefix C-o` in tmux.conf (display-popup, opened at the active pane's cwd via
+# `-d`). Optional arg: a worktree path, which skips the picker.
+#
+# Config — $WORKTREE_ROOTS: colon-separated roots (like $PATH) scanned for OTHER repos;
+# defaults to ~/src when unset. Set it where the tmux SERVER will inherit it, e.g.:
+#   ~/.bash/bash.2.d/worktrees.sh:  export WORKTREE_ROOTS="$HOME/src:$HOME/work"
+#   running server (apply now):     tmux set-environment -g WORKTREE_ROOTS "$HOME/src:$HOME/work"
+set -euo pipefail
+
+# PATH: rely on the tmux server's inherited login-shell PATH — ~/.bash/bash.3.d/reorderPath.sh
+# (plus fzf/brew) is the single source of truth, and display-popup panes inherit the server env
+# (verified: git/fzf/tmux/nvim/awk/find/cksum all resolve, incl. Homebrew on macOS). No hardcoded
+# list here to drift from it. (If a popup ever can't find a tool, the tmux server was started with
+# a stripped PATH — fix how the server starts, don't hardcode a PATH here.)
+
+# Emit "<label>\t<abspath>" for each worktree of the repo at "$1".
+emit_worktrees() {
+  { git -C "$1" worktree list --porcelain 2>/dev/null || true; } | awk '
+    /^worktree /  { path = substr($0, 10) }
+    /^branch /    { b = $2; sub(/^refs\/heads\//, "", b); printf "%s\t%s\n", b, path }
+    /^detached$/  { printf "(detached)\t%s\n", path }
+  '
+}
+
+collect_worktrees() {
+  # current repo (the popup opens in the active pane's dir via `display-popup -d`)
+  if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    emit_worktrees "$PWD"
+  fi
+  # Discover every MAIN repo under each root, then (below) list its worktrees. find query,
+  # clause by clause:
+  #   -maxdepth 3 .............. shallow scan (repos rarely nest deeper)
+  #   \( heavy dirs \) -prune .. skip node_modules/target/build/dist/vendor/.cache in ONE
+  #                              stat instead of walking them (the speed); listed FIRST so a
+  #                              vendored/nested .git under them can't surface as a repo
+  #   -type d -name .git ....... a MAIN repo's .git is a DIRECTORY; a submodule or a linked
+  #                              worktree has a .git FILE, so it's skipped -> each repo once
+  #   -print -prune ............ emit the .git path, don't descend into its object store
+  # (The explicit -print disables find's default "print everything" -> only .git dirs emit.)
+  # Split $WORKTREE_ROOTS on ':' into the `roots` array (like $PATH). `${VAR:-default}`
+  # supplies ~/src when WORKTREE_ROOTS is unset/empty, so `roots` is never empty.
+  local roots root gitdir
+  IFS=':' read -r -a roots <<<"${WORKTREE_ROOTS:-$HOME/src}"
+  for root in "${roots[@]}"; do
+    [ -d "$root" ] || continue
+    while IFS= read -r gitdir; do
+      emit_worktrees "${gitdir%/.git}"
+    done < <(find "$root" -maxdepth 3 \
+      \( -type d \( -name node_modules -o -name target -o -name build \
+                    -o -name dist -o -name vendor -o -name .cache \) -prune \) \
+      -o \( -type d -name .git -print -prune \) 2>/dev/null || true)
+  done
+}
+
+# Dedup by path (field 2), preserve first-seen order.
+candidates="$(collect_worktrees | awk -F'\t' 'NF==2 && !seen[$2]++')"
+if [ -z "$candidates" ]; then
+  tmux display-message 'worktree-sessionizer: no git worktrees found (set $WORKTREE_ROOTS)'
+  exit 0
+fi
+
+if [ "$#" -ge 1 ]; then
+  target="$1"
+else
+  selection="$(printf '%s\n' "$candidates" \
+    | fzf --prompt='worktree> ' --delimiter='\t' --with-nth=1,2 --nth=1,2 \
+          --height=100% --reverse --no-multi --tiebreak=begin)" || exit 0
+  target="${selection#*$'\t'}" # field 2 = path (labels never contain a tab)
+fi
+[ -n "${target:-}" ] || exit 0
+
+# Canonicalize (resolve .., symlinks) so the pane-cwd comparison is apples-to-apples.
+if ! target="$(cd "$target" 2>/dev/null && pwd -P)"; then
+  tmux display-message "worktree-sessionizer: not a directory: $target"
+  exit 1
+fi
+
+# Stable session name for this worktree (used to find our own session and to create).
+name="$(printf '%s-%s' "$(basename "$target")" "$(printf '%s' "$target" | cksum | cut -d' ' -f1)" \
+  | tr -c 'A-Za-z0-9_-' '_')"
+
+# Find an existing session for this worktree.
+session=""
+if tmux has-session -t "=$name" 2>/dev/null; then
+  # 1. Our own session — matches by name regardless of where its panes have cd'd.
+  session="$name"
+else
+  # 2. Another session (e.g. an orchestrator's) with a pane whose cwd is the worktree or a
+  #    subdir of it. PREFER a session other than the one we're invoking from, so a transient
+  #    shell in the current session can't hijack the pick — but fall back to the current
+  #    session if it is the only match, so invoking C-o from the worktree's OWN orchestrator
+  #    session reuses it (a harmless no-op switch) instead of creating a duplicate.
+  #    (Residual: an incidental shell cwd'd in the worktree, in some other session, can still
+  #    match — inherent to cwd-based detection; acceptable.)
+  cur="$(tmux display-message -p '#{session_name}' 2>/dev/null || true)"
+  cur_match=""
+  while IFS=$'\t' read -r sname spath; do
+    case "$spath" in
+    "$target" | "$target"/*)
+      if [ "$sname" = "$cur" ]; then
+        cur_match="$sname"
+      else
+        session="$sname"
+        break
+      fi
+      ;;
+    esac
+  done < <(tmux list-panes -a -F '#{session_name}'$'\t''#{pane_current_path}' 2>/dev/null || true)
+  [ -n "$session" ] || session="$cur_match"
+fi
+
+created=0
+if [ -z "$session" ]; then
+  session="$name"
+  # Target the NEW pane by id: a pane id is always a valid send-keys target, whereas the
+  # `=name` exact-match prefix is only valid for sessions/windows and would abort under set -e.
+  pane_id="$(tmux new-session -d -s "$session" -c "$target" -n edit -P -F '#{pane_id}')"
+  tmux send-keys -t "$pane_id" 'nvim .' C-m
+  created=1
+fi
+
+# For a REUSED session, ensure there is an nvim to land in; if none, split one beside
+# whatever is there (e.g. the agent). Skipped for a freshly created session (we just
+# launched nvim; pane_current_command may still read as the shell -> avoids a double nvim).
+# Capture-then-match (here-string) instead of a pipe so pipefail+SIGPIPE can't misfire.
+if [ "$created" -eq 0 ]; then
+  panes="$(tmux list-panes -s -t "=$session" -F '#{pane_current_command}' 2>/dev/null || true)"
+  if ! grep -qx 'nvim' <<<"$panes"; then
+    win="$(tmux list-windows -t "=$session" -F '#{window_id}' 2>/dev/null | head -n1 || true)"
+    if [ -n "$win" ]; then
+      pane="$(tmux split-window -t "$win" -c "$target" -P -F '#{pane_id}')"
+      tmux send-keys -t "$pane" 'nvim .' C-m
+    fi
+  fi
+fi
+
+if [ -n "${TMUX:-}" ]; then
+  tmux switch-client -t "=$session"
+else
+  exec tmux attach-session -t "=$session"
+fi
