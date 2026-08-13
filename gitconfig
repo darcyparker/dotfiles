@@ -90,6 +90,10 @@
   ;Show the last tag:
   lasttag = describe --tags --abbrev=0
   lt = describe --tags --abbrev=0
+  ;Remove a worktree by BRANCH name, then delete the branch. Usage: git wtrm <branch> [remove-flags...]
+  ;'worktree remove' needs a path, not a branch, so the path is looked up from the branch first.
+  ;Extra args pass through to 'worktree remove' (e.g. --force for a dirty tree). Deletes with branch -D.
+  wtrm = "!f() { b=\"$1\"; shift; p=$(git worktree list --porcelain | awk -v w=\"branch refs/heads/$b\" '/^worktree /{d=substr($0,10)} $0==w{print d}'); [ -n \"$p\" ] || { echo \"git wtrm: no worktree for branch: $b\" >&2; return 1; }; git worktree remove \"$@\" \"$p\" && git branch -D \"$b\"; }; f"
 [gh]
 	autoUpdate = always
 [filter "lfs"]
