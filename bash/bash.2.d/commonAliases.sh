@@ -36,3 +36,7 @@ alias del="rm"
 
 alias ng="npm list -g --depth=0 2>/dev/null"
 alias nl="npm list --depth=0 2>/dev/null"
+
+if type -P yt-dlp &> /dev/null; then
+  alias youtubedl="yt-dlp"
+fi
