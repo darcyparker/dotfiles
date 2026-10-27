@@ -31,9 +31,5 @@
   "chat.viewSessions.orientation": "stacked",
   "claudeCode.allowDangerouslySkipPermissions": true,
   "claudeCode.initialPermissionMode": "bypassPermissions",
-  "typescript.experimental.useTsgo": true,
-  "terminal.integrated.commandsToSkipShell": [
-    "kilo-code.new.agentManagerOpen",
-    "kilo-code.new.agentManager.showTerminal"
-  ]
+  "typescript.experimental.useTsgo": true
 }
