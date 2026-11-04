@@ -228,3 +228,173 @@ sshRemote() {
   fi
   return 1
 }
+
+_sshForward_usage() {
+  cat <<'EOF2'
+Usage: sshForward [--direct] [--fg] [user@]host port[:remote_port] ...
+       sshForward --list
+       sshUnforward [user@]host [port[:remote_port] ...]
+
+sshForward forwards remote ports to this machine (ssh -N -L 127.0.0.1:<port>).
+By default the tunnel runs in the background behind a control socket, and
+calling it again for the same host adds ports to the existing tunnel.
+sshUnforward cancels the given ports, or closes the whole tunnel if no ports
+are given.
+
+  host      SSH target, e.g. darcy-flex-desk or darcy@darcy-flex-desk.
+  port      Local port; forwards to the same port on the remote's 127.0.0.1.
+            Use local:remote to map different ports.
+  --fg      Run in the foreground instead (Ctrl-C closes the tunnel).
+  --list    Show running background tunnels.
+  --direct  Do not use the Windows Tailscale peer-IP fallback when WSL DNS fails.
+
+Examples:
+  sshForward darcy-flex-desk 6007     # 6007 from darcy-flex-desk
+  sshForward darcy-flex-desk 8888     # add 8888 to the same tunnel
+  sshForward darcy@otherbox 6007 8080:80
+  sshUnforward darcy-flex-desk 8888   # stop forwarding 8888 only
+  sshUnforward darcy-flex-desk        # close the darcy-flex-desk tunnel
+EOF2
+}
+
+_sshForward_socket_dir() {
+  printf '%s' "${XDG_RUNTIME_DIR:-${TMPDIR:-/tmp}}"
+}
+
+_sshForward_socket() {
+  printf '%s/sshForward-%s.sock' "$(_sshForward_socket_dir)" "$1"
+}
+
+# Parses "host [specs...]" into the caller's remote_spec, specs and
+# forward_args variables. specs is left empty when no ports were given.
+_sshForward_parse() {
+  local port_re='^[0-9]+(:[0-9]+)?$' spec
+  remote_spec=$1
+  shift
+  if [[ "$remote_spec" == -* || "$remote_spec" == *[!A-Za-z0-9_.@%:+,-]* ]]; then
+    printf 'sshForward: target contains unsupported characters: %s\n' "$remote_spec" >&2
+    return 2
+  fi
+  specs=("$@")
+  forward_args=()
+  for spec in "${specs[@]}"; do
+    if ! [[ "$spec" =~ $port_re ]]; then
+      printf 'sshForward: invalid port spec: %s\n' "$spec" >&2
+      return 2
+    fi
+    forward_args+=(-L "127.0.0.1:${spec%%:*}:127.0.0.1:${spec##*:}")
+  done
+}
+
+sshForward() {
+  local direct=0 foreground=0
+  while (($# > 0)); do
+    case "$1" in
+    --direct) direct=1 ;;
+    --fg) foreground=1 ;;
+    --list)
+      local sock found=0
+      for sock in "$(_sshForward_socket_dir)"/sshForward-*.sock; do
+        [[ -S "$sock" ]] || continue
+        found=1
+        sock=${sock##*/sshForward-}
+        printf '%s\n' "${sock%.sock}"
+      done
+      ((found)) || printf 'sshForward: no background tunnels\n'
+      return 0
+      ;;
+    -h | --help)
+      _sshForward_usage
+      return 0
+      ;;
+    --*)
+      printf 'sshForward: unknown option: %s\n' "$1" >&2
+      _sshForward_usage >&2
+      return 2
+      ;;
+    *) break ;;
+    esac
+    shift
+  done
+
+  if (($# < 2)); then
+    _sshForward_usage >&2
+    return 2
+  fi
+
+  local remote_spec
+  local -a specs forward_args
+  _sshForward_parse "$@" || return
+
+  local sock
+  sock=$(_sshForward_socket "$remote_spec")
+  if ((foreground == 0)) && ssh -S "$sock" -O check "$remote_spec" >/dev/null 2>&1; then
+    # Tunnel already up: add the ports to it.
+    ssh -S "$sock" -O forward "${forward_args[@]}" "$remote_spec" >/dev/null || return
+    printf 'sshForward: added [%s] to the %s tunnel\n' "${specs[*]}" "$remote_spec"
+    return 0
+  fi
+
+  local -a ssh_args=(ssh -N -o ExitOnForwardFailure=yes -o ServerAliveInterval=30
+    -o ConnectTimeout=10 "${forward_args[@]}")
+
+  # Same WSL fallback as sshRemote: if DNS can't resolve the host, ask the
+  # Windows Tailscale client for the peer IP and pin the host key alias.
+  local effective_host peer_ip='' windows_cli=''
+  effective_host=$(ssh -G "$remote_spec" 2>/dev/null | awk '$1 == "hostname" { print $2; exit }')
+  [[ -n "$effective_host" ]] || effective_host=${remote_spec##*@}
+  if ((direct == 0)) && ! getent ahosts "$effective_host" >/dev/null 2>&1 && _sshRemote_is_wsl; then
+    windows_cli=$(_sshRemote_windows_tailscale || true)
+    [[ -n "$windows_cli" ]] && peer_ip=$(_sshRemote_peer_ip "$windows_cli" "$effective_host" || true)
+    if [[ -n "$peer_ip" ]]; then
+      ssh_args+=(-o "HostName=$peer_ip" -o "HostKeyAlias=$effective_host")
+    fi
+  fi
+
+  if ((foreground)); then
+    printf 'sshForward: %s -> localhost [%s]%s (Ctrl-C to stop)\n' \
+      "$remote_spec" "${specs[*]}" "${peer_ip:+ via Windows Tailscale $peer_ip}"
+    "${ssh_args[@]}" "$remote_spec"
+    return
+  fi
+
+  rm -f "$sock" # stale socket from a tunnel that died
+  # -f backgrounds only after the forwards are set up (ExitOnForwardFailure).
+  "${ssh_args[@]}" -f -o ControlMaster=yes -o ControlPersist=no -S "$sock" "$remote_spec" || return
+  printf 'sshForward: %s -> localhost [%s]%s in background; stop with: sshUnforward %s\n' \
+    "$remote_spec" "${specs[*]}" "${peer_ip:+ via Windows Tailscale $peer_ip}" "$remote_spec"
+}
+
+sshUnforward() {
+  case "${1:-}" in
+  '')
+    _sshForward_usage >&2
+    return 2
+    ;;
+  -h | --help)
+    _sshForward_usage
+    return 0
+    ;;
+  esac
+
+  local remote_spec
+  local -a specs forward_args
+  _sshForward_parse "$@" || return
+
+  local sock
+  sock=$(_sshForward_socket "$remote_spec")
+  if ! ssh -S "$sock" -O check "$remote_spec" >/dev/null 2>&1; then
+    rm -f "$sock"
+    printf 'sshUnforward: no background tunnel for %s\n' "$remote_spec" >&2
+    return 1
+  fi
+
+  if ((${#specs[@]} == 0)); then
+    ssh -S "$sock" -O exit "$remote_spec" 2>/dev/null
+    rm -f "$sock"
+    printf 'sshUnforward: closed the %s tunnel\n' "$remote_spec"
+  else
+    ssh -S "$sock" -O cancel "${forward_args[@]}" "$remote_spec" >/dev/null || return
+    printf 'sshUnforward: stopped forwarding [%s] from %s\n' "${specs[*]}" "$remote_spec"
+  fi
+}
