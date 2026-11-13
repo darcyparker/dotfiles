@@ -197,7 +197,10 @@ sshRemote() {
 
   local remote_command quoted_remote_command tmux_command log_file
   printf -v quoted_remote_command '%q' "$remote_session"
-  remote_command="export PROXY_IMPORT=true; tmux attach -t $quoted_remote_command || tmux new -s $quoted_remote_command"
+  # The remote command runs in a non-interactive shell, so ~/.bashrc (and
+  # setLang.sh) never runs. Without a UTF-8 LANG, tmux renders non-ASCII
+  # characters (e.g. µ) as "_". -u forces UTF-8 on the client either way.
+  remote_command="export PROXY_IMPORT=true; export LANG=\"\${LANG:-C.UTF-8}\"; tmux -u attach -t $quoted_remote_command || tmux -u new -s $quoted_remote_command"
 
   local -a ssh_args=(ssh -t -o ConnectTimeout=10 -o ConnectionAttempts=1)
   if [[ -n "$host_key_alias" ]]; then
