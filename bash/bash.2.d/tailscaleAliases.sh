@@ -232,6 +232,25 @@ sshRemote() {
   return 1
 }
 
+# Usage: sshRemoteReset user@host
+# Undo a stuck F12 pass-through on the remote tmux (prefix None / key-table off)
+# for every session, and put attached clients back on the root key table.
+sshRemoteReset() {
+  if (($# != 1)) || [[ "$1" == -* ]]; then
+    printf 'Usage: sshRemoteReset user@host\n' >&2
+    return 2
+  fi
+  ssh -o ConnectTimeout=10 "$1" '
+    for s in $(tmux ls -F "#{session_name}"); do
+      for o in prefix key-table status-style; do tmux set -u -t "$s" "$o"; done
+    done
+    for c in $(tmux list-clients -F "#{client_name}"); do
+      tmux switch-client -c "$c" -T root; tmux refresh-client -S -t "$c"
+    done
+    tmux list-clients -F "#{client_name} #{session_name} key-table=#{client_key_table}"
+  '
+}
+
 _sshForward_usage() {
   cat <<'EOF2'
 Usage: sshForward [--direct] [--fg] [user@]host port[:remote_port] ...
